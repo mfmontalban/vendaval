@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import TextFieldGroup from '../common/TextFieldGroup';
 import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
-import { addContribution, getContributionByID } from '../../actions/staffActions';
+import { editContribution, getContributionByID } from '../../actions/staffActions';
 import isEmpty from '../../validation/is-empty';
 
 class Contribution extends Component {
@@ -50,12 +50,14 @@ class Contribution extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
+    const id = this.props.match.params.id;
+
     const contribData = {
       title: this.state.title,
-      description: this.state.description
+      description: this.state.description,
     };
 
-    this.props.addContribution(contribData, this.props.history);
+    this.props.editContribution(id, contribData, this.props.history);
   }
 
   render() {
@@ -113,7 +115,7 @@ class Contribution extends Component {
 
 Contribution.propTypes = {
   getContributionByID: PropTypes.func.isRequired,
-  addContribution: PropTypes.func.isRequired,
+  editContribution: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
   staff: PropTypes.object.isRequired
@@ -125,4 +127,4 @@ const mapStateToProps = state => ({
   staff: state.staff
 });
 
-export default connect(mapStateToProps, { addContribution, getContributionByID })(withRouter(Contribution));
+export default connect(mapStateToProps, { editContribution, getContributionByID })(withRouter(Contribution));

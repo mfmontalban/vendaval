@@ -57,6 +57,38 @@ export const addContribution = (contribData, history) => dispatch => {
     );
 };
 
+// Edit contribution
+export const editContribution = (id, contribData, history) => dispatch => {
+  axios
+    .post(`/api/staff/contribution/${id}`, contribData)
+    .then(res => history.push('/staff/dashboard'))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+// Delete Experience
+export const deleteContribution = id => dispatch => {
+  dispatch(setContributionsLoading());
+  axios
+    .delete(`/api/staff/contribution/${id}`)
+    .then(res =>
+      dispatch({
+        type: GET_CONTRIBUTIONS,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_CONTRIBUTIONS,
+        payload: {}
+      })
+    );
+};
+
 // Profile loading
 export const setContributionsLoading = () => {
   return {

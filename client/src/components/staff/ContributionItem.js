@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { deleteContribution } from '../../actions/staffActions';
 import Moment from 'react-moment';
 
 class ContributionItem extends Component {
+
+  onDeleteClick(id) {
+    this.props.deleteContribution(id);
+  }
+
   render() {
     const { contribution } = this.props;
 
@@ -24,7 +31,13 @@ class ContributionItem extends Component {
             <div className="dropdown-menu dropdown-menu-right">
               <Link to={`/staff/contribution/view/${contribution._id}`} className="dropdown-item text-dark"><i className="fal fa-search mr-2"></i>View</Link>
               <Link to={`/staff/contribution/edit/${contribution._id}`} className="dropdown-item text-dark"><i className="fal fa-pencil mr-2"></i>Edit</Link>
-              <Link to={`/staff/contribution/delete/${contribution._id}`} className="dropdown-item text-dark"><i className="fal fa-trash mr-2"></i>Delete</Link>
+              <a
+                href="#{}"
+                className="dropdown-item text-dark"
+                onClick={this.onDeleteClick.bind(this, contribution._id)}
+                >
+                <i className="fal fa-trash mr-2"></i>Delete
+              </a>
               <div className="dropdown-divider"></div>
               <a className="dropdown-item" href="#{}"><i className="fal fa-sticky-note mr-2"></i>Revisions</a>
             </div>
@@ -36,7 +49,12 @@ class ContributionItem extends Component {
 }
 
 ContributionItem.propTypes = {
+  deleteContribution: PropTypes.func.isRequired,
   contribution: PropTypes.object.isRequired
 };
 
-export default ContributionItem;
+const mapStateToProps = state => ({
+  contributions: state.contribution
+});
+
+export default connect(mapStateToProps, { deleteContribution })(ContributionItem);

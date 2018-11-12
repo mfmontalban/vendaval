@@ -35,7 +35,7 @@ router.get(
 });
 
 // @route   POST api/staff/contribute
-// @desc    Add or Edit contribution
+// @desc    Add contribution
 // @access  Private
 router.post(
   '/contribute',
@@ -49,8 +49,6 @@ router.post(
       return res.status(400).json(errors);
     }
 
-    console.log(req);
-
     // Get fields
     const contributionFields = {};
     contributionFields.user = req.user.id;
@@ -61,11 +59,11 @@ router.post(
       contributionFields.images = req.body.images.split(',');
     }
 
-    Contribution.findOne({ _id: req.body.title }).then(contribution => {
+    Contribution.findOne({ _id: req.body.id }).then(contribution => {
       if (contribution) {
           // Update Profile
           Contribution.findOneAndUpdate(
-            { title: req.body.title },
+            { _id: req.body.id },
             { $set: contributionFields },
             { new: true }
           ).then(contribution => res.json(contribution));
@@ -110,27 +108,66 @@ router.get(
       .catch(err => res.status(404).json({ contribution: 'No contribution' }));
 });
 
-// @route   DELETE api/staff/contribute/:exp_id
+// @route   POST api/staff/contribution/:id
+// @desc    Edit contribution
+// @access  Private
+router.post(
+  '/contribution/:id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const { errors, isValid } = validateContributionInput(req.body);
+
+    // Check Validation
+    if (!isValid) {
+      // Return any errors with 400 status
+      return res.status(400).json(errors);
+    }
+
+    // Get fields
+    const contributionFields = {};
+    contributionFields.user = req.user.id;
+    if (req.body.title) contributionFields.title = req.body.title;
+    if (req.body.description) contributionFields.description = req.body.description;
+    // Skills - Spilt into array
+    if (typeof req.body.images !== 'undefined') {
+      contributionFields.images = req.body.images.split(',');
+    }
+
+    Contribution.findOne({ _id: req.params.id }).then(contribution => {
+      if (contribution) {
+          // Update Profile
+          Contribution.findOneAndUpdate(
+            { _id: req.params.id },
+            { $set: contributionFields },
+            { new: true }
+          ).then(contribution => res.json(contribution));
+      } else {
+        errors.title = 'No contribution exists';
+        res.status(400).json(errors);
+      }
+    });
+  }
+);
+
+// @route   DELETE api/staff/contribute/:id
 // @desc    Delete experience from profile
 // @access  Private
 router.delete(
-  '/contribution/:contribution',
+  '/contribution/:id',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    Profile.findOne({ user: req.user.id })
-      .then(profile => {
-        // Get remove index
-        const removeIndex = profile.experience
-          .map(item => item.id)
-          .indexOf(req.params.exp_id);
+    Contribution.findOneAndRemove({ _id: req.params.id})
+      .then(() =>
+      Contribution.find({ user: req.user.id })
+        .then(contributions => {
+          if (!contributions) {
+            errors.noprofile = 'There are no contributions';
+            return res.status(404).json(errors);
+          }
 
-        // Splice out of array
-        profile.experience.splice(removeIndex, 1);
-
-        // Save
-        profile.save().then(profile => res.json(profile));
-      })
-      .catch(err => res.status(404).json(err));
+          res.json(contributions);
+        })
+        .catch(err => res.status(404).json({ profile: 'There are no contributions' })));
   }
 );
 
