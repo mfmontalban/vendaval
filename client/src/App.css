@@ -1,0 +1,41 @@
+/*
+Content
+*/
+
+.body {
+  position:relative;
+  margin-top:100px;
+  height: calc(100vh - 155px);
+  padding-left:5%;
+  padding-right:5%;
+}
+
+.block {
+  min-height: calc(100vh - 155px);
+}
+
+.scroll-container {
+  overflow:scroll;
+}
+
+.alert-margin {
+  margin-top: 110px;
+}
+
+.footer-margin {
+  margin-bottom: 55px;
+}
+
+  /*
+  Add Contribution
+  */
+
+  .m-sort-top {
+    margin-top:.5rem;
+  }
+
+  .b-input-search {
+    width:90%;
+    margin-left:5%;
+    padding:.25rem 1rem;
+  }
