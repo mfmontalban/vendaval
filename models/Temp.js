@@ -11,6 +11,9 @@ const TempSchema = new Schema({
     type: String,
     required: true
   },
+  email: {
+    type: String
+  },
   key: {
     type: String,
     required: true

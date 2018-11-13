@@ -29,7 +29,12 @@ export const getCurrentSeguridad = () => dispatch => {
 export const editAccount = (accountData, history) => dispatch => {
   axios
     .post('/api/seguridad/edit', accountData)
-    .then(res => history.push('/vientos'))
+    .then(res => {
+      // Send email to newly registered user
+      axios
+        .post('/api/email/sendUpdate', accountData);
+      history.push('/vientos')
+    })
     .catch(err =>
       dispatch({
         type: GET_ERRORS,

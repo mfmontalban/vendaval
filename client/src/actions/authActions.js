@@ -63,6 +63,24 @@ export const verifyRegister = key => dispatch => {
     );
 };
 
+// Verify Register User key
+export const verifyUpdate = key => dispatch => {
+  axios
+    .get(`/api/email/verifyUpdate/${key}`)
+    .then(res =>
+      dispatch({
+        type: VERIFY,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: VERIFY,
+        payload: err.data
+      })
+    );
+};
+
 
 
 // Login - Get User Token

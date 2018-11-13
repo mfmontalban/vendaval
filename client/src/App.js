@@ -22,6 +22,7 @@ import Forgot from './components/auth/Forgot';
 
 import Verify from './components/auth/Verify';
 import Reset from './components/auth/Reset';
+import Update from './components/auth/Update';
 
 import Vientos from './components/main/Vientos';
 import Pensar from './components/main/Pensar';
@@ -82,6 +83,7 @@ class App extends Component {
 
             <Route exact path="/verify/:key" component={Verify} />
             <Route exact path="/reset/:key" component={Reset} />
+            <Route exact path="/update/:key" component={Update} />
 
             <Route exact path="/vientos" component={Vientos} />
             <Route exact path="/pensar" component={Pensar} />

@@ -50,7 +50,6 @@ router.post('/edit',
 
     const profileFields = {};
     profileFields.name = req.body.name;
-    profileFields.email = req.body.email;
 
     const passwordLength = req.body.password;
 
