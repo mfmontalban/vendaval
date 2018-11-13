@@ -4,7 +4,6 @@ const MailComposer = require('nodemailer/lib/mail-composer');
 const random = require('randomstring');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const key = require('../../config/keys');
 const passport = require('passport');
 
 // Load Input Validation
