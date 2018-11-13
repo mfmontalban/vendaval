@@ -27,7 +27,7 @@ Content
 }
 
   /*
-  Add Contribution
+  Create Contribution
   */
 
   .m-sort-top {
@@ -38,4 +38,12 @@ Content
     width:90%;
     margin-left:5%;
     padding:.25rem 1rem;
+  }
+
+  /*
+  Read Contribution
+  */
+
+  .textStyle {
+    font-family:sans-serif;
   }

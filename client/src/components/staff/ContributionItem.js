@@ -31,6 +31,7 @@ class ContributionItem extends Component {
             <div className="dropdown-menu dropdown-menu-right">
               <Link to={`/staff/contribution/view/${contribution._id}`} className="dropdown-item text-dark"><i className="fal fa-search mr-2"></i>View</Link>
               <Link to={`/staff/contribution/edit/${contribution._id}`} className="dropdown-item text-dark"><i className="fal fa-pencil mr-2"></i>Edit</Link>
+              <div className="dropdown-divider"></div>
               <a
                 href="#{}"
                 className="dropdown-item text-dark"
@@ -38,8 +39,6 @@ class ContributionItem extends Component {
                 >
                 <i className="fal fa-trash mr-2"></i>Delete
               </a>
-              <div className="dropdown-divider"></div>
-              <a className="dropdown-item" href="#{}"><i className="fal fa-sticky-note mr-2"></i>Revisions</a>
             </div>
           </div>
         </td>

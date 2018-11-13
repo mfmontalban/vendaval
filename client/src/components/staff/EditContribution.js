@@ -43,6 +43,10 @@ class Contribution extends Component {
     }
   }
 
+  onDeleteClick(id) {
+    this.props.deleteContribution(id);
+  }
+
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -63,12 +67,30 @@ class Contribution extends Component {
   render() {
     const { errors } = this.state;
 
+    const { contributions } = this.props.staff;
+
     return (
       <div className="body scroll-container pt-3 pb-3">
         <div className="col-md-8 m-auto">
           <Link to="/staff/dashboard" className="btn btn-light">
-            Go Back
+            Dashboard
           </Link>
+          <div className="btn-group">
+            <button type="button" className="bg-transparent border-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i className="fal fa-ellipsis-v"></i>
+            </button>
+            <div className="dropdown-menu dropdown-menu-right">
+              <Link to={`/staff/contribution/view/${contributions._id}`} className="dropdown-item text-dark"><i className="fal fa-pencil mr-2"></i>View</Link>
+              <div className="dropdown-divider"></div>
+              <a
+                href="#{}"
+                className="dropdown-item text-dark"
+                onClick={this.onDeleteClick.bind(this, contributions._id)}
+                >
+                <i className="fal fa-trash mr-2"></i>Delete
+              </a>
+            </div>
+          </div>
           <h1 className="display-6 text-center mt-3">Contribution</h1>
           <form onSubmit={this.onSubmit}>
             <TextFieldGroup
