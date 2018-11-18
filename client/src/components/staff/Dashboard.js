@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { getContributions } from '../../actions/staffActions';
 import Spinner from '../common/Spinner';
 import ContributionItem from './ContributionItem';
-import { getContributions } from '../../actions/staffActions';
+import { Link } from 'react-router-dom';
 
 class Staff extends Component {
 
@@ -34,52 +34,25 @@ class Staff extends Component {
               <tr>
                 <th scope="col">
                   <div className="btn-group">
-                    <a className="text-info" href="#{}" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i className="far fa-archive"></i>
-                    </a>
-                    <div className="dropdown-menu">
-                      <a className="dropdown-item" href="#{}"><i className="fal fa-mouse-pointer mr-2"></i>Select All</a>
-                      <div className="dropdown-divider"></div>
-                      <a className="dropdown-item" href="#{}"><i className="fal fa-trash mr-2"></i>Delete</a>
+                    <div className="text-info non-clickable"><i className="far fa-archive"></i>
                     </div>
                   </div>
                 </th>
                 <th scope="col">
                   <div className="dropdown">
-                    <a className="text-info" href="#{}" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Status
-                    </a>
-
-                    <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                      <div className="dropdown-item d-flex justify-content-between" href="#{}"><i className="m-sort-top fal fa-sort-up mr-2"></i>Sort<i className="fal fa-sort-down ml-2"></i></div>
-                      <div className="dropdown-divider"></div>
-                      <a className="dropdown-item" href="#{}"><i className="fal fa-bullseye mr-2"></i>Exact</a>
-                      <a className="dropdown-item" href="#{}"><i className="fal fa-exchange-alt mr-2"></i>Range</a>
+                    <div className="text-info non-clickable">Status
                     </div>
                   </div>
                 </th>
                 <th scope="col">
                   <div className="dropdown">
-                    <a className="text-info" href="#{}" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Date
-                    </a>
-
-                    <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                      <div className="dropdown-item d-flex justify-content-between" href="#{}"><i className="m-sort-top fal fa-sort-up mr-2"></i>Sort<i className="fal fa-sort-down ml-2"></i></div>
-                      <div className="dropdown-divider"></div>
-                      <a className="dropdown-item" href="#{}"><i className="fal fa-bullseye mr-2"></i>Exact</a>
-                      <a className="dropdown-item" href="#{}"><i className="fal fa-exchange-alt mr-2"></i>Range</a>
+                    <div className="text-info non-clickable">Date
                     </div>
                   </div>
                 </th>
                 <th scope="col">
                   <div className="dropdown">
-                    <a className="text-info" href="#{}}" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Title
-                    </a>
-
-                    <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                      <div className="dropdown-item d-flex justify-content-between" href="#{}}"><i className="fal fa-sort-alpha-up mr-2"></i>Sort<i className="fal fa-sort-alpha-down ml-2"></i></div>
-                      <div className="dropdown-divider"></div>
-                      <a className="dropdown-item" href="#{}">Exact</a>
-                      <a className="dropdown-item" href="#{}">Contains</a>
-                      <input className="form-control b-input-search" type="search" placeholder="Search" aria-label="Search"></input>
+                    <div className="text-info non-clickable">Title
                     </div>
                   </div>
                 </th>
@@ -100,26 +73,7 @@ class Staff extends Component {
       <div className="body scroll-container pt-3 pb-3">
         <nav className="d-flex flex-row" aria-label="Page navigation example">
           <nav className="w-100 navbar navbar-expand-sm navbar-light bg-transparent">
-            <a className="navbar-brand" href="#{}">Contributions</a>
-            <button className="pt-2 pb-2 ml-auto navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <i className="far fa-bars"></i>
-            </button>
-            <div className="collapse navbar-collapse" id="navbarNav">
-              <ul className="navbar-nav d-flex flex-row justify-content-between">
-                <li className="nav-item active">
-                  <a className="nav-link" href="#{}">All <span className="sr-only">(current)</span></a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#{}">Drafts</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#{}">Revisions</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#{}">Live</a>
-                </li>
-              </ul>
-            </div>
+            <div className="navbar-brand non-clickable">Contributions</div>
           </nav>
         </nav>
         {loadingContent}

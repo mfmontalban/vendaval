@@ -25,6 +25,7 @@ import Reset from './components/auth/Reset';
 import Update from './components/auth/Update';
 
 import Vientos from './components/main/Vientos';
+import ViewViento from './components/main/ViewViento';
 import Pensar from './components/main/Pensar';
 import Educar from './components/main/Educar';
 import Crear from './components/main/Crear';
@@ -86,6 +87,7 @@ class App extends Component {
             <Route exact path="/update/:key" component={Update} />
 
             <Route exact path="/vientos" component={Vientos} />
+            <Route exact path="/vientos/:id" component={ViewViento} />
             <Route exact path="/pensar" component={Pensar} />
             <Route exact path="/educar" component={Educar} />
             <Route exact path="/crear" component={Crear} />

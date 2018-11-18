@@ -27,6 +27,14 @@ Content
 }
 
   /*
+  Staff Dashboard
+  */
+
+  .tableTitleFix:first-of-type {
+    border-top:0px !important;
+  }
+
+  /*
   Create Contribution
   */
 

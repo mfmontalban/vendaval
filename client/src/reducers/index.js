@@ -6,6 +6,7 @@ import profileReducer from './profileReducer';
 import seguridadReducer from './seguridadReducer';
 import staffReducer from './staffReducer';
 import verifyReducer from './verifyReducer';
+import vientosReducer from './vientosReducer';
 // import postReducer from './postReducer';
 
 export default combineReducers({
@@ -16,5 +17,6 @@ export default combineReducers({
   seguridad: seguridadReducer,
   staff: staffReducer,
   verify: verifyReducer,
+  vientos: vientosReducer,
   // post: postReducer
 });

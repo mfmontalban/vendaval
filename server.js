@@ -10,6 +10,7 @@ const posts = require('./routes/api/posts');
 const email = require('./routes/api/email');
 const staff = require('./routes/api/staff');
 const seguridad = require('./routes/api/seguridad');
+const vientos = require('./routes/api/vientos');
 
 const app = express();
 
@@ -39,6 +40,7 @@ app.use('/api/posts', posts);
 app.use('/api/email', email);
 app.use('/api/staff', staff);
 app.use('/api/seguridad', seguridad);
+app.use('/api/vientos', vientos);
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === 'production') {
