@@ -11,10 +11,22 @@ const ContributionSchema = new Schema({
     type: String,
     default: 'Draft'
   },
+  type: {
+    type: String
+  },
+  topic: {
+    type: String
+  },
   title: {
     type: String
   },
   description: {
+    type: String
+  },
+  content: {
+    type: String
+  },
+  contentHTML: {
     type: String
   },
   banner: {

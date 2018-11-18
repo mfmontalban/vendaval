@@ -6,7 +6,7 @@ import {
   CONTRIBUTIONS_LOADING
 } from './types';
 
-// Get current profile
+// Get current contribution
 export const getContributions = () => dispatch => {
   dispatch(setContributionsLoading());
   axios
@@ -25,7 +25,7 @@ export const getContributions = () => dispatch => {
     );
 };
 
-// Get current profile
+// Get current contribution
 export const getContributionByID = id => dispatch => {
   dispatch(setContributionsLoading());
   axios
@@ -70,17 +70,18 @@ export const editContribution = (id, contribData, history) => dispatch => {
     );
 };
 
-// Delete Experience
-export const deleteContribution = id => dispatch => {
+// Delete contribution
+export const deleteContribution = (id, history) => dispatch => {
   dispatch(setContributionsLoading());
   axios
     .delete(`/api/staff/contribution/${id}`)
-    .then(res =>
+    .then(res =>{
+      history.push('/staff/dashboard');
       dispatch({
         type: GET_CONTRIBUTIONS,
         payload: res.data
-      })
-    )
+      });
+    })
     .catch(err =>
       dispatch({
         type: GET_CONTRIBUTIONS,
@@ -89,7 +90,7 @@ export const deleteContribution = id => dispatch => {
     );
 };
 
-// Profile loading
+// Contribution loading
 export const setContributionsLoading = () => {
   return {
     type: CONTRIBUTIONS_LOADING

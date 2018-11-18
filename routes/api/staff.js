@@ -2,6 +2,11 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
+ObjectID = require('mongodb').ObjectID;
+if (typeof localStorage === "undefined" || localStorage === null) {
+  var LocalStorage = require('node-localstorage').LocalStorage;
+  localStorage = new LocalStorage('./scratch');
+}
 
 // Load Validation
 const validateContributionInput = require('../../validation/contribution');
@@ -52,36 +57,26 @@ router.post(
     // Get fields
     const contributionFields = {};
     contributionFields.user = req.user.id;
+    if (req.body.type) contributionFields.type = req.body.type;
+    if (req.body.topic) contributionFields.topic = req.body.topic;
     if (req.body.title) contributionFields.title = req.body.title;
     if (req.body.description) contributionFields.description = req.body.description;
+    if (req.body.content) contributionFields.content = req.body.content;
+    if (req.body.contentHTML) contributionFields.contentHTML = req.body.contentHTML;
     // Skills - Spilt into array
     if (typeof req.body.images !== 'undefined') {
       contributionFields.images = req.body.images.split(',');
     }
 
-    Contribution.findOne({ _id: req.body.id }).then(contribution => {
+    Contribution.findOne({ title: contributionFields.title }).then(contribution => {
       if (contribution) {
-          // Update Profile
-          Contribution.findOneAndUpdate(
-            { _id: req.body.id },
-            { $set: contributionFields },
-            { new: true }
-          ).then(contribution => res.json(contribution));
+        errors.title = 'That title already exists';
+        res.status(400).json(errors);
       } else {
-        // Create
+        contributionFields.createdAt = Date.now();
 
-        // Check if title exists
-        Contribution.findOne({ title: contributionFields.title }).then(contribution => {
-          if (contribution) {
-            errors.title = 'That title already exists';
-            res.status(400).json(errors);
-          }
-
-          contributionFields.createdAt = Date.now();
-
-          // Save Profile
-          new Contribution(contributionFields).save().then(contribution => res.json(contribution));
-        });
+        // Save Profile
+        new Contribution(contributionFields).save().then(contribution => res.json(contribution));
       }
     });
   }
@@ -126,21 +121,41 @@ router.post(
     // Get fields
     const contributionFields = {};
     contributionFields.user = req.user.id;
+    contributionFields.updatedAt = Date.now();
+    if (req.body.type) contributionFields.type = req.body.type;
+    if (req.body.topic) contributionFields.topic = req.body.topic;
     if (req.body.title) contributionFields.title = req.body.title;
     if (req.body.description) contributionFields.description = req.body.description;
+    if (req.body.content) contributionFields.content = req.body.content;
+    if (req.body.contentHTML) contributionFields.contentHTML = req.body.contentHTML;
     // Skills - Spilt into array
     if (typeof req.body.images !== 'undefined') {
       contributionFields.images = req.body.images.split(',');
     }
 
-    Contribution.findOne({ _id: req.params.id }).then(contribution => {
+    Contribution.findOne({$and: [{ _id: req.params.id }, {user: req.user.id}]}).then(contribution => {
       if (contribution) {
-          // Update Profile
-          Contribution.findOneAndUpdate(
-            { _id: req.params.id },
-            { $set: contributionFields },
-            { new: true }
-          ).then(contribution => res.json(contribution));
+        Contribution.findOne({ title: contributionFields.title }).then(contribution => {
+          if (contribution) {
+            const contribID = new ObjectID(req.user.id);
+            if (contribution.user.equals(contribID)) {
+              // Update Profile
+              Contribution.findOneAndUpdate(
+                { _id: req.params.id },
+                { $set: contributionFields }
+              ).then(contribution => res.json(contribution));
+            } else {
+              errors.title = 'That title already exists';
+              res.status(400).json(errors);
+            }
+          } else {
+            // Update Profile
+            Contribution.findOneAndUpdate(
+              { _id: req.params.id },
+              { $set: contributionFields }
+            ).then(contribution => res.json(contribution));
+          }
+        });
       } else {
         errors.title = 'No contribution exists';
         res.status(400).json(errors);
@@ -156,7 +171,7 @@ router.delete(
   '/contribution/:id',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    Contribution.findOneAndRemove({ _id: req.params.id})
+    Contribution.findOneAndRemove({$and: [{ _id: req.params.id }, {user: req.user.id}]})
       .then(() =>
       Contribution.find({ user: req.user.id })
         .then(contributions => {

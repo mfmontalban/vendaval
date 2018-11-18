@@ -40,9 +40,22 @@ Content
     padding:.25rem 1rem;
   }
 
+  .clickable {
+    cursor:pointer !important;
+  }
+
+  .non-clickable {
+    cursor:default !important;
+  }
+
   /*
   Read Contribution
   */
+
+  #viewToolbar {
+    padding:0px;
+    border:0px;
+  }
 
   .textStyle {
     font-family:sans-serif;
