@@ -101,7 +101,7 @@ class Contribution extends Component {
           </div>
           <h1>{contributions.title}</h1>
           <pre><p className="textStyle">{contributions.description}</p></pre>
-          <img className="banner" alt="banner" src={`http://localhost:5000/api/staff/files/${contributions.banner}`} />
+          <img className="banner" alt="banner" src={`http://vtesting.herokuapp.com/api/staff/files/${contributions.banner}`} />
           <Quill contributions={contributions.content} />
         </div>;
     }
