@@ -25,6 +25,7 @@ class Contribution extends Component {
       type: '',
       topic: '',
       title: '',
+      banner: '',
       description: '',
       content: '',
       modal: false,
@@ -74,8 +75,8 @@ class Contribution extends Component {
     this.props.deleteContribution(id, this.props.history);
   }
 
-  updateBannerName = (e) => {
-    console.log(e);
+  fileSelected = (e) => {
+    this.setState({banner: e.target.files[0]});
   }
 
   onChange = (e) => {
@@ -87,6 +88,9 @@ class Contribution extends Component {
 
     const id = this.props.match.params.id;
 
+    let data = new FormData();
+    data.append('file', this.state.banner);
+
     const contribData = {
       type: this.state.type,
       topic: this.state.topic,
@@ -96,7 +100,7 @@ class Contribution extends Component {
       contentHTML: localStorage.contentHTML
     };
 
-    this.props.editContribution(id, contribData, this.props.history);
+    this.props.editContribution(id, contribData, data, this.props.history);
   }
 
   render() {
@@ -206,16 +210,15 @@ class Contribution extends Component {
               error={errors.title}
             />
 
-            <div className="input-group mb-3" onChange={this.updateBannerName}>
+            <div className="input-group mb-3">
               <div className="input-group-prepend">
                 <div className="btn btn-secondary non-clickable">Banner</div>
               </div>
-              <div className="custom-file">
-                <input type="file" className="custom-file-input clickable" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" />
+              <div className="custom-file clickable">
+                <input type="file" onChange={this.fileSelected} className="custom-file-input clickable" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" />
                 <label className="custom-file-label clickable" htmlFor="inputGroupFile01">Choose Image</label>
               </div>
             </div>
-
 
             <TextAreaFieldGroup
               placeholder="Description"

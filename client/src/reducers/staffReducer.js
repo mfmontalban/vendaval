@@ -1,6 +1,7 @@
 import {
+  GET_BANNER,
   GET_CONTRIBUTIONS,
-  CONTRIBUTIONS_LOADING
+  CONTRIBUTIONS_LOADING,
 } from '../actions/types';
 
 const initialState = {

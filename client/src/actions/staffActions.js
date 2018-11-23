@@ -30,12 +30,12 @@ export const getContributionByID = id => dispatch => {
   dispatch(setContributionsLoading());
   axios
     .get(`/api/staff/contribution/${id}`)
-    .then(res =>
+    .then(res => {
       dispatch({
         type: GET_CONTRIBUTIONS,
         payload: res.data
-      })
-    )
+      });
+    })
     .catch(err =>
       dispatch({
         type: GET_CONTRIBUTIONS,
@@ -45,29 +45,41 @@ export const getContributionByID = id => dispatch => {
 };
 
 // Add contribution
-export const addContribution = (contribData, history) => dispatch => {
+export const addContribution = (contribData, data, history) => dispatch => {
   axios
-    .post('/api/staff/contribute', contribData)
-    .then(res => history.push('/staff/dashboard'))
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
-    );
+    .post('/api/staff/files', data)
+    .then(res => {
+      contribData.banner = res.data.file;
+      axios
+        .post('/api/staff/contribute', contribData)
+        .then(res => {
+          history.push('/staff/dashboard');
+        })
+        .catch(err =>
+          dispatch({
+            type: GET_ERRORS,
+            payload: err.response.data
+          })
+        );
+    });
 };
 
 // Edit contribution
-export const editContribution = (id, contribData, history) => dispatch => {
+export const editContribution = (id, contribData, data, history) => dispatch => {
   axios
-    .post(`/api/staff/contribution/${id}`, contribData)
-    .then(res => history.push('/staff/dashboard'))
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
-    );
+    .post('/api/staff/files', data)
+    .then(res => {
+      contribData.banner = res.data.file;
+      axios
+        .post(`/api/staff/contribution/${id}`, contribData)
+        .then(res => history.push('/staff/dashboard'))
+        .catch(err =>
+          dispatch({
+            type: GET_ERRORS,
+            payload: err.response.data
+          })
+        );
+  });
 };
 
 // Delete contribution

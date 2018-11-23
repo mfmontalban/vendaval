@@ -49,17 +49,20 @@ class MyComponent extends React.Component {
  * Quill modules to attach to editor
  * See https://quilljs.com/docs/modules/ for complete options
  */
+
 MyComponent.modules = {
-  toolbar: [
-    [{ 'header': '1'}, {'header': '2'}, { 'font': [] }],
-    [{size: []}],
-    [{ 'color': [] }, { 'background': [] }, 'bold', 'italic', 'underline', 'strike', 'blockquote'],
-    [{'list': 'ordered'}, {'list': 'bullet'},
-     {'indent': '-1'}, {'indent': '+1'},
-     { 'align': [] }],
-    ['link', 'image', 'video'],
-    ['clean']
-  ]
+  toolbar: {
+    container: [
+      [{ 'header': '1'}, {'header': '2'}, { 'font': [] }],
+      [{size: []}],
+      [{ 'color': [] }, { 'background': [] }, 'bold', 'italic', 'underline', 'strike', 'blockquote'],
+      [{'list': 'ordered'}, {'list': 'bullet'},
+       {'indent': '-1'}, {'indent': '+1'},
+       { 'align': [] }],
+      ['link', 'image', 'video'],
+      ['clean']
+    ]
+  }
 }
 /*
  * Quill editor formats

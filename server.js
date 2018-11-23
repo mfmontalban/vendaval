@@ -15,8 +15,8 @@ const vientos = require('./routes/api/vientos');
 const app = express();
 
 // Bodyparser Middleware
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({limit: '50mb', extended: false}));
+app.use(bodyParser.json({limit: '50mb'}));
 
 // DB Config
 const db = process.env.MONGODB_URI || require('./config/keys').mongoURI;

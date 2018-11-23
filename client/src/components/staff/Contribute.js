@@ -17,6 +17,8 @@ class AddContribution extends Component {
       type: '',
       topic: '',
       title: '',
+      banner: '',
+      bannerFile: '',
       description: '',
       content: '',
       errors: {},
@@ -29,12 +31,19 @@ class AddContribution extends Component {
     }
   }
 
+  fileSelected = (e) => {
+    this.setState({banner: e.target.files[0]});
+  }
+
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   }
 
   onSubmit = (e) => {
     e.preventDefault();
+
+    let data = new FormData();
+    data.append('file', this.state.banner);
 
     const contribData = {
       type: this.state.type,
@@ -45,7 +54,7 @@ class AddContribution extends Component {
       contentHTML: localStorage.contentHTML
     };
 
-    this.props.addContribution(contribData, this.props.history);
+    this.props.addContribution(contribData, data, this.props.history);
   }
 
   render() {
@@ -103,15 +112,11 @@ class AddContribution extends Component {
 
             <div className="input-group mb-3">
               <div className="input-group-prepend">
-                <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Images</button>
-                <div className="dropdown-menu">
-                  <a className="dropdown-item" href="#{}">Banner</a>
-                  <a className="dropdown-item" href="#{}">Pictures</a>
-                </div>
+                <div className="btn btn-secondary non-clickable">Banner</div>
               </div>
-              <div className="custom-file">
-                <input type="file" className="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" />
-                <label className="custom-file-label" htmlFor="inputGroupFile01">Choose Image</label>
+              <div className="custom-file clickable">
+                <input type="file" onChange={this.fileSelected} className="custom-file-input clickable" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" />
+                <label className="custom-file-label clickable" htmlFor="inputGroupFile01">Choose Image</label>
               </div>
             </div>
 

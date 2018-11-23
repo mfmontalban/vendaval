@@ -30,9 +30,11 @@ const ContributionSchema = new Schema({
     type: String
   },
   banner: {
+    data: Buffer,
     type: String
   },
   images: {
+    data: Buffer,
     type: [String]
   },
   createdAt: {

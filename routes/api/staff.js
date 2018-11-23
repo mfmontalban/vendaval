@@ -1,12 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
+
 const passport = require('passport');
+
+const mongoose = require('mongoose');
+const GridFsStorage = require('multer-gridfs-storage');
+const Grid = require('gridfs-stream');
+const multer = require('multer');
+const mongoURI = process.env.MONGODB_URI || require('../../config/keys').mongoURI;
+var conn = mongoose.createConnection(mongoURI, { useNewUrlParser: true });
+Grid.mongo = mongoose.mongo;
+
 ObjectID = require('mongodb').ObjectID;
-if (typeof localStorage === "undefined" || localStorage === null) {
-  var LocalStorage = require('node-localstorage').LocalStorage;
-  localStorage = new LocalStorage('./scratch');
-}
 
 // Load Validation
 const validateContributionInput = require('../../validation/contribution');
@@ -17,6 +22,64 @@ const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 // Load User Model
 const Contribution = require('../../models/Contribution');
+
+conn.once('open', function () {
+  const gfs = Grid(conn.db);
+
+  /** Setting up storage using multer-gridfs-storage */
+  const storage = require('multer-gridfs-storage')({
+     url: mongoURI,
+     file: (req, file) => {
+        return {
+           filename: file.originalname + '_' + Date.now()
+        }
+     }
+  });
+
+  const singleUpload = multer({ //multer settings for single upload
+     storage: storage
+  }).single('file');
+
+  router.get('/files/:filename', (req, res) => {
+   gfs.files.find({ filename: req.params.filename }).toArray((err, files) => {
+     if(!files || files.length === 0){
+       return res.status(404).json({
+         message: "Could not find file"
+       });
+     }
+     var readstream = gfs.createReadStream({
+       filename: files[0].filename
+     })
+     res.set('Content-Type', files[0].contentType);
+     return readstream.pipe(res);
+   });
+  });
+  router.get('/files', (req, res) => {
+   gfs.files.find().toArray((err, files) => {
+     if(!files || files.length === 0){
+       return res.status(404).json({
+         message: "Could not find files"
+       });
+     }
+     return res.json(files);
+   });
+  });
+  router.post('/files', singleUpload, (req, res) => {
+     if (req.file) {
+        return res.json({
+           success: true,
+           file: req.file.filename
+        });
+     }
+      res.send({ success: false });
+  });
+  router.delete('/files/:id', (req, res) => {
+    gfs.remove({ _id: req.params.id }, (err) => {
+      if (err) return res.status(500).json({ success: false })
+        return res.json({ success: true });
+      });
+  });
+})
 
 // @route   GET api/staff/dashboard
 // @desc    Get items in staff dashboard
@@ -60,6 +123,7 @@ router.post(
     if (req.body.type) contributionFields.type = req.body.type;
     if (req.body.topic) contributionFields.topic = req.body.topic;
     if (req.body.title) contributionFields.title = req.body.title;
+    if (req.body.banner) contributionFields.banner = req.body.banner;
     if (req.body.description) contributionFields.description = req.body.description;
     if (req.body.content) contributionFields.content = req.body.content;
     if (req.body.contentHTML) contributionFields.contentHTML = req.body.contentHTML;
@@ -125,6 +189,7 @@ router.post(
     if (req.body.type) contributionFields.type = req.body.type;
     if (req.body.topic) contributionFields.topic = req.body.topic;
     if (req.body.title) contributionFields.title = req.body.title;
+    if (req.body.banner) contributionFields.banner = req.body.banner;
     if (req.body.description) contributionFields.description = req.body.description;
     if (req.body.content) contributionFields.content = req.body.content;
     if (req.body.contentHTML) contributionFields.contentHTML = req.body.contentHTML;

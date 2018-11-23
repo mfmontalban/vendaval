@@ -65,6 +65,10 @@ Content
     border:0px;
   }
 
+  .banner {
+    width:100%;
+  }
+
   .textStyle {
     font-family:sans-serif;
   }
