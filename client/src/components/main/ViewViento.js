@@ -36,6 +36,7 @@ class Contribution extends Component {
         <div>
           <h1>{viento.title}</h1>
           <pre><p className="textStyle">{viento.description}</p></pre>
+          <img className="banner" alt="banner" src={`http://vtesting.herokuapp.com/api/staff/files/${viento.banner}`} />
           <Quill contributions={viento.content} />
         </div>;
     }
