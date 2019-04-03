@@ -74,15 +74,15 @@ router.get('/handle/:handle', (req, res) => {
     .catch(err => res.status(404).json(err));
 });
 
-// @route   GET api/profile/user/:user_id
+// @route   GET api/profile/account/:account_id
 // @desc    Get profile by user ID
 // @access  Public
 
-router.get('/user/:user_id', (req, res) => {
+router.get('/account/:account_id', (req, res) => {
   const errors = {};
 
-  Profile.findOne({ user: req.params.user_id })
-    .populate('user', ['name', 'avatar'])
+  Profile.findOne({ user: req.params.account_id })
+    .populate('user', ['_id'])
     .then(profile => {
       if (!profile) {
         errors.noprofile = 'There is no profile for this user';

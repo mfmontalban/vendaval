@@ -1,22 +1,17 @@
 import React, { Component } from 'react';
-import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Form,
-} from 'reactstrap';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import TextFieldGroup from '../common/TextFieldGroup';
-import SelectListGroup from '../common/SelectListGroup';
-import TextAreaFieldGroup from '../common/TextAreaFieldGroup';
-import Quill from '../common/QuillEdit';
+
 import { editContribution, getContributionByID, deleteContribution } from '../../actions/staffActions';
+
+import Spinner from '../application/common/spinner.js'
 import isEmpty from '../../validation/is-empty';
-import Spinner from '../common/Spinner.js'
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form } from 'reactstrap';
+import TextFieldGroup from '../application/common/textFieldGroup';
+import SelectListGroup from '../application/common/selectListGroup';
+import TextAreaFieldGroup from '../application/common/textAreaFieldGroup';
+import Quill from '../application/common/quillEdit';
 
 class Contribution extends Component {
   constructor(props) {
@@ -39,13 +34,14 @@ class Contribution extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
+  componentDidUpdate(prevProps, prevState) {
+    if(this.props.application.alerts.errors!==prevProps.application.alerts.errors){
+      //Perform some operation here
+      this.setState({errors: this.props.application.alerts.errors});
     }
 
-    if (nextProps.staff.contributions) {
-      const contribution = nextProps.staff.contributions;
+    if (this.props.staff.contributions!==prevProps.staff.contributions) {
+      const contribution = this.props.staff.contributions;
 
       // If profile field doesnt exist, make empty string
       contribution.type = !isEmpty(contribution.type) ? contribution.type : '';
@@ -254,14 +250,12 @@ Contribution.propTypes = {
   getContributionByID: PropTypes.func.isRequired,
   editContribution: PropTypes.func.isRequired,
   deleteContribution: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired,
+  application: PropTypes.object.isRequired,
   staff: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth,
-  errors: state.errors,
+  application: state.application,
   staff: state.staff
 });
 

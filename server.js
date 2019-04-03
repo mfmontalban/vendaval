@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const passport = require('passport');
 const path = require('path');
 
+const account = require('./routes/api/account');
+const application = require('./routes/api/application');
 const users = require('./routes/api/users');
 const profile = require('./routes/api/profile');
 const posts = require('./routes/api/posts');
@@ -34,6 +36,8 @@ app.use(passport.initialize());
 require('./config/passport')(passport);
 
 // Use directory
+app.use('/api/account', account);
+app.use('/api/application', application);
 app.use('/api/users', users);
 app.use('/api/profile', profile);
 app.use('/api/posts', posts);

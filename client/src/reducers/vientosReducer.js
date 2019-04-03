@@ -5,17 +5,18 @@ import {
 } from '../actions/types';
 
 const initialState = {
-  vientos: null,
   viento: null,
+  vientos: null,
   loading: false
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case VIENTOS_LOADING:
+    case GET_VIENTO:
       return {
         ...state,
-        loading: true
+        viento: action.payload,
+        loading: false
       };
     case GET_VIENTOS:
       return {
@@ -23,12 +24,11 @@ export default function(state = initialState, action) {
         vientos: action.payload,
         loading: false
       };
-      case GET_VIENTO:
-        return {
-          ...state,
-          viento: action.payload,
-          loading: false
-        };
+    case VIENTOS_LOADING:
+      return {
+        ...state,
+        loading: true
+      };
     default:
       return state;
   }

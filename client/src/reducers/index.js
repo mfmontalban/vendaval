@@ -1,22 +1,14 @@
 import { combineReducers } from 'redux';
-import alertReducer from './alertReducer';
-import authReducer from './authReducer';
-import errorReducer from './errorReducer';
-import profileReducer from './profileReducer';
-import seguridadReducer from './seguridadReducer';
+import adminReducer from './adminReducer';
+import applicationReducer from './applicationReducer';
+import usersReducer from './usersReducer';
 import staffReducer from './staffReducer';
-import verifyReducer from './verifyReducer';
 import vientosReducer from './vientosReducer';
-// import postReducer from './postReducer';
 
 export default combineReducers({
-  alerts: alertReducer,
-  auth: authReducer,
-  errors: errorReducer,
-  profile: profileReducer,
-  seguridad: seguridadReducer,
+  admin: adminReducer,
+  application: applicationReducer,
   staff: staffReducer,
-  verify: verifyReducer,
+  users: usersReducer,
   vientos: vientosReducer,
-  // post: postReducer
 });

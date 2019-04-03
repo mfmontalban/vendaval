@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import {
-  GET_ERRORS,
+  READ_APPLICATION_ERRORS,
   GET_CONTRIBUTIONS,
   CONTRIBUTIONS_LOADING
 } from './types';
@@ -57,7 +57,7 @@ export const addContribution = (contribData, data, history) => dispatch => {
         })
         .catch(err =>
           dispatch({
-            type: GET_ERRORS,
+            type: READ_APPLICATION_ERRORS,
             payload: err.response.data
           })
         );
@@ -75,7 +75,7 @@ export const editContribution = (id, contribData, data, history) => dispatch => 
         .then(res => history.push('/staff/dashboard'))
         .catch(err =>
           dispatch({
-            type: GET_ERRORS,
+            type: READ_APPLICATION_ERRORS,
             payload: err.response.data
           })
         );

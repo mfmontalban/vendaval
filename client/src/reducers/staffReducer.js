@@ -1,10 +1,10 @@
 import {
-  GET_BANNER,
   GET_CONTRIBUTIONS,
   CONTRIBUTIONS_LOADING,
 } from '../actions/types';
 
 const initialState = {
+  contribution: null,
   contributions: null,
   loading: false
 };

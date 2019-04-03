@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
 
-const validateSeguridadInput = require('../../validation/seguridad');
+const validateSeguridadInput = require('../../validation/security');
 const isEmpty = require('../../validation/is-empty');
 
 // Load User model

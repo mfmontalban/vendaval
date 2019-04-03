@@ -7,6 +7,10 @@ const ContributionSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'users'
   },
+  profile: {
+    type: Schema.Types.ObjectId,
+    ref: 'profiles'
+  },
   status: {
     type: String,
     default: 'Draft'

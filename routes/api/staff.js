@@ -20,7 +20,7 @@ const validateContributionInput = require('../../validation/contribution');
 const Profile = require('../../models/Profile');
 // Load User Model
 const User = require('../../models/User');
-// Load User Model
+// Load Contribution Model
 const Contribution = require('../../models/Contribution');
 
 conn.once('open', function () {
@@ -127,22 +127,31 @@ router.post(
     if (req.body.description) contributionFields.description = req.body.description;
     if (req.body.content) contributionFields.content = req.body.content;
     if (req.body.contentHTML) contributionFields.contentHTML = req.body.contentHTML;
-    // Skills - Spilt into array
-    if (typeof req.body.images !== 'undefined') {
-      contributionFields.images = req.body.images.split(',');
-    }
 
-    Contribution.findOne({ title: contributionFields.title }).then(contribution => {
-      if (contribution) {
-        errors.title = 'That title already exists';
-        res.status(400).json(errors);
-      } else {
-        contributionFields.createdAt = Date.now();
-
-        // Save Profile
-        new Contribution(contributionFields).save().then(contribution => res.json(contribution));
+    Profile.findOne({ user: req.user.id})
+    .then(prof => {
+      if (prof) {
+        contributionFields.profile = prof._id;
       }
-    });
+
+      // Skills - Spilt into array
+      if (typeof req.body.images !== 'undefined') {
+        contributionFields.images = req.body.images.split(',');
+      }
+
+      Contribution.findOne({ title: contributionFields.title }).then(contribution => {
+        if (contribution) {
+          errors.title = 'That title already exists';
+          res.status(400).json(errors);
+        } else {
+          contributionFields.createdAt = Date.now();
+
+          // Save Profile
+          new Contribution(contributionFields).save().then(contribution => res.json(contribution));
+        }
+      });
+    })
+    .catch(err => res.status(404).json(err));
   }
 );
 

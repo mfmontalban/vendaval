@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getContributions } from '../../actions/staffActions';
-import Spinner from '../common/Spinner';
-import ContributionItem from './ContributionItem';
 import { Link } from 'react-router-dom';
+
+import { getContributions } from '../../actions/staffActions';
+
+import Spinner from '../application/common/spinner';
+import ContributionItem from './contributionItem';
 
 class Staff extends Component {
 

@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
-import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Form,
-} from 'reactstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+
 import { deleteContribution } from '../../actions/staffActions';
+
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form } from 'reactstrap';
 import Moment from 'react-moment';
 
 class ContributionItem extends Component {
@@ -33,8 +28,6 @@ class ContributionItem extends Component {
     const { contribution } = this.props;
 
     return (
-
-
         <tr>
           <td>
             <div className="btn-group">

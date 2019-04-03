@@ -4,26 +4,28 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 ObjectID = require('mongodb').ObjectID;
 
-// Load User Model
+// Load Contribution Model
 const Contribution = require('../../models/Contribution');
 
 // @route   GET api/vientos/getAll
 // @desc    Get most recent vientos
-// @access  Public
+// @access  Public 
 router.get(
   '/getAll', (req, res) => {
     const errors = {};
 
     Contribution.find({ status: 'Live' })
+      .populate('user', ['name'])
+      .populate('profile', ['handle'])
       .then(contributions => {
         if (!contributions) {
           errors.novientos = 'There are no vientos to show';
           return res.status(404).json(errors);
         }
-
+        
         res.json(contributions);
       })
-      .catch(err => res.status(404).json({ profile: 'There are no vientos to show' }));
+      .catch(err => res.status(404).json({ profile: `Whats going on with the vientos` }));
 });
 
 // @route   GET api/view/get/:id

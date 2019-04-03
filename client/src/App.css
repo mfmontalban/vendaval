@@ -2,16 +2,58 @@
 Content
 */
 
-.body {
-  position:relative;
-  margin-top:100px;
-  height: calc(100vh - 155px);
-  padding-left:5%;
-  padding-right:5%;
+.z-1005 {
+  z-index:1005 !important;
 }
 
-.block {
-  min-height: calc(100vh - 155px);
+body{
+  background:#17a2b8;
+}
+
+.bg-silvero {
+  background: #e2e2e2;
+}
+
+.bg-silvero2 {
+  background: #dbdbdb;
+}
+
+.body {
+  background:#e2e2e2;
+  position:relative;
+  top:105px;
+  min-height: calc(100vh - 115px);
+  margin-left:10px;
+  margin-right:10px;
+  border-radius: 0px 0px .25rem .25rem;
+}
+
+.h-40px {
+  height:40px;
+  line-height:40px;
+}
+
+.lh-1 {
+  line-height: 1em;
+}
+
+.container-margin {
+  margin: .5rem .5rem .5rem .5rem;
+}
+
+.container-width {
+  width: calc(100% - 1rem);
+}
+.container-margin2 {
+  margin: .25rem;
+}
+
+.container-width2 {
+  width: calc(100% - .5rem);
+}
+
+.body-shadow {
+  box-shadow: 0px 1px 15px #888888;
 }
 
 .scroll-container {
@@ -25,6 +67,52 @@ Content
 .footer-margin {
   margin-bottom: 55px;
 }
+
+  /*
+  Vientos
+  */
+    .correctWorld {
+      margin-left: -25vw;
+      width:75vw;
+      height:50vh;
+      margin-top:25px;
+      transform: none !important;
+    }
+
+    .scrollmenu {
+      overflow: auto;
+      background: white;
+      white-space: nowrap;
+      border-radius:50px;
+    }
+    
+    .scrollmenu a {
+      display: inline-block;
+      text-align: center;
+      padding: 14px;
+      text-decoration: none;
+    }
+    
+    .scrollmenu a:hover {
+      background-color: #c4c4c4;
+    }
+
+    .mapgl {
+      height: 30vh;
+      width: calc(100vw-20px);
+    }
+
+    .vientos-container {
+      height:44vh;
+    }
+
+    .post-section-heading {
+      font-size: .9rem;
+    }
+
+    .post-time-heading {
+      font-size: .7rem;
+    }
 
   /*
   Staff Dashboard

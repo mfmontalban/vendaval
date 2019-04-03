@@ -1,12 +1,19 @@
 import axios from 'axios';
 
 import {
+  VIENTOS_LOADING,
   GET_VIENTOS,
   GET_VIENTO,
-  VIENTOS_LOADING
 } from './types';
 
-// Get current contribution
+// Contribution loading
+export const setLiveVientosLoading = () => {
+  return {
+    type: VIENTOS_LOADING
+  };
+};
+
+// Get current contribution 
 export const getLiveVientos = () => dispatch => {
   dispatch(setLiveVientosLoading());
   axios
@@ -15,12 +22,12 @@ export const getLiveVientos = () => dispatch => {
       dispatch({
         type: GET_VIENTOS,
         payload: res.data
-      })
+      }) 
     )
     .catch(err =>
       dispatch({
         type: GET_VIENTOS,
-        payload: {}
+        payload: null
       })
     );
 };
@@ -39,14 +46,7 @@ export const getLiveVientoByID = id => dispatch => {
     .catch(err =>
       dispatch({
         type: GET_VIENTO,
-        payload: {}
+        payload: null
       })
     );
-};
-
-// Contribution loading
-export const setLiveVientosLoading = () => {
-  return {
-    type: VIENTOS_LOADING
-  };
 };
