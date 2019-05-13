@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 import { sendApplicationAlertsForgot } from '../../actions/applicationActions';
 
 import TextFieldGroup from '../application/common/textFieldGroup';
+import Footer from '../application/layout/footer'
 
 class Forgot extends Component {
   constructor() {
@@ -47,28 +48,31 @@ class Forgot extends Component {
     const { errors } = this.state;
 
     return (
-      <div className="body scroll-container pt-3 pb-3">
-        <div className="container pt-4">
-          <div className="row">
-            <div className="col-md-8 m-auto">
-              <h1 className="display-4 text-center">Forgot</h1>
-              <p className="lead text-center">
-                Enter your email below to reset your password
-              </p>
-              <form noValidate onSubmit={this.onSubmit}>
-                <TextFieldGroup
-                  placeholder="Email"
-                  name="email"
-                  type="email"
-                  value={this.state.email}
-                  onChange={this.onChange}
-                  error={errors.email}
-                />
-                <input type="submit" value="Submit" className="btn btn-info btn-block mt-4" />
-              </form>
+      <div>
+        <div className="body scroll-container pt-3 pb-3">
+          <div className="container pt-4">
+            <div className="row">
+              <div className="col-md-8 m-auto">
+                <h1 className="display-4 text-center">Forgot</h1>
+                <p className="lead text-center">
+                  Enter your email below to reset your password
+                </p>
+                <form noValidate onSubmit={this.onSubmit}>
+                  <TextFieldGroup
+                    placeholder="Email"
+                    name="email"
+                    type="email"
+                    value={this.state.email}
+                    onChange={this.onChange}
+                    error={errors.email}
+                  />
+                  <input type="submit" value="Submit" className="btn btn-info btn-block mt-4" />
+                </form>
+              </div>
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }

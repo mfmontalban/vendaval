@@ -10,6 +10,22 @@ Options NavBar
   min-height:47px;
 }
 
+.top-nav-margin {
+  padding:10px 10px 0px 10px;
+  width: 100vw;
+  background: #17a2b8;
+  z-index: 1030;
+}
+
+.tempcss {
+  padding-top:10px !important;
+  padding-bottom:5px !important;
+  padding:0;
+  background: #17a2b8;
+  top:0;
+  width:calc(100vw - 20px);
+}
+
 .top-nav-component-height {
   max-height: 35px;
 }
@@ -38,14 +54,20 @@ Main NavBar
 
 .fixed-top-2nd {
   position:fixed;
-  top:47px;
-  min-height:58px;
+  top:57px;
+  min-height:48px;
+  padding-right: 5px !important;
+  padding-left: 5px !important;
+  padding: 0;
   right: 0;
   left: 0;
   z-index: 1030;
-  padding-top:5px;
   margin-left:10px;
   margin-right:10px;
+}
+
+.fixed-to-top {
+  position:fixed;
 }
 
 .header-nav-shadow {
@@ -59,5 +81,15 @@ Main NavBar
 .vientos {
   height:24px;
   width:32px;
-  padding-left: 13px;
+}
+
+/*
+Main NavBar - Left Side - Bars Menu
+*/
+.align-button-left {
+  margin-left:-10px;
+}
+
+.align-button-right {
+  margin-right:-10px;
 }

@@ -47,7 +47,57 @@ const ContributionSchema = new Schema({
   updatedAt: {
     type: Date,
     default: Date.now
-  }
+  },
+  lat: {
+    type: String,
+  },
+  lon: {
+    type: String,
+  },
+  likesUp: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: 'users'
+      }
+    }
+  ],
+  likesDown: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: 'users'
+      }
+    }
+  ],
+  shares: {
+    type: String,
+  },
+  comments: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: 'users'
+      },
+      text: {
+        type: String,
+        required: true
+      },
+      avatar: {
+        type: String
+      },
+      handle: {
+        type: String
+      },
+      name: {
+        type: String
+      },
+      date: {
+        type: Date,
+        default: Date.now
+      }
+    }
+  ],
 });
 
 module.exports = Profile = mongoose.model('contribution', ContributionSchema);

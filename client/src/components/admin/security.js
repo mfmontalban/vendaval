@@ -8,6 +8,7 @@ import { sendApplicationAlertsUpdated } from '../../actions/applicationActions';
 
 import Spinner from '../application/common/spinner.js'
 import TextFieldGroup from '../application/common/textFieldGroup';
+import Footer from '../application/layout/footer'
 
 class Security extends Component {
   constructor() {
@@ -120,18 +121,21 @@ class Security extends Component {
     }
 
     return (
-      <div className="body scroll-container p-3">
-      <div className="container pt-4">
-        <div className="row">
-          <div className="col-md-8 m-auto">
-            <h1 className="display-4 text-center">Account</h1>
-            <p className="lead text-center">
-              Update your information
-            </p>
-            {content}
+      <div>
+        <div className="body scroll-container p-3">
+          <div className="container pt-4">
+            <div className="row">
+              <div className="col-md-8 m-auto">
+                <h1 className="display-4 text-center">Account</h1>
+                <p className="lead text-center">
+                  Update your information
+                </p>
+                {content}
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+        <Footer />
       </div>
     );
   }

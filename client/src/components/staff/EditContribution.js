@@ -12,6 +12,7 @@ import TextFieldGroup from '../application/common/textFieldGroup';
 import SelectListGroup from '../application/common/selectListGroup';
 import TextAreaFieldGroup from '../application/common/textAreaFieldGroup';
 import Quill from '../application/common/quillEdit';
+import Footer from '../application/layout/footer'
 
 class Contribution extends Component {
   constructor(props) {
@@ -230,17 +231,18 @@ class Contribution extends Component {
               className="btn btn-info btn-block mt-4"
             />
           </form>
-
+          
         </div>;
     }
 
     return (
-      <div className="body scroll-container pt-3 pb-3">
-        <div className="col-md-10 m-auto">
-
-        {contributionContent}
-
+      <div>
+        <div className="body scroll-container pt-3 pb-3">
+          <div className="col-md-10 m-auto">
+            {contributionContent}
+          </div>
         </div>
+        <Footer />
       </div>
     );
   }

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { deleteContribution } from '../../actions/staffActions';
 
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form } from 'reactstrap';
-import Moment from 'react-moment';
+import {FormattedMessage, FormattedDate, FormattedTime} from 'react-intl';
 
 class ContributionItem extends Component {
   state = {
@@ -26,6 +26,15 @@ class ContributionItem extends Component {
 
   render() {
     const { contribution } = this.props;
+    const setLanguage = this.props.application.language;
+
+    let community;
+
+    if (setLanguage === 'es') {
+      community = 'communidad';
+    } else {
+      community = 'community';
+    }
 
     return (
         <tr>
@@ -50,7 +59,18 @@ class ContributionItem extends Component {
           </td>
           <td>{contribution.status}</td>
           <td className="moment">
-            <Moment format="M/D/YY h:mm a">{contribution.updatedAt}</Moment>
+            <FormattedMessage
+                  id="viento.time_since_updated"
+                  defaultMessage={`{formattedLastUpdatedDate} {formattedLastUpdatedTime}`}
+                  values={{
+                      formattedLastUpdatedDate: (
+                        <FormattedDate value={contribution.updatedAt} />
+                      ),
+                      formattedLastUpdatedTime: (
+                        <FormattedTime value={contribution.updatedAt} />
+                      ),
+                  }}
+              />
           </td>
           <td className="d-flex tableTitleFix">
             <Link to={`/staff/contribution/view/${contribution._id}`}>{contribution.title}</Link>
@@ -94,10 +114,12 @@ class ContributionItem extends Component {
 
 ContributionItem.propTypes = {
   deleteContribution: PropTypes.func.isRequired,
+  application: PropTypes.object.isRequired,
   contribution: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
+  application: state.application,
   contributions: state.contribution
 });
 

@@ -57,7 +57,7 @@ router.post('/loginAccount', (req, res) => {
         jwt.sign(
           payload,
           process.env.JWT_KEY || require('../../config/keys').jwtKey,
-          { expiresIn: 3600 },
+          { expiresIn: 604800 },
           (err, token) => {
             res.json({
               success: true,

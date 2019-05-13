@@ -38,6 +38,10 @@ router.get('/readApplicationTitles', (req, res) => {
 
 
 
+
+
+
+
 // @route   POST api/application/sendApplicationAlertsRegistered
 // @desc    Register account
 // @access  Public

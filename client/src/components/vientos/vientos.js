@@ -3,12 +3,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { closeApplicationAlertsUpdated } from '../../actions/applicationActions';
+import { FormattedMessage } from 'react-intl';
+import { closeApplicationAlertsUpdated, setSortsRecentOldest, setSortsRecentNewest, setFiltersText, setCenteredMap } from '../../actions/applicationActions';
 import { getLiveVientos } from '../../actions/vientosActions';
-import { setSortsRecentNewest } from '../../actions/applicationActions'
-import { setSortsRecentOldest } from '../../actions/applicationActions'
 
-import Footer from '../application/layout/footer'
 import Spinner from '../application/common/spinner';
 import Map from '../application/map/canvas';
 import Controls from '../application/map/controls';
@@ -16,6 +14,25 @@ import VientoItem from './vientoItem';
 
 
 class Vientos extends Component {
+  constructor() {
+    super();
+    this.dropDownMenu = React.createRef();
+    this.dropDownMenu2 = React.createRef();
+    this.dropDownMenu3 = React.createRef();
+    this.dropDownMenu5 = React.createRef();
+    this.dropDownMenu7 = React.createRef();
+    this.state = {
+      centered: {},
+      filter: '',
+      filterSearch1: 'Title',
+      filterSearch2: 'Title',
+      filterSearch3: 'Title',
+      filterSearch4: 'Title',
+      isOpen: false,
+      isOpen2: false
+    };
+  }
+
 
   componentDidMount() {
     this.props.getLiveVientos();
@@ -25,165 +42,286 @@ class Vientos extends Component {
     this.props.closeApplicationAlertsUpdated();
   }
 
-  render() {
+  updateSearch = (e) => {
+    this.setState({
+      filter: e.target.value.substr(0, 20)
+    });
+    this.props.setFiltersText(e.target.value.toLowerCase());
+  }
 
-    const { vientos, loading } = this.props.vientos;
-    const { alerts, filters } = this.props.application;
+  addAnotherFilter = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
+
+    this.dropDownMenu.current.className = 'btn-group dropdown show'
+    this.dropDownMenu3.current.className = 'dropdown-menu p-2 show'
+    this.setState({
+      isOpen: true
+    });
+  }
+  
+  addAnotherFilter2 = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
+
+    this.dropDownMenu.current.className = 'btn-group dropdown show'
+    this.dropDownMenu3.current.className = 'dropdown-menu p-2 show'
+    this.dropDownMenu5.current.className = 'btn-group dropdown show'
+    this.dropDownMenu7.current.className = 'dropdown-menu p-2 show'
+    this.setState({
+      isOpen: true,
+      isOpen2: true
+    });
+  }
+
+  updateFilterSearch1 = (text, varb) => {
+    console.log(varb);
+    this.setState({
+      filterSearch1: text
+    });
+  }
+  updateFilterSearch2 = (text, varb) => {
+    console.log(varb);
+    this.setState({
+      filterSearch1: text
+    });
+  }
+
+  flyTo = (lat, lon) => {
+    let obj;
+    obj = {
+      lat: lat,
+      lon: lon,
+    }
+    this.props.setCenteredMap(obj);
+  }
+
+  render() {
+    const { vientos, visible, loading } = this.props.vientos;
+    const { alerts, filters, sortBy } = this.props.application;
 
     let dashboardContent;
     let vientosNav;
     let loadingContent;
     let content;
+    
+    function selectLoop(e) {
+      if (visible === null || loading) {
+        loadingContent = <Spinner />;
+      } else {
+        if (visible.length > 0) {
+          visible.filter(viento => {
+            if (e = 'Author') {
+              console.log('here');
+              let row = <option className="optionHeight">{viento.user.name}</option>
+              return row;
+            } else if (e = 'Wind') {
+              let row = <option className="optionHeight">{viento.type}</option>
+              return row;
+            } else if (e = 'Category') {
+              let row = <option className="optionHeight">{viento.topic}</option>
+              return row;
+            }
+            
+            return viento;
+          });
+        }
+      }
+    }
+
+    let inputOthers = (
+      <select className="top-nav-item bg-vientosBox form-control top-nav-component-height">
+        {this.state.filterSearch1 == 'Author' ? selectLoop('Author') : null}
+        {this.state.filterSearch1 == 'Wind' ? selectLoop('Wind') : null}
+        {this.state.filterSearch1 == 'Category' ? selectLoop('Category') : null}
+      </select>
+    );
+
+    let inputTitle = (
+      <input
+        type="text"
+        value={this.state.filter}
+        onChange={this.updateSearch}
+        className="top-nav-item bg-vientosBox form-control top-nav-component-height"
+        aria-label="Text input"
+        placeholder={this.state.filterSearch1}
+      >
+      </input>
+    );
 
     vientosNav = (
-      <nav className="container-width container-margin z-1005 d-flex navbar-dark bg-transparent justify-content-between">
-        <div className="item">
-          <div className="btn-group dropdown">
-            <button type="button" id="categories" className="btn btn-outline-info rounded" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i className="fal fa-archive"></i></button>
-              <div className="dropdown-menu" aria-labelledby="categories">
-                <a href="#" className="dropdown-item"><i className="fal fa-hotel mr-2"></i>
-                  <span className="pr-2">
-                    Stay
-                    {/* <FormattedMessage
-                      id="navigation.think"
-                      defaultMessage="Think"
-                    /> */}
-                  </span>
-                </a>
-                <a href="#" className="dropdown-item"><i className="fal fa-glass-martini-alt mr-2"></i>
-                  <span className="pr-2">
-                    Entertainment
-                    {/* <FormattedMessage
-                      id="navigation.think"
-                      defaultMessage="Think"
-                    /> */}
-                  </span>
-                </a>
-                <a href="#" className="dropdown-item"><i className="fal fa-knife-kitchen mr-2"></i>
-                  <span className="pr-2">
-                    Cuisine
-                    {/* <FormattedMessage
-                      id="navigation.educate"
-                      defaultMessage="Educate"
-                    /> */}
-                  </span>
-                </a>
+      <div className="mt-43">
+        <nav className="z-1005 d-flex navbar-dark bg-transparent justify-content-center">
+          <div className="item">
+            <div ref={this.dropDownMenu} className={`btn-group dropdown`}>
+              <button type="button" id="categories" className="btn btn-outline-info rounded" data-toggle="dropdown" aria-haspopup="true" aria-expanded={this.state.isOpen}><i className="fal fa-filter"></i></button>
+              <div onClick={(e) => {this.addAnotherFilter(e)}} ref={this.dropDownMenu3}  className={`dropdown-menu p-2`}>
+                  <div className="form-group">
+                    <label for="exampleFormControlSelect1">
+                      <FormattedMessage
+                        id="navigation.filter"
+                        defaultMessage="Filter"
+                      />
+                    </label>
+                    <div className="d-flex justify-content-left">
+                      <div ref={this.dropDownMenu5} className={`btn-group dropdown`}>
+                        <button className="btn bg-silvero btn-outline-info border-opaque top-nav-component-height search-padding" type="button" id="changeFilter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i className="fal fa-text-height"></i>
+                        </button>
+                        <div onClick={(e) => {this.addAnotherFilter2(e)}} ref={this.dropDownMenu7} className="dropdown-menu" aria-labelledby="changeFilter">
+                          <button onClick={(e) => this.updateFilterSearch1(e, 'Title')} className="dropdown-item text-info" type="button"><i className="fal fa-text-height"></i></button>
+                          <button onClick={(e) => this.updateFilterSearch1(e, 'Author')} className="dropdown-item text-info" type="button"><i className="fal fa-user"></i></button>
+                          <button onClick={(e) => this.updateFilterSearch1(e, 'Wind')} className="dropdown-item text-info" type="button"><i className="fal fa-wind"></i></button>
+                          <button onClick={(e) => this.updateFilterSearch1(e, 'Category')} className="dropdown-item text-info" type="button"><i className="fal fa-archive"></i></button>
+                        </div>
+                      </div>
+
+                      {this.state.filterSearch1 == 'Title' ? inputTitle : inputOthers}
+                    </div>
+                  </div>
+                  
+                  <div className="dropdown-item d-flex mt-2">
+                    <i className="fal fa-plus-circle mt-1"></i>
+                    <span className="ml-1">
+                      <FormattedMessage
+                        id="navigation.addanotherfilter"
+                        defaultMessage="add another filter"
+                      />
+                    </span>
+                  </div>
+
+                  <div className="dropdown-divider"></div>
+
+                  <input class="btn btn-primary" type="submit" value="Submit"></input>
+
               </div>
-            </div>
-        </div>
-        <div className="item d-flex flex-row">
-          <div className="dropdown">
-            <button type="button" id="changeLanguage" className="btn btn-outline-info ml-2 mr-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">World</button>
-            <div className="bg-transparent dropdown-menu border-0 correctWorld" aria-labelledby="categories">
-              <div className="scrollmenu border border-info m-2">
-                <a href="#home">Africa</a>
-                <a href="#news">Asia</a>
-                <a href="#contact">Europe</a>
-                <a href="#about">N. America</a>
-                <a href="#about">S. America</a>
-              </div>
-              
-              {/* <a href="#" className="dropdown-item">
-                <span className="pr-2">
-                  <FormattedMessage
-                    id="navigation.think"
-                    defaultMessage="Think"
-                  />
-                </span>
-              </a> */}
             </div>
           </div>
-        </div>
-        <div className="item">
-          <div className="btn-group dropdown">
-            <button type="button" id="filter" className="btn btn-outline-info rounded" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img alt="" /><i className="fal fa-sort"></i></button>
-            <div className="dropdown-menu dropdown-menu-right p-0" aria-labelledby="filter">
-              <div href="#" className="p-0 d-flex flex-row justify-content-between h-40px border-bottom">
-                <div 
-                className="p-2 border-right align-middle lh-1"
-                onClick={(e) => {
-                  this.props.setSortsRecentNewest(e);
-                }}>
-                  <i className="fal fa-sort-up"></i>
-                </div>
-                <div className="align-middle">
-                  <span className="pr-2">
-                  Recent
-                  {/* <FormattedMessage
-                    id="navigation.login"
-                    defaultMessage="Login"
-                  /> */}
-                  </span>
-                  <i className="fal fa-hourglass-start"></i>
-                </div>
-                <div 
-                className="p-2 border-left align-middle lh-1"
-                onClick={(e) => {
-                  this.props.setSortsRecentOldest(e);
-                }}>
-                  <i className="fal fa-sort-down"></i>
-                </div>
-              </div>
-              <div href="#" className="p-0 d-flex flex-row justify-content-between h-40px border-bottom">
-                <div className="p-2 border-right align-middle lh-1">
-                  <i className="fal fa-sort-up"></i>
-                </div>
-                <div className="align-middle">
-                  <span className="pr-2">
-                    Views
-                    {/* <FormattedMessage
-                      id="navigation.register"
-                      defaultMessage="register"
-                    /> */}
-                  </span>
-                  <i className="fal fa-fire"></i>
-                </div>
-                <div className="p-2 border-left align-middle lh-1">
-                  <i className="fal fa-sort-down"></i>
-                </div>
-              </div>
-              <div href="#" className="p-0 d-flex flex-row justify-content-between h-40px">
-                <div className="p-2 border-right align-middle lh-1">
-                  <i className="fal fa-sort-up"></i>
-                </div>
-                <div className="align-middle">
-                  <span className="pr-2">
-                    Comments
-                    {/* <FormattedMessage
-                      id="navigation.forgot"
-                      defaultMessage="forgot"
-                    /> */}
-                  </span>
-                  <i className="fal fa-comment-alt"></i>
-                </div>
-                <div className="p-2 border-left align-middle lh-1">
-                  <i className="fal fa-sort-down"></i>
+          <div className="item d-flex flex-row">
+            <div className="dropdown">
+              <button type="button" id="changeLanguage" className="btn btn-outline-info ml-2 mr-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">World</button>
+              <div className="bg-transparent dropdown-menu border-0 correctWorld" aria-labelledby="categories">
+                <div className="scrollmenu border border-info m-2">
+                  <a href="#Africa" onClick={(e) => this.flyTo(8.7832, 34.5085)}>Africa</a>
+                  <a href="#Asia" onClick={(e) => this.flyTo(100.6197, 34.0479)}>Asia</a>
+                  <a href="#Europe" onClick={(e) => this.flyTo(54.5260, 15.2551)}>Europe</a>
+                  <a href="#NorthAmerica" onClick={(e) => this.flyTo(-90, 45)}>N. America</a>
+                  <a href="#SouthAmerica" onClick={(e) => this.flyTo(-65, -20)}>S. America</a>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </nav>
+          <div className="item">
+            <div className="btn-group dropdown">
+              <button type="button" id="filter" className="btn btn-outline-info rounded" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img alt="" /><i className="fal fa-sort"></i></button>
+              <div className="dropdown-menu dropdown-menu-right p-0" aria-labelledby="filter">
+                <div href="#" className="p-0 d-flex flex-row justify-content-between h-40px border-bottom">
+                  <div 
+                  className="p-2 border-right align-middle text-info lh-1"
+                  onClick={(e) => {
+                    this.props.setSortsRecentNewest(e);
+                  }}>
+                    <i className="fal fa-sort-up"></i>
+                  </div>
+                  <div className="align-middle text-info">
+                    <span className="pr-2">
+                    Recent
+                    {/* <FormattedMessage
+                      id="navigation.login"
+                      defaultMessage="Login"
+                    /> */}
+                    </span>
+                    <i className="fal fa-hourglass-start"></i>
+                  </div>
+                  <div 
+                  className="p-2 border-left align-middle text-info lh-1"
+                  onClick={(e) => {
+                    this.props.setSortsRecentOldest(e);
+                  }}>
+                    <i className="fal fa-sort-down"></i>
+                  </div>
+                </div>
+                <div href="#" className="p-0 d-flex flex-row justify-content-between h-40px border-bottom">
+                  <div className="p-2 border-right align-middle text-info lh-1">
+                    <i className="fal fa-sort-up"></i>
+                  </div>
+                  <div className="align-middle text-info">
+                    <span className="pr-2">
+                      Views
+                      {/* <FormattedMessage
+                        id="navigation.register"
+                        defaultMessage="register"
+                      /> */}
+                    </span>
+                    <i className="fal fa-fire"></i>
+                  </div>
+                  <div className="p-2 border-left align-middle text-info lh-1">
+                    <i className="fal fa-sort-down"></i>
+                  </div>
+                </div>
+                <div href="#" className="p-0 d-flex flex-row justify-content-between h-40px border-bottom">
+                  <div className="p-2 border-right align-middle text-info lh-1">
+                    <i className="fal fa-sort-up"></i>
+                  </div>
+                  <div className="align-middle text-info">
+                    <span className="pr-2">
+                      Shares
+                      {/* <FormattedMessage
+                        id="navigation.register"
+                        defaultMessage="register"
+                      /> */}
+                    </span>
+                    <i className="fal fa-share-square"></i>
+                  </div>
+                  <div className="p-2 border-left align-middle text-info lh-1">
+                    <i className="fal fa-sort-down"></i>
+                  </div>
+                </div>
+                <div href="#" className="p-0 d-flex flex-row justify-content-between h-40px">
+                  <div className="p-2 border-right align-middle text-info lh-1">
+                    <i className="fal fa-sort-up"></i>
+                  </div>
+                  <div className="align-middle text-info">
+                    <span className="pr-2">
+                      Comments
+                      {/* <FormattedMessage
+                        id="navigation.forgot"
+                        defaultMessage="forgot"
+                      /> */}
+                    </span>
+                    <i className="fal fa-comment-alt"></i>
+                  </div>
+                  <div className="p-2 border-left align-middle text-info lh-1">
+                    <i className="fal fa-sort-down"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
     );
     
-    if (vientos === null || loading) {
+    if (visible === null || loading) {
       loadingContent = <Spinner />;
     } else {
-      if (vientos.length > 0) {
-        dashboardContent = vientos.filter(viento => {
-          if (filters.text.keyword != null ) {
-            const contentHTMLMatch = viento.title.toLowerCase().includes(filters.text.keyword);
+      if (visible.length > 0) {
+        dashboardContent = visible.filter(viento => {
+          if (filters != '' || null ) {
+            const contentHTMLMatch = viento.title.toLowerCase().includes(filters);
             return contentHTMLMatch;
           }
           return viento;
         }).sort((viento1, viento2) => {
-            if (filters.sortBy.text === 'titleup') {
+            if (sortBy === 'titleup') {
                 return viento1.title.localeCompare(viento2.title);
-            } else if (filters.sortBy.text === 'titledown') {
+            } else if (sortBy === 'titledown') {
                 return viento1.title.toLowerCase() > viento2.title.toLowerCase() ? -1 : viento2 > viento1 ? 1 : 0;
-            } else if (filters.sortBy.text === 'publishedup') {
+            } else if (sortBy === 'publishedup') {
                 return viento1.createdAt < viento2.createdAt ? -1 : 1;
-            } else if (filters.sortBy.text === 'publisheddown') {
+            } else if (sortBy === 'publisheddown') {
                 return viento1.createdAt < viento2.createdAt ? 1 : -1;
             }
         }).map(viento =>
@@ -193,9 +331,7 @@ class Vientos extends Component {
 
         content = (
           <div>
-            <Map />
-            {vientosNav}
-            <div className="scroll-container vientos-container container-width container-margin border border-info rounded bg-info">
+            <div className="mt-15 pt-1 pb-1 d-flex flex-wrap scroll-container vientos-container border border-light bg-vientosBox">
               {dashboardContent}
             </div>
           </div>
@@ -203,7 +339,11 @@ class Vientos extends Component {
 
       } else {
         content = (
-          <div>no content</div>
+          <div>
+            <div className="mt-15 pt-1 pb-1 d-flex flex-wrap scroll-container vientos-container border border-light bg-vientosBox">
+              {dashboardContent}
+            </div>
+          </div>
         );
       }
     }
@@ -219,12 +359,16 @@ class Vientos extends Component {
 
     return (
       <div>
-        <div className="body scroll-container body-shadow">
+        <div className="body2 scroll-container">
           {alerts.updated ? updatedAlert : null}
+          <div>
+            <div></div>
+            <Map />
+            {vientosNav}
+          </div>
           {loadingContent}
           {content}
         </div>
-        <Footer />
       </div>
     );
   }
@@ -235,12 +379,16 @@ Vientos.propTypes = {
   getLiveVientos: PropTypes.func.isRequired,
   setSortsRecentNewest: PropTypes.func.isRequired,
   setSortsRecentOldest: PropTypes.func.isRequired,
-  vientos: PropTypes.object.isRequired
+  setFiltersText: PropTypes.func.isRequired,
+  setCenteredMap: PropTypes.func.isRequired,
+  vientos: PropTypes.object.isRequired,
+  visible: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   application: state.application,
-  vientos: state.vientos
+  vientos: state.vientos,
+  visible: state.visible
 });
 
-export default connect(mapStateToProps, { closeApplicationAlertsUpdated, getLiveVientos, setSortsRecentNewest, setSortsRecentOldest })(Vientos);
+export default connect(mapStateToProps, { closeApplicationAlertsUpdated, getLiveVientos, setSortsRecentNewest, setSortsRecentOldest, setFiltersText, setCenteredMap })(Vientos);

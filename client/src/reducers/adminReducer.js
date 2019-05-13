@@ -8,7 +8,7 @@ import {
 } from '../actions/types';
  
 const initialState = {
-  isAuthenticated: false,
+  isAuthenticated: '',
   id: null,
   avatar: null,
   email: null,

@@ -10,7 +10,9 @@ import {
   SET_SORTS_RECENTNEWEST,
   SET_SORTS_RECENTOLDEST,
 
-  SET_FILTERS_RECENTOLDEST,
+  SET_FILTERS_TEXT,
+
+  SET_CENTERED_MAP,
 
   SEND_APPLICATION_ALERTS_REGISTERED,
   SEND_APPLICATION_ALERTS_FORGOT,
@@ -25,19 +27,11 @@ const initialState = {
     registered: null,
     updated: null,
   },
+  centered: {},
   errors: {},
-  filters: {
-    text: {
-      author: '',
-      content: '',
-      keyword: '',
-    },
-    sortBy: {},
-    startYear: undefined,
-    endYear: undefined
-  },
+  filters: '',
+  sortBy: '',
   language: 'en',
-  messages: {},
   settings: {},
   titles: {},
   verify: {
@@ -80,18 +74,22 @@ export default function(state = initialState, action) {
     case SET_SORTS_RECENTNEWEST:
       return {
         ...state,
-        filters: {
-          text: {},
-          sortBy: action.payload,
-        }
+        sortBy: action.payload
       };
     case SET_SORTS_RECENTOLDEST:
       return {
         ...state,
-        filters: {
-          text: {},
-          sortBy: action.payload,
-        }
+        sortBy: action.payload
+      };
+    case SET_FILTERS_TEXT:
+      return {
+        ...state,
+        filters: action.payload
+      };
+    case SET_CENTERED_MAP:
+      return {
+        ...state,
+        centered: action.payload
       };
     case SEND_APPLICATION_ALERTS_REGISTERED:
       return {

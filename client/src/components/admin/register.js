@@ -7,6 +7,7 @@ import { sendApplicationAlertsRegistered } from '../../actions/applicationAction
 import { FormattedMessage } from 'react-intl';
 
 import TextFieldGroup from '../application/common/textFieldGroup';
+import Footer from '../application/layout/footer'
 
 class Register extends Component {
   constructor() {
@@ -90,62 +91,65 @@ class Register extends Component {
     const { errors } = this.state;
 
     return (
-      <div className="body scroll-container pt-3 pb-3">
-        <div className="col-md-8 m-auto">
-          <h1 className="display-4 text-center">
-            <FormattedMessage
-              id="register.Main"
-              defaultMessage="Sign Up"
-            />
-          </h1>
-          <p className="lead text-center">
-            <FormattedMessage
-              id="register.Secondary"
-              defaultMessage="Create your Vendaval account"
-            />
-          </p>
-          <form noValidate onSubmit={this.onSubmit}>
-            <TextFieldGroup
-              placeholder={`${placeName}`}
-              name="name"
-              value={this.state.name}
-              onChange={this.onChange}
-              error={errors.name}
-            />
-            <TextFieldGroup
-              placeholder={`${placeEmail}`}
-              name="email"
-              type="email"
-              value={this.state.email}
-              onChange={this.onChange}
-              error={errors.email}
-              info={`${emailInfo}`}
-            />
-            <TextFieldGroup
-              placeholder={`${placePass}`}
-              name="password"
-              type="password"
-              value={this.state.password}
-              onChange={this.onChange}
-              error={errors.password}
-            />
-            <TextFieldGroup
-              placeholder={`${placePass2}`}
-              name="password2"
-              type="password"
-              value={this.state.password2}
-              onChange={this.onChange}
-              error={errors.password2}
-            />
-            <input type="submit" value={`${placeSubmit}`} className="btn btn-info btn-block mt-4" />
-          </form>
-          <Link to="/verify/resend" className="btn-block mt-5 text-center text-info">
-            <FormattedMessage
-              id="register.forgotLink"
-              defaultMessage="Didn't get your code? Follow this link to resend it"
-            />
-          </Link>
+      <div>
+        <div className="body scroll-container pt-3 pb-3">
+          <div className="col-md-8 m-auto">
+            <h1 className="display-4 text-center">
+              <FormattedMessage
+                id="register.Main"
+                defaultMessage="Sign Up"
+              />
+            </h1>
+            <p className="lead text-center">
+              <FormattedMessage
+                id="register.Secondary"
+                defaultMessage="Create your Vendaval account"
+              />
+            </p>
+            <form noValidate onSubmit={this.onSubmit}>
+              <TextFieldGroup
+                placeholder={`${placeName}`}
+                name="name"
+                value={this.state.name}
+                onChange={this.onChange}
+                error={errors.name}
+              />
+              <TextFieldGroup
+                placeholder={`${placeEmail}`}
+                name="email"
+                type="email"
+                value={this.state.email}
+                onChange={this.onChange}
+                error={errors.email}
+                info={`${emailInfo}`}
+              />
+              <TextFieldGroup
+                placeholder={`${placePass}`}
+                name="password"
+                type="password"
+                value={this.state.password}
+                onChange={this.onChange}
+                error={errors.password}
+              />
+              <TextFieldGroup
+                placeholder={`${placePass2}`}
+                name="password2"
+                type="password"
+                value={this.state.password2}
+                onChange={this.onChange}
+                error={errors.password2}
+              />
+              <input type="submit" value={`${placeSubmit}`} className="btn btn-info btn-block mt-4" />
+            </form>
+            <Link to="/verify/resend" className="btn-block mt-5 text-center text-info">
+              <FormattedMessage
+                id="register.forgotLink"
+                defaultMessage="Didn't get your code? Follow this link to resend it"
+              />
+            </Link>
+          </div>
         </div>
+        <Footer />
       </div>
     );
   }

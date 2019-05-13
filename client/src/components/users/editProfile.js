@@ -8,6 +8,7 @@ import { createProfile, getCurrentProfile } from '../../actions/usersActions';
 import TextFieldGroup from '../application/common/textFieldGroup';
 import TextAreaFieldGroup from '../application/common/textAreaFieldGroup';
 import InputGroup from '../application/common/inputGroup';
+import Footer from '../application/layout/footer'
 
 
 class CreateProfile extends Component {
@@ -157,76 +158,79 @@ class CreateProfile extends Component {
     }
 
     return (
-      <div className="body scroll-container p-3">
-        <div className="col-md-10 m-auto">
-          {backLink}
-          <h1 className="display-4 text-center">Edit Profile</h1>
-          <small className="d-block pb-3">* = required fields</small>
-          <form onSubmit={this.onSubmit}>
-            <TextFieldGroup
-              placeholder="* Profile Handle"
-              name="handle"
-              value={this.state.handle}
-              onChange={this.onChange}
-              error={errors.handle}
-              info="A unique handle for your profile URL. Your full name, company name, nickname"
-            />
-            <TextFieldGroup
-              placeholder="Website"
-              name="website"
-              value={this.state.website}
-              onChange={this.onChange}
-              error={errors.website}
-              info="Could be your own website or a company one"
-            />
-            <TextFieldGroup
-              placeholder="Location"
-              name="location"
-              value={this.state.location}
-              onChange={this.onChange}
-              error={errors.location}
-              info="City or city & state suggested (eg. Boston, MA)"
-            />
-            <TextFieldGroup
-              placeholder="* Skills"
-              name="skills"
-              value={this.state.skills}
-              onChange={this.onChange}
-              error={errors.skills}
-              info="Please use comma separated values (eg.
-                Photography, Graphic Design, Video, Music)"
-            />
-            <TextAreaFieldGroup
-              placeholder="Short Bio"
-              name="bio"
-              value={this.state.bio}
-              onChange={this.onChange}
-              error={errors.bio}
-              info="Tell us a little about yourself"
-            />
+      <div>
+        <div className="body scroll-container p-3">
+          <div className="col-md-10 m-auto">
+            {backLink}
+            <h1 className="display-4 text-center">Edit Profile</h1>
+            <small className="d-block pb-3">* = required fields</small>
+            <form onSubmit={this.onSubmit}>
+              <TextFieldGroup
+                placeholder="* Profile Handle"
+                name="handle"
+                value={this.state.handle}
+                onChange={this.onChange}
+                error={errors.handle}
+                info="A unique handle for your profile URL. Your full name, company name, nickname"
+              />
+              <TextFieldGroup
+                placeholder="Website"
+                name="website"
+                value={this.state.website}
+                onChange={this.onChange}
+                error={errors.website}
+                info="Could be your own website or a company one"
+              />
+              <TextFieldGroup
+                placeholder="Location"
+                name="location"
+                value={this.state.location}
+                onChange={this.onChange}
+                error={errors.location}
+                info="City or city & state suggested (eg. Boston, MA)"
+              />
+              <TextFieldGroup
+                placeholder="* Skills"
+                name="skills"
+                value={this.state.skills}
+                onChange={this.onChange}
+                error={errors.skills}
+                info="Please use comma separated values (eg.
+                  Photography, Graphic Design, Video, Music)"
+              />
+              <TextAreaFieldGroup
+                placeholder="Short Bio"
+                name="bio"
+                value={this.state.bio}
+                onChange={this.onChange}
+                error={errors.bio}
+                info="Tell us a little about yourself"
+              />
 
-            <div className="mb-3">
-              <button
-                type="button"
-                onClick={() => {
-                  this.setState(prevState => ({
-                    displaySocialInputs: !prevState.displaySocialInputs
-                  }));
-                }}
-                className="btn btn-light"
-              >
-                Add Social Network Links
-              </button>
-              <span className="text-muted pl-2">Optional</span>
-            </div>
-            {socialInputs}
-            <input
-              type="submit"
-              value="Submit"
-              className="btn btn-info btn-block mt-4"
-            />
-          </form>
+              <div className="mb-3">
+                <button
+                  type="button"
+                  onClick={() => {
+                    this.setState(prevState => ({
+                      displaySocialInputs: !prevState.displaySocialInputs
+                    }));
+                  }}
+                  className="btn btn-light"
+                >
+                  Add Social Network Links
+                </button>
+                <span className="text-muted pl-2">Optional</span>
+              </div>
+              {socialInputs}
+              <input
+                type="submit"
+                value="Submit"
+                className="btn btn-info btn-block mt-4"
+              />
+            </form>
+          </div>
         </div>
+        <Footer />
       </div>
     );
   }

@@ -7,6 +7,7 @@ import { getProfileByHandle } from '../../actions/usersActions';
 import Spinner from '../application/common/spinner.js'
 import ProfileHeader from './profileHeader';
 import ProfileAbout from './profileAbout';
+import Footer from '../application/layout/footer'
 
 class Profile extends Component {
 
@@ -41,8 +42,11 @@ class Profile extends Component {
     }
 
     return (
-      <div className="body scroll-container p-3">
-        {profileContent}
+      <div>
+        <div className="body scroll-container p-3">
+          {profileContent}
+        </div>
+        <Footer />
       </div>
     );
   }

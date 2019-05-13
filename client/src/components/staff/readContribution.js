@@ -8,6 +8,7 @@ import { getContributionByID, deleteContribution } from '../../actions/staffActi
 import Spinner from '../application/common/spinner.js'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form } from 'reactstrap';
 import Quill from '../application/common/quillView';
+import Footer from '../application/layout/footer'
 
 // import ReactHtmlParser from 'react-html-parser';
 // <div>{ ReactHtmlParser(contributions.contentHTML) }</div>
@@ -102,8 +103,11 @@ class Contribution extends Component {
     }
 
     return (
-      <div className="body scroll-container pt-3 pb-3">
-        {contributionContent}
+      <div>
+        <div className="body scroll-container pt-3 pb-3">
+          {contributionContent}
+        </div>
+        <Footer />
       </div>
     );
   }

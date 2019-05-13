@@ -6,8 +6,8 @@ import { withRouter } from 'react-router-dom';
 import { loginAccount } from '../../actions/adminActions';
 import { FormattedMessage } from 'react-intl';
 
-import Footer from '../application/layout/footer'
 import TextFieldGroup from '../application/common/textFieldGroup';
+import Footer from '../application/layout/footer'
 
 class Login extends Component {
   constructor() {

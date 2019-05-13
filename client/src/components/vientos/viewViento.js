@@ -7,9 +7,9 @@ import { getLiveVientoByID } from '../../actions/vientosActions';
 
 import Spinner from '../application/common/spinner.js';
 import Quill from '../application/common/quillView';
-
-// import ReactHtmlParser from 'react-html-parser';
-// <div>{ ReactHtmlParser(contributions.contentHTML) }</div>
+import CommentForm from './CommentForm.js';
+import CommentFeed from './CommentFeed.js';
+import Footer from '../application/layout/footer'
 
 class Contribution extends Component {
   componentDidMount() {
@@ -20,6 +20,8 @@ class Contribution extends Component {
 
   render() {
     const { viento, loading } = this.props.vientos;
+
+    // console.log(viento);
 
     let vientoContent;
 
@@ -32,12 +34,17 @@ class Contribution extends Component {
           <pre><p className="textStyle">{viento.description}</p></pre>
           <img className="banner" alt="banner" src={`http://localhost:5000/api/staff/files/${viento.banner}`} />
           <Quill contributions={viento.content} />
+          <CommentFeed vientoId={viento._id} comments={viento.comments} />
+          <CommentForm vientoId={viento._id} />
         </div>;
     }
 
     return (
-      <div className="body scroll-container pt-3 pb-3">
-        {vientoContent}
+      <div>
+        <div className="body scroll-container pt-3 pb-3">
+          {vientoContent}
+        </div>
+        <Footer />
       </div>
     );
   }

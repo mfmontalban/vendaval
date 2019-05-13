@@ -1,12 +1,14 @@
 import {
   GET_VIENTOS,
   GET_VIENTO,
-  VIENTOS_LOADING
+  VIENTOS_LOADING,
+  VIENTOS_VISIBLE,
 } from '../actions/types';
 
 const initialState = {
   viento: null,
   vientos: null,
+  visible: null,
   loading: false
 };
 
@@ -28,6 +30,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         loading: true
+      };
+    case VIENTOS_VISIBLE:
+      return {
+        ...state,
+        visible: action.payload,
       };
     default:
       return state;

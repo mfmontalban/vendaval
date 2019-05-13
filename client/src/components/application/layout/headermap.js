@@ -3,19 +3,22 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { readApplicationTitles, setLocale } from '../../../actions/applicationActions';
 import { FormattedMessage } from 'react-intl';
+import { Button, Modal, ModalFooter } from 'reactstrap';
+
+import { readApplicationTitles, setLocale } from '../../../actions/applicationActions';
 import { logoutAccount } from '../../../actions/adminActions'; 
 
 import './header.css';
 import './footer.css';
 
-class Header extends Component {
+class HeaderMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
       search: '',
-      language: ''
+      language: '',
+      modal: false,
     };
   }
 
@@ -51,6 +54,12 @@ class Header extends Component {
     this.props.setLocale(e);
   }
 
+  toggle = (e) => {
+      this.setState({
+          modal: !this.state.modal
+      });
+  };
+
   onLogoutClick(e) {
     e.preventDefault();
     this.props.logoutAccount();
@@ -68,9 +77,16 @@ class Header extends Component {
 
     let all;
     let think;
-    let educate;
+    let unite;
     let create;
     let experience;
+
+    let home;
+    let about;
+    let mission;
+    let contact;
+    let donate;
+    let settings;
 
     let winds;
 
@@ -95,9 +111,16 @@ class Header extends Component {
 
       all = 'todo'
       think = 'pensar'
-      educate = 'educar'
+      unite = 'unir'
       create = 'crear'
       experience = 'experienciar'
+
+      home = 'casa'
+      about = 'sobre'
+      mission = 'mission'
+      contact = 'contacta'
+      donate = 'dona'
+      settings = 'settings'
 
       winds = 'vientos'
 
@@ -108,7 +131,7 @@ class Header extends Component {
       GravatarMessage = 'Connecta Gravatar a su cuenta para mostrar una imagen'
       alerts = 'alertas'
       contribute = 'contribuir'
-      favorites = 'favoritos'
+      favorites = 'historia'
       security = 'seguridad'
       
       profile = 'perfil'
@@ -122,9 +145,16 @@ class Header extends Component {
       
       all = 'all'
       think = 'think'
-      educate = 'educate'
+      unite = 'unite'
       create = 'create'
       experience = 'experience'
+
+      home = 'home'
+      about = 'about'
+      mission = 'mission'
+      contact = 'contact'
+      donate = 'donate'
+      settings = 'settings'
 
       winds = 'winds'
 
@@ -135,7 +165,7 @@ class Header extends Component {
       GravatarMessage = 'Connect Gravatar to your account to display an image'
       alerts = 'alerts'
       contribute = 'contribute'
-      favorites = 'favorites'
+      favorites = 'history'
       security = 'security'
 
       profile = 'profile'
@@ -180,7 +210,7 @@ class Header extends Component {
     if (admin.handle === null || '') {
       profileLink =
         <div>
-          <Link to={`/${profile}/${createProf}`} className="dropdown-item text-right">
+          <Link to={`/${profile}/${createProf}`} className="dropdown-item text-right text-info">
             <span className="pr-2">
               <FormattedMessage
                 id="navigation.profile"
@@ -193,7 +223,7 @@ class Header extends Component {
     } else {
       profileLink =
         <div>
-          <Link to={`/${community}/${admin.handle}`} className="dropdown-item text-right">
+          <Link to={`/${community}/${admin.handle}`} className="dropdown-item text-right text-info">
             <span className="pr-2">
               <FormattedMessage
                 id="navigation.profile"
@@ -207,7 +237,7 @@ class Header extends Component {
 
     const staffMenu = (
       <div>
-        <Link to="/staff/dashboard" className="dropdown-item text-right">
+        <Link to="/staff/dashboard" className="dropdown-item text-right text-info">
           <span className="pr-2">
             <FormattedMessage
               id="navigation.staff"
@@ -218,7 +248,7 @@ class Header extends Component {
         </Link>
         <div className="dropdown-divider"></div>
         {profileLink}
-        <Link to={`/${alerts}`} className="dropdown-item text-right">
+        <Link to={`/${alerts}`} className="dropdown-item text-right text-info">
           <span className="pr-2">
             <FormattedMessage
               id="navigation.alerts"
@@ -227,7 +257,7 @@ class Header extends Component {
           </span>
           <i className="fal fa-bell"></i>
         </Link>
-        <Link to={`/${contribute}`} className="dropdown-item text-right">
+        {/* <Link to={`/${contribute}`} className="dropdown-item text-right text-info">
           <span className="pr-2">
             <FormattedMessage
               id="navigation.contribute"
@@ -235,17 +265,17 @@ class Header extends Component {
             />
           </span>
           <i className="fal fa-hand-holding"></i>
-        </Link>
-        <Link to={`/${favorites}`} className="dropdown-item text-right">
+        </Link> */}
+        <Link to={`/${favorites}`} className="dropdown-item text-right text-info">
           <span className="pr-2">
             <FormattedMessage
               id="navigation.favorites"
-              defaultMessage="Favorites"
+              defaultMessage="History"
             />
           </span>
-          <i className="fal fa-heart"></i>
+          <i className="fal fa-history"></i>
         </Link>
-        <Link to={`/${security}`} className="dropdown-item text-right">
+        <Link to={`/${security}`} className="dropdown-item text-right text-info">
           <span className="pr-2">
             <FormattedMessage
               id="navigation.security"
@@ -261,7 +291,7 @@ class Header extends Component {
       <div>
         {profileLink}
         <div className="dropdown-divider"></div>
-        <Link to={`/${alerts}`} className="dropdown-item text-right">
+        <Link to={`/${alerts}`} className="dropdown-item text-right text-info">
           <span className="pr-2">
             <FormattedMessage
               id="navigation.alerts"
@@ -270,7 +300,7 @@ class Header extends Component {
           </span>
           <i className="fal fa-bell"></i>
         </Link>
-        <Link to={`/${contribute}`} className="dropdown-item text-right">
+        {/* <Link to={`/${contribute}`} className="dropdown-item text-right text-info">
           <span className="pr-2">
             <FormattedMessage
               id="navigation.contribute"
@@ -278,17 +308,17 @@ class Header extends Component {
             />
           </span>
           <i className="fal fa-hand-holding"></i>
-        </Link>
-        <Link to={`/${favorites}`} className="dropdown-item text-right">
+        </Link> */}
+        <Link to={`/${favorites}`} className="dropdown-item text-right text-info">
           <span className="pr-2">
             <FormattedMessage
               id="navigation.favorites"
-              defaultMessage="Favorites"
+              defaultMessage="History"
             />
           </span>
-          <i className="fal fa-heart"></i>
+          <i className="fal fa-history"></i>
         </Link>
-        <Link to={`/${security}`} className="dropdown-item text-right">
+        <Link to={`/${security}`} className="dropdown-item text-right text-info">
           <span className="pr-2">
             <FormattedMessage
               id="navigation.security"
@@ -302,7 +332,7 @@ class Header extends Component {
 
     const adminLinks = (
       <nav>
-        <button type="button" id="profile" className="btn btn-outline-info text-white rounded" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button type="button" id="profile" className="btn btn-outline-info text-white rounded profilePic" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <img
             className="rounded-circle"
             src={admin.avatar}
@@ -317,7 +347,7 @@ class Header extends Component {
           <Link
             to="/login"
             onClick={this.onLogoutClick.bind(this)}
-            className="dropdown-item text-right"
+            className="dropdown-item text-right text-info"
           >
             <span className="pr-2">
               <FormattedMessage
@@ -335,7 +365,7 @@ class Header extends Component {
       <div>
         <button type="button" id="profile" className="btn btn-outline-info text-white rounded" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img alt="" /><i className="fal fa-user"></i></button>
         <div className="dropdown-menu dropdown-menu-right" aria-labelledby="profile">
-          <Link to={`/${login}`} className="dropdown-item text-right">
+          <Link to={`/${login}`} className="dropdown-item text-right text-info">
             <span className="pr-2">
               <FormattedMessage
                 id="navigation.login"
@@ -344,7 +374,7 @@ class Header extends Component {
             </span>
             <i className="fal fa-sign-in"></i>
           </Link>
-          <Link to={`/${register}`} className="dropdown-item text-right">
+          <Link to={`/${register}`} className="dropdown-item text-right text-info">
             <span className="pr-2">
               <FormattedMessage
                 id="navigation.register"
@@ -353,7 +383,7 @@ class Header extends Component {
             </span>
             <i className="fal fa-user-plus"></i>
           </Link>
-          <Link to={`/${forgot}`} className="dropdown-item text-right">
+          <Link to={`/${forgot}`} className="dropdown-item text-right text-info">
             <span className="pr-2">
               <FormattedMessage
                 id="navigation.forgot"
@@ -367,18 +397,51 @@ class Header extends Component {
     );
 
     return (
-      <div>
-        <nav className="navbar navbar-expand navbar-dark bg-info fixed-top flex-row justify-content-between p-0 top-nav-height z-1035">
+      <div className="h-105px top-nav-margin">
+        <Modal
+        className="mt-5"
+        isOpen={this.state.modal}
+        toggle={this.toggle}
+        >
+        <div className="modal-header">
+            <h5 className="modal-title text-center w-100">
+                <FormattedMessage
+                id="navigation.aboutHeader"
+                defaultMessage="Our Story"
+                />
+            </h5>
+        </div>
+        <div className="modal-body">
+            <p>Uniting the world against all odds..</p>
+        </div>
+        <ModalFooter
+        className="justify-content-center"
+        >
+            <Button
+            className="m-0"
+            color="danger"
+            onClick={this.toggle}
+            >
+            <i className="fas fa-heart mr-2"></i>
+            <FormattedMessage
+                id="navigation.aboutOptionsDonate"
+                defaultMessage="Donate"
+            />
+            </Button>
+        </ModalFooter>
+        </Modal>
+
+        <nav className="fixed-to-top navbar navbar-expand navbar-dark bg-info flex-row justify-content-between top-nav-height z-1035 tempcss">
           <div className="navbar-nav flex-row">
-            <div className="input-group ml-2">
+            <div className="input-group">
               <div className="top-nav-item input-group-prepend">
-                <button type="button" className="btn bg-transparent border-opaque nav-item nav-link top-nav-component-height search-padding"><i className="fal fa-search"></i></button>
+                <button type="button" className="btn bg-silvero btn-outline-info border-opaque top-nav-component-height search-padding"><i className="fal fa-search"></i></button>
               </div>
               <input
                 type="text"
                 value={this.state.search}
                 onChange={this.updateSearch}
-                className="top-nav-item form-control top-nav-component-height"
+                className="top-nav-item bg-vientosBox form-control top-nav-component-height"
                 aria-label="Text input with segmented dropdown button"
               >
               </input>
@@ -391,20 +454,71 @@ class Header extends Component {
                 {language}
               </button>
               <div className="dropdown-menu dropdown-menu-right" aria-labelledby="changeLanguage">
-                <button onClick={(e) => this.updateLanguage('es')} className="dropdown-item text-right" type="button">Espanol</button>
-                <button onClick={(e) => this.updateLanguage('en')} className="dropdown-item text-right" type="button">English</button>
+                <button onClick={(e) => this.updateLanguage('es')} className="dropdown-item text-right text-info" type="button">Espanol</button>
+                <button onClick={(e) => this.updateLanguage('en')} className="dropdown-item text-right text-info" type="button">English</button>
               </div>
             </div>
           </div>
         </nav>
-        <nav className="navbar navbar-expand navbar-dark bg-info fixed-top-2nd">
-        </nav>
-        <nav className="navbar navbar-expand navbar-dark bg-silvero fixed-top-2nd header-nav-shadow top-radius-rounded d-none d-flex flex-row justify-content-between">
+
+        <nav className="navbar navbar-expand navbar-dark fixed-top-2nd header-nav-shadow top-radius-rounded d-flex flex-row justify-content-between">
           <div className="item">
             <div className="btn-group dropdown">
               <button type="button" id="profile" className="btn btn-outline-info rounded" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i className="far fa-bars"></i></button>
               <div className="dropdown-menu" aria-labelledby="profile">
-                <Link to={`/${all}`} className="dropdown-item">
+                <Link to={`/`} className="dropdown-item text-info"><i className="fal fa-home mr-2"></i>
+                  <span className="pr-2">
+                    <FormattedMessage
+                      id="navigation.home"
+                      defaultMessage="Home"
+                    />
+                  </span>
+                </Link>
+                <div className="dropdown-divider"></div>
+                <Link to={`/${about}`} className="dropdown-item text-info"><i className="fal fa-users mr-2"></i>
+                  <span className="pr-2">
+                    <FormattedMessage
+                      id="navigation.about"
+                      defaultMessage="Our Story"
+                    />
+                  </span>
+                </Link>
+                <Link to={`/${contact}`} className="dropdown-item text-info"><i className="fal fa-comments-alt mr-2"></i>
+                  <span className="pr-2">
+                    <FormattedMessage
+                      id="navigation.contact"
+                      defaultMessage="Contact"
+                    />
+                  </span>
+                </Link>
+                <Link to={`/${donate}`} className="dropdown-item text-info">
+                <i className="fal fa-heart mr-2"></i>
+                  <span className="pr-2">
+                    <FormattedMessage
+                      id="navigation.donate"
+                      defaultMessage="Donate"
+                    />
+                  </span>
+                </Link>
+                <div className="dropdown-divider"></div>
+                <div className="dropdown-item text-info"  onClick={this.toggle}>
+                  <i className="fal fa-cog mr-2"></i>
+                  <span className="pr-2">
+                    <FormattedMessage
+                      id="navigation.settings"
+                      defaultMessage="Settings"
+                    />
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="navbar-nav flex-row">
+            <div className="btn-group dropdown">
+              <Link className="btn btn-outline-info text-white rounded" to={`/${winds}`}><img alt="Vendaval favicon" className="vientos" src="/favicon.ico" /></Link>
+              {/* <div className="dropdown-menu" aria-labelledby="profile">
+                <Link to={`/${all}`} className="dropdown-item text-info">
                   <span className="pr-2">
                     <FormattedMessage
                       id="navigation.all"
@@ -413,7 +527,7 @@ class Header extends Component {
                   </span>
                 </Link>
                 <div className="dropdown-divider"></div>
-                <Link to={`/${think}`} className="dropdown-item"><i className="fal fa-lightbulb mr-2"></i>
+                <Link to={`/${think}`} className="dropdown-item text-info"><i className="fal fa-lightbulb mr-2"></i>
                   <span className="pr-2">
                     <FormattedMessage
                       id="navigation.think"
@@ -421,7 +535,7 @@ class Header extends Component {
                     />
                   </span>
                 </Link>
-                <Link to={`/${educate}`} className="dropdown-item"><i className="fal fa-hands-helping mr-2"></i>
+                <Link to={`/${unite}`} className="dropdown-item text-info"><i className="fal fa-hands-helping mr-2"></i>
                   <span className="pr-2">
                     <FormattedMessage
                       id="navigation.unite"
@@ -429,7 +543,7 @@ class Header extends Component {
                     />
                   </span>
                 </Link>
-                <Link to={`/${create}`} className="dropdown-item"><i className="fal fa-pencil mr-2"></i>
+                <Link to={`/${create}`} className="dropdown-item text-info"><i className="fal fa-pencil mr-2"></i>
                   <span className="pr-2">
                     <FormattedMessage
                       id="navigation.create"
@@ -437,7 +551,7 @@ class Header extends Component {
                     />
                   </span>
                 </Link>
-                <Link to={`/${experience}`} className="dropdown-item"><i className="fal fa-compass mr-2"></i>
+                <Link to={`/${experience}`} className="dropdown-item text-info"><i className="fal fa-compass mr-2"></i>
                   <span className="pr-2">
                     <FormattedMessage
                       id="navigation.experience"
@@ -445,55 +559,13 @@ class Header extends Component {
                     />
                   </span>
                 </Link>
-              </div>
+              </div> */}
             </div>
-          </div>
-
-          <div className="item">
-            <Link to={`/${winds}`} className="bg-transparent"><img alt="Vendaval favicon" className="vientos" src="/favicon.ico" /></Link>
           </div>
 
           <div className="navbar-nav flex-row">
             <div className="btn-group dropdown">
               {admin.isAuthenticated ? adminLinks : guestLinks}
-            </div>
-          </div>
-        </nav>
-        <nav className="navbar navbar-expand navbar-dark bg-silvero fixed-top-2nd header-nav-shadow top-radius-rounded d-none d-xl-flex d-lg-flex d-md-flex flex-row flex-row justify-content-between">
-          <Link className="navbar-brand mr-0 btn btn-outline-info text-white" to={`/${winds}`}>Vendaval</Link>
-          <div className="navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <Link className="nav-link ml-3" to={`/${think}`}>
-                  <FormattedMessage
-                    id="navigation.think"
-                    defaultMessage="Think"
-                  />
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link ml-3" to={`/${educate}`}>
-                  <FormattedMessage
-                    id="navigation.educate"
-                    defaultMessage="Educate"
-                  />
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link ml-3" to={`/${create}`}>
-                  <FormattedMessage
-                    id="navigation.create"
-                    defaultMessage="Create"
-                  />
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div className="navbar-nav flex-row">
-            <div className="form-inline d-block ml-2">
-              <div className="btn-group dropdown">
-                {admin.isAuthenticated ? adminLinks : guestLinks}
-              </div>
             </div>
           </div>
         </nav>
@@ -503,7 +575,7 @@ class Header extends Component {
   }
 }
 
-Header.propTypes = {
+HeaderMap.propTypes = {
   readApplicationTitles: PropTypes.func.isRequired,
   logoutAccount: PropTypes.func.isRequired,
   setLocale: PropTypes.func.isRequired
@@ -514,4 +586,4 @@ const mapStateToProps = state => ({
   application: state.application,
 });
 
-export default connect(mapStateToProps, { readApplicationTitles, setLocale, logoutAccount })(Header);
+export default connect(mapStateToProps, { readApplicationTitles, setLocale, logoutAccount })(HeaderMap);

@@ -1,24 +1,25 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Redirect, Switch } from 'react-router-dom';
 
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 import { setAccountID, setAccountInfo, setAccountHandle, logoutAccount } from './actions/adminActions';
 
 import { IntlProvider, addLocaleData } from 'react-intl';
-import messages from "./components/application/common/messages"
+import messages from "./components/application/common/messages";
 import en from 'react-intl/locale-data/en';
 import es from 'react-intl/locale-data/es';
 
 import store from './store';
 
-import UserRoute from './components/application/common/userRoute';
-import StaffRoute from './components/application/common/staffRoute';
+import LayoutRoute from './components/application/layout/layoutroute';
+import LayoutMapRoute from './components/application/layout/layoutmaproute';
+import LayoutUserRoute from './components/application/layout/layoutuserroute';
+import LayoutStaffRoute from './components/application/layout/layoutstaffroute';
 
 import Landing from './components/application/landing/index';
-import Navigation from './components/application/layout/navigation';
 
 import Register from './components/admin/register';
 import Login from './components/admin/login';
@@ -27,11 +28,11 @@ import Forgot from './components/admin/forgot';
 import Verify from './components/admin/verify';
 import Reset from './components/admin/reset';
 
+import Security from './components/admin/security';
+import Update from './components/admin/update';
+
 import Vientos from './components/vientos/vientos';
 import ViewViento from './components/vientos/viewViento';
-import Pensar from './components/vientos/pensar';
-import Educar from './components/vientos/educar';
-import Crear from './components/vientos/crear';
 
 import Dashboard from './components/staff/dashboard';
 import CreateContribution from './components/staff/createContribution';
@@ -41,9 +42,6 @@ import EditContribution from './components/staff/editContribution';
 import CreateProfile from './components/users/createProfile';
 import ReadProfile from './components/users/readProfile';
 import EditProfile from './components/users/editProfile';
-
-import Security from './components/admin/security';
-import Update from './components/admin/update';
 
 import './App.css';
 
@@ -81,76 +79,65 @@ class App extends Component {
     return (
       <IntlProvider locale={language} messages={messages[language]}>
         <div>
-
-          <Route component={Navigation} />
-          <Route exact path="/" component={Landing} />
-
-          <Route exact path="/register" component={Register} />
-          <Route exact path="/registrar" component={Register} />
-
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/iniciar" component={Login} />
-
-          <Route exact path="/forgot" component={Forgot} />
-          <Route exact path="/olvidó" component={Forgot} />
-
-          <Route exact path="/verify/:key" component={Verify} />
-          <Route exact path="/verificar/:key" component={Verify} />
-
-          <Route exact path="/reset/:key" component={Reset} />
-          <Route exact path="/reiniciar/:key" component={Reset} />
-
-          <Route exact path="/update/:key" component={Update} />
-          <Route exact path="/actualización/:key" component={Update} />
-
-          <Route exact path="/winds" component={Vientos} />
-          <Route exact path="/vientos" component={Vientos} />
-
-          <Route exact path="/winds/:id" component={ViewViento} />
-          <Route exact path="/vientos/:id" component={ViewViento} />
-
-          <Route exact path="/pensar" component={Pensar} />
-          <Route exact path="/think" component={Pensar} />
-
-          <Route exact path="/educar" component={Educar} />
-          <Route exact path="/educate" component={Educar} />
-
-          <Route exact path="/crear" component={Crear} />
-          <Route exact path="/create" component={Crear} />
-
           <Switch>
-            <StaffRoute exact path="/staff/dashboard" component={Dashboard} />
-            <StaffRoute exact path="/personal/dashboard" component={Dashboard} />
-          </Switch>
-          <Switch>
-            <StaffRoute exact path="/staff/contribute" component={CreateContribution} />
-            <StaffRoute exact path="/personal/contribuir" component={CreateContribution} />
-          </Switch>
-          <Switch>
-            <StaffRoute exact path="/staff/contribution/view/:id" component={ReadContribution} />
-            <StaffRoute exact path="/personal/contribución/ver/:id" component={ReadContribution} />
-          </Switch>
-          <Switch>
-            <StaffRoute exact path="/staff/contribution/edit/:id" component={EditContribution} />
-            <StaffRoute exact path="/personal/contribución/editar/:id" component={ReadContribution} />
-          </Switch>
+            <LayoutRoute exact path="/" component={Landing} />
 
-          <Switch>
-            <UserRoute exact path="/profile/create" component={CreateProfile} />
-            <UserRoute exact path="/perfil/create" component={CreateProfile} />
-          </Switch>
-          <Switch>
-            <UserRoute exact path="/community/:handle" component={ReadProfile} />
-            <UserRoute exact path="/communidad/:handle" component={ReadProfile} />
-          </Switch>
-          <Switch>
-            <UserRoute exact path="/profile/edit" component={EditProfile} />
-            <UserRoute exact path="/perfil/edit" component={EditProfile} />
-          </Switch>
 
-          <Switch>
-            <UserRoute exact path="/security" component={Security} />
-            <UserRoute exact path="/seguridad" component={Security} />
+
+            <LayoutRoute exact path="/register" component={Register} />
+            <LayoutRoute exact path="/registrar" component={Register} />
+
+            <LayoutRoute exact path="/login" component={Login} />
+            <LayoutRoute exact path="/iniciar" component={Login} />
+
+            <LayoutRoute exact path="/forgot" component={Forgot} />
+            <LayoutRoute exact path="/olvidó" component={Forgot} />
+
+            <LayoutRoute exact path="/verify/:key" component={Verify} />
+            <LayoutRoute exact path="/verificar/:key" component={Verify} />
+
+            <LayoutRoute exact path="/reset/:key" component={Reset} />
+            <LayoutRoute exact path="/reiniciar/:key" component={Reset} />
+
+            <LayoutRoute exact path="/update/:key" component={Update} />
+            <LayoutRoute exact path="/actualización/:key" component={Update} />
+
+
+
+            <LayoutMapRoute exact path="/winds" component={Vientos} />
+            <LayoutMapRoute exact path="/vientos" component={Vientos} />
+
+            <LayoutMapRoute exact path="/winds/:id" component={ViewViento} />
+            <LayoutMapRoute exact path="/vientos/:id" component={ViewViento} />
+
+
+
+            <LayoutUserRoute exact path="/profile/create" component={CreateProfile} />
+            <LayoutUserRoute exact path="/perfil/create" component={CreateProfile} />
+
+            <LayoutUserRoute exact path="/community/:handle" component={ReadProfile} />
+            <LayoutUserRoute exact path="/communidad/:handle" component={ReadProfile} />
+            
+            <LayoutUserRoute exact path="/profile/edit" component={EditProfile} />
+            <LayoutUserRoute exact path="/perfil/edit" component={EditProfile} />
+
+            <LayoutUserRoute exact path="/security" component={Security} />
+            <LayoutUserRoute exact path="/seguridad" component={Security} />
+
+
+
+            <LayoutStaffRoute exact path="/staff/dashboard" component={Dashboard} />
+            <LayoutStaffRoute exact path="/personal/dashboard" component={Dashboard} />
+            
+            <LayoutStaffRoute exact path="/staff/contribute" component={CreateContribution} />
+            <LayoutStaffRoute exact path="/personal/contribuir" component={CreateContribution} />
+
+            <LayoutStaffRoute exact path="/staff/contribution/view/:id" component={ReadContribution} />
+            <LayoutStaffRoute exact path="/personal/contribución/ver/:id" component={ReadContribution} />
+
+            <LayoutStaffRoute exact path="/staff/contribution/edit/:id" component={EditContribution} />
+            <LayoutStaffRoute exact path="/personal/contribución/editar/:id" component={EditContribution} />
+
           </Switch>
 
         </div>
@@ -160,10 +147,12 @@ class App extends Component {
 }
 
 App.propTypes = {
+  admin: PropTypes.object.isRequired,
   application: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
+  admin: state.admin,
   application: state.application
 });
 

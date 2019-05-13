@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { READ_APPLICATION_TITLES, READ_APPLICATION_ERRORS, SET_LANGUAGE, SET_SORTS_RECENTNEWEST, SET_SORTS_RECENTOLDEST, SEND_APPLICATION_ALERTS_REGISTERED, SEND_APPLICATION_ALERTS_FORGOT, SEND_APPLICATION_ALERTS_UPDATED, SET_ACCOUNT_USER, VERIFY_APPLICATION_ALERTS } from './types';
+import { READ_APPLICATION_TITLES, READ_APPLICATION_ERRORS, SET_LANGUAGE, SET_SORTS_RECENTNEWEST, SET_SORTS_RECENTOLDEST, SET_FILTERS_TEXT, SET_CENTERED_MAP, SEND_APPLICATION_ALERTS_REGISTERED, SEND_APPLICATION_ALERTS_FORGOT, SEND_APPLICATION_ALERTS_UPDATED, SET_ACCOUNT_USER, VERIFY_APPLICATION_ALERTS } from './types';
 import { STATES } from 'mongoose';
 
 // Retrieve title results
@@ -32,27 +32,28 @@ export const setLocale = language => {
 export const setSortsRecentNewest = e => {
   return {
     type: SET_SORTS_RECENTNEWEST,
-    payload: {
-      text: 'publisheddown',
-    }
+    payload:  'publisheddown',
   };
 };
 
 export const setSortsRecentOldest = e => {
   return {
     type: SET_SORTS_RECENTOLDEST,
-    payload: {
-      text: 'publishedup',
-    }
+    payload:  'publishedup',
   };
 };
 
-export const SET_FILTERS_RECENTOLDEST = e => {
+export const setFiltersText = e => {
   return {
-    type: SET_FILTERS_RECENTOLDEST,
-    payload: {
-      text: e,
-    }
+    type: SET_FILTERS_TEXT,
+    payload:  e,
+  };
+};
+
+export const setCenteredMap = e => {
+  return {
+    type: SET_CENTERED_MAP,
+    payload:  e,
   };
 };
 

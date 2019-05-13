@@ -6,6 +6,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { verifyApplicationAlertsRegistered, resendApplicationAlertsRegistered } from '../../actions/applicationActions';
 
 import TextFieldGroup from '../application/common/textFieldGroup';
+import Footer from '../application/layout/footer'
 
 class Confirm extends Component {
   constructor() {
@@ -81,15 +82,18 @@ class Confirm extends Component {
     ;
 
     return (
-      <div className="body scroll-container pt-3 pb-3">
-        <div className="container pt-4">
-          <div className="row">
-            <div className="col-md-8 m-auto">
-            {verify.success ? success : null}
-            {verify.expired ? expired : null}
+      <div>
+        <div className="body scroll-container pt-3 pb-3">
+          <div className="container pt-4">
+            <div className="row">
+              <div className="col-md-8 m-auto">
+              {verify.success ? success : null}
+              {verify.expired ? expired : null}
+              </div>
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }

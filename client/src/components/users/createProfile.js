@@ -8,6 +8,7 @@ import { createProfile } from '../../actions/usersActions';
 import TextFieldGroup from '../application/common/textFieldGroup';
 import TextAreaFieldGroup from '../application/common/textAreaFieldGroup';
 import InputGroup from '../application/common/inputGroup';
+import Footer from '../application/layout/footer'
 
 
 class CreateProfile extends Component {
@@ -220,9 +221,12 @@ class CreateProfile extends Component {
     }
 
     return (
-      <div className="body scroll-container p-3">
-        {createWelcome}
-        {createForm}
+      <div>
+        <div className="body scroll-container p-3">
+          {createWelcome}
+          {createForm}
+        </div>
+        <Footer />
       </div>
     );
   }

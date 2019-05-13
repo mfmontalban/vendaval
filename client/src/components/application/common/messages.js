@@ -1,5 +1,6 @@
 export default {
     en: {
+
         'landing.heroMessage': '<h1 class="display-4"><i>Winds</i> of <strong>Change</strong></h1>',
         'landing.heroAction': '<div className="text">Explore</div>',
         'landing.aboutMain': `An international collective driving change around the World`,
@@ -12,7 +13,7 @@ export default {
         'landing.featuresDescription3': `Critiques that contribute to a vision of a more complex and diverse reality`,
         'landing.featuresTitle4': `Create`,
         'landing.featuresDescription4': `All types of creations that motivate us to see, hear, touch, listen, and do`,
-        'landing.endingNote': `Coming Soon`,
+        'landing.endingNote': `Start Exploring Now!`,
 
         'navigation.searchResults': `No search results`,
 
@@ -26,11 +27,25 @@ export default {
         'navigation.create': `Create`,
         'navigation.experience': `Experience`,
 
+        'landing.home': `home`,
+        'landing.about': `Our Story`,
+        'landing.mission': `mission`,
+        'landing.contact': `contact`,
+        'landing.donate': `donate`,
+        'landing.settings': `settings`,
+
+        'navigation.filter': `Filter Map:`,
+        'navigation.filter2': `Author:`,
+        'navigation.filter3': `Wind`,
+        'navigation.filter4': `Category`,
+
+        'navigation.addanotherfilter': `add another filter`,
+
         'navigation.profile': `Profile`,
         'navigation.staff': `Staff`,
         'navigation.alerts': `Alerts`,
         'navigation.contribute': `Contribute`,
-        'navigation.favorites': `Favorites`,
+        'navigation.favorites': `History`,
         'navigation.security': `Security`,
         'navigation.logout': `Logout`,
  
@@ -55,8 +70,13 @@ export default {
         'register.Main': `Sign Up`,
         'register.Secondary': `Create your Vendaval account`,
         'register.forgotLink': `Didn't get your code? Follow this link to resend it`,
+
+        'staff.status': `Status`,
+        'staff.date': `Date`,
+        'staff.title': `Title`,
     },
     es: {
+
         'landing.heroMessage': '<h1 class="display-4"><i>Vientos</i> de <strong>Cambio</strong></h1>',
         'landing.heroAction': '<div className="text">Explora</div>',
         'landing.aboutMain': `Un colectivo internacional impulsando cambios alrededor del Mundo`,
@@ -69,7 +89,7 @@ export default {
         'landing.featuresDescription3': `Críticas que aportan a una visión más compleja y diversa de la realidad`,
         'landing.featuresTitle4': `Crear`,
         'landing.featuresDescription4': `Creaciones de todo tipo que nos motivan a ver, oler, tocar, escuchar, y hacer`,
-        'landing.endingNote': `Llegando pronto`,
+        'landing.endingNote': `Empieza explorando ya!`,
 
         'navigation.searchResults': `Ningunos resultos`,
 
@@ -79,15 +99,28 @@ export default {
 
         'navigation.all': `Todo`,
         'navigation.think': `Pensar`,
-        'navigation.unar': `Unar`,
+        'navigation.unite': `Unir`,
         'navigation.create': `Crear`,
         'navigation.experience': `Experienciar`,
+
+        'landing.home': `Casa`,
+        'landing.about': `Our Story`,
+        'landing.mission': `Mission`,
+        'landing.contact': `Contacta`,
+        'landing.donate': `Dona`,
+        'landing.settings': `Configuraciones`,
+
+        'navigation.filter': `Filtra Mapa`,
+        'navigation.filter2': `Filtra Mapa`,
+        'navigation.filter3': `Filtra Mapa`,
+        'navigation.filter4': `Filtra Mapa`,
+        'navigation.addanotherfilter': `anida otro filtro`,
 
         'navigation.profile': `Perfil`,
         'navigation.staff': `Personal`,
         'navigation.alerts': `Alertas`,
         'navigation.contribute': `Contribuir`,
-        'navigation.favorites': `Favoritos`,
+        'navigation.favorites': `Historia`,
         'navigation.security': `Seguridad`,
         'navigation.logout': `Salir`,
 
@@ -112,5 +145,9 @@ export default {
         'register.Main': `Registrarse`,
         'register.Secondary': `Crea su cuente de Vendaval`,
         'register.forgotLink': `No recibiste tu codigo? Siga este enlace para mandarlo de nuevo`,
+
+        'staff.status': `Status`,
+        'staff.date': `Dia`,
+        'staff.title': `Titulo`,
     }
 }

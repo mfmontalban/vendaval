@@ -4,9 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 const StaffRoute = ({ component: Component, admin, ...rest }) => (
-  <Route
-    {...rest}
-    render={props =>
+  <Route {...rest} render={props =>
       admin.staff !== '' ? (
         <Component {...props} />
       ) : (
