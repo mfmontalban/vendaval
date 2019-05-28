@@ -10,12 +10,14 @@ import { getLiveVientos } from '../../actions/vientosActions';
 import Spinner from '../application/common/spinner';
 import Map from '../application/map/canvas';
 import Controls from '../application/map/controls';
+import Dropdown from '../application/common/dropdown';
 import VientoItem from './vientoItem';
 
 
 class Vientos extends Component {
   constructor() {
     super();
+    this.childRef = React.createRef();
     this.dropDownMenu = React.createRef();
     this.dropDownMenu2 = React.createRef();
     this.dropDownMenu3 = React.createRef();
@@ -29,10 +31,10 @@ class Vientos extends Component {
       filterSearch3: 'Title',
       filterSearch4: 'Title',
       isOpen: false,
-      isOpen2: false
+      isOpen2: false,
+      listOpen: false
     };
   }
-
 
   componentDidMount() {
     this.props.getLiveVientos();
@@ -49,41 +51,7 @@ class Vientos extends Component {
     this.props.setFiltersText(e.target.value.toLowerCase());
   }
 
-  addAnotherFilter = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    e.nativeEvent.stopImmediatePropagation();
-
-    this.dropDownMenu.current.className = 'btn-group dropdown show'
-    this.dropDownMenu3.current.className = 'dropdown-menu p-2 show'
-    this.setState({
-      isOpen: true
-    });
-  }
-  
-  addAnotherFilter2 = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    e.nativeEvent.stopImmediatePropagation();
-
-    this.dropDownMenu.current.className = 'btn-group dropdown show'
-    this.dropDownMenu3.current.className = 'dropdown-menu p-2 show'
-    this.dropDownMenu5.current.className = 'btn-group dropdown show'
-    this.dropDownMenu7.current.className = 'dropdown-menu p-2 show'
-    this.setState({
-      isOpen: true,
-      isOpen2: true
-    });
-  }
-
-  updateFilterSearch1 = (text, varb) => {
-    console.log(varb);
-    this.setState({
-      filterSearch1: text
-    });
-  }
   updateFilterSearch2 = (text, varb) => {
-    console.log(varb);
     this.setState({
       filterSearch1: text
     });
@@ -106,6 +74,8 @@ class Vientos extends Component {
     let vientosNav;
     let loadingContent;
     let content;
+
+    const{listOpen} = this.state
     
     function selectLoop(e) {
       if (visible === null || loading) {
@@ -114,7 +84,6 @@ class Vientos extends Component {
         if (visible.length > 0) {
           visible.filter(viento => {
             if (e = 'Author') {
-              console.log('here');
               let row = <option className="optionHeight">{viento.user.name}</option>
               return row;
             } else if (e = 'Wind') {
@@ -130,14 +99,6 @@ class Vientos extends Component {
         }
       }
     }
-
-    let inputOthers = (
-      <select className="top-nav-item bg-vientosBox form-control top-nav-component-height">
-        {this.state.filterSearch1 == 'Author' ? selectLoop('Author') : null}
-        {this.state.filterSearch1 == 'Wind' ? selectLoop('Wind') : null}
-        {this.state.filterSearch1 == 'Category' ? selectLoop('Category') : null}
-      </select>
-    );
 
     let inputTitle = (
       <input
@@ -155,7 +116,15 @@ class Vientos extends Component {
       <div className="mt-43">
         <nav className="z-1005 d-flex navbar-dark bg-transparent justify-content-center">
           <div className="item">
-            <div ref={this.dropDownMenu} className={`btn-group dropdown`}>
+            <div className={`btn-group dropdown`}>
+            <Dropdown
+              title="Select location"
+              list={this.state.location}
+              vientos={this.props.vientos.map}
+            />
+            </div>
+            
+            {/* <div ref={this.dropDownMenu} className={`btn-group dropdown`}>
               <button type="button" id="categories" className="btn btn-outline-info rounded" data-toggle="dropdown" aria-haspopup="true" aria-expanded={this.state.isOpen}><i className="fal fa-filter"></i></button>
               <div onClick={(e) => {this.addAnotherFilter(e)}} ref={this.dropDownMenu3}  className={`dropdown-menu p-2`}>
                   <div className="form-group">
@@ -197,7 +166,8 @@ class Vientos extends Component {
                   <input class="btn btn-primary" type="submit" value="Submit"></input>
 
               </div>
-            </div>
+            </div> */}
+
           </div>
           <div className="item d-flex flex-row">
             <div className="dropdown">
@@ -215,7 +185,7 @@ class Vientos extends Component {
           </div>
           <div className="item">
             <div className="btn-group dropdown">
-              <button type="button" id="filter" className="btn btn-outline-info rounded" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img alt="" /><i className="fal fa-sort"></i></button>
+              <button type="button" id="filter" className="btn btn-outline-info rounded" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img alt="" /><i className="fal fa-bookmark"></i></button>
               <div className="dropdown-menu dropdown-menu-right p-0" aria-labelledby="filter">
                 <div href="#" className="p-0 d-flex flex-row justify-content-between h-40px border-bottom">
                   <div 
@@ -308,9 +278,30 @@ class Vientos extends Component {
       loadingContent = <Spinner />;
     } else {
       if (visible.length > 0) {
+        let y;
+        y = Object.values(filters);
+
         dashboardContent = visible.filter(viento => {
-          if (filters != '' || null ) {
-            const contentHTMLMatch = viento.title.toLowerCase().includes(filters);
+          if (y[0] != '' || null ) {
+            let contentHTMLMatch = viento.title.toLowerCase().includes(y[0]);
+            return contentHTMLMatch;
+          }
+          return viento;
+        }).filter(viento => {
+          if (y[1] != '' || null ) {
+            let contentHTMLMatch = viento.type.includes(y[1]);
+            return contentHTMLMatch;
+          }
+          return viento;
+        }).filter(viento => {
+          if (y[2] != '' || null ) {
+            let contentHTMLMatch = viento.user.name.includes(y[2]);
+            return contentHTMLMatch;
+          }
+          return viento;
+        }).filter(viento => {
+          if (y[3] != '' || null ) {
+            let contentHTMLMatch = viento.topic.includes(y[3]);
             return contentHTMLMatch;
           }
           return viento;

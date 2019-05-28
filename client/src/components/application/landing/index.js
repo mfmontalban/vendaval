@@ -63,8 +63,6 @@ class Landing extends Component {
   }
 
   handleScrollToElement = (e) => {
-    console.log(this.infoSection.current.clientHeight);
-
     var z = this.infoHeader2.current.clientHeight;
     this.infoHeader2.current.scrollTop = z;
   }

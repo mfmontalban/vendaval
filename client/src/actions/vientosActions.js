@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import {
+  VIENTOS_MAP,
   VIENTOS_LOADING,
   VIENTOS_VISIBLE,
   GET_VIENTOS,
@@ -19,6 +20,16 @@ export const setLiveVientosVisible = e => {
   
   return {
     type: VIENTOS_VISIBLE,
+    payload: e
+  };
+};
+
+
+// Contribution loading
+export const setLiveMapVientos = e => {
+  
+  return {
+    type: VIENTOS_MAP,
     payload: e
   };
 };
@@ -45,6 +56,10 @@ export const getLiveVientos = () => dispatch => {
 // Get all visible contribution 
 export const setVisibleVientos = (viento) => dispatch => {
   dispatch(setLiveVientosVisible(viento));
+};
+
+export const setMapVientos = (viento) => dispatch => {
+  dispatch(setLiveMapVientos(viento));
 };
 
 export const sendVoteUp = y => dispatch => {

@@ -1,11 +1,13 @@
 import {
   GET_VIENTOS,
   GET_VIENTO,
+  VIENTOS_MAP,
   VIENTOS_LOADING,
   VIENTOS_VISIBLE,
 } from '../actions/types';
 
 const initialState = {
+  map: null,
   viento: null,
   vientos: null,
   visible: null,
@@ -25,6 +27,11 @@ export default function(state = initialState, action) {
         ...state,
         vientos: action.payload,
         loading: false
+      };
+    case VIENTOS_MAP:
+      return {
+        ...state,
+        map: action.payload,
       };
     case VIENTOS_LOADING:
       return {

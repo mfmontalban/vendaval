@@ -39,6 +39,8 @@ export default {
         'navigation.filter3': `Wind`,
         'navigation.filter4': `Category`,
 
+        'navigation.clearAll': `Clear`,
+
         'navigation.addanotherfilter': `add another filter`,
 
         'navigation.profile': `Profile`,
@@ -115,6 +117,8 @@ export default {
         'navigation.filter3': `Filtra Mapa`,
         'navigation.filter4': `Filtra Mapa`,
         'navigation.addanotherfilter': `anida otro filtro`,
+
+        'navigation.clearAll': `Clara`,
 
         'navigation.profile': `Perfil`,
         'navigation.staff': `Personal`,

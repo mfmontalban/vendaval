@@ -66,7 +66,7 @@ body{
 .body2 {
   position:relative;
   min-height: calc(100vh - 57px);
-  margin-top:-47px;
+  margin-top:-48px;
   margin-left:10px;
   margin-right:10px;
 }
@@ -87,8 +87,9 @@ body{
 }
 
 .h-40px {
-  height:40px;
-  line-height:40px;
+  height:35px;
+  line-height:30px;
+  padding:2px;
 }
 
 .h-105px {
@@ -97,6 +98,18 @@ body{
 
 .lh-1 {
   line-height: 1em;
+}
+
+.correct-top-dropdown {
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.correct-bottom-dropdown {
+  /* padding-top: 10px; */
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .container-margin {
@@ -197,12 +210,171 @@ body{
     }
 
     .mapgl {
-      height: 47vh;
-      width: calc(100vw-20px);
+      height: calc((100vh - 57px) / 2 - 10px);
+      width: calc(100vw - 20px);
     }
 
     .mt-43 {
       margin-top:-43px;
+    }
+
+    .dd-list {
+      background: #fff;
+      position: absolute;
+      width: 225px;
+      border-radius: .25rem;
+      margin-top: 5px;
+    }
+
+    .dd-list2 {
+      max-height:150px;
+      z-index: 1030;
+      background: #fff;
+      position: absolute;
+      border-radius: .25rem;
+      margin-top: 5px;
+      padding-left: 0;
+      text-align: center;
+      box-shadow: 0px 0px 8px #888888;
+    }
+
+    .dd-list3 {
+      max-height:150px;
+      z-index: 1030;
+      background: #fff;
+      position: absolute;
+      border-radius: .25rem;
+      margin-top: 5px;
+      margin-left:-55px;
+      padding-left: 0;
+      text-align: center;
+      box-shadow: 0px 0px 8px #888888;
+    }
+
+    .dd-list4 {
+      max-height:150px;
+      z-index: 1030;
+      background: #fff;
+      position: absolute;
+      border-radius: .25rem;
+      margin-top: 5px;
+      margin-left:-67px;
+      padding-left: 0;
+      text-align: center;
+      box-shadow: 0px 0px 8px #888888;
+    }
+
+    .dd-fix-button {
+      border-radius: .25rem 0rem 0rem .25rem;
+      padding-top: 0px;
+      padding-right: 5px;
+      padding-left: 5px;
+      padding-bottom: 00px;
+    }
+
+    .dd-fix-button2 {
+      border-radius: 0rem .25rem .25rem 0rem;
+    }
+
+    .dd-fix-button3 {
+      border-radius: 0rem .25rem .25rem 0rem;
+      border-top: 1px solid #17a2b8;
+      border-right: 1px solid #17a2b8;
+      border-bottom: 1px solid #17a2b8;
+      padding-top: 0px;
+      padding-right: 5px;
+      padding-left: 5px;
+      padding-bottom: 0px;
+    }
+
+    .dd-fix-button4 {
+      border-top: 1px solid #17a2b8;
+      border-bottom: 1px solid #17a2b8;
+      min-width: 165px;
+      text-align: center;
+    }
+
+    .dd-fix-button5 {
+      margin-top: -5px;
+    }
+
+    .dd-set-height {
+      min-height: 38px;
+    }
+
+    .dd-set-zindex {
+      z-index:900;
+    }
+
+    .dd-label {
+      margin-bottom: 0;
+      padding-top: 5px;
+      padding-left: 5px;
+      color: #17a2b8;
+    }
+
+    .dd-label2 {
+      margin-bottom: 0;
+      padding-top: 5px;
+      padding-right: 5px;
+      color: #17a2b8;
+    }
+
+    .dd-label2:hover {
+      text-decoration: underline;
+    }
+
+    .fa-stack[data-count]:after{
+      position:absolute;
+      right:0%;
+      top:-8%;
+      content: attr(data-count);
+      font-size:30%;
+      padding:.6em;
+      border-radius:50%;
+      line-height:.8em;
+      color: white;
+      background:rgba(255,0,0,.85);
+      text-align:center;
+      min-width: 1em;
+      font-weight:bold;
+    }
+
+    .showSelected {
+      background-color: #17a2b8;
+      color:#FFF;
+    }
+
+    .dd-input {
+      border-radius:0rem 0rem 0rem 0rem;
+      border-color: #17a2b8;
+      color: #17a2b8;
+      border-left: 0;
+      border-right: 0;
+    }
+
+    .dd-input.form-control {
+      color: #17a2b8 !important;
+    }
+
+    .sort-container {
+      margin: 5px;
+      border-radius: .25rem;
+    }
+
+    .mydiv {
+      position: absolute;
+      z-index: 9;
+    }
+    
+    .mydivheader {
+      cursor: move;
+      z-index: 10;
+    }
+
+    .dd-submit {
+      margin-left: 5px;
+      margin-bottom: 5px;
     }
     
     .mt-15 {
@@ -214,7 +386,7 @@ body{
     }
 
     .vientos-container {
-      height:43vh;
+      height: calc((100vh - 57px) / 2 - 10px);
     }
 
     .viento-container {

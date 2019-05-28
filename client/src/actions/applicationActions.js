@@ -43,6 +43,13 @@ export const setSortsRecentOldest = e => {
   };
 };
 
+export const setSort = (title, direction) => {
+  return {
+    // type: SET_SORTS_RECENTOLDEST,
+    // payload:  'publishedup',
+  };
+};
+
 export const setFiltersText = e => {
   return {
     type: SET_FILTERS_TEXT,

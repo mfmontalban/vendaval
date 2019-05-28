@@ -29,7 +29,12 @@ const initialState = {
   },
   centered: {},
   errors: {},
-  filters: '',
+  filters: {
+    1: '',
+    2: '',
+    3: '',
+    4: ''
+  },
   sortBy: '',
   language: 'en',
   settings: {},
