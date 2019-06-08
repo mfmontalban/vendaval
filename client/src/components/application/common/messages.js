@@ -34,10 +34,14 @@ export default {
         'landing.donate': `donate`,
         'landing.settings': `settings`,
 
-        'navigation.filter': `Filter Map:`,
+        'navigation.filter': `Filter`,
+        'navigation.sort': `Sort`,
         'navigation.filter2': `Author:`,
         'navigation.filter3': `Wind`,
         'navigation.filter4': `Category`,
+
+        'filter.daterange1': `Past Month`,
+        'filter.dateend': `Present`,
 
         'navigation.clearAll': `Clear`,
 
@@ -112,11 +116,15 @@ export default {
         'landing.donate': `Dona`,
         'landing.settings': `Configuraciones`,
 
-        'navigation.filter': `Filtra Mapa`,
+        'navigation.filter': `Filtra`,
+        'navigation.sort': `Ordena`,
         'navigation.filter2': `Filtra Mapa`,
         'navigation.filter3': `Filtra Mapa`,
         'navigation.filter4': `Filtra Mapa`,
         'navigation.addanotherfilter': `anida otro filtro`,
+
+        'filter.daterange1': `Pasado Mes`,
+        'filter.dateend': `Presente`,
 
         'navigation.clearAll': `Clara`,
 

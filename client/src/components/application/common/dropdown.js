@@ -9,6 +9,7 @@ import Dropdown2 from './dropdown2';
 import Selectdown2 from './selectdown2';
 import Selectdown3 from './selectdown3';
 import Selectdown4 from './selectdown4';
+import Selectdown5 from './selectdown5';
 import Sortdown from './sortbutton';
 
 class Dropdown extends Component {
@@ -16,6 +17,13 @@ class Dropdown extends Component {
     super(props)
     this.state = {
       listOpen: false,
+      listOpen2: false,
+      availableSort: {
+        1: 'Recent',
+        2: 'Likes',
+        3: 'Shares',
+        4: 'Comments',
+      },
       filter: 'Title',
       filterOrder: {
         1: '',
@@ -37,6 +45,12 @@ class Dropdown extends Component {
       sort2: '',
       sort3: '',
       sort4: '',
+      sortOptions: {
+        1: 'Recent',
+        2: 'Likes',
+        3: 'Shares',
+        4: 'Comments'
+      },
     }
   }
 
@@ -80,6 +94,14 @@ class Dropdown extends Component {
     this.setState(prevState => ({
       listOpen: !prevState.listOpen
     }))
+  }
+
+  toggleList2 = () => {
+    if (this.state.listOpen2 == false) {
+      this.setState(prevState => ({
+        listOpen2: !prevState.listOpen2
+      }))
+    }
   }
 
   updateFilterSearch1 = (e) => {
@@ -177,6 +199,10 @@ class Dropdown extends Component {
 
   setWrapperRef = (node) => {
     this.wrapperRef = node;
+  }
+
+  setWrapperRef3 = (node) => {
+    this.wrapperRef3 = node;
   }
 
   handleClickOutside = (event) => {
@@ -497,7 +523,7 @@ class Dropdown extends Component {
 
   render(){
     const{list, vientos} = this.props
-    const{listOpen, headerTitle} = this.state
+    const{listOpen, listOpen2, headerTitle} = this.state
     const { todos, completedTasks} = this.state;
 
     return(
@@ -508,7 +534,7 @@ class Dropdown extends Component {
        {listOpen && 
 
         <div className="dd-list">
-            <div className="d-flex justify-content-between">
+            {/* <div className="d-flex justify-content-between">
               <label className="dd-label">
                   <FormattedMessage
                   id="navigation.filter"
@@ -518,10 +544,40 @@ class Dropdown extends Component {
 
               <label className="dd-label2">
                   <FormattedMessage
-                  id="navigation.clearAll"
-                  defaultMessage="Clear"
+                  id="navigation.sort"
+                  defaultMessage="Sort"
                   />
               </label>
+
+              <Selectdown5
+                title="Select location"
+                vientos={this.props.vientos}
+                active={this.state.filterSearch2}
+                onGetLanguage={this.getLanguage}
+              />
+            </div> */}
+
+            <div className="sort-container">
+              <Sortdown
+                title="Recent"
+                icon="fa-hourglass-start"
+                icon2="hourglass-start"
+                order="0"
+                active={this.state.sort1}
+                options={this.state.sortOptions}
+                // onGetLanguage={this.getLanguage}
+              />
+            </div>
+
+            <div className="dropdown-divider"></div>
+
+            <div className="pl-1 pr-1">
+              <Selectdown5
+                title="Select location"
+                vientos={this.props.vientos}
+                active={this.state.filterSearch2}
+                onGetLanguage={this.getLanguage}
+              />
             </div>
 
             <div className="dropdown-divider"></div>
@@ -568,42 +624,9 @@ class Dropdown extends Component {
 
             <div className="dropdown-divider"></div>
 
-            <div className="sort-container">
+            <button type="button" className="btn btn-info refresh-button">Refresh</button>
 
-              <Sortdown
-                title="Recent"
-                icon="fa-hourglass-start"
-                icon2="hourglass-start"
-                order="0"
-                active={this.state.sort1}
-                // onGetLanguage={this.getLanguage}
-              />
-              <Sortdown
-                title="Likes"
-                icon="fa-thumbs-up"
-                icon2="thumbs-up"
-                order="1"
-                active={this.state.sort2}
-                // onGetLanguage={this.getLanguage}
-              />
-              <Sortdown
-                title="Shares"
-                icon="fa-share-square"
-                icon2="share-square"
-                order="2"
-                active={this.state.sort3}
-                // onGetLanguage={this.getLanguage}
-              />
-              <Sortdown
-                title="Comments"
-                icon="fa-comments"
-                icon2="comments"
-                order="3"
-                active={this.state.sort4}
-                // onGetLanguage={this.getLanguage}
-              />
-            </div>
-
+            <div classname="d-flex"><div className="text-center text-danger">Clear Settings</div></div>
         </div>}
       </div>
     )

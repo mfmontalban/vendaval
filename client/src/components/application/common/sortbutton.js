@@ -11,6 +11,8 @@ class Sortbutton extends Component {
   constructor(props){
     super(props)
     this.state = {
+      listOpen: false,
+      listOpen2: false,
       sortRecent: {
         0: false,
         1: false
@@ -198,25 +200,39 @@ class Sortbutton extends Component {
   }
 
   render(){
-    const{title, icon, icon2, active, order, unicode} = this.props
+    const{title, icon, icon2, active, order, unicode, options} = this.props
+    const{listOpen} = this.state
 
     let x;
-
     x = `sort` + title
 
+    let sortContent;
+
+    if (options === null) {
+      // Do nothing
+    } else {
+      if (options.length > 0) {
+        sortContent = options.map(option => {
+          return <li key={option} className='dropdown-item text-info'>{option}</li>
+        });
+
+      }
+    }
+
     return(
-      <div>
+      <div className="w-100 p-absolute bg-white">
         <div href="#" className="d-flex flex-row justify-content-center h-40px">
 
-          <div className={`d-flex mydiv mydiv${order}`}>
-          
-            <button type="button" className={(this.state[x][0] == true || this.state[x][1] == true ? 'btn btn-info dd-fix-button' : 'btn btn-outline-info dd-fix-button')}>
-              <i className="fal fa-sort"></i>
-            </button>
+          <div className={`d-flex`}>
+
+            {listOpen && 
+            <ul className="dd-list2 scroll-container">
+              {sortContent}
+            </ul>}
 
             <div className="align-middle text-info dd-fix-button4">
               
-              <span className="pr-2">
+              <span className="pr-2 title-shift">
               {title}
               {/* <FormattedMessage
                 id="navigation.login"
@@ -235,7 +251,7 @@ class Sortbutton extends Component {
               type="button" 
               className='btn text-info dd-fix-button3 mydivheader'
             >
-              <i className="fal fa-bars"></i>
+              <i className="fal fa-sort"></i>
             </button>
             
           </div>

@@ -11,6 +11,7 @@ import Spinner from '../application/common/spinner';
 import Map from '../application/map/canvas';
 import Controls from '../application/map/controls';
 import Dropdown from '../application/common/dropdown';
+import Sortdown from '../application/common/sortbutton';
 import VientoItem from './vientoItem';
 
 
@@ -32,7 +33,13 @@ class Vientos extends Component {
       filterSearch4: 'Title',
       isOpen: false,
       isOpen2: false,
-      listOpen: false
+      listOpen: false,
+      sortOptions: {
+        1: 'Recent',
+        2: 'Likes',
+        3: 'Shares',
+        4: 'Comments'
+      },
     };
   }
 
@@ -322,8 +329,19 @@ class Vientos extends Component {
 
         content = (
           <div>
-            <div className="mt-15 pt-1 pb-1 d-flex flex-wrap scroll-container vientos-container border border-light bg-vientosBox">
-              {dashboardContent}
+            <div className="mt-15 pb-1 d-flex flex-wrap scroll-container vientos-container border border-light bg-vientosBox">
+              {/* <Sortdown
+                title="Recent"
+                icon="fa-hourglass-start"
+                icon2="hourglass-start"
+                order="0"
+                active={this.state.sort1}
+                options={this.state.sortOptions}
+                // onGetLanguage={this.getLanguage}
+              /> */}
+              {/* <div className="w-100 mt-40"> */}
+                {dashboardContent}
+              {/* </div> */}
             </div>
           </div>
         );
@@ -331,7 +349,7 @@ class Vientos extends Component {
       } else {
         content = (
           <div>
-            <div className="mt-15 pt-1 pb-1 d-flex flex-wrap scroll-container vientos-container border border-light bg-vientosBox">
+            <div className="mt-15 pb-1 d-flex flex-wrap scroll-container vientos-container border border-light bg-vientosBox">
               {dashboardContent}
             </div>
           </div>

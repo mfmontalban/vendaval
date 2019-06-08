@@ -2,6 +2,15 @@
 Content
 */
 
+.react-datepicker__input-container input {
+  width: 100%;
+  border-radius:.25rem;
+  box-shadow:none;
+  border: 1px solid #17a2b8;
+  text-align:center;
+  color: #17a2b8;
+}
+
 .z-1005 {
   z-index:1005 !important;
 }
@@ -266,10 +275,10 @@ body{
 
     .dd-fix-button {
       border-radius: .25rem 0rem 0rem .25rem;
-      padding-top: 0px;
-      padding-right: 5px;
-      padding-left: 5px;
-      padding-bottom: 00px;
+      padding: .375rem .75rem;
+      border-left: 1px solid #17a2b8;
+      border-top: 1px solid #17a2b8;
+      border-bottom: 1px solid #17a2b8;
     }
 
     .dd-fix-button2 {
@@ -290,6 +299,8 @@ body{
     .dd-fix-button4 {
       border-top: 1px solid #17a2b8;
       border-bottom: 1px solid #17a2b8;
+      border-left: 1px solid #17a2b8;
+      border-radius:.25rem 0rem 0rem .25rem;
       min-width: 165px;
       text-align: center;
     }
@@ -298,8 +309,38 @@ body{
       margin-top: -5px;
     }
 
+    .dd-fix-button6 {
+      border-radius: .25rem 0rem 0rem .25rem;
+      padding-top: 0px;
+      padding-right: 5px;
+      padding-left: 5px;
+      padding-bottom: 0px;
+      border-left: 1px solid #17a2b8;
+      border-top: 1px solid #17a2b8;
+      border-bottom: 1px solid #17a2b8;
+    }
+
     .dd-set-height {
       min-height: 38px;
+    }
+
+    .p-absolute {
+      position: absolute;
+    }
+
+    .mt-40 {
+      margin-top:40px;
+    }
+
+    .h24 {
+      height: 24px;
+    }
+
+    .refresh-button {
+      width:90%;
+      margin-left:5%;
+      margin-right:5%;
+      margin-bottom:5px;
     }
 
     .dd-set-zindex {
@@ -308,16 +349,27 @@ body{
 
     .dd-label {
       margin-bottom: 0;
-      padding-top: 5px;
-      padding-left: 5px;
+      margin-top: 5px;
+      margin-left: 5px;
       color: #17a2b8;
+      color: #17a2b8;
+      background: rgb(197, 227, 233);
+      padding: 2px;
+      border-radius: 50px;
+      width: 45%;
+      text-align: center;
     }
 
     .dd-label2 {
       margin-bottom: 0;
-      padding-top: 5px;
-      padding-right: 5px;
+      margin-top: 5px;
+      margin-right: 5px;
       color: #17a2b8;
+      background: rgb(197, 227, 233);
+      padding: 2px;
+      border-radius: 50px;
+      width: 45%;
+      text-align: center;
     }
 
     .dd-label2:hover {
@@ -360,11 +412,35 @@ body{
     .sort-container {
       margin: 5px;
       border-radius: .25rem;
+      height: 35px;
+      overflow: scroll;
+      position: relative;
     }
 
-    .mydiv {
-      position: absolute;
-      z-index: 9;
+    .title-shift {
+      margin-left:30px;
+    }
+
+    .h-24px {
+      height:24px;
+    }
+
+    .mt-8px {
+      width: calc(217px - 105px);
+      text-align: center;
+    }
+
+    .date-separator {
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+
+    .react-datepicker-popper {
+      z-index:1;
+    }
+
+    .mapboxgl-ctrl-bottom-right {
+      z-index:1000;
     }
     
     .mydivheader {
