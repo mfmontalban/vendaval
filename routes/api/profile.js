@@ -23,7 +23,7 @@ router.get(
     const errors = {};
 
     Profile.findOne({ user: req.user.id })
-      .populate('user', ['name', 'avatar'])
+      .populate('user', ['name'])
       .then(profile => {
         if (!profile) {
           errors.noprofile = 'There is no profile for this user';
@@ -42,7 +42,7 @@ router.get('/all', (req, res) => {
   const errors = {};
 
   Profile.find()
-    .populate('user', ['name', 'avatar'])
+    .populate('user', ['name'])
     .then(profiles => {
       if (!profiles) {
         errors.noprofile = 'There are no profiles';
@@ -62,7 +62,7 @@ router.get('/handle/:handle', (req, res) => {
   const errors = {};
 
   Profile.findOne({ handle: req.params.handle })
-    .populate('user', ['name', 'avatar'])
+    .populate('user', ['name'])
     .then(profile => {
       if (!profile) {
         errors.noprofile = 'There is no profile for this user';
@@ -73,6 +73,47 @@ router.get('/handle/:handle', (req, res) => {
     })
     .catch(err => res.status(404).json(err));
 });
+
+// @route   GET api/profile/history
+// @desc    Get users profile history
+// @access  Private
+router.get(
+  '/history',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const errors = {};
+
+    Profile.findOne({ user: req.user.id })
+      .populate([
+        {
+          path : 'likesUp.contribution',
+          select: 'title',
+          populate : 
+          {
+            path : 'user',
+            select: 'name',
+          },
+        },
+        {
+          path : 'likesUp.contribution',
+          select: 'title',
+          populate : 
+          {
+            path : 'profile',
+            select: 'handle',
+          },
+        },
+      ])
+      .then(profile => {
+        if (!profile) {
+          errors.noprofile = 'There is no profile for this user';
+          return res.status(404).json(errors);
+        }
+        res.json(profile);
+      })
+      .catch(err => res.status(404).json(err));
+  }
+);
 
 // @route   GET api/profile/account/:account_id
 // @desc    Get profile by user ID
@@ -114,6 +155,9 @@ router.post(
     // Get fields
     const profileFields = {};
     profileFields.user = req.user.id;
+    if (req.body.avatar) profileFields.avatar = req.body.avatar;
+    if (req.body.avatarSm) profileFields.avatarSm = req.body.avatarSm;
+    if (req.body.avatarLg) profileFields.avatarLg = req.body.avatarLg;
     if (req.body.handle) profileFields.handle = req.body.handle;
     if (req.body.website) profileFields.website = req.body.website;
     if (req.body.location) profileFields.location = req.body.location;
@@ -122,6 +166,8 @@ router.post(
     if (typeof req.body.skills !== 'undefined') {
       profileFields.skills = req.body.skills.split(',');
     }
+
+    console.log(req.body);
 
     // Social
     profileFields.social = {};
@@ -150,7 +196,28 @@ router.post(
           }
 
           // Save Profile
-          new Profile(profileFields).save().then(profile => res.json(profile));
+          new Profile(profileFields)
+              .save()
+              .then(profile => {
+                  //store _id in user database
+                  console.log(profile._id);
+                  // Create object to store profile ID in User DB
+                  const profileID = {};
+                  profileID.profile = profile._id;
+                  console.log(profileID);
+                  // Update User object
+                  User.findOne({ _id: req.user.id }).then(user => {
+                    if (user) {
+                      User.findOneAndUpdate(
+                        { _id: req.user.id },
+                        { $set: profileID },
+                        { new: true }
+                      );
+                    }
+                  });
+                  //send response
+                  res.json(profile);
+              });
         });
       }
     });

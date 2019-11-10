@@ -7,6 +7,15 @@ const ProfileSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'users'
   },
+  avatar: {
+    type: String
+  },
+  avatarSm: {
+    type: String
+  },
+  avatarLg: {
+    type: String
+  },
   handle: {
     type: String,
     required: true,
@@ -104,7 +113,83 @@ const ProfileSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
-  }
+  },
+  likesUp: [
+    {
+      contribution: {
+        type: Schema.Types.ObjectId,
+        ref: 'contributions'
+      },
+      date: {
+        type: Date,
+        default: Date.now
+      }
+    }
+  ],
+  likesDown: [
+    {
+      contribution: {
+        type: Schema.Types.ObjectId,
+        ref: 'contributions'
+      },
+      date: {
+        type: Date,
+        default: Date.now
+      }
+    }
+  ],
+  comments: [
+    {
+      contribution: {
+        type: Schema.Types.ObjectId,
+        ref: 'contributions'
+      },
+      text: {
+        type: String,
+        required: true
+      },
+      date: {
+        type: Date,
+        default: Date.now
+      },
+      likes: [
+        {
+          profile: {
+            type: Schema.Types.ObjectId,
+            ref: 'profiles'
+          },
+          date: {
+            type: Date,
+            default: Date.now
+          },
+        }
+      ],
+      comments: [
+        {
+          profile: {
+            type: Schema.Types.ObjectId,
+            ref: 'profiles'
+          },
+          date: {
+            type: Date,
+            default: Date.now
+          },
+          likes: [
+            {
+              profile: {
+                type: Schema.Types.ObjectId,
+                ref: 'profiles'
+              },
+              date: {
+                type: Date,
+                default: Date.now
+              },
+            }
+          ],
+        }
+      ],
+    }
+  ],
 });
 
 module.exports = Profile = mongoose.model('profiles', ProfileSchema);

@@ -88,7 +88,7 @@ router.get('/info/:account_id', (req, res) => {
         res.status(404).json(errors);
       }
 
-      res.json({staff: account.staff, name: account.name, email: account.email, avatar: account.avatar});
+      res.json({staff: account.staff || null, name: account.name, email: account.email});
     })
     .catch(err =>
       res.status(404).json({ account: 'There is no account for this account' })
@@ -101,18 +101,23 @@ router.get('/info/:account_id', (req, res) => {
 
 router.get('/profile/:account_id', (req, res) => {
   const errors = {};
+  console.log('here');
 
   Profile.findOne({ user: req.params.account_id })
-    .populate('user', ['name', 'avatar'])
+    .populate('user', ['name'])
     .then(profile => {
       if (!profile) {
+        errors.avatarSm = null;
+        errors.avatarLg = null;
         errors.handle = null;
         res.json(errors);
       }
 
-      res.json(profile);
+      res.json({avatarSm: profile.avatarSm || null, avatarLg: profile.avatarLg || null, handle: profile.handle});
     })
-    .catch(err => res.status(404).json(err));
+    .catch(err => {
+      res.status(404).json(err);
+    });
 });
 
 ////////// END LOGIN ACTIONS //////////

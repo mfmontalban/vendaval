@@ -1,15 +1,14 @@
 const express = require('express');
 const router = express.Router();
-
+const mongoose = require('mongoose');
 const passport = require('passport');
 
-const mongoose = require('mongoose');
-const GridFsStorage = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
 const multer = require('multer');
 const mongoURI = process.env.MONGODB_URI || require('../../config/keys').mongoURI;
 var conn = mongoose.createConnection(mongoURI, { useNewUrlParser: true });
 Grid.mongo = mongoose.mongo;
+const sharp = require('sharp');
 
 ObjectID = require('mongodb').ObjectID;
 
@@ -38,7 +37,7 @@ conn.once('open', function () {
 
   const singleUpload = multer({ //multer settings for single upload
      storage: storage
-  }).single('file');
+  }).array('file', 3);
 
   router.get('/files/:filename', (req, res) => {
    gfs.files.find({ filename: req.params.filename }).toArray((err, files) => {
@@ -65,16 +64,16 @@ conn.once('open', function () {
    });
   });
   router.post('/files', singleUpload, (req, res) => {
-     if (req.file) {
-        return res.json({
-           success: true,
-           file: req.file.filename
-        });
-     }
-      res.send({ success: false });
+    if (req.files) {
+      return res.json({
+        success: true,
+        response: req.files
+      });
+    }
+    res.send({ success: false });
   });
   router.delete('/files/:id', (req, res) => {
-    gfs.remove({ _id: req.params.id }, (err) => {
+    gfs.remove({ filename: req.params.id }, (err) => {
       if (err) return res.status(500).json({ success: false })
         return res.json({ success: true });
       });
@@ -123,7 +122,9 @@ router.post(
     if (req.body.type) contributionFields.type = req.body.type;
     if (req.body.topic) contributionFields.topic = req.body.topic;
     if (req.body.title) contributionFields.title = req.body.title;
-    if (req.body.banner) contributionFields.banner = req.body.banner;
+    if (req.body.bannerOriginal) contributionFields.bannerOriginal = req.body.bannerOriginal;
+    if (req.body.bannerSm) contributionFields.bannerSm = req.body.bannerSm;
+    if (req.body.bannerLg) contributionFields.bannerLg = req.body.bannerLg;
     if (req.body.description) contributionFields.description = req.body.description;
     if (req.body.content) contributionFields.content = req.body.content;
     if (req.body.contentHTML) contributionFields.contentHTML = req.body.contentHTML;
@@ -165,15 +166,35 @@ router.get(
     const errors = {};
 
     Contribution.findOne({ _id: req.params.id })
+      .populate('user', ['name'])
+      .populate('profile', ['avatarSm', 'handle', 'title'])
+      .populate({
+        path: 'comments.user',
+        select: ['name', 'profile'],
+        // Get friends of friends - populate the 'friends' array for every friend
+        populate: { 
+          path: 'profile',
+          select: ['avatarSm', 'handle']
+        }
+      })
+      .populate({
+        path: 'comments.replies.user',
+        select: ['name', 'profile'],
+        // Get friends of friends - populate the 'friends' array for every friend
+        populate: { 
+          path: 'profile',
+          select: ['avatarSm', 'handle']
+        }
+      })
       .then(contribution => {
         if (!contribution) {
-          errors.nocontribution = 'No contribution';
+          errors.noviento = 'No viento to show';
           return res.status(404).json(errors);
         }
 
         res.json(contribution);
       })
-      .catch(err => res.status(404).json({ contribution: 'No contribution' }));
+      .catch(err => res.status(404).json({ contribution: 'No viento to show' }))
 });
 
 // @route   POST api/staff/contribution/:id
@@ -198,7 +219,9 @@ router.post(
     if (req.body.type) contributionFields.type = req.body.type;
     if (req.body.topic) contributionFields.topic = req.body.topic;
     if (req.body.title) contributionFields.title = req.body.title;
-    if (req.body.banner) contributionFields.banner = req.body.banner;
+    if (req.body.bannerOriginal) contributionFields.bannerOriginal = req.body.bannerOriginal;
+    if (req.body.bannerSm) contributionFields.bannerSm = req.body.bannerSm;
+    if (req.body.bannerLg) contributionFields.bannerLg = req.body.bannerLg;
     if (req.body.description) contributionFields.description = req.body.description;
     if (req.body.content) contributionFields.content = req.body.content;
     if (req.body.contentHTML) contributionFields.contentHTML = req.body.contentHTML;

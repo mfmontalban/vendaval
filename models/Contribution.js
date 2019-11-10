@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// Create Schema
+// Create Schema 
 const ContributionSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
@@ -33,7 +33,15 @@ const ContributionSchema = new Schema({
   contentHTML: {
     type: String
   },
-  banner: {
+  bannerOriginal: {
+    data: Buffer,
+    type: String
+  },
+  bannerSm: {
+    data: Buffer,
+    type: String
+  },
+  bannerLg: {
     data: Buffer,
     type: String
   },
@@ -59,6 +67,10 @@ const ContributionSchema = new Schema({
       user: {
         type: Schema.Types.ObjectId,
         ref: 'users'
+      },
+      date: {
+        type: Date,
+        default: Date.now
       }
     }
   ],
@@ -67,6 +79,10 @@ const ContributionSchema = new Schema({
       user: {
         type: Schema.Types.ObjectId,
         ref: 'users'
+      },
+      date: {
+        type: Date,
+        default: Date.now
       }
     }
   ],
@@ -83,21 +99,54 @@ const ContributionSchema = new Schema({
         type: String,
         required: true
       },
-      avatar: {
-        type: String
-      },
-      handle: {
-        type: String
-      },
-      name: {
-        type: String
-      },
       date: {
         type: Date,
         default: Date.now
-      }
+      },
+      category: {
+        type: String,
+      },
+      likes: [
+        {
+          user: {
+            type: Schema.Types.ObjectId,
+            ref: 'users'
+          },
+          date: {
+            type: Date,
+            default: Date.now
+          },
+        }
+      ],
+      replies: [
+        {
+          user: {
+            type: Schema.Types.ObjectId,
+            ref: 'users'
+          },
+          date: {
+            type: Date,
+            default: Date.now
+          },
+          text: {
+            type: String,
+          },
+          likes: [
+            {
+              user: {
+                type: Schema.Types.ObjectId,
+                ref: 'users'
+              },
+              date: {
+                type: Date,
+                default: Date.now
+              },
+            }
+          ],
+        }
+      ],
     }
   ],
 });
 
-module.exports = Profile = mongoose.model('contribution', ContributionSchema);
+module.exports = Contribution = mongoose.model('contributions', ContributionSchema);

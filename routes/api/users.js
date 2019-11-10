@@ -3,6 +3,12 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const passport = require('passport');
 
+const Grid = require('gridfs-stream');
+const multer = require('multer');
+const mongoURI = process.env.MONGODB_URI || require('../../config/keys').mongoURI;
+var conn = mongoose.createConnection(mongoURI, { useNewUrlParser: true });
+Grid.mongo = mongoose.mongo;
+
 // Load Validation
 const validateProfileInput = require('../../validation/profile');
 const validateExperienceInput = require('../../validation/experience');
@@ -12,6 +18,8 @@ const validateEducationInput = require('../../validation/education');
 const User = require('../../models/User');
 // Load Profile Model
 const Profile = require('../../models/Profile');
+// Load Preview Model
+const Preview = require('../../models/Preview');
 
 // @route   GET api/profile
 // @desc    Get current users profile
@@ -155,6 +163,94 @@ router.post(
         });
       }
     });
+  }
+);
+
+conn.once('open', function () {
+  const gfs = Grid(conn.db);
+
+  /** Setting up storage using multer-gridfs-storage */
+  const storage = require('multer-gridfs-storage')({
+     url: mongoURI,
+     file: (req, file) => {
+        return {
+           filename: file.originalname
+        }
+     }
+  });
+
+  const singleUpload = multer({ //multer settings for single upload
+    storage: storage
+  }).array('file', 3);
+
+  // @route   GET api/users/files
+  // @desc    Retrieve file
+  // @access  Private
+  router.get('/files/:filename', (req, res) => {
+    gfs.files.find({ filename: req.params.filename }).toArray((err, files) => {
+      if(!files || files.length === 0){
+        return res.status(404).json({
+          message: "Could not find file"
+        });
+      }
+      var readstream = gfs.createReadStream({
+        filename: files[0].filename
+      })
+      res.set('Content-Type', files[0].contentType);
+      return readstream.pipe(res);
+    });
+  });
+
+  // @route   POST api/users/files
+  // @desc    Add file
+  // @access  Private
+  router.post('/files', singleUpload, (req, res) => {
+    if (req.files) {
+      return res.json({
+        success: true,
+        response: req.files
+      });
+    }
+    res.send({ success: false });
+  });
+})
+
+// @route   POST api/users/uploadTemp
+// @desc    Upload preview photo
+// @access  Private
+router.post(
+  '/uploadTemp',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+
+    // Get fields
+    const PreviewFields = {};
+    PreviewFields.user = req.user.id;
+    PreviewFields.pictureSm = req.body.pictureSm;
+    PreviewFields.pictureLg = req.body.pictureLg;
+    
+    new Preview(PreviewFields).save().then(preview => res.json(preview));
+  }
+);
+
+// @route   POST api/users/deleteTemp
+// @desc    Delete preview photo
+// @access  Private
+router.delete(
+  '/deleteTemp',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Preview.findOneAndRemove({ pictureSm: req.body.avatarSm })
+    .then(res => {
+      return res.json({
+        success: true
+      });
+    })
+    .catch(err => {
+      return res.json({
+        success: false
+      });
+    })
   }
 );
 

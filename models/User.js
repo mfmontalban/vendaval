@@ -20,12 +20,13 @@ const UserSchema = new Schema({
     default:false,
     required:true,
   },
-  avatar: {
-    type: String
-  },
   staff: {
     type: String,
     default:'',
+  },
+  profile: {
+    type: Schema.Types.ObjectId,
+    ref: 'profiles'
   },
   date: {
     type: Date,
