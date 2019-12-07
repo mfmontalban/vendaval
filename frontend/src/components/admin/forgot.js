@@ -56,22 +56,20 @@ class Forgot extends Component {
     const { application } = this.props;
 
     let placeEmail;
-    let placePass;
+    let placeEmailLabel;
     let placeSubmit;
 
-    if (application.setLanguage === 'es') {
-      placeEmail = 'E-correo'
+    if (application.language === 'es') {
+      placeEmail = 'E-correo personal'
+      placeEmailLabel = 'Campo para e-correo personal'
 
-      placePass = 'Contraseña'
-
-      placeSubmit = 'Entra'
+      placeSubmit = 'Envia'
 
     } else {
       placeEmail = 'Email'
+      placeEmailLabel = 'Field for email'
 
-      placePass = 'Password'
-
-      placeSubmit = 'Enter'
+      placeSubmit = 'Submit'
     }
 
     return (
@@ -88,12 +86,12 @@ class Forgot extends Component {
             defaultMessage="Enter your email below to reset your password"
           />
         </H2>
-        <form className="w-80pc ml-auto mr-auto d-flex flex-direction-column text-center" noValidate onSubmit={this.onSubmit}>
+        <form className="max-w-750px w-80pc ml-auto mr-auto d-flex flex-direction-column text-center" noValidate onSubmit={this.onSubmit}>
         <Input
             type="email"
             name="email"
             placeholder={`${placeEmail}`}
-            aria-label="Field for updating your email address"
+            aria-label={`${placeEmailLabel}`}
             className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px mb-10px"
             backgroundStyled={errors.email ? `${application.theme.primary}`: `${application.transparent}`}
             colorStyled={errors.email ? `${application.mode.primary}`: `${application.theme.primary}`}
@@ -107,7 +105,7 @@ class Forgot extends Component {
 
           <Input
             type="submit"
-            value="Submit"
+            value={`${placeSubmit}`}
             className={`clickable mt-10px mb-20px`}
             transitionStyled={application.transitions.general}
             backgroundStyled={application.theme.primaryQuarter}

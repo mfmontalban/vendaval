@@ -32,8 +32,6 @@ class MyComponent extends React.Component {
         <CustomToolbar />
         <ReactQuill
         ref={(el) => { this.reactQuillRef = el }}
-        className="testing"
-        value={this.state.text}
         readOnly={true}
         modules={MyComponent.modules}
         formats={MyComponent.formats}

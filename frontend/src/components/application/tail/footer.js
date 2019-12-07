@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 
 import Div from '../main/common/styled/div';
+import A from '../main/common/styled/a';
 
 import './footer.css';
 
@@ -15,11 +16,11 @@ class Footer extends Component{
 		return (
 			<Div className="pt-10px border-top-1" widthStyled={`${application.settings.widthFooter}`} marginLeftStyled={`${application.settings.marginLeftBody}`} marginRightStyled={`${application.settings.marginRightBody}`} borderTopStyled={`${application.mode.primary}`}>
 				<div className="d-flex justify-content-center pl-15px">
-						<Div href="https://www.youtube.com/channel/UCWyiBVKzOekw2Q0Wygvx4aw" target="_blank" rel="noopener noreferrer" className="p-10px" transitionStyled={`${application.settings.appTransition}`} colorStyled={`${application.mode.primary}`} colorHoverStyled={`${application.theme.primary}`}><i className="fab fa-youtube fa-2x"></i></Div>
-						<Div href="https://www.facebook.com/vendaval.space/" target="_blank" rel="noopener noreferrer" className="p-10px" transitionStyled={`${application.settings.appTransition}`} colorStyled={`${application.mode.primary}`} colorHoverStyled={`${application.theme.primary}`}><i className="fab fa-facebook-f fa-2x"></i></Div>
-						<Div href="https://www.instagram.com/vendaval.space/" target="_blank" rel="noopener noreferrer" className="p-10px" transitionStyled={`${application.settings.appTransition}`} colorStyled={`${application.mode.primary}`} colorHoverStyled={`${application.theme.primary}`}><i className="fab fa-instagram fa-2x"></i></Div>
-						<Div href="https://twitter.com/vendaval_space" target="_blank" rel="noopener noreferrer" className="p-10px" transitionStyled={`${application.settings.appTransition}`} colorStyled={`${application.mode.primary}`} colorHoverStyled={`${application.theme.primary}`}><i className="fab fa-twitter fa-2x"></i></Div>
-						<Div href="https://twitter.com/vendaval_space" target="_blank" rel="noopener noreferrer" className="p-10px" transitionStyled={`${application.settings.appTransition}`} colorStyled={`${application.mode.primary}`} colorHoverStyled={`${application.theme.primary}`}><i className="fab fa-linkedin-in fa-2x"></i></Div>
+						<A href="https://www.youtube.com/channel/UCWyiBVKzOekw2Q0Wygvx4aw" target="_blank" rel="noopener noreferrer" className="p-10px" transitionStyled={`${application.settings.appTransition}`} colorStyled={`${application.mode.primary}`} colorHoverStyled={`${application.theme.primary}`}><i className="fab fa-youtube fa-2x"></i></A>
+						<A href="https://www.facebook.com/vendaval.space/" target="_blank" rel="noopener noreferrer" className="p-10px" transitionStyled={`${application.settings.appTransition}`} colorStyled={`${application.mode.primary}`} colorHoverStyled={`${application.theme.primary}`}><i className="fab fa-facebook-f fa-2x"></i></A>
+						<A href="https://www.instagram.com/vendaval.space/" target="_blank" rel="noopener noreferrer" className="p-10px" transitionStyled={`${application.settings.appTransition}`} colorStyled={`${application.mode.primary}`} colorHoverStyled={`${application.theme.primary}`}><i className="fab fa-instagram fa-2x"></i></A>
+						<A href="https://twitter.com/vendaval_space" target="_blank" rel="noopener noreferrer" className="p-10px" transitionStyled={`${application.settings.appTransition}`} colorStyled={`${application.mode.primary}`} colorHoverStyled={`${application.theme.primary}`}><i className="fab fa-twitter fa-2x"></i></A>
+						<A href="https://twitter.com/vendaval_space" target="_blank" rel="noopener noreferrer" className="p-10px" transitionStyled={`${application.settings.appTransition}`} colorStyled={`${application.mode.primary}`} colorHoverStyled={`${application.theme.primary}`}><i className="fab fa-linkedin-in fa-2x"></i></A>
 				</div>
 
 				<div className="text-center d-flex justify-content-center pt-10px">

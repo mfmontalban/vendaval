@@ -211,10 +211,10 @@ class Contribution extends Component {
                 </Link>
               </div>
               <div className="w-30 d-flex justify-content-center">
-                <Div className="w-max-content text-center" radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryHalf} fontSizeStyled={application.text.important}>
+                {/* <Div className="w-max-content text-center" radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryHalf} fontSizeStyled={application.text.important}>
                   <Div className="p-5px" backgroundStyled={application.mode.primaryThree} radiusStyled={application.settings.appRadiusTop}>{contribution.type}:</Div>
                   <div className="p-5px">{contribution.topic}</div>
-                </Div>
+                </Div> */}
               </div>
               <div className="w-30 d-flex justify-content-flex-end">
                 <Button onClick={() => this.toggleList()} className="d-flex justify-content-center align-items-center h-40px w-40px w-max-content mr-25px border-radius-circle clickable" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>

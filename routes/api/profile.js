@@ -167,8 +167,6 @@ router.post(
       profileFields.skills = req.body.skills.split(',');
     }
 
-    console.log(req.body);
-
     // Social
     profileFields.social = {};
     if (req.body.youtube) profileFields.social.youtube = req.body.youtube;
@@ -199,12 +197,10 @@ router.post(
           new Profile(profileFields)
               .save()
               .then(profile => {
-                  //store _id in user database
-                  console.log(profile._id);
+                  // Store _id in user database
                   // Create object to store profile ID in User DB
                   const profileID = {};
                   profileID.profile = profile._id;
-                  console.log(profileID);
                   // Update User object
                   User.findOne({ _id: req.user.id }).then(user => {
                     if (user) {
@@ -212,11 +208,9 @@ router.post(
                         { _id: req.user.id },
                         { $set: profileID },
                         { new: true }
-                      );
+                        ).then(account => res.json(account));
                     }
                   });
-                  //send response
-                  res.json(profile);
               });
         });
       }

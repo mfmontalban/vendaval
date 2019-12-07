@@ -159,7 +159,16 @@ class VientoItem extends Component {
       <Div className="viento-container mt-10px ml-auto mr-auto mb-10px" backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} borderStyled={`${application.settings.appRadius}`} radiusStyled={`${application.settings.appRadius}`}>
           <div className="w-100 d-flex flex-row justify-content-space-between align-items-end">
             <div className="p-5px text-left">
-              <div className="post-section-heading">{viento.type}: {viento.topic}</div>
+              {/* <div className="post-section-heading">{viento.type}: {viento.topic}</div> */}
+              <div className="post-section-heading">
+              
+                <Link className="noUnderline" to={`/${community}/${viento.profile.handle}`}>
+                  <Div className="noUnderline border-bottom-1" transitionStyled={`${settings.appTransition}`} colorStyled={`${application.theme.primary}`} borderBottomHoverStyled={`${application.theme.primary}`}>
+                    {viento.user.name}
+                  </Div>
+                </Link>
+
+              </div>
             </div>
             <div className="p-5px text-right">
               <div className="post-time-heading">
@@ -175,26 +184,21 @@ class VientoItem extends Component {
               </div>
             </div>
           </div>
-          <div className="w-100 d-flex flex-wrap justify-content-space-between">
-            <img className="h-150px w-100 banner ml-auto mr-auto" alt="banner" src={`/api/staff/files/${viento.bannerSm}`} />
-            <div className="w-100 mt-neg140px justify-content-between text-left">
-              <Div className="pl-10px w-max-content" transitionStyled={`${settings.appTransition}`}>
-                <Link className="noUnderline" to={`/vientos/${viento._id}`}>
-                  <Div className="p-5px noUnderline" transitionStyled={`${settings.appTransition}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadius}`}>
-                    {viento.title}
-                  </Div>
-                </Link>
+          <div className="w-100 d-flex flex-wrap justify-content-space-between z-99 position-relative">
+            <Link className="w-100 h-150px noUnderline" to={`/vientos/${viento._id}`}>
+              <img className="h-150px w-100 banner ml-auto mr-auto" alt="banner" src={`/api/staff/files/${viento.bannerSm}`} />
+            </Link>
+          </div>
+          <div className="w-max-content justify-content-between text-left mt-neg140px ml-10px z-100 position-absolute">
+            <Link className="w-100 h-150px noUnderline" to={`/vientos/${viento._id}`}>
+              <Div className="w-max-content p-5px noUnderline" transitionStyled={`${settings.appTransition}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadius}`}>
+                {viento.title}
               </Div>
-            </div>
-            <div className="w-100 mt-neg37px justify-content-between text-left">
-              <Div className="pl-10px w-max-content" transitionStyled={`${settings.appTransition}`}>
-                <Link className="noUnderline" to={`/${community}/${viento.profile.handle}`}>
-                  <Div className="p-5px noUnderline" transitionStyled={`${settings.appTransition}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadius}`}>
-                    {viento.user.name}
-                  </Div>
-                </Link>
+              <br />
+              <Div className="w-max-content p-5px noUnderline" transitionStyled={`${settings.appTransition}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadius}`}>
+                {viento.description}
               </Div>
-            </div>
+            </Link>
           </div>
           <div className="w-100 d-flex flex-row justify-content-space-between align-items-end">
             <div className="d-flex flex-wrap justify-content-space-between w-100">

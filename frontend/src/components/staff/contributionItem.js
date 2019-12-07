@@ -12,11 +12,14 @@ import Button from '../application/main/common/styled/button';
 import Dropdown from '../application/main/common/styled/dropdown';
 import DropdownDivider from '../application/main/common/styled/dropdownDivider';
 
+import LiveDropDown from './liveDropdown';
+
 class ContributionItem extends Component {
   constructor(props){
     super(props)
     this.state = {
       listOpen: false,
+      listOpen2: false,
       outsideClicked: false,
     }
   }
@@ -37,7 +40,7 @@ class ContributionItem extends Component {
     if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
       this.setState({
         listOpen: false,
-      });
+      })
       setTimeout(() => {
         this.setState({ outsideClicked: false });
       }, 250);
@@ -63,7 +66,7 @@ class ContributionItem extends Component {
 
   render() {
     const { listOpen } = this.state;
-    const { application, contribution } = this.props;
+    const { application, contribution, admin } = this.props;
 
     let community;
     
@@ -149,12 +152,10 @@ class ContributionItem extends Component {
                 </Button>
               </Dropdown>
           }
-          <Div className="min-w-25-app p-10px">
-            <FormattedMessage
-              id={('staff.' + `${contribution.status}`)}
-            />
-          </Div>
-          <Div className="min-w-25-app p-10px tableTitleFix">
+
+          <LiveDropDown contribution={contribution} application={application} admin={admin}/>
+
+          <div className="min-w-25-app p-10px tableTitleFix">
             <FormattedMessage
               id="viento.time_since_updated"
               defaultMessage={`{formattedLastUpdatedDate} {formattedLastUpdatedTime}`}
@@ -167,14 +168,14 @@ class ContributionItem extends Component {
                   ),
               }}
             />
-          </Div>
-          <Div className="min-w-25-app p-10px">
+          </div>
+          <div className="min-w-25-app p-10px">
             <Link className="noUnderline" to={`/staff/contribution/view/${contribution._id}`}>
               <Div className="p-5px border-bottom-1 ml-auto mr-auto text-overflow-ellipsis overflow-hidden" transitionStyled={application.transitions.general} colorStyled={application.theme.primary} borderBottomStyled={application.transparent} borderBottomHoverStyled={application.theme.primary}>
                 {contribution.title}
               </Div>
             </Link>
-          </Div>
+          </div>
         </Div>
     );
   }

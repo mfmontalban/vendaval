@@ -223,10 +223,10 @@ class Contribution extends Component {
                 </Link>
               </div>
               <div className="w-30 d-flex justify-content-center">
-                <Div className="w-max-content text-center" radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryHalf} fontSizeStyled={application.text.important}>
+                {/* <Div className="w-max-content text-center" radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryHalf} fontSizeStyled={application.text.important}>
                   <Div className="p-5px" backgroundStyled={application.mode.primaryThree} radiusStyled={application.settings.appRadiusTop}>{viento.type}:</Div>
                   <div className="p-5px">{viento.topic}</div>
-                </Div>
+                </Div> */}
               </div>
               <div className="w-30 d-flex justify-content-center">
                 <Div className="p-5px w-max-content" radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryThree}>

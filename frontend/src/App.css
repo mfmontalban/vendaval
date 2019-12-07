@@ -18,8 +18,20 @@ button {
   font-family: inherit;
 }
 
+textarea {
+  font-family: 'Font Awesome 5 Pro', 'Helvetica';
+}
+
 .z-neg1 {
   z-index: -1;
+}
+
+.z-99 {
+  z-index: 99;
+}
+
+.z-100 {
+  z-index: 100;
 }
 
 .z-900 {
@@ -340,6 +352,14 @@ button {
 
 .max-w-200px {
   max-width:200px;
+}
+
+.max-w-750px {
+  max-width:750px;
+}
+
+.max-w-1000px {
+  max-width:1000px;
 }
 
 .max-w-content {
@@ -811,6 +831,12 @@ template
   border: 1px solid #17a2b8;
   text-align:center;
   color: #17a2b8;
+}
+
+.ql-container.ql-snow {
+  overflow: scroll;
+  max-height:500px;
+  min-height:500px;
 }
 
 .solid {

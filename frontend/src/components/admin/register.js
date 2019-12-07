@@ -50,11 +50,11 @@ class Register extends Component {
       name: this.state.name,
       email: this.state.email,
       password: this.state.password,
-      password2: this.state.password2
+      password2: this.state.password2,
     };
 
     this.props.sendApplicationAlertsRegistered(newUser, this.props.history);
-  }
+  } 
 
   render() {
 
@@ -63,35 +63,48 @@ class Register extends Component {
     const setLanguage = this.props.application.language;
 
     let placeName;
+    let placeNameLabel;
+
     let placeEmail;
-    let emailInfo;
+    let placeEmailLabel;
 
     let placePass;
+    let placePassLabel;
+
     let placePass2;
+    let placePass2Label;
 
     let placeSubmit;
 
     if (setLanguage === 'es') {
-      placeName = 'Nombre'
+      placeName = 'Nombre completo'
+      placeNameLabel = 'Campo para nombre completo'
 
-      placeEmail = 'E-correo'
-      emailInfo = 'Registra su e-correo con Gravatar para usar un imagen en su perfil'
+      placeEmail = 'E-correo personal'
+      placeEmailLabel = 'Campo para e-correo personal'
 
       placePass = 'Contraseña'
-      placePass2 = 'Confirmar Contraseña'
+      placePassLabel = 'Campo para contraseña'
 
-      placeSubmit = 'Entra'
+      placePass2 = 'Confirmar Contraseña'
+      placePass2Label = 'Campo para confirmar contraseña'
+
+      placeSubmit = 'Envia'
 
     } else {
-      placeName = 'Name'
+      placeName = 'Full Name'
+      placeNameLabel = 'Field for full name'
 
       placeEmail = 'Email'
-      emailInfo = 'Register this email with Gravatar to use a profile image'
+      placeEmailLabel = 'Field for email'
 
       placePass = 'Password'
-      placePass2 = 'Confirm Password'
+      placePassLabel = 'Field for password'
 
-      placeSubmit = 'Enter'
+      placePass2 = 'Confirm Password'
+      placePass2Label = 'Field for confirming password'
+
+      placeSubmit = 'Submit'
     }
 
     const { errors } = this.state;
@@ -110,13 +123,13 @@ class Register extends Component {
             defaultMessage="Create your Vendaval account"
           />
         </H2>
-        <form className="w-80pc ml-auto mr-auto d-flex flex-direction-column text-center" noValidate onSubmit={this.onSubmit}>
+        <form className="max-w-750px w-80pc ml-auto mr-auto d-flex flex-direction-column text-center" noValidate onSubmit={this.onSubmit}>
 
           <Input
             type="name"
             name="name"
             placeholder={`${placeName}`}
-            aria-label="Field for updating your Name"
+            aria-label={`${placeNameLabel}`}
             className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px mb-10px"
             backgroundStyled={errors.name ? `${application.theme.primary}`: `${application.transparent}`}
             colorStyled={errors.name ? `${application.mode.primary}`: `${application.theme.primary}`}
@@ -132,7 +145,7 @@ class Register extends Component {
             type="email"
             name="email"
             placeholder={`${placeEmail}`}
-            aria-label="Field for updating your email address"
+            aria-label={`${placeEmailLabel}`}
             className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px mb-10px"
             backgroundStyled={errors.email ? `${application.theme.primary}`: `${application.transparent}`}
             colorStyled={errors.email ? `${application.mode.primary}`: `${application.theme.primary}`}
@@ -148,7 +161,7 @@ class Register extends Component {
             type="password"
             name="password"
             placeholder={`${placePass}`}
-            aria-label="Field for updating your password"
+            aria-label={`${placePassLabel}`}
             className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px mb-10px"
             backgroundStyled={errors.password ? `${application.theme.primary}`: `${application.transparent}`}
             colorStyled={errors.password ? `${application.mode.primary}`: `${application.theme.primary}`}
@@ -161,10 +174,10 @@ class Register extends Component {
           />
 
           <Input
-            type="password2"
+            type="password"
             name="password2"
             placeholder={`${placePass2}`}
-            aria-label="Field for updating your password"
+            aria-label={`${placePass2Label}`}
             className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px mb-10px"
             backgroundStyled={errors.password2 ? `${application.theme.primary}`: `${application.transparent}`}
             colorStyled={errors.password2 ? `${application.mode.primary}`: `${application.theme.primary}`}
@@ -178,7 +191,7 @@ class Register extends Component {
 
           <Input
             type="submit"
-            value="Submit"
+            value={`${placeSubmit}`}
             className={`clickable mt-10px mb-20px`}
             transitionStyled={application.transitions.general}
             backgroundStyled={application.theme.primaryQuarter}

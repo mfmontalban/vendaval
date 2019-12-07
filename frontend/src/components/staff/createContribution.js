@@ -10,6 +10,12 @@ import TextFieldGroup from '../application/main/common/textFieldGroup';
 import SelectListGroup from '../application/main/common/selectListGroup';
 import TextAreaFieldGroup from '../application/main/common/textAreaFieldGroup';
 import Quill from '../application/main/common/quillEdit';
+import { FormattedMessage } from 'react-intl';
+
+import DraggableMarker from '../application/main/map/draggableMarker';
+import Div from '../application/main/common/styled/div';
+import LinkContainer from '../application/main/common/styled/linkContainer';
+import BackArrow from '../application/main/common/backArrow'; 
 
 class AddContribution extends Component {
   constructor(props) {
@@ -125,67 +131,80 @@ class AddContribution extends Component {
     ];
 
     const { errors } = this.state;
+    const { application } = this.props;
+
+    let staff;
+    let dashboard;
+    let title;
+    let shortDescription;
+    let placeSubmit
+
+    if (application.language === 'es') {
+      staff = "personal";
+      dashboard = "tablero";
+      title = "Titulo";
+      shortDescription = "Corto descripción"
+      placeSubmit = "Enviar"
+    } else {
+      staff = "staff";
+      dashboard = "dashboard";
+      title = "Title";
+      shortDescription = "Short description";
+      placeSubmit = "Submit"
+    }
 
     return (
-      <div className="body scroll-container pt-3 pb-3">
-        <div className="col-md-10 m-auto">
-          <Link to="/staff/dashboard" className="btn btn-light">
-            Go Back
+      <Div className="scroll-container bottom-outer-shadow ml-10px mr-10px pt-70px" heightStyled={`${application.settings.heightHero}`} backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
+        <div className="max-w-1000px ml-auto mr-auto">
+          <Link to={`/${staff}/${dashboard}`}>
+            <LinkContainer className="mt-10px ml-10px p-10px w-40px" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primaryHalf}`} colorHoverStyled={`${application.theme.primary}`}>
+              <BackArrow />
+            </LinkContainer>
           </Link>
-          <h1 className="display-6 text-center mt-3">Contribution</h1>
-          <form onSubmit={this.onSubmit}>
-            <SelectListGroup
-              placeholder="Type"
-              name="type"
-              value={this.state.type}
-              onChange={this.onChange}
-              options={type}
-              error={errors.type}
+          <h1 className="display-6 text-center mt-3">
+            <FormattedMessage
+              id="staff.contributionTitle"
+              defaultMessage="Contribution"
             />
-            <SelectListGroup
-              placeholder="Topic"
-              name="topic"
-              value={this.state.topic}
-              onChange={this.onChange}
-              options={topic}
-              error={errors.topic}
-            />
+          </h1>
+          <form className="max-w-750px ml-auto mr-auto text-center" onSubmit={this.onSubmit}>
+
             <TextFieldGroup
-              placeholder="Title"
+              placeholder={`${title}`}
               name="title"
               value={this.state.title}
               onChange={this.onChange}
               error={errors.title}
             />
 
-            <div className="input-group mb-3">
-              <div className="input-group-prepend">
-                <div className="btn btn-secondary non-clickable">Banner</div>
-              </div>
-              <div className="custom-file clickable">
-                <input type="file" name="file" onChange={this.bannerAdded} className="custom-file-input clickable" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" />
-                <label className="custom-file-label clickable" htmlFor="inputGroupFile01">Choose Image</label>
-              </div>
-            </div>
-
-
             <TextAreaFieldGroup
-              placeholder="Short Description"
+              placeholder={`${shortDescription}`}
               name="description"
               value={this.state.description}
               onChange={this.onChange}
               error={errors.description}
-              info="Description will appear under the title"
             />
+
+            <div className="d-flex flex-direction-row justify-content-center">
+              <FormattedMessage
+                id="staff.bannerTitle"
+                defaultMessage="Banner: "
+              />
+              <input type="file" name="file" onChange={this.bannerAdded} className="ml-5px text-center clickable" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" />
+            </div>
+
+            <DraggableMarker />
+
             <Quill storeQuillDelta={this.storeContent} />
+
             <input
               type="submit"
-              value="Submit"
-              className="btn btn-info btn-block mt-4"
+              value={`${placeSubmit}`}
+              className="mt-10px"
             />
           </form>
         </div>
-      </div>
+      </Div>
     );
   }
 }

@@ -197,39 +197,20 @@ router.get(
       .catch(err => res.status(404).json({ contribution: 'No viento to show' }))
 });
 
-// @route   POST api/staff/contribution/:id
+// @route   POST api/staff/contributionStatus/:id
 // @desc    Edit contribution
 // @access  Private
 router.post(
-  '/contribution/:id',
+  '/contributionStatus/:id',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    const { errors, isValid } = validateContributionInput(req.body);
-
-    // Check Validation
-    if (!isValid) {
-      // Return any errors with 400 status
-      return res.status(400).json(errors);
-    }
 
     // Get fields
     const contributionFields = {};
     contributionFields.user = req.user.id;
     contributionFields.updatedAt = Date.now();
-    if (req.body.type) contributionFields.type = req.body.type;
-    if (req.body.topic) contributionFields.topic = req.body.topic;
-    if (req.body.title) contributionFields.title = req.body.title;
-    if (req.body.bannerOriginal) contributionFields.bannerOriginal = req.body.bannerOriginal;
-    if (req.body.bannerSm) contributionFields.bannerSm = req.body.bannerSm;
-    if (req.body.bannerLg) contributionFields.bannerLg = req.body.bannerLg;
-    if (req.body.description) contributionFields.description = req.body.description;
-    if (req.body.content) contributionFields.content = req.body.content;
-    if (req.body.contentHTML) contributionFields.contentHTML = req.body.contentHTML;
-    // Skills - Spilt into array
-    if (typeof req.body.images !== 'undefined') {
-      contributionFields.images = req.body.images.split(',');
-    }
-
+    if (req.body.status) contributionFields.status = req.body.status;
+    
     Contribution.findOne({$and: [{ _id: req.params.id }, {user: req.user.id}]}).then(contribution => {
       if (contribution) {
         Contribution.findOne({ title: contributionFields.title }).then(contribution => {

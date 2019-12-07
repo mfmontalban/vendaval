@@ -110,6 +110,15 @@ export default {
         
         'forgot.Main': `Forgot`,
         'forgot.Secondary': `Enter your email below to reset your password`,
+
+        'profile.aboutTitle' : `About`,
+        'profile.editProfileTitle' : `Edit Profile`,
+        'profile.editProfileDescription' : `Update your account information`,
+        'profile.editProfileTalentsNotice' : `Separate individual skills with a comma`,
+        'profile.editProfileOpenSocialMedia' : `Add social network links`,
+        'profile.editProfileCloseSocialMedia': `Close social network links`,
+        'profile.talentsTitle' : `Talents`,
+        'profile.emptyBio' : `does not have a bio`,
         
         'register.Main': `Sign Up`,
         'register.Secondary': `Create your Vendaval account`,
@@ -129,6 +138,13 @@ export default {
         'staff.delete': `Delete`,
 
         'staff.published': `published:`,
+
+        'staff.contributionTitle': `Contribution`,
+        'staff.bannerTitle': `Banner: `,
+        'staff.chooseImageTitle': `Choose Image`,
+
+        'security.title': `Account`,
+        'security.description': `Update your information`,
 
         'vientos.changesEmail': `An email detailing the changes made has been sent to:`,
     },
@@ -246,11 +262,20 @@ export default {
         'forgot.Main': `Olvidio`,
         'forgot.Secondary': `Entra su email abajo para restablecer su contraseña`,
 
+        'profile.aboutTitle' : `Desde`,
+        'profile.editProfileTitle' : `Editar Perfil`,
+        'profile.editProfileDescription' : `Actualiza la informacion en tu cuenta publica`,
+        'profile.editProfileTalentsNotice' : `Separa talentos individuales con una coma`,
+        'profile.editProfileOpenSocialMedia' : `Agregar redes sociales`,
+        'profile.editProfileCloseSocialMedia': `Cerra redes sociales`,
+        'profile.talentsTitle' : `Talentos`,
+        'profile.emptyBio' : `no tiene un bio`,
+
         'register.Main': `Registrarse`,
         'register.Secondary': `Crea su cuente de Vendaval`,
         'register.forgotLink': `No recibiste tu codigo? Siga este enlace para mandarlo de nuevo`,
 
-        'staff.header': `Contribuciones`,
+        'staff.header': `Contribuciónes`,
         'staff.status': `Estado`,
         'staff.Draft': `Borrador`,
         'staff.Live': `Vivo`,
@@ -262,8 +287,16 @@ export default {
         'staff.edit': `Editar`,
         'staff.delete': `Borrar`,
 
-        
         'staff.published': `publicado:`,
+        
+        'staff.contributionTitle': `Contribución`,
+        'staff.bannerTitle': `Bandera: `,
+        'staff.chooseImageTitle': `Escoja Imagen`,
+        
+
+        'security.title': `Cuenta`,
+        'security.description': `Actualiza su información`,
+
         'vientos.changesEmail': `Un correo electrónico detallando los cambios realizados ha sido enviado a:`,
     }
 }

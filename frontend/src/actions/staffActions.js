@@ -123,6 +123,26 @@ export const addComment = (viento, commentData) => dispatch => {
     );
 };
 
+// Update contribution status
+export const updateStatus = (id, status, history) => dispatch => {
+  dispatch(setContributionsLoading());
+  axios
+    .post(`/api/staff/contributionStatus/${id}`, status)
+    .then(res =>{
+      history.push('/staff/dashboard');
+      dispatch({
+        type: GET_CONTRIBUTIONS,
+        payload: res.data
+      });
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_CONTRIBUTIONS,
+        payload: {}
+      })
+    );
+};
+
 // Delete contribution
 export const deleteContribution = (id, history) => dispatch => {
   dispatch(setContributionsLoading());

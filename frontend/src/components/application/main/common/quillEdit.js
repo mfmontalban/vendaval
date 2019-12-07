@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Link, withRouter } from 'react-router-dom';
 import ReactQuill from 'react-quill'; // ES6
 import "./quill.snow.css";
 
-class MyComponent extends React.Component {
+import Div from './styled/div';
+
+class QuillEdit extends Component {
   constructor(props) {
     super(props)
     this.reactQuillRef = null;
@@ -34,14 +39,18 @@ class MyComponent extends React.Component {
 
   render() {
 
+    const { application } = this.props;
+
     return (
-      <ReactQuill
-      ref={(el) => { this.reactQuillRef = el }}
-      value={this.state.text}
-      onChange={this.handleChange}
-      modules={MyComponent.modules}
-      formats={MyComponent.formats}
-      />
+      <Div className="bottom-outer-shadow ml-10px mr-10px" backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
+        <ReactQuill
+          ref={(el) => { this.reactQuillRef = el }}
+          value={this.state.text}
+          onChange={this.handleChange}
+          modules={QuillEdit.modules}
+          formats={QuillEdit.formats}
+        />
+      </Div>
     )
   }
 }
@@ -51,7 +60,7 @@ class MyComponent extends React.Component {
  * See https://quilljs.com/docs/modules/ for complete options
  */
 
-MyComponent.modules = {
+QuillEdit.modules = {
   toolbar: {
     container: [
       [{ 'header': '1'}, {'header': '2'}, { 'font': [] }],
@@ -69,11 +78,21 @@ MyComponent.modules = {
  * Quill editor formats
  * See https://quilljs.com/docs/formats/
  */
-MyComponent.formats = [
+QuillEdit.formats = [
   'header', 'font', 'size',
   'color', 'background', 'bold', 'italic', 'underline', 'strike', 'blockquote',
   'list', 'bullet', 'indent', 'align',
   'link', 'image', 'video'
 ]
 
-export default MyComponent;
+QuillEdit.propTypes = {
+  admin: PropTypes.object.isRequired,
+  application: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = state => ({
+  admin: state.admin,
+  application: state.application,
+});
+
+export default connect(mapStateToProps, {})(withRouter(QuillEdit));

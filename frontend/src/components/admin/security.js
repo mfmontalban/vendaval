@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 
 import { readAccountInfo } from '../../actions/adminActions';
 import { sendApplicationAlertsUpdated } from '../../actions/applicationActions';
+import { FormattedMessage } from 'react-intl';
 
 import Spinner from '../application/main/common/spinner.js'
 import TextFieldGroup from '../application/main/common/textFieldGroup';
@@ -78,6 +79,38 @@ class Security extends Component {
     const { admin, application } = this.props;
     const isEnabled = this.canBeSubmitted();
 
+    let placeName;
+    let placeNameLabel;
+    let placeEmail;
+    let placeEmailLabel;
+    let placePassword;
+    let placePasswordLabel;
+    let placePassword2;
+    let placePassword2Label;
+    let submitSecurityForm;
+
+    if (application.language === 'es') {
+      placeName = 'Nombre completo';
+      placeNameLabel = 'Campo para nombre completo';
+      placeEmail = 'E-correo personal';
+      placeEmailLabel = 'Campo para e-correo personal';
+      placePassword = 'Contraseña';
+      placePasswordLabel = 'Campo para la contraseña';
+      placePassword2 = 'Confirma Contraseña';
+      placePassword2Label = 'Campo para confirmar la contraseña';
+      submitSecurityForm = 'Enviar';
+    } else {
+      placeName = 'Full Name';
+      placeNameLabel = 'Field for full name';
+      placeEmail = 'Personal Email';
+      placeEmailLabel = 'Field for personal email';
+      placePassword = 'Password';
+      placePasswordLabel = 'Field for password';
+      placePassword2 = 'Confirm Password';
+      placePassword2Label = 'Field for confirming passowrd';
+      submitSecurityForm = 'Submit';
+    }
+
     if (admin.loading) {
       content = (
         <Spinner />
@@ -88,8 +121,8 @@ class Security extends Component {
           <Input
             type="text"
             name="name"
-            placeholder="Full Name"
-            aria-label="Field for updating your full name"
+            placeholder={`${placeName}`}
+            aria-label={`${placeNameLabel}`}
             className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px mb-10px"
             backgroundStyled={errors.name ? `${application.theme.primary}`: `${application.transparent}`}
             colorStyled={errors.name ? `${application.mode.primary}`: `${application.theme.primary}`}
@@ -103,8 +136,8 @@ class Security extends Component {
           <Input
             type="text"
             name="email"
-            placeholder="Email Address"
-            aria-label="Field for updating your email address"
+            placeholder={`${placeEmail}`}
+            aria-label={`${placeEmailLabel}`}
             className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px mb-10px"
             backgroundStyled={errors.email ? `${application.theme.primary}`: `${application.transparent}`}
             colorStyled={errors.email ? `${application.mode.primary}`: `${application.theme.primary}`}
@@ -118,8 +151,8 @@ class Security extends Component {
           <Input
             type="password"
             name="password"
-            placeholder="Password"
-            aria-label="Field for updating your password"
+            placeholder={`${placePassword}`}
+            aria-label={`${placePasswordLabel}`}
             className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px mb-10px"
             backgroundStyled={errors.password ? `${application.theme.primary}`: `${application.transparent}`}
             colorStyled={errors.password ? `${application.mode.primary}`: `${application.theme.primary}`}
@@ -133,8 +166,8 @@ class Security extends Component {
           <Input
             type="password"
             name="password2"
-            placeholder="Confirm Password"
-            aria-label="Required Field for confirming your password"
+            placeholder={`${placePassword2}`}
+            aria-label={`${placePassword2Label}`}
             className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px mb-10px"
             backgroundStyled={errors.password2 ? `${application.theme.primary}`: `${application.transparent}`}
             colorStyled={errors.password2 ? `${application.mode.primary}`: `${application.theme.primary}`}
@@ -147,7 +180,7 @@ class Security extends Component {
           />
           <Input
             type="submit"
-            value="Submit"
+            value={`${submitSecurityForm}`}
             className={(isEnabled !== true ? `disabled` : `clickable`) + ` mt-10px mb-20px`}
             disabled={!isEnabled}
             transitionStyled={application.transitions.general}
@@ -164,9 +197,17 @@ class Security extends Component {
 
     return (
       <Div className="scroll-container bottom-outer-shadow ml-10px mr-10px pl-10px pr-10px pt-70px" heightStyled={`${application.settings.heightHero}`} backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
-        <H1 className="text-center">Account</H1>
+        <H1 className="text-center">
+          <FormattedMessage
+            id="security.title"
+            defaultMessage="Account"
+          />
+        </H1>
         <H2 className="text-center">
-          Update your information
+          <FormattedMessage
+            id="security.description"
+            defaultMessage="Update your information"
+          />
         </H2>
         {content}
       </Div>

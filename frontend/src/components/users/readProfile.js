@@ -37,7 +37,7 @@ class Profile extends Component {
     } else {
 
       profileContent =
-      <div>
+      <div className="max-w-1000px ml-auto mr-auto">
         <ProfileHeader application={application} profile={profile} id={id} />
         <ProfileAbout application={application} profile={profile} />
       </div>;

@@ -29,73 +29,142 @@ router.post('/sendApplicationAlertsRegistered', (req, res) => {
 
   User.findOne({ email: req.body.email }).then(user => {
     if (!user) {
-      errors.email = `Can't find User`;
-      return res.status(400).json(errors);
+      if (req.body.language = "es") {
+        errors.email = `No puede encontrar la nueva cuenta`;
+        return res.status(400).json(errors);
+      } else {
+        errors.email = `Can't find User`;
+        return res.status(400).json(errors);
+      }
     } else {
       const hash = random.generate();
-      const confirmEmail = `https://www.vendaval.space/verify/${hash}`;
+      if (req.body.language = "es") {
+        const confirmEmail = `https://www.vendaval.space/verificar/${hash}`;
 
-      const data = {
-        from: "Vendaval Team <no-reply@vendaval.space>",
-        to: req.body.email,
-        subject: "Welcome",
-        text: `
-        Hey ${user.name}, Thanks for creating your Vendaval account.
-        Your journey to think, learn, and create with the our global community starts now.
-        Please use the link below to confirm your account:
-        ${confirmEmail}
-        We'll see you online!
-        - Vendaval Team
-        `,
-        html:
-        `
-        <div style="border-radius:20px;margin:10px;padding:10px;background-color:#17a2b8;">
-          <div style="border-radius:20px;padding:20px;background-color:#f8f9fa;">
-            <p style="font-size:2rem;font-weight:bold;text-align:center;">Vendaval</p>
-            <p style="text-align:center;padding-bottom:5px;border-bottom:1px solid grey;"><i>vientos</i> de <strong>cambio</strong></p>
-            <p style="margin-top:20px;margin-bottom:20px;">Hey ${user.name},</p>
-            <p style="margin-top:10px;margin-bottom:25px;">
-              Thanks for creating your Vendaval account.
-              Your journey to think, learn, and create with the our global community starts now.
-            </p>
-            <p style="margin-bottom:5px;">
-              Please use the link below to confirm your account:
-            </p>
-            <a href="${confirmEmail}">${confirmEmail}</a>
-            <p style="margin-top:25px;">We'll see you online!</p>
-            <p>- Vendaval Team</p>
+        const data = {
+          from: "Vendaval Equipo <no-responda@vendaval.space>",
+          to: req.body.email,
+          subject: "Welcome",
+          text: `
+          Hola ${user.name}, Gracias por crear su cuenta en Vendaval.
+          Su viaje a piensar, apprender, y crear con el communidad global empieza ya.
+          Por favor usa el hiperenlace para confirmar su cuenta:
+          ${confirmEmail}
+          Te vemos en la red!
+          - Vendaval Equipo
+          `,
+          html:
+          `
+          <div style="border-radius:20px;margin:10px;padding:10px;background-color:#17a2b8;">
+            <div style="border-radius:20px;padding:20px;background-color:#f8f9fa;">
+              <p style="font-size:2rem;font-weight:bold;text-align:center;">Vendaval</p>
+              <p style="text-align:center;padding-bottom:5px;border-bottom:1px solid grey;"><i>vientos</i> de <strong>cambio</strong></p>
+              <p style="margin-top:20px;margin-bottom:20px;">Hola ${user.name},</p>
+              <p style="margin-top:10px;margin-bottom:25px;">
+                Gracias por creando su cuenta en Vendaval.
+                Su viaje a piensar, apprender, y crear con el communidad global empieza ya.
+              </p>
+              <p style="margin-bottom:5px;">
+                Por favor usa el hiperenlace para confirmar su cuenta:
+              </p>
+              <a href="${confirmEmail}">${confirmEmail}</a>
+              <p style="margin-top:25px;">Te vemos en la red!</p>
+              <p>- Vendaval Equipo</p>
+            </div>
           </div>
-        </div>
-        `
-      };
+          `
+        };
 
-      var mail = new MailComposer(data);
+        var mail = new MailComposer(data);
 
-      mail.compile().build((err, message) => {
-          var dataToSend = {
-              to: req.body.email,
-              message: message.toString('ascii')
-          };
+        mail.compile().build((err, message) => {
+            var dataToSend = {
+                to: req.body.email,
+                message: message.toString('ascii')
+            };
 
-          mg.messages().sendMime(dataToSend, (sendError, body) => {
-              if (sendError) {
-                  console.log(sendError);
-                  return;
-              }
-          });
-      });
+            mg.messages().sendMime(dataToSend, (sendError, body) => {
+                if (sendError) {
+                    console.log(sendError);
+                    return;
+                }
+            });
+        });
 
-      const newTemp = new Temp({
-        type: 'registered',
-        user: user._id,
-        key: hash
-      });
+        const newTemp = new Temp({
+          type: 'registered',
+          user: user._id,
+          key: hash
+        });
 
-      newTemp
-        .save()
-        .then(temp => res.json(temp))
-        .catch(err => console.log(err));
+        newTemp
+          .save()
+          .then(temp => res.json(temp))
+          .catch(err => console.log(err));
+      } else {
+        const confirmEmail = `https://www.vendaval.space/verify/${hash}`;
 
+        const data = {
+          from: "Vendaval Team <no-reply@vendaval.space>",
+          to: req.body.email,
+          subject: "Welcome",
+          text: `
+          Hey ${user.name}, Thanks for creating your Vendaval account.
+          Your journey to think, learn, and create with the our global community starts now.
+          Please use the link below to confirm your account:
+          ${confirmEmail}
+          We'll see you online!
+          - Vendaval Team
+          `,
+          html:
+          `
+          <div style="border-radius:20px;margin:10px;padding:10px;background-color:#17a2b8;">
+            <div style="border-radius:20px;padding:20px;background-color:#f8f9fa;">
+              <p style="font-size:2rem;font-weight:bold;text-align:center;">Vendaval</p>
+              <p style="text-align:center;padding-bottom:5px;border-bottom:1px solid grey;"><i>winds</i> of <strong>change</strong></p>
+              <p style="margin-top:20px;margin-bottom:20px;">Hey ${user.name},</p>
+              <p style="margin-top:10px;margin-bottom:25px;">
+                Thanks for creating your Vendaval account.
+                Your journey to think, learn, and create with the our global community starts now.
+              </p>
+              <p style="margin-bottom:5px;">
+                Please use the link below to confirm your account:
+              </p>
+              <a href="${confirmEmail}">${confirmEmail}</a>
+              <p style="margin-top:25px;">We'll see you online!</p>
+              <p>- Vendaval Team</p>
+            </div>
+          </div>
+          `
+        };
+
+        var mail = new MailComposer(data);
+
+        mail.compile().build((err, message) => {
+            var dataToSend = {
+                to: req.body.email,
+                message: message.toString('ascii')
+            };
+
+            mg.messages().sendMime(dataToSend, (sendError, body) => {
+                if (sendError) {
+                    console.log(sendError);
+                    return;
+                }
+            });
+        });
+
+        const newTemp = new Temp({
+          type: 'registered',
+          user: user._id,
+          key: hash
+        });
+
+        newTemp
+          .save()
+          .then(temp => res.json(temp))
+          .catch(err => console.log(err));
+      }
     }
   });
 });

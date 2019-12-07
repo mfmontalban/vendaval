@@ -54,6 +54,7 @@ class CommentItem extends Component {
     let likes;
     let community;
     let activeLike;
+    let profPic;
 
     if (application.language === 'es') {
         community = 'communidad';
@@ -82,6 +83,20 @@ class CommentItem extends Component {
       likes = '';
     }
 
+    if (comment.user.profile.avatarSm > 1) {
+      profPic = (
+        <img
+          className="h-100 w-100 outer-shadow-double border-radius-circle object-fit-cover"
+          src={`/api/staff/files/${comment.user.profile.avatarSm}`}
+          alt="Profile Picture"
+        />
+      )
+    } else {
+      profPic = (
+        <i className="fas fa-user fa-5x h-50px w-50px d-flex align-items-center" />
+      )
+    }
+
     return (
       <Div 
         className="m-10px p-10px border-1 outer-shadow"
@@ -93,11 +108,7 @@ class CommentItem extends Component {
         <div className="d-flex flex-direction-row justify-content-space-between align-items-center">
           <Link className="d-flex flex-direction-row align-items-center noUnderline mb-10px w-max-content" to={`/${community}/${comment.user.profile.handle}`}>
             <div className="h-40px w-40px d-flex justify-content-center">
-              <img
-                className="h-100 w-100 outer-shadow-double border-radius-circle object-fit-cover"
-                src={`/api/staff/files/${comment.user.profile.avatarSm}`}
-                alt="Profile Picture"
-              />
+              {profPic}
             </div>
             <Div className="ml-10px" transitionStyled={application.transitions.general} colorStyled={application.theme.primaryThree} colorHoverStyled={application.theme.primary}>{comment.user.name}</Div>
           </Link>

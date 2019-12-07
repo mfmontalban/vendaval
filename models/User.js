@@ -26,7 +26,7 @@ const UserSchema = new Schema({
   },
   profile: {
     type: Schema.Types.ObjectId,
-    ref: 'profiles'
+    ref: 'profiles',
   },
   date: {
     type: Date,

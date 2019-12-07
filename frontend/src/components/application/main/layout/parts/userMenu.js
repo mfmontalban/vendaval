@@ -123,7 +123,7 @@ class UserMenu extends Component {
 
     profileLinks = (
       <div>
-        <Link to={`/${profile}/${alerts}`} onClick={() => this.toggleListLink()}>
+        {/* <Link to={`/${profile}/${alerts}`} onClick={() => this.toggleListLink()}>
           <Div className="p-10px text-right" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`}>        
             <FormattedMessage
               id="navigation.alerts"
@@ -140,7 +140,7 @@ class UserMenu extends Component {
             />
             <i className="fal fa-history ml-5px"></i>
           </Div>
-        </Link>
+        </Link> */}
       </div>
     );
 

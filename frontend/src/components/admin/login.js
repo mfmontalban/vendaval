@@ -57,20 +57,26 @@ class Login extends Component {
     const setLanguage = this.props.application.language;
 
     let placeEmail;
+    let placeEmailLabel;
     let placePass;
+    let placePassLabel;
     let placeSubmit;
 
     if (setLanguage === 'es') {
       placeEmail = 'E-correo'
+      placeEmailLabel = 'Campo para E-correo'
 
       placePass = 'Contraseña'
+      placePassLabel = 'Campo para Contraseña'
 
       placeSubmit = 'Entra'
 
     } else {
       placeEmail = 'Email'
+      placeEmailLabel = 'Field for Email'
 
       placePass = 'Password'
+      placePassLabel = 'Field for Password'
 
       placeSubmit = 'Enter'
     }
@@ -113,12 +119,12 @@ class Login extends Component {
             defaultMessage="Welcome Back!"
           />
         </H2>
-        <form className="w-80pc ml-auto mr-auto d-flex flex-direction-column text-center" noValidate onSubmit={this.onSubmit}>
+        <form className="max-w-750px w-80pc ml-auto mr-auto d-flex flex-direction-column text-center" noValidate onSubmit={this.onSubmit}>
           <Input
             type="email"
             name="email"
             placeholder={`${placeEmail}`}
-            aria-label="Field for updating your email address"
+            aria-label={`${placeEmailLabel}`}
             className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px mb-10px"
             backgroundStyled={errors.email ? `${application.theme.primary}`: `${application.transparent}`}
             colorStyled={errors.email ? `${application.mode.primary}`: `${application.theme.primary}`}
@@ -134,7 +140,7 @@ class Login extends Component {
             type="password"
             name="password"
             placeholder={`${placePass}`}
-            aria-label="Field for updating your email address"
+            aria-label={`${placePassLabel}`}
             className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px mb-10px"
             backgroundStyled={errors.password ? `${application.theme.primary}`: `${application.transparent}`}
             colorStyled={errors.password ? `${application.mode.primary}`: `${application.theme.primary}`}
@@ -148,7 +154,7 @@ class Login extends Component {
 
           <Input
             type="submit"
-            value="Submit"
+            value={`${placeSubmit}`}
             className={`clickable mt-10px mb-20px`}
             transitionStyled={application.transitions.general}
             backgroundStyled={application.theme.primaryQuarter}

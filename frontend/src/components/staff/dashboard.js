@@ -70,6 +70,12 @@ class Staff extends Component {
 
       } else {
         dashboardContent = (<tr></tr>);
+
+        content = (
+          <Div className="scroll-container" heightStyled={application.settings.dashboardContributions}>
+            {dashboardContent}
+          </Div>
+        );
       }
     }
 
