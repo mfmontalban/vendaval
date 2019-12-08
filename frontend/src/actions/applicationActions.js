@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { READ_APPLICATION_TITLES, READ_APPLICATION_ERRORS, SET_LANGUAGE, SET_THEME, SET_MODE, SET_SORTS_RECENTNEWEST, SET_SORTS_RECENTOLDEST, SET_FILTERS_TEXT, SET_CENTERED_MAP, SEND_APPLICATION_ALERTS_REGISTERED, SEND_APPLICATION_ALERTS_FORGOT, SEND_APPLICATION_ALERTS_UPDATED, SET_ACCOUNT_USER, VERIFY_APPLICATION_ALERTS } from './types';
+import { READ_APPLICATION_TITLES, READ_APPLICATION_ERRORS, SET_LANGUAGE, SET_THEME, SET_MODE, SET_SORTS_AUTHORUP, SET_SORTS_AUTHORDOWN, SET_SORTS_TITLEUP, SET_SORTS_TITLEDOWN, SET_SORTS_RECENTNEWEST, SET_SORTS_RECENTOLDEST, SET_FILTERS_TEXT, SET_CENTERED_MAP, SEND_APPLICATION_ALERTS_REGISTERED, SEND_APPLICATION_ALERTS_FORGOT, SEND_APPLICATION_ALERTS_UPDATED, SET_ACCOUNT_USER, VERIFY_APPLICATION_ALERTS } from './types';
 
 // Retrieve title results
 export const readApplicationTitles = () => dispatch => {
@@ -124,6 +124,34 @@ export const updateModeLocalStorage = (array) => {
   };
 };
 
+export const setSortsAuthorUp = e => {
+  return {
+    type: SET_SORTS_AUTHORUP,
+    payload:  'authorup',
+  };
+};
+
+export const setSortsAuthorDown = e => {
+  return {
+    type: SET_SORTS_AUTHORDOWN,
+    payload:  'authordown',
+  };
+};
+
+export const setSortsTitleUp = e => {
+  return {
+    type: SET_SORTS_TITLEUP,
+    payload:  'titleup',
+  };
+};
+
+export const setSortsTitleDown = e => {
+  return {
+    type: SET_SORTS_TITLEDOWN,
+    payload:  'titledown',
+  };
+};
+
 export const setSortsRecentNewest = e => {
   return {
     type: SET_SORTS_RECENTNEWEST,
@@ -135,13 +163,6 @@ export const setSortsRecentOldest = e => {
   return {
     type: SET_SORTS_RECENTOLDEST,
     payload:  'publishedup',
-  };
-};
-
-export const setSort = (title, direction) => {
-  return {
-    // type: SET_SORTS_RECENTOLDEST,
-    // payload:  'publishedup',
   };
 };
 

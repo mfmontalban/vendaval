@@ -10,7 +10,7 @@ import {FormattedMessage} from 'react-intl';
 import Button from '../application/main/common/styled/button'
 import Dropdown from '../application/main/common/styled/dropdown'
 
-class LiveDropDown extends Component {
+class ReviewerDropDown extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -168,7 +168,7 @@ class LiveDropDown extends Component {
   }
 }
 
-LiveDropDown.propTypes = {
+ReviewerDropDown.propTypes = {
   updateStatus: PropTypes.func.isRequired,
   admin: PropTypes.object.isRequired,
   application: PropTypes.object.isRequired,
@@ -180,4 +180,4 @@ const mapStateToProps = state => ({
   application: state.application,
 });
 
-export default connect(mapStateToProps, { updateStatus })(withRouter(LiveDropDown));
+export default connect(mapStateToProps, { updateStatus })(withRouter(ReviewerDropDown));

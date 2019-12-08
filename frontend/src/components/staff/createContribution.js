@@ -14,6 +14,7 @@ import { FormattedMessage } from 'react-intl';
 
 import DraggableMarker from '../application/main/map/draggableMarker';
 import Div from '../application/main/common/styled/div';
+import Input from '../application/main/common/styled/input';
 import LinkContainer from '../application/main/common/styled/linkContainer';
 import BackArrow from '../application/main/common/backArrow'; 
 
@@ -29,6 +30,8 @@ class AddContribution extends Component {
       bannerLg: '',
       description: '',
       content: '',
+      lat: '',
+      lon: '',
       errors: {},
     };
   }
@@ -106,6 +109,8 @@ class AddContribution extends Component {
       title: this.state.title,
       description: this.state.description,
       content: this.state.content,
+      lat: this.state.lat,
+      lon: this.state.lon,
     };
 
     this.props.addContribution(contribData, this.props.history, data);
@@ -138,6 +143,8 @@ class AddContribution extends Component {
     let title;
     let shortDescription;
     let placeSubmit
+    let lat;
+    let lon;
 
     if (application.language === 'es') {
       staff = "personal";
@@ -145,12 +152,16 @@ class AddContribution extends Component {
       title = "Titulo";
       shortDescription = "Corto descripción"
       placeSubmit = "Enviar"
+      lat = "Latitud"
+      lon = "Longitud"
     } else {
       staff = "staff";
       dashboard = "dashboard";
       title = "Title";
       shortDescription = "Short description";
       placeSubmit = "Submit"
+      lat = "Latitude"
+      lon = "Longitude"
     }
 
     return (
@@ -193,7 +204,23 @@ class AddContribution extends Component {
               <input type="file" name="file" onChange={this.bannerAdded} className="ml-5px text-center clickable" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" />
             </div>
 
-            <DraggableMarker />
+            <TextFieldGroup
+              placeholder={`${lat}`}
+              name="lat"
+              value={this.state.lat}
+              onChange={this.onChange}
+              error={errors.lat}
+            />
+
+            <TextFieldGroup
+              placeholder={`${lon}`}
+              name="lon"
+              value={this.state.lon}
+              onChange={this.onChange}
+              error={errors.lon}
+            />
+
+            {/* <DraggableMarker /> */}
 
             <Quill storeQuillDelta={this.storeContent} />
 

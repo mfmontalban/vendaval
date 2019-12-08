@@ -103,54 +103,50 @@ class Vientos extends Component {
         y = Object.values(filters);
 
         dashboardContent = visible.filter(viento => {
-          if (y[0] !== '' || null ) {
-            let contentHTMLMatch = viento.title.toLowerCase().includes(y[0]);
+          if (y[0] == "Title") {
+            let contentHTMLMatch = viento.title.toLowerCase().indexOf(y[1].toLowerCase()) !== -1;
+            return contentHTMLMatch;
+          } else if (y[0] == "Author") {
+            let contentHTMLMatch = viento.user.name.toLowerCase().includes(y[1]);
             return contentHTMLMatch;
           }
-          return viento;
-        }).filter(viento => {
-          if (y[1] !== '' || null ) {
-            let contentHTMLMatch = viento.type.includes(y[1]);
-            return contentHTMLMatch;
+          else {
+            return viento;
           }
-          return viento;
-        }).filter(viento => {
-          if (y[2] !== '' || null ) {
-            let contentHTMLMatch = viento.user.name.includes(y[2]);
-            return contentHTMLMatch;
-          }
-          return viento;
-        }).filter(viento => {
-          if (y[3] !== '' || null ) {
-            let contentHTMLMatch = viento.topic.includes(y[3]);
-            return contentHTMLMatch;
-          }
-          return viento;
         }).sort((viento1, viento2) => {
             if (sortBy === 'titleup') {
-                return viento1.title.localeCompare(viento2.title);
+                // return viento1.title.localeCompare(viento2.title);
+                return viento1.title.toLowerCase() > viento2.title.toLowerCase() ? 1 : 0;
             } else if (sortBy === 'titledown') {
-                return viento1.title.toLowerCase() > viento2.title.toLowerCase() ? -1 : viento2 > viento1 ? 1 : 0;
+                // return viento1.title.toLowerCase() > viento2.title.toLowerCase() ? -1 : viento2 > viento1 ? 1 : 0;
+                return viento1.title.toLowerCase() > viento2.title.toLowerCase() ? 0 : 1;
+            } else if (sortBy === 'authorup') {
+                // return viento1.user.name.localeCompare(viento2.user.name);
+                return viento1.user.name.toLowerCase() > viento2.user.name.toLowerCase() ? 1 : 0;
+            } else if (sortBy === 'authordown') {
+                return viento1.user.name.toLowerCase() > viento2.user.name.toLowerCase() ? 0 : 1;
             } else if (sortBy === 'publishedup') {
                 return viento1.createdAt < viento2.createdAt ? -1 : 1;
             } else if (sortBy === 'publisheddown') {
                 return viento1.createdAt < viento2.createdAt ? 1 : -1;
             }
-            return '';
+            return viento1.createdAt < viento2.createdAt ? 1 : -1;
         }).map(viento =>
           <VientoItem key={viento._id} viento={viento} />
         );
               
 
         content = (
-          <Div className="d-flex flex-wrap scroll-container mt-10px outer-shadow ml-10px mr-10px vientos-items" backgroundStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
-            {dashboardContent}
+          <Div className="d-flex flex-wrap scroll-container mt-10px outer-shadow ml-10px mr-10px vientos-items scrollbar-width-none " backgroundStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
+            <div className="pt-10px pb-10px ml-auto mr-auto">
+              {dashboardContent}
+            </div>
           </Div>
         );
 
       } else {
         content = (
-          <Div className="d-flex flex-wrap scroll-container mt-10px outer-shadow ml-10px mr-10px vientos-items" backgroundStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
+          <Div className="d-flex flex-wrap scroll-container mt-10px outer-shadow ml-10px mr-10px vientos-items scrollbar-width-none " backgroundStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
           </Div>
         );
       }
@@ -170,7 +166,7 @@ class Vientos extends Component {
     );
 
     return (
-      <div className="vientos-container scroll-container">
+      <div className="vientos-container scroll-container scrollbar-width-none">
         {alerts.updated ? updatedAlert : null}
         <Map />
         {vientosNav}

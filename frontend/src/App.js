@@ -48,19 +48,19 @@ import Director from './director';
 addLocaleData(en); 
 addLocaleData(es);
 
+if (localStorage.language) {
+  store.dispatch(updateLanguage(localStorage.language));
+} else {
+  const lang = navigator.language.split('-')[0];
+  store.dispatch(updateLanguage(lang));
+}
+
 if (localStorage.theme) {
   store.dispatch(updateThemeLocalStorage(localStorage.theme));
 }
 
 if (localStorage.mode) {
   store.dispatch(updateModeLocalStorage(localStorage.mode));
-}
-
-if (localStorage.language) {
-  store.dispatch(updateLanguage(localStorage.language));
-} else {
-  const lang = navigator.language.split('-')[0];
-  store.dispatch(updateLanguage(lang));
 }
 
 // Check for token

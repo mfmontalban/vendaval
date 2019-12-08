@@ -44,7 +44,7 @@ class Profile extends Component {
     }
 
     return (
-      <Div className="scroll-container bottom-outer-shadow ml-10px mr-10px pt-70px" heightStyled={`${settings.heightHero}`} backgroundStyled={`${application.mode.primary}`} radiusStyled={`${settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
+      <Div className="scroll-container bottom-outer-shadow ml-10px mr-10px pt-70px scrollbar-width-none" heightStyled={`${settings.heightHero}`} backgroundStyled={`${application.mode.primary}`} radiusStyled={`${settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
         {profileContent}
       </Div>
     );

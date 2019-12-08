@@ -127,6 +127,8 @@ router.post(
     if (req.body.bannerLg) contributionFields.bannerLg = req.body.bannerLg;
     if (req.body.description) contributionFields.description = req.body.description;
     if (req.body.content) contributionFields.content = req.body.content;
+    if (req.body.lat) contributionFields.lat = req.body.lat;
+    if (req.body.lon) contributionFields.lon = req.body.lon;
     if (req.body.contentHTML) contributionFields.contentHTML = req.body.contentHTML;
 
     Profile.findOne({ user: req.user.id})
@@ -197,8 +199,74 @@ router.get(
       .catch(err => res.status(404).json({ contribution: 'No viento to show' }))
 });
 
-// @route   POST api/staff/contributionStatus/:id
+// @route   POST api/staff/contribution/:id
 // @desc    Edit contribution
+// @access  Private
+router.post(
+  '/contribution/:id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const { errors, isValid } = validateContributionInput(req.body);
+
+    // Check Validation
+    if (!isValid) {
+      // Return any errors with 400 status
+      return res.status(400).json(errors);
+    }
+
+    // Get fields
+    const contributionFields = {};
+    contributionFields.user = req.user.id;
+    contributionFields.updatedAt = Date.now();
+    if (req.body.type) contributionFields.type = req.body.type;
+    if (req.body.topic) contributionFields.topic = req.body.topic;
+    if (req.body.title) contributionFields.title = req.body.title;
+    if (req.body.bannerOriginal) contributionFields.bannerOriginal = req.body.bannerOriginal;
+    if (req.body.bannerSm) contributionFields.bannerSm = req.body.bannerSm;
+    if (req.body.bannerLg) contributionFields.bannerLg = req.body.bannerLg;
+    if (req.body.description) contributionFields.description = req.body.description;
+    if (req.body.content) contributionFields.content = req.body.content;
+    if (req.body.lat) contributionFields.lat = req.body.lat;
+    if (req.body.lon) contributionFields.lon = req.body.lon;
+    if (req.body.contentHTML) contributionFields.contentHTML = req.body.contentHTML;
+    // Skills - Spilt into array
+    if (typeof req.body.images !== 'undefined') {
+      contributionFields.images = req.body.images.split(',');
+    }
+
+    Contribution.findOne({$and: [{ _id: req.params.id }, {user: req.user.id}]}).then(contribution => {
+      if (contribution) {
+        Contribution.findOne({ title: contributionFields.title }).then(contribution => {
+          if (contribution) {
+            const contribID = new ObjectID(req.user.id);
+            if (contribution.user.equals(contribID)) {
+              // Update Profile
+              Contribution.findOneAndUpdate(
+                { _id: req.params.id },
+                { $set: contributionFields }
+              ).then(contribution => res.json(contribution));
+            } else {
+              errors.title = 'That title already exists';
+              res.status(400).json(errors);
+            }
+          } else {
+            // Update Profile
+            Contribution.findOneAndUpdate(
+              { _id: req.params.id },
+              { $set: contributionFields }
+            ).then(contribution => res.json(contribution));
+          }
+        });
+      } else {
+        errors.title = 'No contribution exists';
+        res.status(400).json(errors);
+      }
+    });
+  }
+);
+
+// @route   POST api/staff/contributionStatus/:id
+// @desc    Edit contribution status
 // @access  Private
 router.post(
   '/contributionStatus/:id',

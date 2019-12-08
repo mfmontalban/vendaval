@@ -110,29 +110,20 @@ class Mapbox extends Component {
       vienti2 = [];
 
       vientos.filter(viento => {
-        if (y[0] !== '' || null ) {
-          let contentHTMLMatch = viento.title.toLowerCase().includes(y[0]);
-          return contentHTMLMatch;
+        if (y !== "" || null) {
+          if (y[0] == "Title") {
+            let contentHTMLMatch = viento.title.toLowerCase().indexOf(y[1].toLowerCase()) !== -1;
+            return contentHTMLMatch;
+          } else if (y[0] == "Author") {
+            let contentHTMLMatch = viento.user.name.toLowerCase().includes(y[1]);
+            return contentHTMLMatch;
+          }
+          else {
+            return viento;
+          }
+        } else {
+          return viento;
         }
-        return viento;
-      }).filter(viento => {
-        if (y[1] !== '' || null ) {
-          let contentHTMLMatch = viento.type.includes(y[1]);
-          return contentHTMLMatch;
-        }
-        return viento;
-      }).filter(viento => {
-        if (y[2] !== '' || null ) {
-          let contentHTMLMatch = viento.user.name.includes(y[2]);
-          return contentHTMLMatch;
-        }
-        return viento;
-      }).filter(viento => {
-        if (y[3] !== '' || null ) {
-          let contentHTMLMatch = viento.topic.includes(y[3]);
-          return contentHTMLMatch;
-        }
-        return viento;
       }).map(viento => {
 
         var popup = new mapboxgl.Popup()
@@ -218,29 +209,20 @@ class Mapbox extends Component {
       vienti2 = [];
 
       vientos.filter(viento => {
-        if (y[0] !== '' || null ) {
-          let contentHTMLMatch = viento.title.toLowerCase().includes(y[0]);
-          return contentHTMLMatch;
+        if (y !== "" || null) {
+          if (y[0] == "Title") {
+            let contentHTMLMatch = viento.title.toLowerCase().indexOf(y[1].toLowerCase()) !== -1;
+            return contentHTMLMatch;
+          } else if (y[0] == "Author") {
+            let contentHTMLMatch = viento.user.name.toLowerCase().includes(y[1]);
+            return contentHTMLMatch;
+          }
+          else {
+            return viento;
+          }
+        } else {
+          return viento;
         }
-        return viento;
-      }).filter(viento => {
-        if (y[1] !== '' || null ) {
-          let contentHTMLMatch = viento.type.includes(y[1]);
-          return contentHTMLMatch;
-        }
-        return viento;
-      }).filter(viento => {
-        if (y[2] !== '' || null ) {
-          let contentHTMLMatch = viento.user.name.includes(y[2]);
-          return contentHTMLMatch;
-        }
-        return viento;
-      }).filter(viento => {
-        if (y[3] !== '' || null ) {
-          let contentHTMLMatch = viento.topic.includes(y[3]);
-          return contentHTMLMatch;
-        }
-        return viento;
       }).map(viento => {
 
         var popup = new mapboxgl.Popup()
@@ -308,29 +290,20 @@ class Mapbox extends Component {
       vienti2 = [];
 
       vientos.filter(viento => {
-        if (y[0] !== '' || null ) {
-          let contentHTMLMatch = viento.title.toLowerCase().includes(y[0]);
-          return contentHTMLMatch;
+        if (y !== "" || null) {
+          if (y[0] == "Title") {
+            let contentHTMLMatch = viento.title.toLowerCase().indexOf(y[1].toLowerCase()) !== -1;
+            return contentHTMLMatch;
+          } else if (y[0] == "Author") {
+            let contentHTMLMatch = viento.user.name.toLowerCase().includes(y[1]);
+            return contentHTMLMatch;
+          }
+          else {
+            return viento;
+          }
+        } else {
+          return viento;
         }
-        return viento;
-      }).filter(viento => {
-        if (y[1] !== '' || null ) {
-          let contentHTMLMatch = viento.type.includes(y[1]);
-          return contentHTMLMatch;
-        }
-        return viento;
-      }).filter(viento => {
-        if (y[2] !== '' || null ) {
-          let contentHTMLMatch = viento.user.name.includes(y[2]);
-          return contentHTMLMatch;
-        }
-        return viento;
-      }).filter(viento => {
-        if (y[3] !== '' || null ) {
-          let contentHTMLMatch = viento.topic.includes(y[3]);
-          return contentHTMLMatch;
-        }
-        return viento;
       }).map(viento => {
 
         var popup = new mapboxgl.Popup()
@@ -385,32 +358,23 @@ class Mapbox extends Component {
   
         this.updateForOriginal(vienti);
 
-        this.props.vientos.vientos.filter(viento => {
-          y = Object.values(filters);
+        y = Object.values(filters);
 
-          if (y[0] !== '' || null ) {
-            let contentHTMLMatch = viento.title.toLowerCase().includes(y[0]);
-            return contentHTMLMatch;
+        this.props.vientos.vientos.filter(viento => {
+          if (y !== "" || null) {
+            if (y[0] == "Title") {
+              let contentHTMLMatch = viento.title.toLowerCase().indexOf(y[1].toLowerCase()) !== -1;
+              return contentHTMLMatch;
+            } else if (y[0] == "Author") {
+              let contentHTMLMatch = viento.user.name.toLowerCase().includes(y[1]);
+              return contentHTMLMatch;
+            }
+            else {
+              return viento;
+            }
+          } else {
+            return viento;
           }
-          return viento;
-        }).filter(viento => {
-          if (y[1] !== '' || null ) {
-            let contentHTMLMatch = viento.type.includes(y[1]);
-            return contentHTMLMatch;
-          }
-          return viento;
-        }).filter(viento => {
-          if (y[2] !== '' || null ) {
-            let contentHTMLMatch = viento.user.name.includes(y[2]);
-            return contentHTMLMatch;
-          }
-          return viento;
-        }).filter(viento => {
-          if (y[3] !== '' || null ) {
-            let contentHTMLMatch = viento.topic.includes(y[3]);
-            return contentHTMLMatch;
-          }
-          return viento;
         }).map(viento => {
 
           var popup = new mapboxgl.Popup()
@@ -456,29 +420,20 @@ class Mapbox extends Component {
       y = Object.values(filters);
 
       vientos.filter(viento => {
-        if (y[0] !== '' || null ) {
-          let contentHTMLMatch = viento.title.toLowerCase().includes(y[0]);
-          return contentHTMLMatch;
+        if (y !== "" || null) {
+          if (y[0] == "Title") {
+            let contentHTMLMatch = viento.title.toLowerCase().indexOf(y[1].toLowerCase()) !== -1;
+            return contentHTMLMatch;
+          } else if (y[0] == "Author") {
+            let contentHTMLMatch = viento.user.name.toLowerCase().includes(y[1]);
+            return contentHTMLMatch;
+          }
+          else {
+            return viento;
+          }
+        } else {
+          return viento;
         }
-        return viento;
-      }).filter(viento => {
-        if (y[1] !== '' || null ) {
-          let contentHTMLMatch = viento.type.includes(y[1]);
-          return contentHTMLMatch;
-        }
-        return viento;
-      }).filter(viento => {
-        if (y[2] !== '' || null ) {
-          let contentHTMLMatch = viento.user.name.includes(y[2]);
-          return contentHTMLMatch;
-        }
-        return viento;
-      }).filter(viento => {
-        if (y[3] !== '' || null ) {
-          let contentHTMLMatch = viento.topic.includes(y[3]);
-          return contentHTMLMatch;
-        }
-        return viento;
       }).map(viento => {
 
         var popup = new mapboxgl.Popup()
@@ -536,29 +491,20 @@ class Mapbox extends Component {
           this.updateForOriginal(vienti);
 
           vientos.filter(viento => {
-            if (y[0] !== '' || null ) {
-              let contentHTMLMatch = viento.title.toLowerCase().includes(y[0]);
-              return contentHTMLMatch;
+            if (y !== "" || null) {
+              if (y[0] == "Title") {
+                let contentHTMLMatch = viento.title.toLowerCase().indexOf(y[1].toLowerCase()) !== -1;
+                return contentHTMLMatch;
+              } else if (y[0] == "Author") {
+                let contentHTMLMatch = viento.user.name.toLowerCase().includes(y[1]);
+                return contentHTMLMatch;
+              }
+              else {
+                return viento;
+              }
+            } else {
+              return viento;
             }
-            return viento;
-          }).filter(viento => {
-            if (y[1] !== '' || null ) {
-              let contentHTMLMatch = viento.type.includes(y[1]);
-              return contentHTMLMatch;
-            }
-            return viento;
-          }).filter(viento => {
-            if (y[2] !== '' || null ) {
-              let contentHTMLMatch = viento.user.name.includes(y[2]);
-              return contentHTMLMatch;
-            }
-            return viento;
-          }).filter(viento => {
-            if (y[3] !== '' || null ) {
-              let contentHTMLMatch = viento.topic.includes(y[3]);
-              return contentHTMLMatch;
-            }
-            return viento;
           }).map(viento => {
             x = this.map.getBounds().toArray();
             

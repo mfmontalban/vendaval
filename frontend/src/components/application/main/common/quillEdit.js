@@ -15,20 +15,18 @@ class QuillEdit extends Component {
   }
 
   componentDidMount () {
-    if (this.props.contributions) {
-      const stored = JSON.parse(this.props.contributions);
+    if (this.props.staff.contribution) {
+      const stored = JSON.parse(this.props.staff.contribution.content);
       this.reactQuillRef.getEditor().setContents(stored);
     }
   }
 
-  componentDidUpdate () {
-    this.storeDelta()
+  componentDidUpdate (prevProps, prevState) {
+    if (this.props.staff.contribution !== prevProps.staff.contribution) {
+      const stored = JSON.parse(this.props.staff.contribution.content);
+      this.reactQuillRef.getEditor().setContents(stored);
+    }
   }
-
-  storeDelta () {
-    
-  }
-
 
   handleChange = (value) => {
     this.setState({ text: value });
@@ -88,11 +86,13 @@ QuillEdit.formats = [
 QuillEdit.propTypes = {
   admin: PropTypes.object.isRequired,
   application: PropTypes.object.isRequired,
+  staff: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
   admin: state.admin,
   application: state.application,
+  staff: state.staff,
 });
 
 export default connect(mapStateToProps, {})(withRouter(QuillEdit));

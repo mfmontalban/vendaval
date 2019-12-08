@@ -252,7 +252,7 @@ class UserMenu extends Component {
           {avatarImage}
         </Button>
         {listOpen && 
-          <Dropdown ref={this.setWrapperRef} className="z-1050 d-flex flex-direction-column text-right outer-shadow" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${settings.appRadius}`}>
+          <Dropdown ref={this.setWrapperRef} className="z-1050 d-flex flex-direction-column text-right outer-shadow outer-box-shadow-menu" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${settings.appRadius}`}>
             {admin.staff ? staffMenu : userMenu}
             {profileLinks}
             {securityLink}
@@ -283,7 +283,7 @@ class UserMenu extends Component {
           </div>
         </Button>
         {listOpen && 
-          <Dropdown ref={this.setWrapperRef} className="z-1050 d-flex flex-direction-column text-right outer-shadow" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${settings.appRadius}`}>
+          <Dropdown ref={this.setWrapperRef} className="z-1050 d-flex flex-direction-column text-right outer-shadow outer-box-shadow-menu" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${settings.appRadius}`}>
             <Link to={`/${login}`} onClick={(e) => {this.toggleListLink()}}>
               <Div className="p-10px top-border-radius text-right" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`}>
                 <FormattedMessage

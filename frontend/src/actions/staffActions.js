@@ -83,14 +83,26 @@ export const deleteOldBanner = (deleteOldBanner) => dispatch => {
 
 // Edit contribution
 export const editContribution = (id, contribData, history,  data) => dispatch => {
-  axios
-    .post('/api/staff/files', data)
-    .then(res => {
-      if (data) {
-        contribData.bannerOriginal = res.data.response[0].filename;
-        contribData.bannerSm = res.data.response[1].filename;
-        contribData.bannerLg = res.data.response[2].filename;
-      }
+  if (data) {
+    axios
+      .post('/api/staff/files', data)
+      .then(res => {
+        if (data) {
+          contribData.bannerOriginal = res.data.response[0].filename;
+          contribData.bannerSm = res.data.response[1].filename;
+          contribData.bannerLg = res.data.response[2].filename;
+        }
+        axios
+          .post(`/api/staff/contribution/${id}`, contribData)
+          .then(res => history.push('/staff/dashboard'))
+          .catch(err =>
+            dispatch({
+              type: READ_APPLICATION_ERRORS,
+              payload: err.response.data
+            })
+          );
+    });
+  } else {
       axios
         .post(`/api/staff/contribution/${id}`, contribData)
         .then(res => history.push('/staff/dashboard'))
@@ -100,7 +112,7 @@ export const editContribution = (id, contribData, history,  data) => dispatch =>
             payload: err.response.data
           })
         );
-  });
+  }
 };
 
 // Add Comment

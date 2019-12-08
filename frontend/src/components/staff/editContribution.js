@@ -5,20 +5,28 @@ import { Link, withRouter } from 'react-router-dom';
 
 import { deleteOldBanner, editContribution, getContributionByID, deleteContribution } from '../../actions/staffActions';
 import Resizer from 'react-image-file-resizer';
+import { FormattedMessage } from 'react-intl';
 
 import Spinner from '../application/main/common/spinner.js'
 import isEmpty from '../../reducers/validation/is-empty';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Form } from 'reactstrap';
 import TextFieldGroup from '../application/main/common/textFieldGroup';
 import SelectListGroup from '../application/main/common/selectListGroup';
 import TextAreaFieldGroup from '../application/main/common/textAreaFieldGroup';
 import Quill from '../application/main/common/quillEdit';
+import Div from '../application/main/common/styled/div';
+import LinkContainer from '../application/main/common/styled/linkContainer';
+import BackArrow from '../application/main/common/backArrow'; 
+import Button from '../application/main/common/styled/button';
+import Dropdown from '../application/main/common/styled/dropdown';
+import DropdownDivider from '../application/main/common/styled/dropdownDivider';
 
 class Contribution extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isEnabled: false,
+      listOpen: false,
+      outsideClicked: false,
       type: '',
       topic: '',
       title: '',
@@ -27,15 +35,11 @@ class Contribution extends Component {
       bannerLg: '',
       description: '',
       content: '',
+      lat: '',
+      lon: '',
       modal: false,
       errors: {}
     };
-  }
-
-  componentDidMount() {
-    if (this.props.match.params.id) {
-      this.props.getContributionByID(this.props.match.params.id);
-    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -47,12 +51,16 @@ class Contribution extends Component {
     if (this.props.staff.contribution!==prevProps.staff.contribution) {
       const contribution = this.props.staff.contribution;
 
+      console.log(contribution);
+
       // If profile field doesnt exist, make empty string
       contribution.type = !isEmpty(contribution.type) ? contribution.type : '';
       contribution.topic = !isEmpty(contribution.topic) ? contribution.topic : '';
       contribution.title = !isEmpty(contribution.title) ? contribution.title : '';
       contribution.description = !isEmpty(contribution.description) ? contribution.description : '';
       contribution.content = !isEmpty(contribution.content) ? contribution.content : '';
+      contribution.lat = !isEmpty(contribution.lat) ? contribution.lat : '';
+      contribution.lon = !isEmpty(contribution.lon) ? contribution.lon : '';
 
       // Set component fields state
       this.setState({
@@ -60,8 +68,48 @@ class Contribution extends Component {
         topic: contribution.topic,
         title: contribution.title,
         description: contribution.description,
-        content: contribution.content
+        content: contribution.content,
+        lat: contribution.lat,
+        lon: contribution.lon,
       });
+    }
+  }
+
+  componentDidMount() {
+    if (this.props.match.params.id) {
+      this.props.getContributionByID(this.props.match.params.id);
+    }
+  }
+
+  setWrapperRef = (node) => {
+    this.wrapperRef = node;
+  }
+
+  componentWillMount() {
+    document.addEventListener('mousedown', this.handleClickOutside);
+  }
+  
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClickOutside);
+  }
+
+  handleClickOutside = (event) => {
+    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+      this.setState({
+        listOpen: false,
+      });
+      setTimeout(() => {
+        this.setState({ outsideClicked: false });
+      }, 250);
+    }
+  }
+
+  toggleList = () => {
+    if (this.state.outsideClicked === false) {
+      this.setState(prevState => ({
+        listOpen: !prevState.listOpen,
+        outsideClicked: true,
+      }))
     }
   }
 
@@ -125,6 +173,10 @@ class Contribution extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  storeContent = (e) => {
+    this.setState({content: e});
+  }
+
   onSubmit = (e) => {
     e.preventDefault();
 
@@ -135,8 +187,9 @@ class Contribution extends Component {
       topic: this.state.topic,
       title: this.state.title,
       description: this.state.description,
-      content: localStorage.content,
-      contentHTML: localStorage.contentHTML
+      content: this.state.content,
+      lat: this.state.lat,
+      lon: this.state.lon,
     };
 
     if(this.state.banner && !this.state.isEnabled) {
@@ -164,9 +217,36 @@ class Contribution extends Component {
   }
 
   render() {
-    const { errors } = this.state;
+    const { listOpen, errors } = this.state;
 
     const { contribution, loading } = this.props.staff;
+    const { application } = this.props;
+
+    let staff;
+    let dashboard;
+    let title;
+    let shortDescription;
+    let placeSubmit
+    let lat;
+    let lon;
+
+    if (application.language === 'es') {
+      staff = "personal";
+      dashboard = "tablero";
+      title = "Titulo";
+      shortDescription = "Corto descripción"
+      placeSubmit = "Enviar"
+      lat = "Latitud"
+      lon = "Longitud"
+    } else {
+      staff = "staff";
+      dashboard = "dashboard";
+      title = "Title";
+      shortDescription = "Short description";
+      placeSubmit = "Submit"
+      lat = "Latitude"
+      lon = "Longitude"
+    }
 
     // Select options for status
     const type = [
@@ -194,61 +274,95 @@ class Contribution extends Component {
       contributionContent = <Spinner />;
     } else {
       contributionContent =
-        <div>
-
-          <Modal
-            className="mt-5"
-            isOpen={this.state.modal}
-            toggle={this.toggle.bind(this, contribution._id)}
-          >
-            <ModalHeader
-            toggle={this.toggle.bind(this, contribution._id)}
-            >
-            App Settings
-            </ModalHeader>
-            <ModalBody>
-              <Form onSubmit={this.onSubmit}>
-                <p className="display-5">Are you sure you want to delete this?</p>
-              </Form>
-            </ModalBody>
-            <ModalFooter>
-              <Button
-                color="danger"
-                onClick={this.onDeleteSubmitClick.bind(this, contribution._id)}
-              >
-              Delete
-              </Button>
-              <Button
-                color="light"
-                onClick={this.toggle.bind(this, contribution._id)}
-              >
-              Cancel
-              </Button>
-            </ModalFooter>
-          </Modal>
-
-          <Link to="/staff/dashboard" className="btn btn-light">
-            Dashboard
-          </Link>
-          <div className="btn-group">
-            <button type="button" className="bg-transparent border-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i className="fal fa-ellipsis-v"></i>
-            </button>
-            <div className="dropdown-menu dropdown-menu-right">
-              <Link to={`/staff/contribution/view/${contribution._id}`} className="dropdown-item text-dark"><i className="fal fa-pencil mr-2"></i>View</Link>
-              <div className="dropdown-divider"></div>
-              <a
-                href="#{}"
-                className="dropdown-item text-dark"
-                onClick={this.toggle.bind(this, contribution._id)}
-                >
-                <i className="fal fa-trash mr-2"></i>Delete
-              </a>
+        <div className="max-w-1000px ml-auto mr-auto">
+          <Div className="d-flex justify-content-space-between align-items-center p-20px" backgroundStyled={application.mode.primaryHalf}>
+            <div className="w-30 d-flex">
+              <Link className="w-40px ml-25" to={`/${staff}/${dashboard}`}>
+                <Div className="d-flex justify-content-center align-items-center h-40px w-40px min-w-max-content border-radius-circle" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
+                  <i className='ml-neg3px clickable fa-2x fas fa-chevron-left'></i>
+                </Div>
+              </Link>
             </div>
-          </div>
-          <h1 className="display-6 text-center mt-3">Contribution</h1>
-          <form onSubmit={this.onSubmit}>
-            <SelectListGroup
+            <div className="w-30 d-flex justify-content-center">
+              {/* <Div className="min-w-max-content text-center" radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryHalf} fontSizeStyled={application.text.important}>
+                <Div className="p-5px" backgroundStyled={application.mode.primaryThree} radiusStyled={application.settings.appRadiusTop}>{contribution.type}:</Div>
+                <div className="p-5px">{contribution.topic}</div>
+              </Div> */}
+            </div>
+            <div className="w-30 d-flex justify-content-flex-end">
+              <Button onClick={() => this.toggleList()} className="d-flex justify-content-center align-items-center h-40px w-40px min-w-max-content mr-25px border-radius-circle clickable" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
+                <i className="fa-2x fal fa-ellipsis-v"></i>
+              </Button>
+              {listOpen &&
+                  <Dropdown ref={this.setWrapperRef} className="position-absolute mt-45px ml-neg30px z-1005 d-flex flex-direction-column text-right outer-shadow" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
+                    <Link className="noUnderline" to={`/staff/contribution/view/${contribution._id}`}>
+                      <Div
+                        // onClick={this.onDeleteClick.bind(this, contribution.id)}
+                        type="button"
+                        className="h-max-content p-10px clickable text-left"
+                        transitionStyled={application.transitions.general}
+                        backgroundStyled={application.mode.primary}
+                        backgroundHoverStyled={application.theme.primaryQuarter}
+                        colorStyled={application.theme.primary}
+                        colorHoverStyled={application.theme.primary}
+                        radiusStyled={application.settings.appRadiusTop}
+                      >
+                        <i className="fas fa-search mr-5px" />
+                        <FormattedMessage
+                          id="staff.view"
+                          defaultMessage="View"
+                        />
+                      </Div>
+                    </Link>
+                    <Link className="noUnderline" to={`/staff/contribution/edit/${contribution._id}`}>
+                      <Div
+                        // onClick={this.onDeleteClick.bind(this, contribution.id)}
+                        type="button"
+                        className="h-max-content p-10px clickable text-left"
+                        transitionStyled={application.transitions.general}
+                        backgroundStyled={application.mode.primary}
+                        backgroundHoverStyled={application.theme.primaryQuarter}
+                        colorStyled={application.theme.primary}
+                        colorHoverStyled={application.theme.primary}
+                        >
+                        <i className="fas fa-pencil mr-5px" />
+                        <FormattedMessage
+                          id="staff.edit"
+                          defaultMessage="Edit"
+                        />
+                      </Div>
+                    </Link>
+                    <DropdownDivider colorStyled={application.theme.primary} />
+                    <Button
+                      // onClick={this.onDeleteClick.bind(this, contribution.id)}
+                      type="button"
+                      className="h-max-content p-10px clickable text-left"
+                      transitionStyled={application.transitions.general}
+                      backgroundStyled={application.mode.primary}
+                      backgroundHoverStyled={application.theme.primaryQuarter}
+                      colorStyled={application.theme.primary}
+                      colorHoverStyled={application.theme.primary}
+                      radiusStyled={application.settings.appRadiusBottom}
+                    >
+                      <i className="fas fa-times mr-5px" />
+                      <FormattedMessage
+                        id="staff.delete"
+                        defaultMessage="Delete"
+                      />
+                    </Button>
+                  </Dropdown>
+              }
+            </div>
+          </Div>
+          
+          <h1 className="display-6 text-center mt-3">
+            <FormattedMessage
+              id="staff.contributionTitle"
+              defaultMessage="Contribution"
+            />
+          </h1>
+          <form className="max-w-750px ml-auto mr-auto text-center" onSubmit={this.onSubmit}>
+            {/* <SelectListGroup
               placeholder="Type"
               name="type"
               value={this.state.type}
@@ -263,49 +377,61 @@ class Contribution extends Component {
               onChange={this.onChange}
               options={topic}
               error={errors.topic}
-            />
+            /> */}
             <TextFieldGroup
-              placeholder="Title"
+              placeholder={title}
               name="title"
               value={this.state.title}
               onChange={this.onChange}
               error={errors.title}
             />
+            <TextAreaFieldGroup
+              placeholder={shortDescription}
+              name="description"
+              value={this.state.description}
+              onChange={this.onChange}
+              error={errors.description}
+            />
 
             <div className="input-group mb-3">
-              <div className="input-group-prepend">
-                <div className="btn btn-secondary non-clickable">Banner</div>
-              </div>
               <div className="custom-file clickable">
                 <input type="file" name="file" onChange={this.bannerAdded} className="custom-file-input clickable" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" />
                 <label className="custom-file-label clickable" htmlFor="inputGroupFile01">Choose Image</label>
               </div>
             </div>
 
-            <TextAreaFieldGroup
-              placeholder="Description"
-              name="description"
-              value={this.state.description}
+            <TextFieldGroup
+              placeholder={`${lat}`}
+              name="lat"
+              value={this.state.lat}
               onChange={this.onChange}
-              error={errors.description}
+              error={errors.lat}
             />
-            <Quill contribution={contribution.content} />
+
+            <TextFieldGroup
+              placeholder={`${lon}`}
+              name="lon"
+              value={this.state.lon}
+              onChange={this.onChange}
+              error={errors.lon}
+            />
+
+            <Quill storeQuillDelta={this.storeContent} />
+
             <input
               type="submit"
-              value="Submit"
+              value={placeSubmit}
               disabled={isEnabled}
             />
           </form>
           
-        </div>;
+        </div>
     }
 
     return (
-      <div className="body scroll-container pt-3 pb-3">
-        <div className="col-md-10 m-auto">
-          {contributionContent}
-        </div>
-      </div>
+      <Div className="scroll-container bottom-outer-shadow ml-10px mr-10px pt-70px" heightStyled={`${application.settings.heightHero}`} backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
+        {contributionContent}
+      </Div>
     );
   }
 }

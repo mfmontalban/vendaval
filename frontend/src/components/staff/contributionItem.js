@@ -153,7 +153,7 @@ class ContributionItem extends Component {
               </Dropdown>
           }
 
-          <LiveDropDown contribution={contribution} application={application} admin={admin}/>
+          <LiveDropDown contribution={contribution}/>
 
           <div className="min-w-25-app p-10px tableTitleFix">
             <FormattedMessage
@@ -183,13 +183,14 @@ class ContributionItem extends Component {
 
 ContributionItem.propTypes = {
   deleteContribution: PropTypes.func.isRequired,
+  admin: PropTypes.object.isRequired,
   application: PropTypes.object.isRequired,
   contribution: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
+  admin: state.admin,
   application: state.application,
-  contributions: state.contribution
 });
 
 export default connect(mapStateToProps, { deleteContribution })(ContributionItem);

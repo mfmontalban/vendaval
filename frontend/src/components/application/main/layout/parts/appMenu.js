@@ -7,7 +7,7 @@ import { FormattedMessage } from 'react-intl';
 
 import Div from '../../common/styled/div'
 import Button from '../../common/styled/button'
-import Dropdown from '../../common/styled/dropdown'
+import Dropdown from '../../common/styled/dropdownold'
 
 class AppMenu extends Component {
   constructor(props){
@@ -93,9 +93,9 @@ class AppMenu extends Component {
           <i className="fas fa-bars"></i>
         </Button>
         {listOpen && 
-          <Dropdown ref={this.setWrapperRef} className="z-1005 d-flex flex-direction-column outer-shadow" transitionStyled={`${application.transitions.general}`} backgroundStyled={application.mode.primary} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
+          <Dropdown ref={this.setWrapperRef} className="z-1005 d-flex flex-direction-column outer-shadow outer-box-shadow-menu" transitionStyled={`${application.transitions.general}`} backgroundStyled={application.mode.primary} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
             <Link to={`/`} className="noUnderline" onClick={() => this.toggleListLink()}>
-              <Div className="p-10px top-border-radius" transitionStyled={application.transitions.general} backgroundStyled={application.mode.primary} backgroundHoverStyled={application.theme.primaryQuarter}>
+              <Div className="p-10px top-border-radius" transitionStyled={application.transitions.general} backgroundStyled={application.mode.primary} backgroundHoverStyled={application.mode.primaryQuarter}>
                 <i className="fal fa-home mr-5px"></i>
                 <span className="pr-2">
                   <FormattedMessage
@@ -109,7 +109,7 @@ class AppMenu extends Component {
             <Div className="h-0 m-pt25em0em overflow-hidden border-top-1" backgroundStyled={application.mode.primary}/>
 
             <Link to={`/${about}`} className="noUnderline" onClick={() => this.toggleListLink()}>
-              <Div className="p-10px" transitionStyled={application.transitions.general} backgroundStyled={application.mode.primary} backgroundHoverStyled={application.theme.primaryQuarter}>
+              <Div className="p-10px" transitionStyled={application.transitions.general} backgroundStyled={application.mode.primary} backgroundHoverStyled={application.mode.primaryQuarter}>
                 <i className="fal fa-users mr-5px"></i>
                 <span>
                   <FormattedMessage
@@ -120,7 +120,7 @@ class AppMenu extends Component {
               </Div>
             </Link>
             <Link to={`/${contact}`} onClick={() => this.toggleListLink()}>
-              <Div className="p-10px" transitionStyled={application.transitions.general} backgroundStyled={application.mode.primary} backgroundHoverStyled={application.theme.primaryQuarter}>
+              <Div className="p-10px" transitionStyled={application.transitions.general} backgroundStyled={application.mode.primary} backgroundHoverStyled={application.mode.primaryQuarter}>
                 <i className="fal fa-comments-alt mr-5px"></i>
                 <span>
                   <FormattedMessage
@@ -131,7 +131,7 @@ class AppMenu extends Component {
               </Div>
             </Link>
             <Link to={`/${donate}`} onClick={() => this.toggleListLink()}>
-              <Div className="p-10px" transitionStyled={application.transitions.general} backgroundStyled={application.mode.primary} backgroundHoverStyled={application.theme.primaryQuarter}>
+              <Div className="p-10px" transitionStyled={application.transitions.general} backgroundStyled={application.mode.primary} backgroundHoverStyled={application.mode.primaryQuarter}>
                 <i className="fal fa-heart mr-5px"></i>
                 <span>
                   <FormattedMessage
@@ -144,7 +144,7 @@ class AppMenu extends Component {
 
             <Div className="h-0 m-pt25em0em overflow-hidden border-top-1" backgroundStyled={application.mode.primary}/>
 
-            <Button className="bottom-border-radius p-10px clickable" onClick={() => this.toggleSettings()} transitionStyled={application.transitions.general} backgroundStyled={application.mode.primary} backgroundHoverStyled={application.theme.primaryQuarter}>
+            <Button className="bottom-border-radius p-10px clickable" onClick={() => this.toggleSettings()} transitionStyled={application.transitions.general} backgroundStyled={application.mode.primary} backgroundHoverStyled={application.mode.primaryQuarter}>
               <i className="fal fa-cog mr-5px"></i>
               <span>
                 <FormattedMessage

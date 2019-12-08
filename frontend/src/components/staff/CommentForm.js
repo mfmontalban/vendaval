@@ -112,7 +112,7 @@ class CommentForm extends Component {
               placeholder={replyPlaceholder}
               name="text"
               aria-label={replyLabel}
-              className="outer-shadow border-1 pl-10px pr-10px pt-10px min-w-200px"
+              className="outer-shadow border-1 pl-10px pr-10px pt-10px max-w-content-padding"
               value={this.state.text}
               onChange={this.onChange}
               backgroundStyled={errors.name ? `${application.theme.primary}`: `${application.transparent}`}

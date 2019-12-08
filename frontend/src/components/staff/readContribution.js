@@ -179,7 +179,7 @@ class Contribution extends Component {
         );
       }
 
-                  // <Div className="mt-neg5px ml-10px p-5px w-max-content d-flex flex-direction-row" colorStyled={application.theme.primaryThree}>
+                  // <Div className="mt-neg5px ml-10px p-5px min-w-max-content d-flex flex-direction-row" colorStyled={application.theme.primaryThree}>
                   //   <FormattedMessage
                   //     id="staff.published"
                   //     defaultMessage="published"
@@ -205,19 +205,19 @@ class Contribution extends Component {
             <Div className="d-flex justify-content-space-between align-items-center p-20px" backgroundStyled={application.mode.primaryHalf}>
               <div className="w-30 d-flex">
                 <Link className="w-40px ml-25" to={`/${staff}/${dashboard}`}>
-                  <Div className="d-flex justify-content-center align-items-center h-40px w-40px w-max-content border-radius-circle" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
+                  <Div className="d-flex justify-content-center align-items-center h-40px w-40px min-w-max-content border-radius-circle" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
                     <i className='ml-neg3px clickable fa-2x fas fa-chevron-left'></i>
                   </Div>
                 </Link>
               </div>
               <div className="w-30 d-flex justify-content-center">
-                {/* <Div className="w-max-content text-center" radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryHalf} fontSizeStyled={application.text.important}>
+                {/* <Div className="min-w-max-content text-center" radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryHalf} fontSizeStyled={application.text.important}>
                   <Div className="p-5px" backgroundStyled={application.mode.primaryThree} radiusStyled={application.settings.appRadiusTop}>{contribution.type}:</Div>
                   <div className="p-5px">{contribution.topic}</div>
                 </Div> */}
               </div>
               <div className="w-30 d-flex justify-content-flex-end">
-                <Button onClick={() => this.toggleList()} className="d-flex justify-content-center align-items-center h-40px w-40px w-max-content mr-25px border-radius-circle clickable" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
+                <Button onClick={() => this.toggleList()} className="d-flex justify-content-center align-items-center h-40px w-40px min-w-max-content mr-25px border-radius-circle clickable" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
                   <i className="fa-2x fal fa-ellipsis-v"></i>
                 </Button>
                 {listOpen &&
@@ -282,10 +282,10 @@ class Contribution extends Component {
               </div>
             </Div>
             <Div className="d-flex justify-content-center" heightStyled={application.settings.vientoCoverTitle}>
-              <H1 className="text-center p-5px w-max-content" radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryThree} fontSizeStyled={application.text.heading}>{contribution.title}</H1>
+              <H1 className="text-center p-5px min-w-max-content" radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryThree} fontSizeStyled={application.text.heading}>{contribution.title}</H1>
             </Div>
             <div className="d-flex justify-content-center">
-              <H2 className="text-center p-5px w-max-content" radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryThree} fontSizeStyled={application.text.description}>{contribution.description}</H2>
+              <H2 className="text-center p-5px min-w-max-content" radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryThree} fontSizeStyled={application.text.description}>{contribution.description}</H2>
             </div>
           </div>
           <Div className="z-900 d-flex justify-content-center overflow-hidden mt-neg40px" heightStyled={application.settings.vientoCoverBanner}>
@@ -341,7 +341,7 @@ class Contribution extends Component {
     }
 
     return (
-      <Div className="scroll-container bottom-outer-shadow ml-10px mr-10px pt-70px" heightStyled={`${application.settings.heightHero}`} backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
+      <Div className="scroll-container bottom-outer-shadow ml-10px mr-10px pt-70px scrollbar-width-none" heightStyled={`${application.settings.heightHero}`} backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
         {contributionContent}
       </Div>
     );

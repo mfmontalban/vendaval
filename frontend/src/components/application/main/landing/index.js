@@ -42,7 +42,7 @@ class Landing extends Component {
     }
 
     return (
-        <Div className="scroll-container bottom-outer-shadow ml-10px mr-10px pt-70px" heightStyled={`${application.settings.heightHero}`} backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
+        <Div className="scroll-container bottom-outer-shadow ml-10px mr-10px pt-70px scrollbar-width-none" heightStyled={`${application.settings.heightHero}`} backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
           <div className="h-100 position-relative">
             <div className="h-10 d-flex justify-content-space-around">
               <div className="position-relative">
@@ -63,8 +63,8 @@ class Landing extends Component {
             </div>
 
             <div className="h-25 d-flex justify-content-space-around mt-neg150px">
-              <div className="position-relative d-flex justify-content-space-around kite">
-                <SVG className="h-100 w-100 overflow-visible" preserveAspectRatio="xMidYMin slice" viewBox="0 0 100 100">
+              <div className="w-100 position-relative d-flex justify-content-space-around kite">
+                <SVG className="h-100 w-65 overflow-visible" preserveAspectRatio="xMidYMin slice" viewBox="0 0 100 100">
                   <defs>
                     <linearGradient id="linear1" x1="50%" y1="0%" x2="50%" y2="100%">
                       <stop offset="0%"   stopColor="rgba(255,0,255,1)"/>
@@ -79,9 +79,9 @@ class Landing extends Component {
                       <stop offset="100%" stopColor="rgba(255,255,0,1)"/>
                     </linearGradient>
                   </defs>
-                  <Vlogo1 fill="url(#linear1)" />
-                  <Vlogo3 fill="url(#linear3)" />
-                  <Vlogo2 fill="url(#linear2)" />
+                  <Vlogo1 className="max-h-100" fill="url(#linear1)" />
+                  <Vlogo3 className="max-h-100" fill="url(#linear3)" />
+                  <Vlogo2 className="max-h-100" fill="url(#linear2)" />
                 </SVG>
               </div>
             </div>

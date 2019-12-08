@@ -217,35 +217,35 @@ class Contribution extends Component {
             <Div className="d-flex justify-content-space-between align-items-center p-20px" backgroundStyled={application.mode.primaryHalf}>
               <div className="w-30 d-flex">
                 <Link className="w-40px ml-25" to={`/${winds}`}>
-                  <Div className="d-flex justify-content-center align-items-center h-40px w-40px w-max-content border-radius-circle" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
+                  <Div className="d-flex justify-content-center align-items-center h-40px w-40px min-w-max-content border-radius-circle" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
                     <i className='ml-neg3px clickable fa-2x fas fa-chevron-left'></i>
                   </Div>
                 </Link>
               </div>
               <div className="w-30 d-flex justify-content-center">
-                {/* <Div className="w-max-content text-center" radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryHalf} fontSizeStyled={application.text.important}>
+                {/* <Div className="min-w-max-content text-center" radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryHalf} fontSizeStyled={application.text.important}>
                   <Div className="p-5px" backgroundStyled={application.mode.primaryThree} radiusStyled={application.settings.appRadiusTop}>{viento.type}:</Div>
                   <div className="p-5px">{viento.topic}</div>
                 </Div> */}
               </div>
-              <div className="w-30 d-flex justify-content-center">
-                <Div className="p-5px w-max-content" radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryThree}>
+              <div className="w-30 d-flex justify-content-center min-w-max-content">
+                <Div className="p-5px min-w-max-content" radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryThree}>
                   <FormattedRelative value={viento.createdAt} />
                 </Div>
               </div>
             </Div>
             <Div className="d-flex justify-content-center" heightStyled={application.settings.vientoCoverTitle}>
-              <H1 className="text-center p-5px w-max-content" radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryThree} fontSizeStyled={application.text.heading}>{viento.title}</H1>
+              <H1 className="text-center p-5px min-w-max-content" radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryThree} fontSizeStyled={application.text.heading}>{viento.title}</H1>
             </Div>
             <div className="d-flex justify-content-center">
-              <H2 className="text-center p-5px w-max-content" radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryThree} fontSizeStyled={application.text.description}>{viento.description}</H2>
+              <H2 className="text-center p-5px min-w-max-content" radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryThree} fontSizeStyled={application.text.description}>{viento.description}</H2>
             </div>
           </div>
           <Div className="z-900 d-flex justify-content-center overflow-hidden mt-neg40px" heightStyled={application.settings.vientoCoverBanner}>
             <img className="filter-blur min-w-100 object-fit-cover" alt="banner" src={`/api/staff/files/${viento.bannerLg}`} />
           </Div>
           <div className="position-relative d-flex justify-content-center">
-            <Div name="infoSection" onClick={this.handleScrollToContent} className="max-w-content text-center call-to-action d-flex justify-content-center align-items-center h-48px mt-neg170px border-bottom-0 border-radius-circle" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
+            <Div name="infoSection" onClick={this.handleScrollToContent} className="min-w-max-content text-center call-to-action d-flex justify-content-center align-items-center h-48px mt-neg170px border-bottom-0 border-radius-circle" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
               <i className='clickable p-10px fa-2x fas fa-arrow-alt-down'></i>
             </Div>
           </div>
@@ -257,7 +257,7 @@ class Contribution extends Component {
             </Link>
             <div className="d-flex flex-direction-column ml-10px">
               <Link className="noUnderline" to={`/${community}/${viento.profile.handle}`}>
-                <Div className="noUnderline w-max-content p-5px" transitionStyled={application.transitions.general} radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryThree} backgroundHoverStyled={application.theme.primary} colorStyled={application.theme.primaryThree} colorHoverStyled={application.mode.primary} fontSizeStyled={application.text.important}>
+                <Div className="noUnderline min-w-max-content p-5px" transitionStyled={application.transitions.general} radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryThree} backgroundHoverStyled={application.theme.primary} colorStyled={application.theme.primaryThree} colorHoverStyled={application.mode.primary} fontSizeStyled={application.text.important}>
                   {viento.user.name}
                   <br />
                 </Div>
@@ -265,16 +265,16 @@ class Contribution extends Component {
             </div>
           </Div>
           <Div className="d-flex justify-content-space-around position-relative flex-direction-row align-items-center mt-neg45px min-h-70px" heightStyled={application.settings.vientoCoverFooter}>
-            <div className="w-max-content clickable">
+            <div className="min-w-max-content clickable">
               {likesActivity}
             </div>
-            <div className="w-max-content clickable">
-              <Div className="p-5px noUnderline post-section-heading d-flex flex-direction-row align-items-center w-max-content" colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`} onClick={this.handleScrollToElement}>
+            <div className="min-w-max-content clickable">
+              <Div className="p-5px noUnderline post-section-heading d-flex flex-direction-row align-items-center min-w-max-content" colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`} onClick={this.handleScrollToElement}>
                 <i className="p-10px fa-2x fas fa-share-square"></i> 
                 <p>Share</p>
               </Div>
             </div>
-            <div className="w-max-content clickable">
+            <div className="min-w-max-content clickable">
               {commentsActivity}
             </div>
           </Div>
@@ -291,7 +291,7 @@ class Contribution extends Component {
     } 
 
     return (
-      <Div className="scroll-container bottom-outer-shadow ml-10px mr-10px pt-70px" heightStyled={`${application.settings.heightHero}`} backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
+      <Div className="scroll-container bottom-outer-shadow ml-10px mr-10px pt-70px scrollbar-width-none" heightStyled={`${application.settings.heightHero}`} backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
         {vientoContent}
       </Div>
     );

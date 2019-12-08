@@ -9,6 +9,10 @@ import {
   SET_THEME,
   SET_MODE,
 
+  SET_SORTS_AUTHORUP,
+  SET_SORTS_AUTHORDOWN,
+  SET_SORTS_TITLEUP,
+  SET_SORTS_TITLEDOWN,
   SET_SORTS_RECENTNEWEST,
   SET_SORTS_RECENTOLDEST,
 
@@ -220,6 +224,26 @@ export default function(state = initialState, action) {
           Sun: 'rgba(184, 172, 23, 1)',
           Earth: 'rgba(55, 184, 23, 1)',
         }
+      };
+    case SET_SORTS_AUTHORUP:
+      return {
+        ...state,
+        sortBy: action.payload
+      };
+    case SET_SORTS_AUTHORDOWN:
+      return {
+        ...state,
+        sortBy: action.payload
+      };
+    case SET_SORTS_TITLEUP:
+      return {
+        ...state,
+        sortBy: action.payload
+      };
+    case SET_SORTS_TITLEDOWN:
+      return {
+        ...state,
+        sortBy: action.payload
       };
     case SET_SORTS_RECENTNEWEST:
       return {

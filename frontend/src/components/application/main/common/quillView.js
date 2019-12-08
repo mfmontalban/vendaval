@@ -28,7 +28,7 @@ class MyComponent extends React.Component {
   render() {
 
     return (
-      <div>
+      <div className="scrollbar-width-none">
         <CustomToolbar />
         <ReactQuill
         ref={(el) => { this.reactQuillRef = el }}

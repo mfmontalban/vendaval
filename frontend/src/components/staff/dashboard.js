@@ -63,7 +63,7 @@ class Staff extends Component {
         );
 
         content = (
-          <Div className="scroll-container" heightStyled={application.settings.dashboardContributions}>
+          <Div className="scroll-container scrollbar-width-none" heightStyled={application.settings.dashboardContributions}>
             {dashboardContent}
           </Div>
         );
@@ -72,7 +72,7 @@ class Staff extends Component {
         dashboardContent = (<tr></tr>);
 
         content = (
-          <Div className="scroll-container" heightStyled={application.settings.dashboardContributions}>
+          <Div className="scroll-container scrollbar-width-none" heightStyled={application.settings.dashboardContributions}>
             {dashboardContent}
           </Div>
         );
@@ -80,7 +80,7 @@ class Staff extends Component {
     }
 
     return (
-      <Div className="scroll-container bottom-outer-shadow pt-70px ml-10px mr-10px" heightStyled={`${application.settings.heightHero}`} backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
+      <Div className="scroll-container bottom-outer-shadow pt-70px ml-10px mr-10px scrollbar-width-none" heightStyled={`${application.settings.heightHero}`} backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
         <H1 className="text-center p-5px" radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryThree} fontSizeStyled={application.text.heading}>
           <FormattedMessage
             id="staff.header"

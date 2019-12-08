@@ -156,7 +156,7 @@ class VientoItem extends Component {
     }
 
     return (
-      <Div className="viento-container mt-10px ml-auto mr-auto mb-10px" backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} borderStyled={`${application.settings.appRadius}`} radiusStyled={`${application.settings.appRadius}`}>
+      <Div className="viento-container mt-10px ml-auto mr-auto" backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} borderStyled={`${application.settings.appRadius}`} radiusStyled={`${application.settings.appRadius}`}>
           <div className="w-100 d-flex flex-row justify-content-space-between align-items-end">
             <div className="p-5px text-left">
               {/* <div className="post-section-heading">{viento.type}: {viento.topic}</div> */}
@@ -189,7 +189,7 @@ class VientoItem extends Component {
               <img className="h-150px w-100 banner ml-auto mr-auto" alt="banner" src={`/api/staff/files/${viento.bannerSm}`} />
             </Link>
           </div>
-          <div className="w-max-content justify-content-between text-left mt-neg140px ml-10px z-100 position-absolute">
+          <div className="w-max-content justify-content-between text-left mt-neg140px ml-10px z-100 position-relative">
             <Link className="w-100 h-150px noUnderline" to={`/vientos/${viento._id}`}>
               <Div className="w-max-content p-5px noUnderline" transitionStyled={`${settings.appTransition}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadius}`}>
                 {viento.title}
@@ -200,7 +200,7 @@ class VientoItem extends Component {
               </Div>
             </Link>
           </div>
-          <div className="w-100 d-flex flex-row justify-content-space-between align-items-end">
+          <div className="w-100 d-flex flex-row justify-content-space-between align-items-end mt-64px">
             <div className="d-flex flex-wrap justify-content-space-between w-100">
               {likesActivity}
               <div className="post-time-heading">
