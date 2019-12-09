@@ -63,7 +63,7 @@ class Landing extends Component {
             </div>
 
             <div className="h-25 d-flex justify-content-space-around mt-neg150px">
-              <div className="w-100 position-relative d-flex justify-content-space-around kite">
+              <div className="w-75 position-relative d-flex justify-content-space-around kite">
                 <SVG className="h-100 w-65 overflow-visible" preserveAspectRatio="xMidYMin slice" viewBox="0 0 100 100">
                   <defs>
                     <linearGradient id="linear1" x1="50%" y1="0%" x2="50%" y2="100%">

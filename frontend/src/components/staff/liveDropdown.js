@@ -143,7 +143,7 @@ class LiveDropDown extends Component {
 
     if (admin.staff == "reviewer" || admin.staff == "manager" || admin.staff == "webmaster") {
       statusSection = (
-        <Button onClick={() => this.toggleList()} className="max-w-content p-10px" transitionStyled={application.transitions.general} backgroundStyled={application.transparent} colorStyled={application.theme.primary} backgroundHoverStyled={application.theme.primary} colorHoverStyled={application.mode.primary} radiusStyled={`${application.settings.appRadius}`}>
+        <Button onClick={() => this.toggleList()} className="max-w-content p-10px border-1" transitionStyled={application.transitions.general} backgroundStyled={application.transparent} colorStyled={application.theme.primary} backgroundHoverStyled={application.theme.primary} colorHoverStyled={application.mode.primary} radiusStyled={`${application.settings.appRadius}`}>
           {currentState}
         </Button>
         )
