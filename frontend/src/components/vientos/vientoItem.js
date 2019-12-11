@@ -156,7 +156,7 @@ class VientoItem extends Component {
     }
 
     return (
-      <Div className="viento-container mt-10px ml-auto mr-auto" backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} borderStyled={`${application.settings.appRadius}`} radiusStyled={`${application.settings.appRadius}`}>
+      <Div className="viento-container m-10px" backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} borderStyled={`${application.settings.appRadius}`} radiusStyled={`${application.settings.appRadius}`}>
           <div className="w-100 d-flex flex-row justify-content-space-between align-items-end">
             <div className="p-5px text-left">
               {/* <div className="post-section-heading">{viento.type}: {viento.topic}</div> */}

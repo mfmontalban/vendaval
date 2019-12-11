@@ -137,8 +137,8 @@ class Vientos extends Component {
               
 
         content = (
-          <Div className="d-flex flex-wrap scroll-container mt-10px outer-shadow ml-10px mr-10px vientos-items scrollbar-width-none " backgroundStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
-            <div className="pt-10px pb-10px ml-auto mr-auto">
+          <Div className="scroll-container mt-10px outer-shadow ml-10px mr-10px vientos-items scrollbar-width-none " backgroundStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
+            <div className="d-flex flex-wrap justify-content-center pt-10px pb-10px ml-auto mr-auto">
               {dashboardContent}
             </div>
           </Div>
