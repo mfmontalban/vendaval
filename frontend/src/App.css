@@ -938,8 +938,8 @@ template
 .ql-container.ql-snow {
   overflow: scroll;
   scrollbar-width: none;
-  max-height:500px;
-  min-height:500px;
+  max-height:calc(100vh - 130px);
+  min-height:calc(100vh - 130px);
 }
 
 .solid {
