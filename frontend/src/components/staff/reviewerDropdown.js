@@ -28,17 +28,19 @@ class ReviewerDropDown extends Component {
     let draft;
     let live;
 
-    if (this.props.contribution.status == "Draft") {
+    console.log(this.props.contribution.reviewer);
+
+    if (this.props.contribution.reviewer !== undefined || null) {
 
       if (this.props.application.language == "es") {
         this.setState({
-          currentState: "Borrador",
+          currentState: this.props.contribution.reviewer,
           draft: "Borrador",
           live: "Vivo"
         });
       } else {
         this.setState({
-          currentState: "Draft",
+          currentState: this.props.contribution.reviewer,
           draft: "Draft",
           live: "Live"
         });
@@ -46,13 +48,13 @@ class ReviewerDropDown extends Component {
     } else {
       if (this.props.application.language == "es") {
         this.setState({
-          currentState: "Vivo",
+          currentState: "No Asignado",
           draft: "Borrador",
           live: "Vivo"
         });
       } else {
         this.setState({
-          currentState: "Live",
+          currentState: "Unassigned",
           draft: "Draft",
           live: "Live"
         });
@@ -67,13 +69,13 @@ class ReviewerDropDown extends Component {
 
     if (this.props.application.language !== prevProps.application.language) {
       if (this.props.application.language == "es") {
-        if (this.props.contribution.status == "Draft") {
+        if (this.props.contribution.reviewer !== undefined || null) {
           this.setState({
-            currentState: "Borrador",
+            currentState: this.props.contribution.reviewer,
           });
         } else {
           this.setState({
-            currentState: "Vivo",
+            currentState: "No Asignado",
           });
         }
         this.setState({
@@ -81,13 +83,13 @@ class ReviewerDropDown extends Component {
           live: "Vivo"
         });
       } else {
-        if (this.props.contribution.status == "Draft") {
+        if (this.props.contribution.reviewer !== undefined || null) {
           this.setState({
-            currentState: "Draft",
+            currentState: this.props.contribution.reviewer,
           });
         } else {
           this.setState({
-            currentState: "Live",
+            currentState: "Unassigned",
           });
         }
         this.setState({

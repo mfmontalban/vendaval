@@ -125,6 +125,7 @@ export default {
         'register.forgotLink': `Didn't get your code? Follow this link to resend it`,
 
         'staff.header': `Contributions`,
+        'staff.reviewer': `Reviewer`,
         'staff.status': `Status`,
         'staff.Live': `Live`,
         'staff.Draft': `Draft`,
@@ -276,6 +277,7 @@ export default {
         'register.forgotLink': `No recibiste tu codigo? Siga este enlace para mandarlo de nuevo`,
 
         'staff.header': `Contribuciónes`,
+        'staff.reviewer': `Crítico`,
         'staff.status': `Estado`,
         'staff.Draft': `Borrador`,
         'staff.Live': `Vivo`,

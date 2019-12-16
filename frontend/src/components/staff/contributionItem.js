@@ -12,6 +12,7 @@ import Button from '../application/main/common/styled/button';
 import Dropdown from '../application/main/common/styled/dropdown';
 import DropdownDivider from '../application/main/common/styled/dropdownDivider';
 
+import ReviewerDropDown from './reviewerDropdown';
 import LiveDropDown from './liveDropdown';
 
 class ContributionItem extends Component {
@@ -73,6 +74,7 @@ class ContributionItem extends Component {
     let view;
     let edit;
     let deleteLink;
+    let reviewer;
 
     if (application.language === 'es') {
       community = 'communidad';
@@ -86,72 +88,24 @@ class ContributionItem extends Component {
       deleteLink = 'Delete';
     }
 
+    if (contribution.reviewer !== undefined || "" || null) {
+      console.log(contribution.reviewer);
+      reviewer = (
+        <Div className="p-5px ml-auto mr-auto" transitionStyled={application.transitions.general} colorStyled={application.theme.primary}>
+          {contribution.reviewer}
+        </Div>
+      )
+    } else {
+      reviewer = (
+        <Div className="p-5px ml-auto mr-auto" transitionStyled={application.transitions.general} colorStyled={application.theme.primary}>
+          Unassigned
+        </Div>
+      )
+    }
+
     return (
         <Div className="d-flex flex-direction-row text-center text-center align-items-center" transitionStyled={application.transitions.general} backgroundHoverStyled={application.theme.primaryEighter}>
-          <div className="d-flex justify-content-center min-w-25-app p-10px">
-            <Button onClick={() => this.toggleList()} className="w-max-content p-6px13px border-radius-circle" transitionStyled={application.transitions.general} backgroundStyled={application.transparent} backgroundHoverStyled={application.theme.primary} colorStyled={application.theme.primary} colorHoverStyled={application.mode.primary}>
-              <i className="fal fa-ellipsis-v"></i>
-            </Button>
-          </div>
-          {listOpen &&
-              <Dropdown ref={this.setWrapperRef} className="position-absolute mt-70px ml-13vw z-1005 d-flex flex-direction-column text-right outer-shadow" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
-                <Link className="noUnderline" to={`/staff/contribution/view/${contribution._id}`}>
-                  <Div
-                    onClick={this.onDeleteClick.bind(this, contribution.id)}
-                    type="button"
-                    className="h-max-content p-10px clickable text-left"
-                    transitionStyled={application.transitions.general}
-                    backgroundStyled={application.mode.primary}
-                    backgroundHoverStyled={application.theme.primaryQuarter}
-                    colorStyled={application.theme.primary}
-                    colorHoverStyled={application.theme.primary}
-                    radiusStyled={application.settings.appRadiusTop}
-                  >
-                    <i className="fas fa-search" />
-                    <FormattedMessage
-                      id="staff.view"
-                      defaultMessage="View"
-                    />
-                  </Div>
-                </Link>
-                <Link className="noUnderline" to={`/staff/contribution/edit/${contribution._id}`}>
-                  <Div
-                    onClick={this.onDeleteClick.bind(this, contribution.id)}
-                    type="button"
-                    className="h-max-content p-10px clickable text-left"
-                    transitionStyled={application.transitions.general}
-                    backgroundStyled={application.mode.primary}
-                    backgroundHoverStyled={application.theme.primaryQuarter}
-                    colorStyled={application.theme.primary}
-                    colorHoverStyled={application.theme.primary}
-                    >
-                    <i className="fas fa-pencil" />
-                    <FormattedMessage
-                      id="staff.edit"
-                      defaultMessage="Edit"
-                    />
-                  </Div>
-                </Link>
-                <DropdownDivider colorStyled={application.theme.primary} />
-                <Button
-                  onClick={this.onDeleteClick.bind(this, contribution.id)}
-                  type="button"
-                  className="h-max-content p-10px clickable text-left"
-                  transitionStyled={application.transitions.general}
-                  backgroundStyled={application.mode.primary}
-                  backgroundHoverStyled={application.theme.primaryQuarter}
-                  colorStyled={application.theme.primary}
-                  colorHoverStyled={application.theme.primary}
-                  radiusStyled={application.settings.appRadiusBottom}
-                >
-                  <i className="fas fa-times" />
-                  <FormattedMessage
-                    id="staff.delete"
-                    defaultMessage="Delete"
-                  />
-                </Button>
-              </Dropdown>
-          }
+          <ReviewerDropDown contribution={contribution}/>
 
           <LiveDropDown contribution={contribution}/>
 

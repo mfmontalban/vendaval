@@ -31,7 +31,10 @@ class Staff extends Component {
     let columnHeader = (
         <div className="d-flex flex-direction-row text-center">
           <Div className="w-25 p-10px" transitionStyled={application.transitions.general} backgroundStyled={application.theme.primaryQuarter} backgroundHoverStyled={application.theme.primary} colorHoverStyled={application.mode.primary}>
-            <i className="far fa-archive"></i>
+            <FormattedMessage
+              id="staff.reviewer"
+              defaultMessage="Reviewer"
+            />
           </Div>
           <Div className="w-25 p-10px clickable" transitionStyled={application.transitions.general} backgroundStyled={application.theme.primaryQuarter} backgroundHoverStyled={application.theme.primary} colorHoverStyled={application.mode.primary}>
             <FormattedMessage
