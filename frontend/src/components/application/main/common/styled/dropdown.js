@@ -10,7 +10,6 @@ const Div = styled.div `
     border-color: ${props => props.borderStyled};
     border-top-color: ${props => props.borderTopStyled};
     border-bottom-color: ${props => props.borderBottomStyled};
-    box-shadow: 0px 5px 50px ${props => props.boxShadowColorStyled};
     color: ${props => props.colorStyled};
     font-size: ${props => props.fontSizeStyled};
     padding: ${props => props.paddingStyled};
