@@ -358,8 +358,8 @@ textarea {
 }
 
 .min-w-25-app {
-  min-width:calc(25% - 80px);
-  width: 25%;
+  min-width:calc(25% - 20px);
+  max-width:calc(25% - 20px);
 }
 
 .min-w-100 {

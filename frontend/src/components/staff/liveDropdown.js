@@ -155,7 +155,7 @@ class LiveDropDown extends Component {
 
 
     return(
-      <div className="min-w-25-app d-flex justify-content-center">
+      <div className="min-w-25-app d-flex p-10px justify-content-center">
         {statusSection}
         {listOpen && 
           <Dropdown ref={this.setWrapperRef} className="mt-40px position-absolute z-1005 d-flex flex-direction-column text-left outer-shadow" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>

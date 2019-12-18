@@ -54,7 +54,7 @@ class ReviewerDropDown extends Component {
         });
       } else {
         this.setState({
-          currentState: "Unassigned",
+          currentState: "Not assigned",
           draft: "Draft",
           live: "Live"
         });
@@ -89,7 +89,7 @@ class ReviewerDropDown extends Component {
           });
         } else {
           this.setState({
-            currentState: "Unassigned",
+            currentState: "Not assigned",
           });
         }
         this.setState({
@@ -145,7 +145,7 @@ class ReviewerDropDown extends Component {
 
     if (admin.staff == "reviewer" || admin.staff == "manager" || admin.staff == "webmaster") {
       statusSection = (
-        <Button onClick={() => this.toggleList()} className="max-w-content p-10px" transitionStyled={application.transitions.general} backgroundStyled={application.transparent} colorStyled={application.theme.primary} backgroundHoverStyled={application.theme.primary} colorHoverStyled={application.mode.primary} radiusStyled={`${application.settings.appRadius}`}>
+        <Button onClick={() => this.toggleList()} className="max-w-content p-10px d-flex justify-content-center overflow-hidden border-1" transitionStyled={application.transitions.general} backgroundStyled={application.transparent} colorStyled={application.theme.primary} backgroundHoverStyled={application.theme.primary} colorHoverStyled={application.mode.primary} radiusStyled={`${application.settings.appRadius}`}>
           {currentState}
         </Button>
         )
@@ -157,7 +157,7 @@ class ReviewerDropDown extends Component {
 
 
     return(
-      <div className="min-w-25-app d-flex justify-content-center">
+      <div className="min-w-25-app d-flex p-10px justify-content-center">
         {statusSection}
         {listOpen && 
           <Dropdown ref={this.setWrapperRef} className="mt-40px position-absolute z-1005 d-flex flex-direction-column text-left outer-shadow" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
