@@ -90,6 +90,7 @@ router.get(
     const errors = {};
 
     Contribution.find({ user: req.user.id })
+      .populate('reviewer', ['name'])
       .then(contributions => {
         if (!contributions) {
           errors.noprofile = 'There are no profiles';
@@ -97,6 +98,27 @@ router.get(
         }
 
         res.json(contributions);
+      })
+      .catch(err => res.status(404).json({ profile: 'There are no profiles' }));
+});
+
+// @route   GET api/staff/readStaffReviewers
+// @desc    readStaffReviewers
+// @access  Private
+router.get(
+  '/readStaffReviewers',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const errors = {};
+
+    User.find({ $or: [{'staff': 'reviewer'}, {'staff': 'manager'}] })
+      .then(users => {
+        if (!users) {
+          // errors.noprofile = 'There are no profiles';
+          // return res.status(404).json(errors);
+        }
+
+        res.json(users);
       })
       .catch(err => res.status(404).json({ profile: 'There are no profiles' }));
 });
@@ -302,6 +324,36 @@ router.post(
             ).then(contribution => res.json(contribution));
           }
         });
+      } else {
+        errors.title = 'No contribution exists';
+        res.status(400).json(errors);
+      }
+    });
+  }
+);
+
+// @route   POST api/staff/contributionReviewer/:id
+// @desc    Edit contribution reviewer
+// @access  Private
+router.post(
+  '/contributionReviewer/:id',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+
+    // Get fields
+    const contributionFields = {};
+    contributionFields.user = req.user.id;
+    if (req.body.reviewer) contributionFields.reviewer = new ObjectID(req.body.reviewer);
+
+    console.log(contributionFields)
+    
+    Contribution.findOne({_id: req.params.id}).then(contribution => {
+      if (contribution) {
+        // Update Profile
+        Contribution.findOneAndUpdate(
+          { _id: req.params.id },
+          { $set: contributionFields }
+        ).then(contribution => res.json(contribution));
       } else {
         errors.title = 'No contribution exists';
         res.status(400).json(errors);

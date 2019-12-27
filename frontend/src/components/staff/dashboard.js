@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { getContributions } from '../../actions/staffActions';
+import { getContributions, readStaffReviewers } from '../../actions/staffActions';
 import {FormattedMessage} from 'react-intl';
 
 import Spinner from '../application/main/common/spinner';
@@ -17,6 +17,7 @@ class Staff extends Component {
 
   componentDidMount() {
     this.props.getContributions();
+    this.props.readStaffReviewers();
   }
 
   render() {
@@ -118,6 +119,7 @@ class Staff extends Component {
 
 Staff.propTypes = {
   getContributions: PropTypes.func.isRequired,
+  readStaffReviewers: PropTypes.func.isRequired,
   application: PropTypes.object.isRequired,
   staff: PropTypes.object.isRequired
 };
@@ -127,4 +129,4 @@ const mapStateToProps = state => ({
   staff: state.staff
 });
 
-export default connect(mapStateToProps, { getContributions })(Staff);
+export default connect(mapStateToProps, { getContributions, readStaffReviewers })(Staff);

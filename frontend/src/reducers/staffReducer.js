@@ -2,11 +2,13 @@ import {
   GET_CONTRIBUTION,
   GET_CONTRIBUTIONS,
   CONTRIBUTIONS_LOADING,
+  READ_STAFF_REVIEWERS,
 } from '../actions/types';
 
 const initialState = {
   contribution: null,
   contributions: null,
+  reviewers: [],
   loading: false
 };
 
@@ -28,6 +30,11 @@ export default function(state = initialState, action) {
         ...state,
         contributions: action.payload,
         loading: false
+      };
+    case READ_STAFF_REVIEWERS:
+      return {
+        ...state,
+        reviewers: action.payload,
       };
     default:
       return state;

@@ -83,7 +83,7 @@ class CommentItem extends Component {
       likes = '';
     }
 
-    if (comment.user.profile.avatarSm > 1) {
+    if (comment.user.profile.avatarSm) {
       profPic = (
         <img
           className="h-100 w-100 outer-shadow-double border-radius-circle object-fit-cover"

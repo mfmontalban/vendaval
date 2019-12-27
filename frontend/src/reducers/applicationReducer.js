@@ -123,7 +123,7 @@ const initialState = {
     themeSecondaryText: 'rgba(223, 223, 223, 1)',
     themeSecondaryTextHalf: 'rgba(255, 255, 255, 1)',
 
-    dashboardContributions: `calc(100vh - ${heightHeader} - 70px - 47px - 38px - 74px - 58px)`,
+    dashboardContributions: `calc(100vh - ${heightHeader} - 70px - 47.4333px - 38.7167px - 74.7167px - 58px)`,
 
     vientoCoverTitle: `calc(100vh - 73px - 75px - ${heightHeader} - ${appPadding} - 70px )`,
     vientoCoverBanner: `calc(100vh - ${heightHeader} - ${appPadding} - 70px - 70px)`,
@@ -221,7 +221,7 @@ export default function(state = initialState, action) {
           primaryEighter: action.payload[6],
           Aqua: 'rgba(23, 162, 184, 1)',
           Fire: 'rgba(184, 23, 23, 1)',
-          Sun: 'rgba(184, 172, 23, 1)',
+          Sun: 'rgba(195, 200, 42, 1)',
           Earth: 'rgba(55, 184, 23, 1)',
         }
       };

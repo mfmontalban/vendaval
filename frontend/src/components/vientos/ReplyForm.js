@@ -83,12 +83,12 @@ class ReplyForm extends Component {
           defaultMessage="Leave a reply:"
         />
         <form onSubmit={this.onSubmit}>
-          <Div className="mt-10px" backgroundStyled={application.mode.primary} colorStyled={application.theme.primary}>
+          <Div className="mt-10px w-50" backgroundStyled={application.mode.primary} colorStyled={application.theme.primary}>
             <InputArea
               placeholder={replyPlaceholder}
               name="text"
               aria-label={replyLabel}
-              className="outer-shadow border-1 pl-10px pr-10px pt-10px min-w-200px"
+              className="outer-shadow border-1 pl-10px pr-10px pt-10px w-100"
               value={this.state.text}
               onChange={this.onChange}
               backgroundStyled={errors.text ? `${application.theme.primary}`: `${application.transparent}`}

@@ -86,7 +86,7 @@ class ModalTheme extends Component {
                 defaultMessage="Fire"
               />
             </Button>
-            <Button onClick={(e) => {this.updateTheme('184', '172', '23', 'Sun'); this.toggleThemePicker()}} className="p-10px text-right" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.Sun}`} type="button">
+            <Button onClick={(e) => {this.updateTheme('195', '200', '42', 'Sun'); this.toggleThemePicker()}} className="p-10px text-right" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.Sun}`} type="button">
               <FormattedMessage
                 id="settings.Sun"
                 defaultMessage="Sun"

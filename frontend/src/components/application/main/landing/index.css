@@ -40,6 +40,10 @@
   position: absolute;
 }
 
+.landingMotto {
+  text-shadow: 2px 2px 4px #000000;
+}
+
 .vh-100 {
   min-height:calc(100vh - 105px);
 }
@@ -85,11 +89,6 @@
   width: 40vw;
   bottom: 125px;
   margin-left: 30vw;
-}
-
-.hero-message-container {
-  width: 75vw;
-  margin-left: 12.5vw;
 }
 
 .call-to-action {

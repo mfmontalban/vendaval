@@ -1,8 +1,8 @@
 export default {
     en: {
 
-        'landing.heroMessage': '<h1 class="font-normal"><i>Winds</i> of <strong>Change</strong></h1>',
-        'landing.heroAction': '<div className="text">Explore</div>',
+        'landing.heroMessage': '<h1 class="font-family-helvetica position-relative"><i>Winds</i> of <strong>Change</strong></h1>',
+        'landing.heroAction': '<div class="text-x-large font-family-helvetica position-relative">Explore</div>',
         'landing.aboutMain': `An international collective driving change around the World`,
         'landing.aboutSecondary': `Our mission is to empower, motivate, and co-create with communities and people interested in global change. To achieve this mission, we have established this innovative platform that brings together diverse people around the world to connect and share their experiences. Connecting neighboring creators and collaborators or from different parts of the world`,
         'landing.featuresTitle1': `Experience`,
@@ -151,8 +151,8 @@ export default {
     },
     es: {
 
-        'landing.heroMessage': '<h1 class="display-4"><i>Vientos</i> de <strong>Cambio</strong></h1>',
-        'landing.heroAction': '<div className="text">Explora</div>',
+        'landing.heroMessage': '<h1 class="font-family-helvetica position-relative"><i>Vientos</i> de <strong>Cambio</strong></h1>',
+        'landing.heroAction': '<div class="text-x-large font-family-helvetica position-relative">Explora</div>',
         'landing.aboutMain': `Un colectivo internacional impulsando cambios alrededor del Mundo`,
         'landing.aboutSecondary': `Nuestra Misión es empoderar, motivar, y co-crear con comunidades y personas interesadas en los cambios globales. Vendaval es una innovadora plataforma que une gentes diversas alrededor del mundo para compartir sus experiencias, conectando a creadores y colaboradores vecinos o de diferentes partes del mundo`,
         'landing.featuresTitle1': `Experienciar`,

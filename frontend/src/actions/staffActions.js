@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import {
   READ_APPLICATION_ERRORS,
+  READ_STAFF_REVIEWERS,
   GET_CONTRIBUTION,
   GET_CONTRIBUTIONS,
   CONTRIBUTIONS_LOADING
@@ -153,6 +154,44 @@ export const updateStatus = (id, status, history) => dispatch => {
         payload: {}
       })
     );
+};
+
+// Update contribution status
+export const updateReviewer = (id, status, history) => dispatch => {
+  dispatch(setContributionsLoading());
+  axios
+    .post(`/api/staff/contributionReviewer/${id}`, status)
+    .then(res =>{
+      history.push('/staff/dashboard');
+      dispatch({
+        type: GET_CONTRIBUTIONS,
+        payload: res.data
+      });
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_CONTRIBUTIONS,
+        payload: {}
+      })
+    );
+};
+
+// Retrieve title results
+export const readStaffReviewers = () => dispatch => {
+  axios
+    .get('/api/staff/readStaffReviewers')
+    .then(res => {
+      dispatch({
+        type: READ_STAFF_REVIEWERS,
+        payload: res.data
+      });
+    })
+    .catch(err =>{
+      dispatch({
+        type: READ_STAFF_REVIEWERS,
+        payload: []
+      });
+    });
 };
 
 // Delete contribution

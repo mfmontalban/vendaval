@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-
-import { updateStatus } from '../../actions/staffActions';
+import { Link } from 'react-router-dom';
 
 import {FormattedMessage} from 'react-intl';
 
+import { updateReviewer } from '../../actions/staffActions';
+
+import Div from '../application/main/common/styled/div'
 import Button from '../application/main/common/styled/button'
 import Dropdown from '../application/main/common/styled/dropdown'
 
@@ -25,38 +27,19 @@ class ReviewerDropDown extends Component {
 
   componentDidMount = () => {
     let currentState;
-    let draft;
-    let live;
-
-    console.log(this.props.contribution.reviewer);
 
     if (this.props.contribution.reviewer !== undefined || null) {
-
-      if (this.props.application.language == "es") {
-        this.setState({
-          currentState: this.props.contribution.reviewer,
-          draft: "Borrador",
-          live: "Vivo"
-        });
-      } else {
-        this.setState({
-          currentState: this.props.contribution.reviewer,
-          draft: "Draft",
-          live: "Live"
-        });
-      }
+      this.setState({
+        currentState: this.props.contribution.reviewer.name
+      });
     } else {
       if (this.props.application.language == "es") {
         this.setState({
-          currentState: "No Asignado",
-          draft: "Borrador",
-          live: "Vivo"
+          currentState: "No Asignado"
         });
       } else {
         this.setState({
-          currentState: "Not assigned",
-          draft: "Draft",
-          live: "Live"
+          currentState: "Not assigned"
         });
       }
     }
@@ -64,38 +47,22 @@ class ReviewerDropDown extends Component {
 
   componentDidUpdate = (prevProps, prevState) => {
     let currentState;
-    let draft;
-    let live;
 
     if (this.props.application.language !== prevProps.application.language) {
-      if (this.props.application.language == "es") {
-        if (this.props.contribution.reviewer !== undefined || null) {
-          this.setState({
-            currentState: this.props.contribution.reviewer,
-          });
-        } else {
-          this.setState({
-            currentState: "No Asignado",
-          });
-        }
+      if (this.props.contribution.reviewer !== undefined || null) {
         this.setState({
-          draft: "Borrador",
-          live: "Vivo"
+          currentState: this.props.contribution.reviewer.name,
         });
       } else {
-        if (this.props.contribution.reviewer !== undefined || null) {
+        if (this.props.application.language == "es") {
           this.setState({
-            currentState: this.props.contribution.reviewer,
+            currentState: "No Asignado"
           });
         } else {
           this.setState({
-            currentState: "Not assigned",
+            currentState: "Not assigned"
           });
         }
-        this.setState({
-          draft: "Draft",
-          live: "Live"
-        });
       }
     }
   }
@@ -138,10 +105,13 @@ class ReviewerDropDown extends Component {
   }
 
   render(){
-    const { admin, application, contribution } = this.props
-    const { listOpen, currentState, draft, live } = this.state
+    const { admin, application, contribution } = this.props;
+    const allReviewers = this.props.staff.reviewers;
+    const { listOpen, currentState, draft, live } = this.state;
 
     let statusSection;
+    let reviewersList;
+    let reviewerContainer;
 
     if (admin.staff == "reviewer" || admin.staff == "manager" || admin.staff == "webmaster") {
       statusSection = (
@@ -155,14 +125,34 @@ class ReviewerDropDown extends Component {
       )
     }
 
+    if (allReviewers.length > 0) {
+      reviewersList = allReviewers.map((reviewer, index) => {
+        if (index == 0) {
+          return (
+            <Button key={reviewer._id} transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} onClick={(e) => {this.props.updateReviewer(contribution._id, {'reviewer': `${reviewer._id}`}); this.toggleList();}} className="p-10px max-w-175px text-overflow-ellipsis text-center top-border-radius" type="button">{reviewer.name}</Button>
+          );
+        } else if (allReviewers.length - index == 1) {
+          return (
+            <Button key={reviewer._id} transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} onClick={(e) => {this.props.updateReviewer(contribution._id, {'reviewer': `${reviewer._id}`}); this.toggleList();}} className="p-10px max-w-175px text-overflow-ellipsis text-center bottom-border-radius" type="button">{reviewer.name}</Button>
+          );
+        } else {
+          return (
+            <Button key={reviewer._id} transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} onClick={(e) => {this.props.updateReviewer(contribution._id, {'reviewer': `${reviewer._id}`}); this.toggleList();}} className="p-10px max-w-175px text-overflow-ellipsis text-center" type="button">{reviewer.name}</Button>
+          );
+        }
+      });
+    } else {
+      reviewersList = (
+        <Button transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} className="p-10px top-border-radius text-left" type="button">{currentState}</Button>
+      )
+    }
 
     return(
       <div className="min-w-25-app d-flex p-10px justify-content-center">
         {statusSection}
         {listOpen && 
           <Dropdown ref={this.setWrapperRef} className="mt-40px position-absolute z-1005 d-flex flex-direction-column text-left outer-shadow" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
-            <Button transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} onClick={(e) => {this.props.updateStatus(contribution._id, {'status': 'Draft'}); this.toggleList();}} className="p-10px top-border-radius text-left" type="button">{draft}</Button>
-            <Button transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} onClick={(e) => {this.props.updateStatus(contribution._id, {'status': 'Live'}); this.toggleList();}} className="p-10px bottom-border-radius text-left" type="button">{live}</Button>
+            {reviewersList}
           </Dropdown>
         }
       </div>
@@ -171,15 +161,17 @@ class ReviewerDropDown extends Component {
 }
 
 ReviewerDropDown.propTypes = {
-  updateStatus: PropTypes.func.isRequired,
+  updateReviewer: PropTypes.func.isRequired,
   admin: PropTypes.object.isRequired,
   application: PropTypes.object.isRequired,
-  contribution: PropTypes.object.isRequired
+  contribution: PropTypes.object.isRequired,
+  staff: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   admin: state.admin,
   application: state.application,
+  staff: state.staff
 });
 
-export default connect(mapStateToProps, { updateStatus })(withRouter(ReviewerDropDown));
+export default connect(mapStateToProps, { updateReviewer })(withRouter(ReviewerDropDown));

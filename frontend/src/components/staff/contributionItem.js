@@ -89,7 +89,6 @@ class ContributionItem extends Component {
     }
 
     if (contribution.reviewer !== undefined || "" || null) {
-      console.log(contribution.reviewer);
       reviewer = (
         <Div className="p-5px ml-auto mr-auto" transitionStyled={application.transitions.general} colorStyled={application.theme.primary}>
           {contribution.reviewer}
@@ -124,7 +123,7 @@ class ContributionItem extends Component {
             />
           </div>
           <div className="min-w-25-app p-10px">
-            <Link className="noUnderline" to={`/staff/contribution/view/${contribution._id}`}>
+            <Link className="noUnderline d-flex" to={`/staff/contribution/view/${contribution._id}`}>
               <Div className="p-5px border-bottom-1 ml-auto mr-auto text-overflow-ellipsis overflow-hidden" transitionStyled={application.transitions.general} colorStyled={application.theme.primary} borderBottomStyled={application.transparent} borderBottomHoverStyled={application.theme.primary}>
                 {contribution.title}
               </Div>

@@ -20,9 +20,58 @@ import './index.css';
 
 class Landing extends Component {
 
+  constructor(props){
+    super(props)
+    this.state = {
+      anchorTool: ''
+    }
+  }
+
   handleScrollToElement = (e) => {
-    let element = document.getElementById("main-content");
-    element.scrollIntoView({behavior: "smooth", block: "nearest", inline: "nearest"});
+    
+    if (this.state.anchorTool == "mt-70px") {
+      this.setState({
+        anchorTool: ""
+      }, () => {
+        let element = document.getElementById("main-content");
+        element.scrollIntoView({behavior: "smooth", block: "nearest", inline: "nearest"});
+        if (window.innerWidth < 480) {
+          window.scrollBy(0, -20);
+          this.setState({
+            anchorTool: "mt-70px"
+          });
+        } else if (window.innerWidth < 700) {
+          window.scrollBy(0, -20);
+          this.setState({
+            anchorTool: "mt-70px"
+          });
+        } else if (window.innerWidth < 920) {
+          window.scrollBy(0, -20);
+          this.setState({
+            anchorTool: "mt-70px"
+          });
+        }
+      });
+    } else {
+      let element = document.getElementById("main-content");
+      element.scrollIntoView({behavior: "smooth", block: "nearest", inline: "nearest"});
+      if (window.innerWidth < 480) {
+        window.scrollBy(0, -20);
+        this.setState({
+          anchorTool: "mt-70px"
+        });
+      } else if (window.innerWidth < 700) {
+        window.scrollBy(0, -20);
+        this.setState({
+          anchorTool: "mt-70px"
+        });
+      } else if (window.innerWidth < 920) {
+        window.scrollBy(0, -20);
+        this.setState({
+          anchorTool: "mt-70px"
+        });
+      }
+    }
   }
 
   handleScrollToElement2 = (e) => {
@@ -32,6 +81,7 @@ class Landing extends Component {
 
   render() {
     const { application } = this.props;
+    const { anchorTool } = this.state;
 
     let winds;
 
@@ -43,63 +93,71 @@ class Landing extends Component {
 
     return (
         <Div className="scroll-container bottom-outer-shadow ml-10px mr-10px pt-70px scrollbar-width-none" heightStyled={`${application.settings.heightHero}`} backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
-          <div className="h-100 position-relative">
-            <div className="h-10 d-flex justify-content-space-around">
-              <div className="position-relative">
-                <SVG preserveAspectRatio="xMidYMin slice" viewBox="0 0 100 100" fillStyled={`${application.theme.primaryHalf}`}><Sky /></SVG>
+          <div className="d-flex flex-direction-column h-100 position-relative overflow-hidden">
+            <div className="h-90 position-relative justify-content-flex-start">
+              <div className="h-10 d-flex justify-content-space-around">
+                <div className="position-relative">
+                  <SVG preserveAspectRatio="xMidYMin slice" viewBox="0 0 100 100" fillStyled={`${application.theme.primaryHalf}`}><Sky /></SVG>
+                </div>
+                <div className="position-relative">
+                  <SVG preserveAspectRatio="xMidYMin slice" viewBox="0 0 100 100" fillStyled={`${application.theme.primaryHalf}`}><Sky2 /></SVG>
+                </div>
               </div>
-              <div className="position-relative">
-                <SVG preserveAspectRatio="xMidYMin slice" viewBox="0 0 100 100" fillStyled={`${application.theme.primaryHalf}`}><Sky2 /></SVG>
+
+              <div className="h-45 d-flex justify-content-space-around overflow-hidden">
+                <div className="w-25 position-relative cloud">
+                  <SVG preserveAspectRatio="xMidYMin slice" viewBox="0 0 100 100" fillStyled={`${application.theme.primary}`}><Cloud /></SVG>
+                </div>
+                <div className="w-25 position-relative cloud cloud-1">
+                  <SVG className="mt-25px" preserveAspectRatio="xMidYMin slice" viewBox="0 0 100 100" fillStyled={`${application.theme.primary}`}><Cloud2 /></SVG>
+                </div>
               </div>
+
+              <div className="h-25 d-flex justify-content-space-around mt-neg100vh4">
+                <div className="w-75 min-w-500 position-relative d-flex justify-content-space-around kite">
+                  <SVG className="h-100 w-65 overflow-visible" preserveAspectRatio="xMidYMin slice" viewBox="0 0 100 100">
+                    <defs>
+                      <linearGradient id="linear1" x1="50%" y1="0%" x2="50%" y2="100%">
+                        <stop offset="0%"   stopColor="rgba(255,0,255,1)"/>
+                        <stop offset="100%" stopColor="rgba(0,255,255,1)"/>
+                      </linearGradient>
+                      <linearGradient id="linear2" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%"   stopColor="rgba(255,255,255,.5)"/>
+                        <stop offset="100%" stopColor="rgba(0,0,0,.75)"/>
+                      </linearGradient>
+                      <linearGradient id="linear3" x1="50%" y1="0%" x2="50%" y2="100%">
+                        <stop offset="0%"   stopColor="rgba(255,25,0,1)"/>
+                        <stop offset="100%" stopColor="rgba(255,255,0,1)"/>
+                      </linearGradient>
+                    </defs>
+                    <Vlogo1 className="max-h-100" fill="url(#linear1)" />
+                    <Vlogo3 className="max-h-100" fill="url(#linear3)" />
+                    <Vlogo2 className="max-h-100" fill="url(#linear2)" />
+                  </SVG>
+                </div>
+              </div>
+              <Div className="d-flex flex-direction-column justify-content-center text-center ml-auto mr-auto landingMotto" colorStyled={`${application.theme.primary}`}>
+                <FormattedHTMLMessage
+                  id="landing.heroMessage"
+                  defaultMessage="Winds of Change"
+                />
+              </Div>
             </div>
 
-            <div className="h-45 d-flex justify-content-space-around overflow-hidden">
-              <div className="position-relative cloud max-w-200px">
-                <SVG preserveAspectRatio="xMidYMin slice" viewBox="0 0 100 100" fillStyled={`${application.theme.primary}`}><Cloud /></SVG>
-              </div>
-              <div className="position-relative cloud cloud-1 max-w-200px">
-                <SVG className="mt-25px" preserveAspectRatio="xMidYMin slice" viewBox="0 0 100 100" fillStyled={`${application.theme.primary}`}><Cloud2 /></SVG>
-              </div>
-            </div>
-
-            <div className="h-25 d-flex justify-content-space-around mt-neg150px">
-              <div className="w-75 position-relative d-flex justify-content-space-around kite">
-                <SVG className="h-100 w-65 overflow-visible" preserveAspectRatio="xMidYMin slice" viewBox="0 0 100 100">
-                  <defs>
-                    <linearGradient id="linear1" x1="50%" y1="0%" x2="50%" y2="100%">
-                      <stop offset="0%"   stopColor="rgba(255,0,255,1)"/>
-                      <stop offset="100%" stopColor="rgba(0,255,255,1)"/>
-                    </linearGradient>
-                    <linearGradient id="linear2" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%"   stopColor="rgba(255,255,255,.5)"/>
-                      <stop offset="100%" stopColor="rgba(0,0,0,.75)"/>
-                    </linearGradient>
-                    <linearGradient id="linear3" x1="50%" y1="0%" x2="50%" y2="100%">
-                      <stop offset="0%"   stopColor="rgba(255,25,0,1)"/>
-                      <stop offset="100%" stopColor="rgba(255,255,0,1)"/>
-                    </linearGradient>
-                  </defs>
-                  <Vlogo1 className="max-h-100" fill="url(#linear1)" />
-                  <Vlogo3 className="max-h-100" fill="url(#linear3)" />
-                  <Vlogo2 className="max-h-100" fill="url(#linear2)" />
-                </SVG>
-              </div>
-            </div>
-            <Div className="position-relative text-center hero-message-container" colorStyled={`${application.theme.primary}`}>
-              <FormattedHTMLMessage
-                id="landing.heroMessage"
-                defaultMessage="Winds of Change"
-              />
-              <Div colorStyled={`${application.theme.primary}`} name="infoSection" className="call-to-action text-info" onClick={this.handleScrollToElement}>
+            <div className="h-10 mt-neg25px d-flex justify-content-flex-end">
+              <div name="infoSection" className="d-flex justify-content-center flex-direction-column ml-auto mr-auto max-w-min-content landingMotto clickable" onClick={this.handleScrollToElement}>
                 <FormattedHTMLMessage
                   id="landing.heroAction"
                   defaultMessage="Explore"
                 />
-                <div>&darr;</div>
-              </Div>
-            </Div>
+                <Div name="infoSection" className="ml-auto mr-auto max-w-min-content p-1px5px call-to-action landingMotto" onClick={this.handleScrollToElement} transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primaryQuarter}`} colorHoverStyled={`${application.theme.primary}`}>
+                  <i className="ml-auto mr-auto fal fa-chevron-down fa-2x"></i>
+                </Div>
+              </div>
+            </div>
           </div>
-          <Div id="main-content" className="position-relative pt-10px pl-10px pr-10px pb-20px" minHeightStyled={`${application.settings.heightLandingMain}`}  backgroundStyled={`${application.mode.primaryHover}`}>
+
+          <Div id="main-content" className={`position-relative pt-10px pl-10px pr-10px pb-20px ${anchorTool}`} minHeightStyled={`${application.settings.heightLandingMain}`}  backgroundStyled={`${application.mode.primaryHover}`}>
             <div className="about text-center">
               <h3>
                 <FormattedMessage
@@ -176,7 +234,7 @@ class Landing extends Component {
 
             <div className="d-flex justify-content-center">
               <Link to={`/${winds}`} className="noUnderline">
-                <Div className="p-10px text-bold text-x-large" onClick={this.handleScrollToElement2} transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.theme.primary}`} backgroundHoverStyled={`${application.theme.primaryHover}`} colorStyled={`${application.mode.primary}`} colorHoverStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadius}`}>
+                <Div className="p-10px text-bold text-center text-x-large" onClick={this.handleScrollToElement2} transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.theme.primary}`} backgroundHoverStyled={`${application.theme.primaryHover}`} colorStyled={`${application.mode.primary}`} colorHoverStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadius}`}>
                   <FormattedMessage
                     id="landing.endingNote"
                     defaultMessage="Start Exploring Now!"
