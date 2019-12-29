@@ -206,8 +206,16 @@ textarea {
   height:25vh;
 }
 
+.h-30 {
+  height:30%;
+}
+
 .h-35 {
   height:35%;
+}
+
+.h-40 {
+  height:40%;
 }
 
 .h-45 {
@@ -294,6 +302,10 @@ textarea {
   width:10%;
 }
 
+.w-15 {
+  width:15%;
+}
+
 .w-22p5 {
   width:22.5%;
 }
@@ -305,8 +317,13 @@ textarea {
 .w-30 {
   width:30%;
 }
+
 .w-33 {
   width:33.333%;
+}
+
+.w-35 {
+  width:35%;
 }
 
 .w-25vw {
@@ -600,6 +617,10 @@ textarea {
 
 .mt-neg100vh4 {
   margin-top: calc(-100vh / 4);
+}
+
+.mt-neg115px {
+  margin-top: -115px;
 }
 
 .mt-neg170px {

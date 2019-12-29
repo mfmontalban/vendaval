@@ -11,8 +11,12 @@ import {
 
   SET_SORTS_AUTHORUP,
   SET_SORTS_AUTHORDOWN,
+  SET_SORTS_REVIEWERUP,
+  SET_SORTS_REVIEWERDOWN,
   SET_SORTS_TITLEUP,
   SET_SORTS_TITLEDOWN,
+  SET_SORTS_STATUSUP,
+  SET_SORTS_STATUSDOWN,
   SET_SORTS_RECENTNEWEST,
   SET_SORTS_RECENTOLDEST,
 
@@ -85,6 +89,7 @@ const initialState = {
     widthHeader: `calc(100vw - ${appPadding} - ${appPadding})`,
 
     heightSettings: `60vh`,
+    heightDeleteModal: `30vh`,
     widthSettings: `calc(100vw - 40vw)`,
     marginLeftSettings: `20vw`,
     marginRightSettings: `20vw`,
@@ -235,12 +240,32 @@ export default function(state = initialState, action) {
         ...state,
         sortBy: action.payload
       };
+    case SET_SORTS_REVIEWERUP:
+      return {
+        ...state,
+        sortBy: action.payload
+      };
+    case SET_SORTS_REVIEWERDOWN:
+      return {
+        ...state,
+        sortBy: action.payload
+      };
     case SET_SORTS_TITLEUP:
       return {
         ...state,
         sortBy: action.payload
       };
     case SET_SORTS_TITLEDOWN:
+      return {
+        ...state,
+        sortBy: action.payload
+      };
+    case SET_SORTS_STATUSUP:
+      return {
+        ...state,
+        sortBy: action.payload
+      };
+    case SET_SORTS_STATUSDOWN:
       return {
         ...state,
         sortBy: action.payload

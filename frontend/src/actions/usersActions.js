@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import {
   READ_APPLICATION_ERRORS,
+  CLEAR_APPLICATION_ERRORS,
   GET_PROFILE,
   GET_PROFILES,
   PROFILE_LOADING,
@@ -123,11 +124,13 @@ export const getProfileByHandle = handle => dispatch => {
   dispatch(setProfileLoading());
   axios
     .get(`/api/profile/handle/${handle}`)
-    .then(res =>
-      dispatch({
-        type: GET_PROFILE,
-        payload: res.data
-      })
+    .then(res =>{
+        dispatch({
+          type: GET_PROFILE,
+          payload: res.data
+        });
+        dispatch(clearApplicationErrors());
+      }
     )
     .catch(err =>
       dispatch({
@@ -180,5 +183,12 @@ export const deleteAccount = () => dispatch => {
 export const setProfileLoading = () => {
   return {
     type: PROFILE_LOADING
+  };
+};
+
+// Profile loading
+export const clearApplicationErrors = () => {
+  return {
+    type: CLEAR_APPLICATION_ERRORS
   };
 };

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { READ_APPLICATION_TITLES, READ_APPLICATION_ERRORS, SET_LANGUAGE, SET_THEME, SET_MODE, SET_SORTS_AUTHORUP, SET_SORTS_AUTHORDOWN, SET_SORTS_TITLEUP, SET_SORTS_TITLEDOWN, SET_SORTS_RECENTNEWEST, SET_SORTS_RECENTOLDEST, SET_FILTERS_TEXT, SET_CENTERED_MAP, SEND_APPLICATION_ALERTS_REGISTERED, SEND_APPLICATION_ALERTS_FORGOT, SEND_APPLICATION_ALERTS_UPDATED, SET_ACCOUNT_USER, VERIFY_APPLICATION_ALERTS } from './types';
+import { READ_APPLICATION_TITLES, READ_APPLICATION_ERRORS, SET_LANGUAGE, SET_THEME, SET_MODE, SET_SORTS_AUTHORUP, SET_SORTS_AUTHORDOWN, SET_SORTS_REVIEWERUP, SET_SORTS_REVIEWERDOWN, SET_SORTS_TITLEUP, SET_SORTS_TITLEDOWN, SET_SORTS_RECENTNEWEST, SET_SORTS_RECENTOLDEST, SET_SORTS_STATUSUP, SET_SORTS_STATUSDOWN, SET_FILTERS_TEXT, SET_CENTERED_MAP, SEND_APPLICATION_ALERTS_REGISTERED, SEND_APPLICATION_ALERTS_FORGOT, SEND_APPLICATION_ALERTS_UPDATED, SET_ACCOUNT_USER, VERIFY_APPLICATION_ALERTS } from './types';
 
 // Retrieve title results
 export const readApplicationTitles = () => dispatch => {
@@ -138,6 +138,20 @@ export const setSortsAuthorDown = e => {
   };
 };
 
+export const setSortsReviewerUp = e => {
+  return {
+    type: SET_SORTS_REVIEWERUP,
+    payload:  'reviewerup',
+  };
+};
+
+export const setSortsReviewerDown = e => {
+  return {
+    type: SET_SORTS_REVIEWERDOWN,
+    payload:  'reviewerdown',
+  };
+};
+
 export const setSortsTitleUp = e => {
   return {
     type: SET_SORTS_TITLEUP,
@@ -149,6 +163,20 @@ export const setSortsTitleDown = e => {
   return {
     type: SET_SORTS_TITLEDOWN,
     payload:  'titledown',
+  };
+};
+
+export const setSortsStatusUp = e => {
+  return {
+    type: SET_SORTS_STATUSUP,
+    payload:  'statusup',
+  };
+};
+
+export const setSortsStatusDown = e => {
+  return {
+    type: SET_SORTS_STATUSDOWN,
+    payload:  'statusdown',
   };
 };
 

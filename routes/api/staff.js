@@ -82,14 +82,38 @@ conn.once('open', function () {
 
 // @route   GET api/staff/dashboard
 // @desc    Get items in staff dashboard
-// @access  Private
+// @access  Private 
 router.get(
   '/dashboard',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const errors = {};
 
-    Contribution.find({ user: req.user.id })
+    Contribution.find({ $or: [{'user': req.user.id}, {'reviewer': req.user.id}] })
+      .populate('user', ['name'])
+      .populate('reviewer', ['name'])
+      .then(contributions => {
+        if (!contributions) {
+          errors.noprofile = 'There are no profiles';
+          return res.status(404).json(errors);
+        }
+
+        res.json(contributions);
+      })
+      .catch(err => res.status(404).json({ profile: 'There are no profiles' }));
+});
+
+// @route   GET api/staff/dashboard
+// @desc    Get items in staff dashboard
+// @access  Private 
+router.get(
+  '/dashboardAll',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    const errors = {};
+
+    Contribution.find({})
+      .populate('user', ['name'])
       .populate('reviewer', ['name'])
       .then(contributions => {
         if (!contributions) {
@@ -216,7 +240,11 @@ router.get(
           return res.status(404).json(errors);
         }
 
-        res.json(contribution);
+        if ((toString(contribution.user['id']) === toString(req.user._id['id'])) || (toString(contribution.reviewer['id']) === toString(req.user._id['id']))) {
+          res.json(contribution);
+        } else {
+          console.log('you may not view this article');
+        }
       })
       .catch(err => res.status(404).json({ contribution: 'No viento to show' }))
 });
@@ -238,7 +266,6 @@ router.post(
 
     // Get fields
     const contributionFields = {};
-    contributionFields.user = req.user.id;
     contributionFields.updatedAt = Date.now();
     if (req.body.type) contributionFields.type = req.body.type;
     if (req.body.topic) contributionFields.topic = req.body.topic;
@@ -297,33 +324,15 @@ router.post(
 
     // Get fields
     const contributionFields = {};
-    contributionFields.user = req.user.id;
     contributionFields.updatedAt = Date.now();
     if (req.body.status) contributionFields.status = req.body.status;
     
-    Contribution.findOne({$and: [{ _id: req.params.id }, {user: req.user.id}]}).then(contribution => {
+    Contribution.findOne({ _id: req.params.id }).then(contribution => {
       if (contribution) {
-        Contribution.findOne({ title: contributionFields.title }).then(contribution => {
-          if (contribution) {
-            const contribID = new ObjectID(req.user.id);
-            if (contribution.user.equals(contribID)) {
-              // Update Profile
-              Contribution.findOneAndUpdate(
-                { _id: req.params.id },
-                { $set: contributionFields }
-              ).then(contribution => res.json(contribution));
-            } else {
-              errors.title = 'That title already exists';
-              res.status(400).json(errors);
-            }
-          } else {
-            // Update Profile
-            Contribution.findOneAndUpdate(
-              { _id: req.params.id },
-              { $set: contributionFields }
-            ).then(contribution => res.json(contribution));
-          }
-        });
+        Contribution.findOneAndUpdate(
+          { _id: req.params.id },
+          { $set: contributionFields }
+        ).then(contribution => res.json(contribution));
       } else {
         errors.title = 'No contribution exists';
         res.status(400).json(errors);
@@ -342,10 +351,7 @@ router.post(
 
     // Get fields
     const contributionFields = {};
-    contributionFields.user = req.user.id;
     if (req.body.reviewer) contributionFields.reviewer = new ObjectID(req.body.reviewer);
-
-    console.log(contributionFields)
     
     Contribution.findOne({_id: req.params.id}).then(contribution => {
       if (contribution) {

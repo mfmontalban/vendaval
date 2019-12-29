@@ -8,7 +8,6 @@ import { getContributionByID, deleteContribution } from '../../actions/staffActi
 import {FormattedMessage, FormattedDate, FormattedTime, FormattedRelative} from 'react-intl';
 
 import Spinner from '../application/main/common/spinner.js'
-import { Modal, ModalHeader, ModalBody, ModalFooter, Form } from 'reactstrap';
 import Quill from '../application/main/common/quillView';
 
 import Div from '../application/main/common/styled/div';
@@ -27,13 +26,20 @@ class Contribution extends Component {
   state = {
     modal: false,
     listOpen: false,
+    settingsMenu: false,
     outsideClicked: false,
     files: [],
   };
 
   componentDidMount() {
     if (this.props.match.params.id) {
-      this.props.getContributionByID(this.props.match.params.id);
+      this.props.getContributionByID(this.props.match.params.id, this.props.admin.id);
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.admin.id != prevProps.admin.id) {
+      this.props.getContributionByID(this.props.match.params.id, this.props.admin.id);
     }
   }
 
@@ -53,10 +59,11 @@ class Contribution extends Component {
     if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
       this.setState({
         listOpen: false,
+      },() => {
+        this.setState({ 
+          outsideClicked: false 
+        })
       });
-      setTimeout(() => {
-        this.setState({ outsideClicked: false });
-      }, 250);
     }
   }
 
@@ -79,10 +86,16 @@ class Contribution extends Component {
     }
   }
 
-  toggle(id) {
-    this.setState({
-      modal: !this.state.modal
-    });
+  toggleDeleteModal = () => {
+    this.setState(prevState => ({
+      settingsMenu: !prevState.settingsMenu,
+    }))
+  }
+
+  closeSettingsMenu = () => {
+    this.setState(prevState => ({
+      settingsMenu: false,
+    }))
   }
 
   onDeleteSubmitClick(id) {
@@ -90,8 +103,8 @@ class Contribution extends Component {
   }
 
   render() {
-    const { listOpen } = this.state;
-    const { application } = this.props;
+    const { listOpen, settingsMenu } = this.state;
+    const { admin, application } = this.props;
     const { contribution, loading } = this.props.staff;
 
     let staff;
@@ -102,6 +115,7 @@ class Contribution extends Component {
     let view;
     let edit;
     let deleteLink;
+    let editContent;
 
     let commentsActivity;
 
@@ -199,6 +213,15 @@ class Contribution extends Component {
                   //   />
                   // </Div>
 
+      if (contribution.user._id === admin.id) {
+        editContent = 
+          <Button onClick={() => this.toggleList()} className="d-flex justify-content-center align-items-center h-40px w-40px min-w-max-content mr-25px border-radius-circle clickable" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
+            <i className="fa-2x fal fa-ellipsis-v"></i>
+          </Button>
+      } else {
+        editContent = ('')
+      }
+
       contributionContent = (
         <div className="h-100 position-relative">
           <div className="z-1000 d-flex position-relative overflow-visible flex-direction-column h-40px w-100">
@@ -217,67 +240,45 @@ class Contribution extends Component {
                 </Div> */}
               </div>
               <div className="w-30 d-flex justify-content-flex-end">
-                <Button onClick={() => this.toggleList()} className="d-flex justify-content-center align-items-center h-40px w-40px min-w-max-content mr-25px border-radius-circle clickable" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
-                  <i className="fa-2x fal fa-ellipsis-v"></i>
-                </Button>
+                {editContent}
                 {listOpen &&
-                    <Dropdown ref={this.setWrapperRef} className="position-absolute mt-45px ml-neg30px z-1005 d-flex flex-direction-column text-right outer-shadow" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
-                      <Link className="noUnderline" to={`/staff/contribution/view/${contribution._id}`}>
-                        <Div
-                          // onClick={this.onDeleteClick.bind(this, contribution.id)}
-                          type="button"
-                          className="h-max-content p-10px clickable text-left"
-                          transitionStyled={application.transitions.general}
-                          backgroundStyled={application.mode.primary}
-                          backgroundHoverStyled={application.theme.primaryQuarter}
-                          colorStyled={application.theme.primary}
-                          colorHoverStyled={application.theme.primary}
-                          radiusStyled={application.settings.appRadiusTop}
-                        >
-                          <i className="fas fa-search mr-5px" />
-                          <FormattedMessage
-                            id="staff.view"
-                            defaultMessage="View"
-                          />
-                        </Div>
-                      </Link>
-                      <Link className="noUnderline" to={`/staff/contribution/edit/${contribution._id}`}>
-                        <Div
-                          // onClick={this.onDeleteClick.bind(this, contribution.id)}
-                          type="button"
-                          className="h-max-content p-10px clickable text-left"
-                          transitionStyled={application.transitions.general}
-                          backgroundStyled={application.mode.primary}
-                          backgroundHoverStyled={application.theme.primaryQuarter}
-                          colorStyled={application.theme.primary}
-                          colorHoverStyled={application.theme.primary}
-                          >
-                          <i className="fas fa-pencil mr-5px" />
-                          <FormattedMessage
-                            id="staff.edit"
-                            defaultMessage="Edit"
-                          />
-                        </Div>
-                      </Link>
-                      <DropdownDivider colorStyled={application.theme.primary} />
-                      <Button
-                        // onClick={this.onDeleteClick.bind(this, contribution.id)}
+                  <Dropdown ref={this.setWrapperRef} className="position-absolute mt-45px ml-neg30px z-1005 d-flex flex-direction-column text-right outer-shadow" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
+                    <Link className="noUnderline" to={`/staff/contribution/edit/${contribution._id}`}>
+                      <Div
                         type="button"
-                        className="h-max-content p-10px clickable text-left"
+                        className="h-max-content p-10px clickable text-left top-border-radius"
                         transitionStyled={application.transitions.general}
                         backgroundStyled={application.mode.primary}
                         backgroundHoverStyled={application.theme.primaryQuarter}
                         colorStyled={application.theme.primary}
                         colorHoverStyled={application.theme.primary}
-                        radiusStyled={application.settings.appRadiusBottom}
-                      >
-                        <i className="fas fa-times mr-5px" />
+                        >
+                        <i className="fas fa-pencil mr-5px" />
                         <FormattedMessage
-                          id="staff.delete"
-                          defaultMessage="Delete"
+                          id="staff.edit"
+                          defaultMessage="Edit"
                         />
-                      </Button>
-                    </Dropdown>
+                      </Div>
+                    </Link>
+                    <DropdownDivider colorStyled={application.theme.primary} />
+                    <Button
+                      onClick={() => this.toggleDeleteModal()}
+                      type="button"
+                      className="h-max-content p-10px clickable text-left"
+                      transitionStyled={application.transitions.general}
+                      backgroundStyled={application.mode.primary}
+                      backgroundHoverStyled={application.theme.primaryQuarter}
+                      colorStyled={application.theme.primary}
+                      colorHoverStyled={application.theme.primary}
+                      radiusStyled={application.settings.appRadiusBottom}
+                    >
+                      <i className="fas fa-times mr-5px" />
+                      <FormattedMessage
+                        id="staff.delete"
+                        defaultMessage="Delete"
+                      />
+                    </Button>
+                  </Dropdown>
                 }
               </div>
             </Div>
@@ -342,6 +343,41 @@ class Contribution extends Component {
 
     return (
       <Div className="scroll-container bottom-outer-shadow ml-10px mr-10px pt-70px scrollbar-width-none" heightStyled={`${application.settings.heightHero}`} backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
+        <Div onClick={() => this.closeSettingsMenu()} className={(settingsMenu === true ? 'z-1250 visible' : 'z-neg1 invisible') + ' position-fixed h-100vh w-100vw bottom-0 left-0 overlay'} transitionStyled={settingsMenu === true ? `${application.transitions.settingsIn}`: `${application.transitions.settingsOut}`} />
+
+        <Div className={(settingsMenu === true ? 'z-1500 visible modal' : 'z-neg1 invisible') + ' position-fixed bottom-0'} transitionStyled={settingsMenu === true ? `${application.transitions.settingsIn}`: `${application.transitions.settingsOut}`} activeStyled={this.state.settingsMenu} heightStyled={`${application.settings.heightDeleteModal}`} widthStyled={`${application.settings.widthSettings}`} marginLeftStyled={`${application.settings.marginLeftSettings}`} marginRightStyled={`${application.settings.marginRightSettings}`} radiusStyled={`${application.settings.appRadius}`}>
+          <Div className="h-20 d-flex align-items-center top-border-radius" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.theme.primary}`} colorStyled={`${application.mode.primary}`} borderBottomStyled={`${application.mode.primary}`}>
+            <div className="ml-10px text-x-large w-50 text-left">
+              <FormattedMessage
+                id="modal.confirmTitle"
+                defaultMessage="Confirm"
+              />
+            </div>
+            <div className="h-40px w-50 d-flex align-items-center justify-content-flex-end">
+              <Button onClick={() => this.closeSettingsMenu()} className="mr-10px" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.transparent}`} colorStyled={`${application.mode.primaryQuarter}`} colorHoverStyled={`${application.mode.primary}`}>
+                <i className="fas fa-times fa-2x clickable" />
+              </Button>
+            </div>
+          </Div>
+
+          <Div className="h-50" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`}>
+            <Div className="p-10px text-medium" transitionStyled={`${application.settings.appTransition}`} backgroundStyled={`${application.mode.primary}`}>
+              <FormattedMessage
+                id="modal.confirmMessage"
+                defaultMessage="Are you sure you would like to delete this item?"
+              />
+            </Div>
+          </Div>
+
+          <Div className="h-30 d-flex justify-content-center align-items-center bottom-border-radius" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.theme.primary}`} colorStyled={`${application.mode.primary}`} borderTopStyled={`${application.mode.primary}`}>
+            <Button onClick={() => {this.closeSettingsMenu(); this.onDeleteSubmitClick(contribution._id);}} className="h-40px p-10px mr-10px outer-shadow clickable text-bold text-large" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.mode.primaryHover}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
+              <FormattedMessage
+                id="modal.delete"
+                defaultMessage="Delete"
+              />
+            </Button>
+          </Div>
+        </Div>
         {contributionContent}
       </Div>
     );
@@ -351,11 +387,13 @@ class Contribution extends Component {
 Contribution.propTypes = {
   getContributionByID: PropTypes.func.isRequired,
   deleteContribution: PropTypes.func.isRequired,
+  admin: PropTypes.object.isRequired,
   application: PropTypes.object.isRequired,
   staff: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
+  admin: state.admin,
   application: state.application,
   staff: state.staff
 });

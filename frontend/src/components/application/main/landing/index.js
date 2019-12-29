@@ -95,7 +95,8 @@ class Landing extends Component {
         <Div className="scroll-container bottom-outer-shadow ml-10px mr-10px pt-70px scrollbar-width-none" heightStyled={`${application.settings.heightHero}`} backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
           <div className="d-flex flex-direction-column h-100 position-relative overflow-hidden">
             <div className="h-90 position-relative justify-content-flex-start">
-              <div className="h-10 d-flex justify-content-space-around">
+              
+              <div className="h-10 d-flex position-relative justify-content-space-around">
                 <div className="position-relative">
                   <SVG preserveAspectRatio="xMidYMin slice" viewBox="0 0 100 100" fillStyled={`${application.theme.primaryHalf}`}><Sky /></SVG>
                 </div>
@@ -105,17 +106,19 @@ class Landing extends Component {
               </div>
 
               <div className="h-45 d-flex justify-content-space-around overflow-hidden">
-                <div className="w-25 position-relative cloud">
-                  <SVG preserveAspectRatio="xMidYMin slice" viewBox="0 0 100 100" fillStyled={`${application.theme.primary}`}><Cloud /></SVG>
-                </div>
-                <div className="w-25 position-relative cloud cloud-1">
-                  <SVG className="mt-25px" preserveAspectRatio="xMidYMin slice" viewBox="0 0 100 100" fillStyled={`${application.theme.primary}`}><Cloud2 /></SVG>
+                <div className="h-80 d-flex justify-content-space-around">
+                  <div className="w-25 position-relative cloud">
+                    <SVG preserveAspectRatio="xMidYMin slice" viewBox="0 0 100 100" fillStyled={`${application.theme.primary}`}><Cloud /></SVG>
+                  </div>
+                  <div className="w-25 position-relative cloud cloud-1 mt-25px">
+                    <SVG preserveAspectRatio="xMidYMin slice" viewBox="0 0 100 100" fillStyled={`${application.theme.primary}`}><Cloud2 /></SVG>
+                  </div>
                 </div>
               </div>
 
               <div className="h-25 d-flex justify-content-space-around mt-neg100vh4">
-                <div className="w-75 min-w-500 position-relative d-flex justify-content-space-around kite">
-                  <SVG className="h-100 w-65 overflow-visible" preserveAspectRatio="xMidYMin slice" viewBox="0 0 100 100">
+                <div className="w-50 min-w-500 position-relative d-flex justify-content-space-around kite">
+                  <SVG className="h-100 w-65 position-relative overflow-visible" preserveAspectRatio="xMidYMin slice" viewBox="0 0 100 100">
                     <defs>
                       <linearGradient id="linear1" x1="50%" y1="0%" x2="50%" y2="100%">
                         <stop offset="0%"   stopColor="rgba(255,0,255,1)"/>

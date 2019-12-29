@@ -15,6 +15,10 @@ module.exports = function validateProfileInput(data) {
     errors.handle = 'Profile handle is required';
   }
 
+  if (!Validator.isAlphanumeric(data.handle)) {
+    errors.handle = 'Handle may only include a-z, A-Z, 0-9 values';
+  }
+
   if (Validator.isEmpty(data.skills)) {
     errors.skills = 'Skills field is required';
   }

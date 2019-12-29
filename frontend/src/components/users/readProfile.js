@@ -17,12 +17,6 @@ class Profile extends Component {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.match.params !== prevProps.match.params) {
-      this.props.getProfileByHandle(this.props.match.params.handle);
-    }
-  }
-
   render() {
 
     const id = this.props.admin.id;

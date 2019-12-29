@@ -28,10 +28,29 @@ export const getContributions = () => dispatch => {
 };
 
 // Get current contribution
-export const getContributionByID = id => dispatch => {
+export const getAllContributions = () => dispatch => {
   dispatch(setContributionsLoading());
   axios
-    .get(`/api/staff/contribution/${id}`)
+    .get('/api/staff/dashboardAll')
+    .then(res =>
+      dispatch({
+        type: GET_CONTRIBUTIONS,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_CONTRIBUTIONS,
+        payload: {}
+      })
+    );
+};
+
+// Get current contribution
+export const getContributionByID = (id, admin) => dispatch => {
+  dispatch(setContributionsLoading());
+  axios
+    .get(`/api/staff/contribution/${id}`, admin)
     .then(res => {
       dispatch({
         type: GET_CONTRIBUTION,
@@ -142,11 +161,37 @@ export const updateStatus = (id, status, history) => dispatch => {
   axios
     .post(`/api/staff/contributionStatus/${id}`, status)
     .then(res =>{
-      history.push('/staff/dashboard');
-      dispatch({
-        type: GET_CONTRIBUTIONS,
-        payload: res.data
-      });
+      if (status.staff === "staff") {
+        axios
+        .get('/api/staff/dashboard')
+        .then(res =>
+          dispatch({
+            type: GET_CONTRIBUTIONS,
+            payload: res.data
+          })
+        )
+        .catch(err =>
+          dispatch({
+            type: GET_CONTRIBUTIONS,
+            payload: {}
+          })
+        );
+      } else if ((status.staff === "reviewer") || (status.staff === "manager") || (status.staff === "webmaster")) {
+        axios
+        .get('/api/staff/dashboardAll')
+        .then(res =>
+          dispatch({
+            type: GET_CONTRIBUTIONS,
+            payload: res.data
+          })
+        )
+        .catch(err =>
+          dispatch({
+            type: GET_CONTRIBUTIONS,
+            payload: {}
+          })
+        );
+      }
     })
     .catch(err =>
       dispatch({
@@ -162,11 +207,37 @@ export const updateReviewer = (id, status, history) => dispatch => {
   axios
     .post(`/api/staff/contributionReviewer/${id}`, status)
     .then(res =>{
-      history.push('/staff/dashboard');
-      dispatch({
-        type: GET_CONTRIBUTIONS,
-        payload: res.data
-      });
+      if (status.staff === "staff") {
+        axios
+        .get('/api/staff/dashboard')
+        .then(res =>
+          dispatch({
+            type: GET_CONTRIBUTIONS,
+            payload: res.data
+          })
+        )
+        .catch(err =>
+          dispatch({
+            type: GET_CONTRIBUTIONS,
+            payload: {}
+          })
+        );
+      } else if ((status.staff === "reviewer") || (status.staff === "manager") || (status.staff === "webmaster")) {
+        axios
+        .get('/api/staff/dashboardAll')
+        .then(res =>
+          dispatch({
+            type: GET_CONTRIBUTIONS,
+            payload: res.data
+          })
+        )
+        .catch(err =>
+          dispatch({
+            type: GET_CONTRIBUTIONS,
+            payload: {}
+          })
+        );
+      }
     })
     .catch(err =>
       dispatch({

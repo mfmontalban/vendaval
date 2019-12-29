@@ -85,6 +85,10 @@ export default {
 
         'settings.close': `Close`,
 
+        'modal.confirmTitle': `Confirm:`,
+        'modal.confirmMessage': `Are you sure you would like to delete this item?`,
+        'modal.delete': `Delete`,
+
 
         'users.alertsTitle': `Alerts`,
         'users.alertsDescription': `All the likes and replies to your comments`,
@@ -126,6 +130,7 @@ export default {
 
         'staff.header': `Contributions`,
         'staff.reviewer': `Reviewer`,
+        'staff.author': `Author`,
         'staff.status': `Status`,
         'staff.Live': `Live`,
         'staff.Draft': `Draft`,
@@ -234,6 +239,10 @@ export default {
 
         'settings.close': `Cerra`,
 
+        'modal.confirmTitle': `Confirma:`,
+        'modal.confirmMessage': `¿Estás seguro de que deseas eliminar este elemento?`,
+        'modal.delete': `Eliminar`,
+
 
         'users.alertsTitle': `Alertas`,
         'users.alertsDescription': `Todo los gustos y repuestas a tus commentarios`,
@@ -278,6 +287,8 @@ export default {
 
         'staff.header': `Contribuciónes`,
         'staff.reviewer': `Crítico`,
+        'staff.author': `Autor`,
+        'staff.preparer': `Preparador`,
         'staff.status': `Estado`,
         'staff.Draft': `Borrador`,
         'staff.Live': `Vivo`,

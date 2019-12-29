@@ -130,7 +130,10 @@ class CreateProfile extends Component {
           this.setState({
             pictureLg: file3,
             pictureLgName: fileName,
-            loadPreview: true,
+          }, () => {
+            this.setState({
+              loadPreview: !this.state.loadPreview,
+            })
           });
         },
         'blob'
@@ -192,6 +195,18 @@ class CreateProfile extends Component {
     let placeBioLabel;
     let socialMessage;
     let submitProfile;
+
+    let errorHandle;
+
+    if (application.errors) {
+      if (application.errors.handle) {
+        errorHandle = (
+          <div>
+            {application.errors.handle}
+          </div>
+        );
+      }
+    }
 
     if (application.language === 'es') {
       community = 'communidad';
@@ -347,6 +362,7 @@ class CreateProfile extends Component {
               value={this.state.handle}
               onChange={this.onChange}
             />
+              {errorHandle}
             <Input
               type="text"
               name="website"

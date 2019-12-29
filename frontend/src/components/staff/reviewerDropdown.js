@@ -113,7 +113,7 @@ class ReviewerDropDown extends Component {
     let reviewersList;
     let reviewerContainer;
 
-    if (admin.staff == "reviewer" || admin.staff == "manager" || admin.staff == "webmaster") {
+    if (admin.staff == "manager" || admin.staff == "webmaster") {
       statusSection = (
         <Button onClick={() => this.toggleList()} className="max-w-content p-10px d-flex justify-content-center overflow-hidden border-1" transitionStyled={application.transitions.general} backgroundStyled={application.transparent} colorStyled={application.theme.primary} backgroundHoverStyled={application.theme.primary} colorHoverStyled={application.mode.primary} radiusStyled={`${application.settings.appRadius}`}>
           {currentState}
@@ -126,18 +126,20 @@ class ReviewerDropDown extends Component {
     }
 
     if (allReviewers.length > 0) {
-      reviewersList = allReviewers.map((reviewer, index) => {
+      reviewersList = allReviewers.sort((viento1, viento2) => {
+        return viento1.name.toLowerCase() > viento2.name.toLowerCase() ? 1 : 0;
+      }).map((reviewer, index) => {
         if (index == 0) {
           return (
-            <Button key={reviewer._id} transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} onClick={(e) => {this.props.updateReviewer(contribution._id, {'reviewer': `${reviewer._id}`}); this.toggleList();}} className="p-10px max-w-175px text-overflow-ellipsis text-center top-border-radius" type="button">{reviewer.name}</Button>
+            <Button key={reviewer._id} transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} onClick={(e) => {this.props.updateReviewer(contribution._id, {'reviewer': `${reviewer._id}`, 'staff': `${admin.staff}`}); this.toggleList();}} className="p-10px max-w-175px text-overflow-ellipsis text-center top-border-radius" type="button">{reviewer.name}</Button>
           );
         } else if (allReviewers.length - index == 1) {
           return (
-            <Button key={reviewer._id} transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} onClick={(e) => {this.props.updateReviewer(contribution._id, {'reviewer': `${reviewer._id}`}); this.toggleList();}} className="p-10px max-w-175px text-overflow-ellipsis text-center bottom-border-radius" type="button">{reviewer.name}</Button>
+            <Button key={reviewer._id} transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} onClick={(e) => {this.props.updateReviewer(contribution._id, {'reviewer': `${reviewer._id}`, 'staff': `${admin.staff}`}); this.toggleList();}} className="p-10px max-w-175px text-overflow-ellipsis text-center bottom-border-radius" type="button">{reviewer.name}</Button>
           );
         } else {
           return (
-            <Button key={reviewer._id} transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} onClick={(e) => {this.props.updateReviewer(contribution._id, {'reviewer': `${reviewer._id}`}); this.toggleList();}} className="p-10px max-w-175px text-overflow-ellipsis text-center" type="button">{reviewer.name}</Button>
+            <Button key={reviewer._id} transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} onClick={(e) => {this.props.updateReviewer(contribution._id, {'reviewer': `${reviewer._id}`, 'staff': `${admin.staff}`}); this.toggleList();}} className="p-10px max-w-175px text-overflow-ellipsis text-center" type="button">{reviewer.name}</Button>
           );
         }
       });
