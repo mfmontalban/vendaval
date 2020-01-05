@@ -28,12 +28,59 @@ class Contribution extends Component {
     }
   }
 
-  handleScrollToContent = (e) => {
+  // handleScrollToElement = (e) => {
+    
+  //   if (this.state.anchorTool == "mt-70px") {
+  //     this.setState({
+  //       anchorTool: ""
+  //     }, () => {
+  //       let element = document.getElementById("content-anchor");
+  //       element.scrollIntoView({behavior: "smooth", block: "nearest", inline: "nearest"});
+  //       if (window.innerWidth < 480) {
+  //         window.scrollBy(0, -20);
+  //         this.setState({
+  //           anchorTool: "mt-70px"
+  //         });
+  //       } else if (window.innerWidth < 700) {
+  //         window.scrollBy(0, -20);
+  //         this.setState({
+  //           anchorTool: "mt-70px"
+  //         });
+  //       } else if (window.innerWidth < 920) {
+  //         window.scrollBy(0, -20);
+  //         this.setState({
+  //           anchorTool: "mt-70px"
+  //         });
+  //       }
+  //     });
+  //   } else {
+  //     let element = document.getElementById("content-anchor");
+  //     element.scrollIntoView({behavior: "smooth", block: "nearest", inline: "nearest"});
+  //     if (window.innerWidth < 480) {
+  //       window.scrollBy(0, -20);
+  //       this.setState({
+  //         anchorTool: "mt-70px"
+  //       });
+  //     } else if (window.innerWidth < 700) {
+  //       window.scrollBy(0, -20);
+  //       this.setState({
+  //         anchorTool: "mt-70px"
+  //       });
+  //     } else if (window.innerWidth < 920) {
+  //       window.scrollBy(0, -20);
+  //       this.setState({
+  //         anchorTool: "mt-70px"
+  //       });
+  //     }
+  //   }
+  // }
+
+  handleScrollToElement = (e) => {
     let element = document.getElementById("content-anchor");
     element.scrollIntoView({behavior: "smooth", block: "nearest", inline: "nearest"});
   }
-
-  handleScrollToElement = (e) => {
+  
+  handleScrollToElement2 = (e) => {
     let element = document.getElementById("comment-anchor");
     element.scrollIntoView({behavior: "smooth", block: "nearest", inline: "nearest"});
   }
@@ -78,10 +125,8 @@ class Contribution extends Component {
     }
 
     const style = {
-      marginTop: 'calc(100vh - 50px - 10px - 70px)', //related to main content scroll container #1
-      height: '1px',
+      height: '100%',
       width: '100%',
-      position: 'absolute',
     };
 
 
@@ -195,7 +240,7 @@ class Contribution extends Component {
   
       if (viento.comments.length > 0) {
         commentsActivity = (
-            <Div onClick={this.handleScrollToElement} className="p-5px clickable post-time-heading noUnderline d-flex flex-direction-row"  transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primaryThree}`} colorHoverStyled={`${application.theme.primary}`}>
+            <Div onClick={this.handleScrollToElement2} className="p-5px clickable post-time-heading noUnderline d-flex flex-direction-row"  transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primaryThree}`} colorHoverStyled={`${application.theme.primary}`}>
               <p>
                 {publicLength.length}
               </p>
@@ -204,7 +249,7 @@ class Contribution extends Component {
         );
       } else {
         commentsActivity = (
-            <Div onClick={this.handleScrollToElement} className="p-5px clickable post-time-heading noUnderline d-flex flex-direction-row" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primaryThree}`} colorHoverStyled={`${application.theme.primary}`}>
+            <Div onClick={this.handleScrollToElement2} className="p-5px clickable post-time-heading noUnderline d-flex flex-direction-row" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primaryThree}`} colorHoverStyled={`${application.theme.primary}`}>
               <p>0</p>
               <i className="ml-5px p-10px fa-2x fal fa-comments-alt"></i>
             </Div>
@@ -283,7 +328,7 @@ class Contribution extends Component {
 
             <div className="d-flex flex-direction-column min-h-70px">
               <div className="position-relative z-1000 d-flex justify-content-center">
-                <Div name="infoSection" onClick={this.handleScrollToContent} className="min-w-max-content text-center call-to-action d-flex justify-content-center align-items-center h-48px mt-neg170px border-bottom-0 border-radius-circle" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
+                <Div name="infoSection" onClick={this.handleScrollToElement} className="min-w-max-content text-center call-to-action d-flex justify-content-center align-items-center h-48px mt-neg170px border-bottom-0 border-radius-circle" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
                   <i className='clickable p-10px fa-2x fas fa-arrow-alt-down'></i>
                 </Div>
               </div>
@@ -307,9 +352,8 @@ class Contribution extends Component {
                   {likesActivity}
                 </div>
                 <div className="min-w-max-content clickable">
-                  <Div className="p-5px noUnderline post-section-heading d-flex flex-direction-row align-items-center min-w-max-content" colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`} onClick={this.handleScrollToElement}>
+                  <Div className="p-5px noUnderline post-section-heading d-flex flex-direction-row align-items-center min-w-max-content" colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
                     <i className="p-10px fa-2x fas fa-share-square"></i> 
-                    <p>Share</p>
                   </Div>
                 </div>
                 <div className="min-w-max-content clickable">
@@ -319,12 +363,12 @@ class Contribution extends Component {
             </div>
           
             <div id="content-anchor" style={style}>
+              <Quill contributions={viento.content} />
             </div>
-            <Quill contributions={viento.content} />
             <div id="comment-anchor" style={style}>
+              <CommentFeed vientoId={viento._id} comments={viento.comments} />
+              <CommentForm vientoId={viento._id} category={'public'} />
             </div>
-            <CommentFeed vientoId={viento._id} comments={viento.comments} />
-            <CommentForm vientoId={viento._id} category={'public'} />
           </div>
         </div>
       );

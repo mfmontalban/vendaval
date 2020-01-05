@@ -321,10 +321,10 @@ class Contribution extends Component {
           </Div>
           <Div className="d-flex justify-content-space-around position-relative flex-direction-row align-items-center mt-neg45px min-h-70px text-center" heightStyled={application.settings.vientoCoverFooter}>
             <div className="w-33 clickable">
-              Like
+              <i className='clickable p-10px fa-2x fas fa-arrow-alt-up'></i>
             </div>
             <div className="w-33 clickable">
-              Share
+              <i className="p-10px fa-2x fas fa-share-square"></i> 
             </div>
             <div className="w-33 clickable">
               {commentsActivity}
