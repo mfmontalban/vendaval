@@ -67,12 +67,12 @@ class Contribution extends Component {
     }
   }
 
-  handleScrollToContent = (e) => {
+  handleScrollToElement = (e) => {
     let element = document.getElementById("content-anchor");
     element.scrollIntoView({behavior: "smooth", block: "nearest", inline: "nearest"});
   }
 
-  handleScrollToElement = (e) => {
+  handleScrollToElement2 = (e) => {
     let element = document.getElementById("comment-anchor");
     element.scrollIntoView({behavior: "smooth", block: "nearest", inline: "nearest"});
   }
@@ -175,7 +175,7 @@ class Contribution extends Component {
 
       if (contribution.comments.length > 0) {
         commentsActivity = (
-            <Div onClick={this.handleScrollToElement} className="p-5px clickable post-time-heading noUnderline d-flex flex-direction-row"  transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primaryThree}`} colorHoverStyled={`${application.theme.primary}`}>
+            <Div onClick={this.handleScrollToElement2} className="p-5px clickable post-time-heading noUnderline d-flex flex-direction-row"  transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primaryThree}`} colorHoverStyled={`${application.theme.primary}`}>
               <p>
                 {reviewLength.length}
               </p>
@@ -184,7 +184,7 @@ class Contribution extends Component {
         );
       } else {
         commentsActivity = (
-            <Div onClick={this.handleScrollToElement} className="p-5px clickable post-time-heading noUnderline d-flex flex-direction-row" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primaryThree}`} colorHoverStyled={`${application.theme.primary}`}>
+            <Div onClick={this.handleScrollToElement2} className="p-5px clickable post-time-heading noUnderline d-flex flex-direction-row" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primaryThree}`} colorHoverStyled={`${application.theme.primary}`}>
               <p>0</p>
               <i className="ml-5px p-10px fa-2x fal fa-comments-alt"></i>
             </Div>
@@ -221,7 +221,7 @@ class Contribution extends Component {
       }
 
       contributionContent = (
-        <div className="h-100 position-relative">
+        <div className="h-100">
           <Div className="z-900 d-flex justify-content-center overflow-hidden" heightStyled={application.settings.vientoCoverBanner}>
             <img className="filter-blur object-fit-cover" alt="banner" src={`/api/staff/files/${contribution.bannerLg}`} />
           </Div>
@@ -349,15 +349,15 @@ class Contribution extends Component {
                 </div>
               </Div>
               <Div className="d-flex position-relative z-1000 justify-content-space-around position-relative flex-direction-row align-items-center mt-neg45px min-h-70px" heightStyled={application.settings.contributionCoverFooter}>
-                <div className="min-w-max-content clickable">
+                <div className="w-30 d-flex justify-content-center min-w-max-content clickable">
                   Draft
                 </div>
-                <div className="min-w-max-content clickable">
+                <div className="w-30 d-flex justify-content-center min-w-max-content clickable">
                   <Div className="p-5px noUnderline post-section-heading d-flex flex-direction-row align-items-center min-w-max-content" colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
                     <i className="p-10px fa-2x fas fa-share-square"></i> 
                   </Div>
                 </div>
-                <div className="min-w-max-content clickable">
+                <div className="w-30 d-flex justify-content-center min-w-max-content clickable">
                   {commentsActivity}
                 </div>
               </Div>
