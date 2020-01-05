@@ -118,16 +118,16 @@ class Staff extends Component {
         y = Object.values(filters);
 
         dashboardContent = contributions.filter(viento => {
-          if (y[0] == "Title") {
+          if (y[0] === "Title") {
             let contentHTMLMatch = viento.title.toLowerCase().indexOf(y[1].toLowerCase()) !== -1;
             return contentHTMLMatch;
-          } else if (y[0] == "Author") {
+          } else if (y[0] === "Author") {
             let contentHTMLMatch = viento.user.name.toLowerCase().indexOf(y[1].toLowerCase()) !== -1;
             return contentHTMLMatch;
-          } else if (y[0] == "Reviewer") {
+          } else if (y[0] === "Reviewer") {
             let contentHTMLMatch = viento.reviewer.name.toLowerCase().indexOf(y[1].toLowerCase()) !== -1;
             return contentHTMLMatch;
-          } else if (y[0] == "Status") {
+          } else if (y[0] === "Status") {
             let contentHTMLMatch = viento.status.toLowerCase().indexOf(y[1].toLowerCase()) !== -1;
             return contentHTMLMatch;
           }
