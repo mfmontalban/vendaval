@@ -272,11 +272,11 @@ class Contribution extends Component {
                 </div>
               </Div>
 
-              <Div className="d-flex position-relative z-1000 h-min-content justify-content-center pl-100px pr-100px" heightStyled={application.settings.vientoCoverTitle}>
-                <H1 className="text-center p-5px " radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryThree} fontSizeStyled={application.text.heading}>{viento.title}</H1>
+              <Div className="d-flex position-relative z-1000 justify-content-center pl-100px pr-100px">
+                <H1 className="text-center p-5px h-min-content" radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryThree} fontSizeStyled={application.text.heading}>{viento.title}</H1>
               </Div>
-              <div className="d-flex position-relative z-1000 h-min-content justify-content-center pl-100px pr-100px">
-                <H2 className="text-center p-5px " radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryThree} fontSizeStyled={application.text.description}>{viento.description}</H2>
+              <div className="d-flex position-relative z-1000 justify-content-center pl-100px pr-100px">
+                <H2 className="text-center p-5px h-min-content" radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryThree} fontSizeStyled={application.text.description}>{viento.description}</H2>
               </div>
             </div>
             
