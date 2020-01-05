@@ -36,6 +36,8 @@ const marginBottomBody = '10px';
 const heightHeader = '50px';
 const heightUserNav = '40px';
 
+const vh100 = window.innerHeight;
+
 
 const initialState = {
   alerts: {
@@ -94,12 +96,12 @@ const initialState = {
     marginLeftSettings: `20vw`,
     marginRightSettings: `20vw`,
 
-    heightHero: `calc(100vh - ${heightHeader} - ${appPadding} - 70px)`,
+    heightHero: `calc(${vh100}px - ${heightHeader} - ${appPadding} - 70px)`,
 
-    heightLandingMain: `calc(100vh - ${appPadding} - ${heightHeader} - ${appPadding} - ${heightUserNav} - ${appPadding} - ${appPadding} - (${appPadding}*3))`,
-    heightLandingMain2: `calc(100vh - ${appPadding} - ${heightHeader} - ${appPadding} - ${heightUserNav} - (${appPadding}*6))`,
+    heightLandingMain: `calc(${vh100}px - ${appPadding} - ${heightHeader} - ${appPadding} - ${heightUserNav} - ${appPadding} - ${appPadding} - (${appPadding}*3))`,
+    heightLandingMain2: `calc(${vh100}px - ${appPadding} - ${heightHeader} - ${appPadding} - ${heightUserNav} - (${appPadding}*6))`,
 
-    heightBody: `calc(100vh - ${heightHeader})`,
+    heightBody: `calc(${vh100}px - ${heightHeader})`,
     widthBody: `calc(100vw - (${appPadding}*2))`,
 
     widthFooter: `calc(100vw - (${appPadding}*2))`,
@@ -128,12 +130,12 @@ const initialState = {
     themeSecondaryText: 'rgba(223, 223, 223, 1)',
     themeSecondaryTextHalf: 'rgba(255, 255, 255, 1)',
 
-    dashboardContributions: `calc(100vh - ${heightHeader} - 70px - 47.4333px - 38.7167px - 74.7167px - 58px)`,
+    dashboardContributions: `calc(${vh100}px - ${heightHeader} - 70px - 47.4333px - 38.7167px - 74.7167px - 58px)`,
 
-    vientoCoverTitle: `calc(100vh - 73px - 75px - ${heightHeader} - ${appPadding} - 70px )`,
-    vientoCoverBanner: `calc(100vh - ${heightHeader} - ${appPadding} - 70px - 70px)`,
+    vientoCoverTitle: `calc(${vh100}px - 73px - 75px - ${heightHeader} - ${appPadding} - 70px )`,
+    vientoCoverBanner: `calc(${vh100}px - ${heightHeader} - ${appPadding} - 70px - 70px)`,
 
-    vientoCoverFooter: `calc(100vh - 75vh - ${heightHeader} - ${appPadding} - 70px)`,
+    vientoCoverFooter: `calc(${vh100}px - 75vh - ${heightHeader} - ${appPadding} - 70px)`,
     
   },
   text: {
