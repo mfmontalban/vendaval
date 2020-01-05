@@ -8,6 +8,8 @@ body {
   font-family: 'Font Awesome 5 Pro', 'Helvetica';
   font-weight:400;
   font-size: 1rem;
+  position: fixed; 
+  overflow: hidden;
 }
 
 button { 
