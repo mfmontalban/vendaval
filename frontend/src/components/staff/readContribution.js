@@ -138,10 +138,8 @@ class Contribution extends Component {
     }
 
     const style = {
-      marginTop: 'calc(100vh - 50px - 10px - 70px)', //related to main content scroll container #1
-      height: '1px',
+      height: '100%',
       width: '100%',
-      position: 'absolute',
     };
 
     let contributionContent;
@@ -224,119 +222,155 @@ class Contribution extends Component {
 
       contributionContent = (
         <div className="h-100 position-relative">
-          <div className="z-1000 d-flex position-relative overflow-visible flex-direction-column h-40px w-100">
-            <Div className="d-flex justify-content-space-between align-items-center p-20px" backgroundStyled={application.mode.primaryHalf}>
-              <div className="w-30 d-flex">
-                <Link className="w-40px ml-25" to={`/${staff}/${dashboard}`}>
-                  <Div className="d-flex justify-content-center align-items-center h-40px w-40px min-w-max-content border-radius-circle" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
-                    <i className='ml-neg3px clickable fa-2x fas fa-chevron-left'></i>
+          <Div className="z-900 d-flex justify-content-center overflow-hidden" heightStyled={application.settings.vientoCoverBanner}>
+            <img className="filter-blur object-fit-cover" alt="banner" src={`/api/staff/files/${contribution.bannerLg}`} />
+          </Div>
+          <div className="h-100 position-relative d-flex flex-direction-column mt-neg100vh200px">
+            {/* div is to hide commented out code */}
+            <div>
+            {/* <div className="z-1000 d-flex position-relative overflow-visible flex-direction-column h-40px w-100">
+              <Div className="d-flex justify-content-space-between align-items-center p-20px" backgroundStyled={application.mode.primaryHalf}>
+                <div className="w-30 d-flex">
+                  <Link className="w-40px ml-25" to={`/${winds}`}>
+                    <Div className="d-flex justify-content-center align-items-center h-40px w-40px min-w-max-content border-radius-circle" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
+                      <i className='ml-neg3px clickable fa-2x fas fa-chevron-left'></i>
+                    </Div>
+                  </Link>
+                </div>
+                <div className="w-30 d-flex justify-content-center">
+                  
+                  ////Item commented out below belongs here
+
+
+                </div>
+                <div className="w-30 d-flex justify-content-center min-w-max-content">
+                  <Div className="p-5px min-w-max-content" radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryThree}>
+                    <FormattedRelative value={viento.createdAt} />
                   </Div>
-                </Link>
+                </div>
+              </Div>
+              <Div className="d-flex justify-content-center pl-100px pr-100px" heightStyled={application.settings.vientoCoverTitle}>
+                <H1 className="text-center p-5px" radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryThree} fontSizeStyled={application.text.heading}>{viento.title}</H1>
+              </Div>
+              <div className="d-flex justify-content-center pl-100px pr-100px">
+                <H2 className="text-center p-5px" radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryThree} fontSizeStyled={application.text.description}>{viento.description}</H2>
               </div>
-              <div className="w-30 d-flex justify-content-center">
-                {/* <Div className="min-w-max-content text-center" radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryHalf} fontSizeStyled={application.text.important}>
-                  <Div className="p-5px" backgroundStyled={application.mode.primaryThree} radiusStyled={application.settings.appRadiusTop}>{contribution.type}:</Div>
-                  <div className="p-5px">{contribution.topic}</div>
-                </Div> */}
-              </div>
-              <div className="w-30 d-flex justify-content-flex-end">
-                {editContent}
-                {listOpen &&
-                  <Dropdown ref={this.setWrapperRef} className="position-absolute mt-45px ml-neg30px z-1005 d-flex flex-direction-column text-right outer-shadow" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
-                    <Link className="noUnderline" to={`/staff/contribution/edit/${contribution._id}`}>
-                      <Div
+            </div> */}
+
+            {/* <Div className="min-w-max-content text-center" radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryHalf} fontSizeStyled={application.text.important}>
+              <Div className="p-5px" backgroundStyled={application.mode.primaryThree} radiusStyled={application.settings.appRadiusTop}>{viento.type}:</Div>
+              <div className="p-5px">{viento.topic}</div>
+            </Div> */}
+          </div>
+            
+            <div className="d-flex flex-direction-column min-h-100pc70px">
+              <Div className="d-flex position-relative z-1000 justify-content-space-between align-items-center p-20px" backgroundStyled={application.mode.primaryHalf}>
+                <div className="w-30 d-flex">
+                  <Link className="w-40px ml-25" to={`/${staff}/${dashboard}`}>
+                    <Div className="d-flex justify-content-center align-items-center h-40px w-40px min-w-max-content border-radius-circle" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
+                      <i className='ml-neg3px clickable fa-2x fas fa-chevron-left'></i>
+                    </Div>
+                  </Link>
+                </div>
+                <div className="w-30 d-flex justify-content-center">
+                </div>
+                <div className="w-30 d-flex justify-content-flex-end">
+                  {editContent}
+                  {listOpen &&
+                    <Dropdown ref={this.setWrapperRef} className="position-absolute mt-45px ml-neg30px z-1005 d-flex flex-direction-column text-right outer-shadow" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
+                      <Link className="noUnderline" to={`/staff/contribution/edit/${contribution._id}`}>
+                        <Div
+                          type="button"
+                          className="h-max-content p-10px clickable text-left top-border-radius"
+                          transitionStyled={application.transitions.general}
+                          backgroundStyled={application.mode.primary}
+                          backgroundHoverStyled={application.theme.primaryQuarter}
+                          colorStyled={application.theme.primary}
+                          colorHoverStyled={application.theme.primary}
+                          >
+                          <i className="fas fa-pencil mr-5px" />
+                          <FormattedMessage
+                            id="staff.edit"
+                            defaultMessage="Edit"
+                          />
+                        </Div>
+                      </Link>
+                      <DropdownDivider colorStyled={application.theme.primary} />
+                      <Button
+                        onClick={() => this.toggleDeleteModal()}
                         type="button"
-                        className="h-max-content p-10px clickable text-left top-border-radius"
+                        className="h-max-content p-10px clickable text-left"
                         transitionStyled={application.transitions.general}
                         backgroundStyled={application.mode.primary}
                         backgroundHoverStyled={application.theme.primaryQuarter}
                         colorStyled={application.theme.primary}
                         colorHoverStyled={application.theme.primary}
-                        >
-                        <i className="fas fa-pencil mr-5px" />
+                        radiusStyled={application.settings.appRadiusBottom}
+                      >
+                        <i className="fas fa-times mr-5px" />
                         <FormattedMessage
-                          id="staff.edit"
-                          defaultMessage="Edit"
+                          id="staff.delete"
+                          defaultMessage="Delete"
                         />
-                      </Div>
-                    </Link>
-                    <DropdownDivider colorStyled={application.theme.primary} />
-                    <Button
-                      onClick={() => this.toggleDeleteModal()}
-                      type="button"
-                      className="h-max-content p-10px clickable text-left"
-                      transitionStyled={application.transitions.general}
-                      backgroundStyled={application.mode.primary}
-                      backgroundHoverStyled={application.theme.primaryQuarter}
-                      colorStyled={application.theme.primary}
-                      colorHoverStyled={application.theme.primary}
-                      radiusStyled={application.settings.appRadiusBottom}
-                    >
-                      <i className="fas fa-times mr-5px" />
-                      <FormattedMessage
-                        id="staff.delete"
-                        defaultMessage="Delete"
-                      />
-                    </Button>
-                  </Dropdown>
-                }
-              </div>
-            </Div>
-            <Div className="d-flex justify-content-center pl-100px pr-100px" heightStyled={application.settings.vientoCoverTitle}>
-              <H1 className="text-center p-5px" radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryThree} fontSizeStyled={application.text.heading}>{contribution.title}</H1>
-            </Div>
-            <div className="d-flex justify-content-center pl-100px pr-100px">
-              <H2 className="text-center p-5px" radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryThree} fontSizeStyled={application.text.description}>{contribution.description}</H2>
-            </div>
-          </div>
-          <Div className="z-900 d-flex justify-content-center overflow-hidden mt-neg40px" heightStyled={application.settings.vientoCoverBanner}>
-            <img className="filter-blur min-w-100 object-fit-cover" alt="banner" src={`/api/staff/files/${contribution.bannerLg}`} />
-          </Div>
-          <div className="position-relative d-flex justify-content-center">
-            <Div name="infoSection" onClick={this.handleScrollToContent} className="max-w-content text-center call-to-action d-flex justify-content-center align-items-center h-48px mt-neg170px border-bottom-0 border-radius-circle" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
-              <i className='clickable p-10px fa-2x fas fa-arrow-alt-down'></i>
-            </Div>
-          </div>
-          <Div className="d-flex flex-direction-row justify-content-space-between align-items-center position-relative pl-10 pr-10 h-50px pt-20px pb-20px mt-neg90px" backgroundStyled={application.mode.primaryHalf}>
-            <div>
-              <div className="d-flex flex-direction-row align-items-center">
-                <div>
-                  <Link className="noUnderline" to={`/${community}/${contribution.profile.handle}`}>
-                    <Div colorStyled={application.mode.primary} className="d-flex justify-content-start align-items-center">
-                      {profilePicture}
-                    </Div>
-                  </Link>
+                      </Button>
+                    </Dropdown>
+                  }
                 </div>
-                <div className="d-flex flex-direction-column" >
-                  <Link className="noUnderline" to={`/${community}/${contribution.profile.handle}`}>
-                    <Div className="noUnderline w-100 ml-10px p-5px flex-wrap" transitionStyled={application.transitions.general} radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryThree} backgroundHoverStyled={application.theme.primary} colorStyled={application.theme.primaryThree} colorHoverStyled={application.mode.primary} fontSizeStyled={application.text.important}>
-                      {contribution.user.name}
-                    <br />
-                    </Div>
-                  </Link>
-                </div>
+              </Div>
+
+              <Div className="d-flex position-relative z-1000 justify-content-center pl-100px pr-100px">
+                <H1 className="text-center p-5px h-min-content" radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryThree} fontSizeStyled={application.text.heading}>{contribution.title}</H1>
+              </Div>
+              <div className="d-flex position-relative z-1000 justify-content-center pl-100px pr-100px">
+                <H2 className="text-center p-5px h-min-content" radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryThree} fontSizeStyled={application.text.description}>{contribution.description}</H2>
               </div>
             </div>
             
-          </Div>
-          <Div className="d-flex justify-content-space-around position-relative flex-direction-row align-items-center mt-neg45px min-h-70px text-center" heightStyled={application.settings.vientoCoverFooter}>
-            <div className="w-33 clickable">
-              <i className='clickable p-10px fa-2x fas fa-arrow-alt-up'></i>
+
+            <div className="d-flex flex-direction-column min-h-70px">
+              <div className="position-relative z-1000 d-flex justify-content-center">
+                <Div name="infoSection" onClick={this.handleScrollToElement} className="min-w-max-content text-center call-to-action d-flex justify-content-center align-items-center h-48px mt-neg170px border-bottom-0 border-radius-circle" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
+                  <i className='clickable p-10px fa-2x fas fa-arrow-alt-down'></i>
+                </Div>
+              </div>
+              <Div className="d-flex position-relative z-1000 flex-direction-row align-items-center position-relative pl-10 h-50px pt-20px pb-20px mt-neg90px" backgroundStyled={application.mode.primaryHalf}>
+                <Link className="noUnderline" to={`/${community}/${contribution.profile.handle}`}>
+                  <Div colorStyled={application.mode.primary} className="d-flex align-items-center">
+                    {profilePicture}
+                  </Div>
+                </Link>
+                <div className="d-flex flex-direction-column ml-10px">
+                  <Link className="noUnderline" to={`/${community}/${contribution.profile.handle}`}>
+                    <Div className="noUnderline min-w-max-content p-5px" transitionStyled={application.transitions.general} radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryThree} backgroundHoverStyled={application.theme.primary} colorStyled={application.theme.primaryThree} colorHoverStyled={application.mode.primary} fontSizeStyled={application.text.important}>
+                      {contribution.user.name}
+                      <br />
+                    </Div>
+                  </Link>
+                </div>
+              </Div>
+              <Div className="d-flex position-relative z-1000 justify-content-space-around position-relative flex-direction-row align-items-center mt-neg45px min-h-70px" heightStyled={application.settings.contributionCoverFooter}>
+                <div className="min-w-max-content clickable">
+                  Draft
+                </div>
+                <div className="min-w-max-content clickable">
+                  <Div className="p-5px noUnderline post-section-heading d-flex flex-direction-row align-items-center min-w-max-content" colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
+                    <i className="p-10px fa-2x fas fa-share-square"></i> 
+                  </Div>
+                </div>
+                <div className="min-w-max-content clickable">
+                  {commentsActivity}
+                </div>
+              </Div>
             </div>
-            <div className="w-33 clickable">
-              <i className="p-10px fa-2x fas fa-share-square"></i> 
+          
+            <div id="content-anchor" style={style}>
+              <Quill contributions={contribution.content} />
             </div>
-            <div className="w-33 clickable">
-              {commentsActivity}
+            <div id="comment-anchor" style={style}>
+              <CommentFeed vientoId={contribution._id} comments={contribution.comments} />
+              <CommentForm vientoId={contribution._id} category={'public'} />
             </div>
-          </Div>
-          <div id="content-anchor" style={style}>
           </div>
-          <Quill contributions={contribution.content} />
-          <div id="comment-anchor" style={style}>
-          </div>
-          <CommentFeed vientoId={contribution._id} comments={contribution.comments} />
-          <CommentForm vientoId={contribution._id} category={'review'} />
         </div>
       );
     }
