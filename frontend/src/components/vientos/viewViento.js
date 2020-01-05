@@ -281,7 +281,7 @@ class Contribution extends Component {
             </div>
             
 
-            <div className="d-flex flex-direction-column">
+            <div className="d-flex flex-direction-column min-h-70px">
               <div className="position-relative z-1000 d-flex justify-content-center">
                 <Div name="infoSection" onClick={this.handleScrollToContent} className="min-w-max-content text-center call-to-action d-flex justify-content-center align-items-center h-48px mt-neg170px border-bottom-0 border-radius-circle" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
                   <i className='clickable p-10px fa-2x fas fa-arrow-alt-down'></i>
