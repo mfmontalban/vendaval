@@ -31,11 +31,11 @@ class ProfileAbout extends Component {
           </h3>
           <p className="text-center">
             {isEmpty(profile.bio) ? (
-              <div>
-                <p>{firstName} </p>
+              <div className="d-flex flex-direction-row justify-content-center align-items-center">
+                <p className="mr-5px">{firstName}</p>
                 <FormattedMessage
                   id="profile.emptyBio"
-                  defaultMessage="does not have a bio"
+                  defaultMessage=" does not have a bio"
                 />
               </div>
             ) : (

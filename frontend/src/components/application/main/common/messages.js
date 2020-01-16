@@ -122,7 +122,7 @@ export default {
         'profile.editProfileOpenSocialMedia' : `Add social network links`,
         'profile.editProfileCloseSocialMedia': `Close social network links`,
         'profile.talentsTitle' : `Talents`,
-        'profile.emptyBio' : `does not have a bio`,
+        'profile.emptyBio' : ` does not have a bio`,
         
         'register.Main': `Sign Up`,
         'register.Secondary': `Create your Vendaval account`,
@@ -279,7 +279,7 @@ export default {
         'profile.editProfileOpenSocialMedia' : `Agregar redes sociales`,
         'profile.editProfileCloseSocialMedia': `Cerra redes sociales`,
         'profile.talentsTitle' : `Talentos`,
-        'profile.emptyBio' : `no tiene un bio`,
+        'profile.emptyBio' : ` no tiene un bio`,
 
         'register.Main': `Registrarse`,
         'register.Secondary': `Crea su cuente de Vendaval`,

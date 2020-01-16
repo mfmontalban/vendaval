@@ -28,7 +28,7 @@ class ReviewerDropDown extends Component {
   componentDidMount = () => {
     let currentState;
 
-    if (this.props.contribution.reviewer !== undefined || null) {
+    if (this.props.contribution.reviewer !== undefined || null || "") {
       this.setState({
         currentState: this.props.contribution.reviewer.name
       });
@@ -49,7 +49,7 @@ class ReviewerDropDown extends Component {
     let currentState;
 
     if (this.props.application.language !== prevProps.application.language) {
-      if (this.props.contribution.reviewer !== undefined || null) {
+      if (this.props.contribution.reviewer !== undefined || null || "") {
         this.setState({
           currentState: this.props.contribution.reviewer.name,
         });
