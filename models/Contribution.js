@@ -17,7 +17,7 @@ const ContributionSchema = new Schema({
   },
   reviewer: {
     type: Schema.Types.ObjectId,
-    ref: 'users',
+    ref: 'users'
   },
   type: {
     type: String

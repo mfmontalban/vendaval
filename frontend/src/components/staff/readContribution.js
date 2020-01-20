@@ -264,7 +264,7 @@ class Contribution extends Component {
           </div>
             
             <div className="d-flex flex-direction-column min-h-100pc70px">
-              <Div className="d-flex position-relative z-1000 justify-content-space-between align-items-center p-20px" backgroundStyled={application.mode.primaryHalf}>
+              <Div className="d-flex position-relative z-1005 justify-content-space-between align-items-center p-20px" backgroundStyled={application.mode.primaryHalf}>
                 <div className="w-30 d-flex">
                   <Link className="w-40px ml-25" to={`/${staff}/${dashboard}`}>
                     <Div className="d-flex justify-content-center align-items-center h-40px w-40px min-w-max-content border-radius-circle" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
@@ -277,8 +277,8 @@ class Contribution extends Component {
                 <div className="w-30 d-flex justify-content-flex-end">
                   {editContent}
                   {listOpen &&
-                    <Dropdown ref={this.setWrapperRef} className="position-absolute mt-45px ml-neg30px z-1005 d-flex flex-direction-column text-right outer-shadow" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
-                      <Link className="noUnderline" to={`/staff/contribution/edit/${contribution._id}`}>
+                    <Dropdown ref={this.setWrapperRef} className="clickable position-absolute mt-45px mr-5px z-1005 d-flex flex-direction-column text-right outer-shadow" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
+                      <Link className="noUnderline clickable" to={`/staff/contribution/edit/${contribution._id}`}>
                         <Div
                           type="button"
                           className="h-max-content p-10px clickable text-left top-border-radius"
@@ -288,7 +288,7 @@ class Contribution extends Component {
                           colorStyled={application.theme.primary}
                           colorHoverStyled={application.theme.primary}
                           >
-                          <i className="fas fa-pencil mr-5px" />
+                          <i className="fas fa-pencil mr-5px clickable" />
                           <FormattedMessage
                             id="staff.edit"
                             defaultMessage="Edit"

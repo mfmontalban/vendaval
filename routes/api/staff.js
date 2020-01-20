@@ -176,6 +176,7 @@ router.post(
     if (req.body.lat) contributionFields.lat = req.body.lat;
     if (req.body.lon) contributionFields.lon = req.body.lon;
     if (req.body.contentHTML) contributionFields.contentHTML = req.body.contentHTML;
+    contributionFields.reviewer = new ObjectID('111111111111111111111111');
 
     Profile.findOne({ user: req.user.id})
     .then(prof => {
