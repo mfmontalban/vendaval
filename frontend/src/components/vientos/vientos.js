@@ -116,19 +116,19 @@ class Vientos extends Component {
         }).sort((viento1, viento2) => {
             if (sortBy === 'titleup') {
                 // return viento1.title.localeCompare(viento2.title);
-                return viento1.title.toLowerCase() > viento2.title.toLowerCase() ? -1 : 1;
+                return viento1.title.toLowerCase() > viento2.title.toLowerCase() ? 1 : -1;
             } else if (sortBy === 'titledown') {
                 // return viento1.title.toLowerCase() > viento2.title.toLowerCase() ? -1 : viento2 > viento1 ? 1 : 0;
-                return viento1.title.toLowerCase() > viento2.title.toLowerCase() ? 1 : -1;
+                return viento1.title.toLowerCase() > viento2.title.toLowerCase() ? -1 : 1;
             } else if (sortBy === 'authorup') {
                 // return viento1.user.name.localeCompare(viento2.user.name);
-                return viento1.user.name.toLowerCase() > viento2.user.name.toLowerCase() ? -1 : 1;
-            } else if (sortBy === 'authordown') {
                 return viento1.user.name.toLowerCase() > viento2.user.name.toLowerCase() ? 1 : -1;
+            } else if (sortBy === 'authordown') {
+                return viento1.user.name.toLowerCase() > viento2.user.name.toLowerCase() ? -1 : 1;
             } else if (sortBy === 'publishedup') {
-                return viento1.createdAt < viento2.createdAt ? -1 : 1;
-            } else if (sortBy === 'publisheddown') {
                 return viento1.createdAt < viento2.createdAt ? 1 : -1;
+            } else if (sortBy === 'publisheddown') {
+                return viento1.createdAt < viento2.createdAt ? -1 : 1;
             }
             return viento1.createdAt < viento2.createdAt ? 1 : -1;
         }).map(viento =>

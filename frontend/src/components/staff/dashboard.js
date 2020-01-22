@@ -136,23 +136,23 @@ class Staff extends Component {
           }
         }).sort((viento1, viento2) => {
             if (sortBy === 'titleup') {
-                return viento1.title.toLowerCase() > viento2.title.toLowerCase() ? -1 : 1;
-            } else if (sortBy === 'titledown') {
                 return viento1.title.toLowerCase() > viento2.title.toLowerCase() ? 1 : -1;
+            } else if (sortBy === 'titledown') {
+                return viento1.title.toLowerCase() > viento2.title.toLowerCase() ? -1 : 1;
             } else if (sortBy === 'authorup') {
-                return viento1.user.name.toLowerCase() > viento2.user.name.toLowerCase() ? -1 : 1;
-            } else if (sortBy === 'authordown') {
                 return viento1.user.name.toLowerCase() > viento2.user.name.toLowerCase() ? 1 : -1;
+            } else if (sortBy === 'authordown') {
+                return viento1.user.name.toLowerCase() > viento2.user.name.toLowerCase() ? -1 : 1;
             } else if (sortBy === 'reviewerup') {
-                return viento1.reviewer.name.toLowerCase() > viento2.reviewer.name.toLowerCase() ? -1 : 1;
-            } else if (sortBy === 'reviewerdown') {
                 return viento1.reviewer.name.toLowerCase() > viento2.reviewer.name.toLowerCase() ? 1 : -1;
+            } else if (sortBy === 'reviewerdown') {
+                return viento1.reviewer.name.toLowerCase() > viento2.reviewer.name.toLowerCase() ? -1 : 1;
             } else if (sortBy === 'statusup') {
-                return viento1.status.toLowerCase() > viento2.status.toLowerCase() ? -1 : 1;
-            } else if (sortBy === 'statusdown') {
                 return viento1.status.toLowerCase() > viento2.status.toLowerCase() ? 1 : -1;
+            } else if (sortBy === 'statusdown') {
+                return viento1.status.toLowerCase() > viento2.status.toLowerCase() ? -1 : 1;
             } else {
-              return viento1.user.name.toLowerCase() > viento2.user.name.toLowerCase() ? -1 : 1;
+              return viento1.user.name.toLowerCase() > viento2.user.name.toLowerCase() ? 1 : -1;
             }
         }).map(contribution =>
           <ContributionItem key={contribution._id} contribution={contribution} />
