@@ -131,30 +131,78 @@ class ReviewerDropDown extends Component {
       }).map((reviewer, index) => {
         if (index == 0) {
           return (
-            <Button key={reviewer._id} transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} onClick={(e) => {this.props.updateReviewer(contribution._id, {'reviewer': `${reviewer._id}`, 'staff': `${admin.staff}`}); this.toggleList();}} className="p-10px max-w-175px text-overflow-ellipsis text-center top-border-radius" type="button">{reviewer.name}</Button>
+            <Button
+              key={reviewer._id} 
+              transitionStyled={`${application.transitions.general}`} 
+              backgroundStyled={`${application.mode.primary}`}
+              colorStyled={application.theme.primary}
+              colorHoverStyled={application.theme.primary}
+              backgroundHoverStyled={`${application.theme.primaryQuarter}`} 
+              onClick={(e) => {this.props.updateReviewer(contribution._id, {'reviewer': `${reviewer._id}`, 'staff': `${admin.staff}`}); this.toggleList();}} 
+              className="p-10px z-1005 position-relative max-w-175px text-overflow-ellipsis text-center top-border-radius" 
+              type="button">
+                {reviewer.name}
+            </Button>
           );
         } else if (allReviewers.length - index == 1) {
           return (
-            <Button key={reviewer._id} transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} onClick={(e) => {this.props.updateReviewer(contribution._id, {'reviewer': `${reviewer._id}`, 'staff': `${admin.staff}`}); this.toggleList();}} className="p-10px max-w-175px text-overflow-ellipsis text-center bottom-border-radius" type="button">{reviewer.name}</Button>
+            <Button
+              key={reviewer._id} 
+              transitionStyled={`${application.transitions.general}`} 
+              backgroundStyled={`${application.mode.primary}`}
+              colorStyled={application.theme.primary}
+              colorHoverStyled={application.theme.primary}
+              backgroundHoverStyled={`${application.theme.primaryQuarter}`} 
+              onClick={(e) => {this.props.updateReviewer(contribution._id, {'reviewer': `${reviewer._id}`, 'staff': `${admin.staff}`}); this.toggleList();}} 
+              className="p-10px z-1005 position-relative max-w-175px text-overflow-ellipsis text-center bottom-border-radius" 
+              type="button">
+                {reviewer.name}
+            </Button>
           );
         } else {
           return (
-            <Button key={reviewer._id} transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} onClick={(e) => {this.props.updateReviewer(contribution._id, {'reviewer': `${reviewer._id}`, 'staff': `${admin.staff}`}); this.toggleList();}} className="p-10px max-w-175px text-overflow-ellipsis text-center" type="button">{reviewer.name}</Button>
+            <Button
+              key={reviewer._id} 
+              transitionStyled={`${application.transitions.general}`} 
+              backgroundStyled={`${application.mode.primary}`}
+              colorStyled={application.theme.primary}
+              colorHoverStyled={application.theme.primary}
+              backgroundHoverStyled={`${application.theme.primaryQuarter}`} 
+              onClick={(e) => {this.props.updateReviewer(contribution._id, {'reviewer': `${reviewer._id}`, 'staff': `${admin.staff}`}); this.toggleList();}} 
+              className="p-10px z-1005 position-relative max-w-175px text-overflow-ellipsis text-center" 
+              type="button">
+                {reviewer.name}
+            </Button>
           );
         }
       });
     } else {
       reviewersList = (
-        <Button transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} className="p-10px top-border-radius text-left" type="button">{currentState}</Button>
+        <Button 
+        transitionStyled={`${application.transitions.general}`} 
+        backgroundStyled={`${application.mode.primary}`}
+        colorStyled={application.theme.primary}
+        backgroundHoverStyled={`${application.theme.primaryQuarter}`} 
+        colorHoverStyled={application.theme.primary}
+        className="p-10px z-1005 position-relative top-border-radius text-left" 
+        type="button">
+          {currentState}
+        </Button>
       )
     }
 
     return(
-      <div className="min-w-25-app d-flex p-10px justify-content-center">
+      <div className="min-w-25-app d-flex position-relative justify-content-center align-items-center p-10px">
         {statusSection}
-        {listOpen && 
-          <Dropdown ref={this.setWrapperRef} className="mt-40px position-absolute z-1005 d-flex flex-direction-column text-left outer-shadow" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
-            {reviewersList}
+        {listOpen &&
+          <Dropdown
+            ref={this.setWrapperRef}
+            className="Clickable position-absolute z-1005 d-flex flex-direction-column text-left outer-shadow"
+            transitionStyled={`${application.transitions.general}`}
+            backgroundStyled={`${application.mode.primary}`}
+            colorStyled={`${application.theme.primary}`}
+            radiusStyled={`${application.settings.appRadius}`}>
+              {reviewersList}
           </Dropdown>
         }
       </div>
