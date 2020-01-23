@@ -413,8 +413,18 @@ textarea {
   max-width:300px;
 }
 
-.max-w-175px {
+.min-max-w-175px {
+  min-width:175px;
   max-width:175px;
+}
+
+.min-max-w-125px {
+  min-width:125px;
+  max-width:125px;
+}
+
+.max-w-125px {
+  max-width:125px;
 }
 
 .max-w-200px {
@@ -754,6 +764,10 @@ textarea {
 
 .outer-shadow {
   box-shadow: 0px 0px 5px #0000007a;
+}
+
+.outer-shadow-primary {
+  box-shadow: 0px 0px 5px;
 }
 
 .outer-shadow-double {

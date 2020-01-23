@@ -84,7 +84,7 @@ class SortMenu extends Component {
           <i className="fas fa-sort"></i>
         </Button>
         {listOpen && 
-          <Div className="position-absolute z-1005 d-flex flex-direction-column text-right outer-shadow outer-box-shadow-menu ml-neg107px" backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
+          <Div className="position-absolute z-1005 d-flex flex-direction-column text-right outer-shadow-primary ml-neg107px border-1" backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`} borderStyled={`${application.theme.primary}`}>
             <Button onClick={(e) => {this.props.setSortsReviewerUp(e); this.toggleList();}} className="p-10px text-right" backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadiusTop}`} type="Button">{reviewerUp}</Button>
             <Button onClick={(e) => {this.props.setSortsReviewerDown(e); this.toggleList();}} className="p-10px text-right" backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`} type="Button">{reviewerDown}</Button>
             <Button onClick={(e) => {this.props.setSortsAuthorUp(e); this.toggleList();}} className="p-10px top-border-radius text-right" backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`} type="Button">{authorUp}</Button>

@@ -155,10 +155,10 @@ class LiveDropDown extends Component {
 
 
     return(
-      <div className="min-w-25-app d-flex p-10px justify-content-center">
+      <div className="min-w-25-app d-flex position-relative p-10px justify-content-center">
         {statusSection}
         {listOpen && 
-          <Dropdown ref={this.setWrapperRef} className="mt-40px position-absolute z-1005 d-flex flex-direction-column text-left outer-shadow" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
+          <Dropdown ref={this.setWrapperRef} className="mt-40px position-absolute z-1005 d-flex flex-direction-column text-left outer-shadow-primary border-1" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} borderStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
             <Button transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} onClick={(e) => {this.props.updateStatus(contribution._id, {'status': 'Draft', 'staff': admin.staff}); this.toggleList();}} className="p-10px top-border-radius text-left" type="button">{draft}</Button>
             <Button transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} onClick={(e) => {this.props.updateStatus(contribution._id, {'status': 'Live', 'staff': admin.staff}); this.toggleList();}} className="p-10px bottom-border-radius text-left" type="button">{live}</Button>
           </Dropdown>

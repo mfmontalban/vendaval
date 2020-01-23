@@ -98,12 +98,12 @@ class SearchWinds extends Component {
             </div>
         } else {
           searchContainer =
-            <Div className="p-5px" transitionStyled={application.transitions.general} backgroundHoverStyled={application.theme.primaryQuarter} colorStyled={application.theme.primary}>
+            <div className="p-5px">
               <FormattedMessage
                 id="navigation.searchResults"
                 defaultMessage="No search results"
               />
-            </Div>
+            </div>
         }
       } else {
         searchContainer = ''
@@ -112,7 +112,7 @@ class SearchWinds extends Component {
     }
 
     return(
-      <Container className="d-flex outer-shadow searchContainer" heightStyled={`${application.settings.heightUserNav}`} containerBackground={`${application.mode.primary}`} containerRadius={`${application.settings.appRadius}`}>
+      <Div className="d-flex outer-shadow searchContainer" heightStyled={`${application.settings.heightUserNav}`} colorStyled={`${application.theme.primary}`} backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadius}`}>
         <Button className="prepend border-0 h-100pc" transitionStyled={`${application.settings.appTransition}`} backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} paddingStyled={`${application.settings.appPadding}`}>
           <i className="fal fa-search"></i>
         </Button>
@@ -123,7 +123,7 @@ class SearchWinds extends Component {
             aria-label="Search for articles"
             value={this.state.search}
             onChange={this.updateSearch}
-            className="p-5px border-0 inner-shadow h-20px ml-5px"
+            className="p-5px border-0 inner-shadow h-20px"
             backgroundStyled={`${application.theme.primaryQuarter}`}
             colorStyled={`${application.theme.primary}`}
             placeholderStyled={`${application.theme.primaryThree}`}
@@ -131,11 +131,17 @@ class SearchWinds extends Component {
           />
         </div>
         {listOpen &&
-          <Div ref={this.setWrapperRef} className="d-flex flex-direction-column position-absolute resultsContainer overflow-hidden border-radius-8px outer-shadow" backgroundStyled={application.mode.primary}>
+          <Div ref={this.setWrapperRef} 
+            className="d-flex flex-direction-column position-absolute resultsContainer overflow-hidden border-1 outer-shadow-primary" 
+            backgroundStyled={application.mode.primary}
+            colorStyled={application.theme.primary}
+            borderStyled={application.theme.primary}
+            radiusStyled={`${application.settings.appRadius}`}
+            >
             {searchContainer}
           </Div>
         }
-      </Container>
+      </Div>
     )
   }
 }
