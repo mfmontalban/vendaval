@@ -197,7 +197,7 @@ class ReviewerDropDown extends Component {
         {listOpen &&
           <Dropdown
             ref={this.setWrapperRef}
-            className="Clickable position-absolute z-1005 d-flex flex-direction-column text-left outer-shadow"
+            className="Clickable position-absolute mt-150px z-1005 d-flex flex-direction-column text-left outer-shadow"
             transitionStyled={`${application.transitions.general}`}
             backgroundStyled={`${application.mode.primary}`}
             colorStyled={`${application.theme.primary}`}
