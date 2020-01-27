@@ -527,7 +527,7 @@ class Mapbox extends Component {
   render() {
 
     return (
-      <div ref={el => this.mapContainer = el} onTouchEnd={this.visMoving} onMouseUp={this.visMoving} onWheel={this.visMoving} className="mapgl position-relative outer-shadow ml-10px mr-10px">
+      <div ref={el => this.mapContainer = el} onTouchEnd={this.visMoving} onMouseUp={this.visMoving} onWheel={this.visMoving} className="vientos position-relative z-995 border-bottom-1 outer-shadow-primary">
       </div>
     );
   }

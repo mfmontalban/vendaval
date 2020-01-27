@@ -18,6 +18,7 @@ import es from 'react-intl/locale-data/es';
 import Director from './director';
 
   import './App.css';
+  import './App2.css';
   import Landing from './components/application/main/landing/index';
 
   import Register from './components/admin/register';
@@ -123,8 +124,8 @@ class App extends Component {
 
 
 
-          <Director exact path="/winds" level={'public'} template={'Map'} component={Vientos} />
-          <Director exact path="/vientos" level={'public'} template={'Map'} component={Vientos} />
+          <Director exact path="/winds" level={'public'} component={Vientos} />
+          <Director exact path="/vientos" level={'public'} component={Vientos} />
 
           <Director exact path="/winds/:id" level={'public'} component={ViewViento} />
           <Director exact path="/vientos/:id" level={'public'} component={ViewViento} />

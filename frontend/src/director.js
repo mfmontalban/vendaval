@@ -5,34 +5,28 @@ import PropTypes from 'prop-types';
 
 import Layout from './components/application/layout';
 
-const Director = ({ level: Level, template: Template, component: Component, admin, ...rest}) => (
+const Director = ({ level: Level, component: Component, admin, ...rest}) => (
   <Route {...rest} render={props => ( 
-    Template === 'Map' ? (
-      <Layout header={'transparent'}>
+    Level === 'public' ? (
+      <Layout>
         <Component {...props} />
       </Layout>
     ) : (
-      Level === 'public' ? (
-        <Layout>
-          <Component {...props} />
-        </Layout>
-      ) : (
-        Level === 'user' ? (
-          admin.isAuthenticated !== '' ? (
-            <Layout>
-              <Component {...props} />
-            </Layout>
-          ) : (
-            <Redirect to="/login" />
-          )
+      Level === 'user' ? (
+        admin.isAuthenticated !== '' ? (
+          <Layout>
+            <Component {...props} />
+          </Layout>
         ) : (
-          admin.staff !== '' ? (
-            <Layout>
-              <Component {...props} />
-            </Layout>
-          ) : (
-            <Redirect to="/login" />
-          )
+          <Redirect to="/login" />
+        )
+      ) : (
+        admin.staff !== '' ? (
+          <Layout>
+            <Component {...props} />
+          </Layout>
+        ) : (
+          <Redirect to="/login" />
         )
       )
     )

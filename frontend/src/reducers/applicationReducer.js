@@ -32,8 +32,12 @@ import {
 } from '../actions/types';
 
 const appPadding = '10px';
+const appMargin = '10px';
+const appRadius = '8px';
+const appBorder = '1px';
 const marginBottomBody = '10px';
 const heightHeader = '50px';
+const heightHeader2 = '60px';
 const heightUserNav = '40px';
 
 const vh100 = window.innerHeight;
@@ -67,10 +71,13 @@ const initialState = {
   settings: {
     appBackground: 'rgba(23, 162, 184, 1)',
     
-    appWidth: `calc(100vw)`,
+    appHeight: `calc(100vh - (${appPadding}*2))`,
+    appWidth: `calc(100vw - (${appPadding}*2))`,
     appPadding: `${appPadding} ${appPadding} ${appPadding} ${appPadding}`,
     appPadding2: `calc(${appPadding}/2) calc(${appPadding}/2) calc(${appPadding}/2) calc(${appPadding}/2)`,
     appPaddingHalf: `calc(${appPadding}/2)`,
+
+    appMargin: `${appMargin}`,
 
     appRadius: '8px',
     appRadiusTop: '8px 8px 0px 0px',
@@ -81,6 +88,9 @@ const initialState = {
     appTransition: 'all .25s ease',
     appTransitionSettingsIn: 'background .25 ease, transform 0.75s ease, opacity .75s ease',
     appTransitionSettingsOut: 'background .25 ease, transform 0.75s ease, opacity .75s ease, z-index .05s .75s ease',
+
+    ///100vh - topMargin - header - headerBorder - padding - contentBorder - bottomMargin - 1px
+    contentHeight: `calc(${vh100}px - ${appPadding} - ${heightHeader2} - (${appBorder}*2) - ${appPadding} - (${appBorder}*2) - ${appPadding})`,
     
     widthUserNavBackground: `calc(100vw - (${appPadding}*2))`,
     widthUserNav: `calc(100vw - (${appPadding}*4))`,
@@ -95,8 +105,8 @@ const initialState = {
     widthSettings: `calc(100vw - 40vw)`,
     marginLeftSettings: `20vw`,
     marginRightSettings: `20vw`,
-
-    heightHero: `calc(${vh100}px - ${heightHeader} - ${appPadding} - 70px)`,
+ 
+    heightHero: `calc(${vh100}px - ${heightHeader} - ${appPadding} - 20px)`,
 
     heightLandingMain: `calc(${vh100}px - ${appPadding} - ${heightHeader} - ${appPadding} - ${heightUserNav} - ${appPadding} - ${appPadding} - (${appPadding}*3))`,
     heightLandingMain2: `calc(${vh100}px - ${appPadding} - ${heightHeader} - ${appPadding} - ${heightUserNav} - (${appPadding}*6))`,
@@ -130,7 +140,7 @@ const initialState = {
     themeSecondaryText: 'rgba(223, 223, 223, 1)',
     themeSecondaryTextHalf: 'rgba(255, 255, 255, 1)',
 
-    dashboardContributions: `calc(${vh100}px - ${heightHeader} - 70px - 47.4333px - 38.7167px - 74.7167px - 58px)`,
+    dashboardContributions: `calc(${vh100}px - ${heightHeader} - ${appPadding} - 20px - 60px - 39px - 80px)`,
 
     vientoCoverTitle: `calc(${vh100}px - 73px - 75px - ${heightHeader} - ${appPadding} - 70px )`,
     vientoCoverBanner: `calc(${vh100}px - ${heightHeader} - ${appPadding} - 70px - 70px)`,
@@ -162,6 +172,8 @@ const initialState = {
     general: 'all .25s ease',
     settingsIn: 'transform 0.75s ease, opacity .75s ease',
     settingsOut: 'transform 0.75s ease, opacity .75s ease, z-index .05s .75s ease',
+    appMenuIn: 'transform 0.75s ease, opacity .75s ease',
+    appMenuOut: 'transform 0.75s ease, opacity .75s ease, z-index .05s .75s ease',
   },
   transparent: 'none',
   titles: {},

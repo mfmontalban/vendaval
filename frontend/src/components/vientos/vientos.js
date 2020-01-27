@@ -137,7 +137,7 @@ class Vientos extends Component {
               
 
         content = (
-          <Div className="scroll-container mt-10px outer-shadow ml-10px mr-10px vientos-items scrollbar-width-none " backgroundStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
+          <Div className="scroll-container vientos scrollbar-width-none " backgroundStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`}>
             <div className="d-flex flex-wrap justify-content-center pt-10px pb-10px ml-auto mr-auto">
               {dashboardContent}
             </div>
@@ -146,7 +146,7 @@ class Vientos extends Component {
 
       } else {
         content = (
-          <Div className="d-flex flex-wrap scroll-container mt-10px outer-shadow ml-10px mr-10px vientos-items scrollbar-width-none " backgroundStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
+          <Div className="d-flex flex-wrap scroll-container vientos scrollbar-width-none " backgroundStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`}>
           </Div>
         );
       }
@@ -166,7 +166,7 @@ class Vientos extends Component {
     );
 
     return (
-      <div className="vientos-container scroll-container scrollbar-width-none">
+      <div className="h-100 overflow-scroll scrollbar-width-none">
         {alerts.updated ? updatedAlert : null}
         <Map />
         {vientosNav}

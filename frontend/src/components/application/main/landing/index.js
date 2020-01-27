@@ -75,7 +75,7 @@ class Landing extends Component {
   }
 
   handleScrollToElement2 = (e) => {
-    let element = document.getElementById("header");
+    let element = document.getElementById("content");
     element.scrollIntoView({behavior: "smooth", block: "nearest", inline: "nearest"});
   }
 
@@ -92,17 +92,13 @@ class Landing extends Component {
     }
 
     return (
-        <Div className="scroll-container bottom-outer-shadow ml-10px mr-10px pt-70px scrollbar-width-none" heightStyled={`${application.settings.heightHero}`} backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
-          <div className="d-flex flex-direction-column h-100 position-relative overflow-hidden">
-            <div className="h-90 position-relative justify-content-flex-start">
+        <div className="h-100">
+          <div className="h-100 d-flex flex-direction-column">
+            <div className="h-90 d-flex flex-direction-column">
               
-              <div className="h-10 d-flex position-relative justify-content-space-around">
-                <div className="position-relative">
-                  <SVG preserveAspectRatio="xMidYMin slice" viewBox="0 0 100 100" fillStyled={`${application.theme.primaryHalf}`}><Sky /></SVG>
-                </div>
-                <div className="position-relative">
-                  <SVG preserveAspectRatio="xMidYMin slice" viewBox="0 0 100 100" fillStyled={`${application.theme.primaryHalf}`}><Sky2 /></SVG>
-                </div>
+              <div className="h-10 w-100 d-flex">
+                <SVG preserveAspectRatio="xMidYMin slice" viewBox="0 0 100 100" fillStyled={`${application.theme.primaryHalf}`}><Sky /></SVG>
+                <SVG preserveAspectRatio="xMidYMin slice" viewBox="0 0 100 100" fillStyled={`${application.theme.primaryHalf}`}><Sky2 /></SVG>
               </div>
 
               <div className="h-45 d-flex justify-content-space-around overflow-hidden">
@@ -139,7 +135,7 @@ class Landing extends Component {
                   </SVG>
                 </div>
               </div>
-              <Div className="d-flex flex-direction-column justify-content-center text-center ml-auto mr-auto landingMotto" colorStyled={`${application.theme.primary}`}>
+              <Div className="d-flex flex-direction-column justify-content-center text-center ml-auto mr-auto" colorStyled={`${application.theme.primary}`}>
                 <FormattedHTMLMessage
                   id="landing.heroMessage"
                   defaultMessage="Winds of Change"
@@ -147,20 +143,20 @@ class Landing extends Component {
               </Div>
             </div>
 
-            <div className="h-10 mt-neg25px d-flex justify-content-flex-end">
-              <div name="infoSection" className="d-flex justify-content-center flex-direction-column ml-auto mr-auto max-w-min-content landingMotto clickable" onClick={this.handleScrollToElement}>
+            <div className="h-10 d-flex">
+              <div name="infoSection" className="d-flex justify-content-center flex-direction-column ml-auto mr-auto max-w-min-content clickable" onClick={this.handleScrollToElement}>
                 <FormattedHTMLMessage
                   id="landing.heroAction"
                   defaultMessage="Explore"
                 />
-                <Div name="infoSection" className="ml-auto mr-auto max-w-min-content p-1px5px call-to-action landingMotto" onClick={this.handleScrollToElement} transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primaryQuarter}`} colorHoverStyled={`${application.theme.primary}`}>
+                <Div name="infoSection" className="ml-auto mr-auto max-w-min-content p-1px5px call-to-action landingMotto" onClick={this.handleScrollToElement} transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primaryHalf}`} colorHoverStyled={`${application.theme.primary}`}>
                   <i className="ml-auto mr-auto fal fa-chevron-down fa-2x"></i>
                 </Div>
               </div>
             </div>
           </div>
 
-          <Div id="main-content" className={`position-relative pt-10px pl-10px pr-10px pb-20px ${anchorTool}`} minHeightStyled={`${application.settings.heightLandingMain}`}  backgroundStyled={`${application.mode.primaryHover}`}>
+          <Div id="main-content" className="h-hero-padded p-10px" backgroundStyled={`${application.mode.primaryHover}`}>
             <div className="about text-center">
               <h3>
                 <FormattedMessage
@@ -247,7 +243,7 @@ class Landing extends Component {
             </div>
 
           </Div>
-        </Div>
+        </div>
     );
   }
 }

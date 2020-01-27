@@ -41,12 +41,19 @@ class AppMenu extends Component {
     }
   }
 
-  toggleList(){
-    if (this.state.outsideClicked === false) {
+  toggleList(check){
+    if ((this.state.outsideClicked === false) && (check === 'open')) {
       this.setState(prevState => ({
         listOpen: !prevState.listOpen,
         outsideClicked: true,
       }))
+    } else {
+        if (check === 'close') {
+          this.setState(prevState => ({
+            listOpen: !prevState.listOpen,
+            outsideClicked: false,
+          }))
+        }
     }
   }
 
@@ -66,7 +73,7 @@ class AppMenu extends Component {
   }
 
   render(){
-    const { listOpen } = this.state
+    const { listOpen, settingsMenu } = this.state
     const { application } = this.props;
 
     let about;
@@ -88,74 +95,78 @@ class AppMenu extends Component {
     }
 
     return(
-      <div className="position-absolute left-0 pl-10px d-flex flex-direction-column justify-content-right">
-        <Button  onClick={() => this.toggleList()} className="h-40px w-40px border-1 clickable" transitionStyled={`${application.settings.appTransition}`} backgroundStyled={`${application.settings.themeTransparent}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} paddingStyled={`${application.settings.appPadding}`} radiusStyled={`${application.settings.appRadius}`}>
+      <Div className="d-flex flex-direction-column justify-content-right" transitionStyled={`${application.transitions.general}`}>
+        <Button  onClick={() => this.toggleList('open')} className="h-40px w-40px border-1 clickable" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.settings.themeTransparent}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} paddingStyled={`${application.settings.appPadding}`} radiusStyled={`${application.settings.appRadius}`}>
           <i className="fas fa-bars"></i>
         </Button>
-        {listOpen && 
-          <Dropdown ref={this.setWrapperRef} className="z-1005 d-flex flex-direction-column outer-shadow outer-box-shadow-menu" transitionStyled={`${application.transitions.general}`} backgroundStyled={application.mode.primary} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
-            <Link to={`/`} className="noUnderline" onClick={() => this.toggleListLink()}>
-              <Div className="p-10px top-border-radius" transitionStyled={application.transitions.general} backgroundStyled={application.mode.primary} backgroundHoverStyled={application.theme.primaryQuarter}>
-                <i className="fal fa-home mr-5px"></i>
-                <span className="pr-2">
-                  <FormattedMessage
-                    id="navigation.home"
-                    defaultMessage="Home"
-                  />
-                </span>
-              </Div>
-            </Link>
 
-            <Div className="h-0 m-pt25em0em overflow-hidden border-top-1" backgroundStyled={application.mode.primary}/>
+        <Dropdown ref={this.setWrapperRef} className={(listOpen === true ? 'z-1500 visible appMenu' : 'z-neg1 invisible') + ' ml-neg25vw z-1005 top-0 left-0 w-25 min-w-150px max-w-300px h-100-menus position-absolute d-flex flex-direction-column outer-shadow-primary border-1 p-10px'} transitionStyled={settingsMenu === true ? `${application.transitions.appMenuIn}`: `${application.transitions.appMenuOut}`} backgroundStyled={application.mode.primary} colorStyled={`${application.theme.primary}`}>
+          
+          <Button  onClick={() => this.toggleList('close')} className="h-40px w-40px border-1 clickable m-10px" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.settings.themeTransparent}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} paddingStyled={`${application.settings.appPadding}`} radiusStyled={`${application.settings.appRadius}`}>
+            <i className="fas fa-bars"></i>
+          </Button>
 
-            <Link to={`/${about}`} className="noUnderline" onClick={() => this.toggleListLink()}>
-              <Div className="p-10px" transitionStyled={application.transitions.general} backgroundStyled={application.mode.primary} backgroundHoverStyled={application.theme.primaryQuarter}>
-                <i className="fal fa-users mr-5px"></i>
-                <span>
-                  <FormattedMessage
-                    id="navigation.about"
-                    defaultMessage="Our Story"
-                  />
-                </span>
-              </Div>
-            </Link>
-            <Link to={`/${contact}`} onClick={() => this.toggleListLink()}>
-              <Div className="p-10px" transitionStyled={application.transitions.general} backgroundStyled={application.mode.primary} backgroundHoverStyled={application.theme.primaryQuarter}>
-                <i className="fal fa-comments-alt mr-5px"></i>
-                <span>
-                  <FormattedMessage
-                    id="navigation.contact"
-                    defaultMessage="Contact"
-                  />
-                </span>
-              </Div>
-            </Link>
-            <Link to={`/${donate}`} onClick={() => this.toggleListLink()}>
-              <Div className="p-10px" transitionStyled={application.transitions.general} backgroundStyled={application.mode.primary} backgroundHoverStyled={application.theme.primaryQuarter}>
-                <i className="fal fa-heart mr-5px"></i>
-                <span>
-                  <FormattedMessage
-                    id="navigation.donate"
-                    defaultMessage="Donate"
-                  />
-                </span>
-              </Div>
-            </Link>
-
-            <Div className="h-0 m-pt25em0em overflow-hidden border-top-1" backgroundStyled={application.mode.primary}/>
-
-            <Button className="bottom-border-radius p-10px clickable" onClick={() => this.toggleSettings()} transitionStyled={application.transitions.general} backgroundStyled={application.mode.primary} backgroundHoverStyled={application.theme.primaryQuarter}>
-              <i className="fal fa-cog mr-5px"></i>
-              <span>
+          <Link to={`/`} className="noUnderline" onClick={() => this.toggleListLink()}>
+            <Div className="p-10px" transitionStyled={application.transitions.general} backgroundStyled={application.mode.primary} backgroundHoverStyled={application.theme.primaryQuarter}>
+              <i className="fal fa-home mr-5px"></i>
+              <span className="pr-2">
                 <FormattedMessage
-                  id="navigation.settings"
-                  defaultMessage="Settings"
+                  id="navigation.home"
+                  defaultMessage="Home"
                 />
               </span>
-            </Button>
-          </Dropdown>
-        }
-      </div>
+            </Div>
+          </Link>
+
+          <Div className="h-0 m-pt25em0em overflow-hidden border-top-1" backgroundStyled={application.mode.primary}/>
+
+          <Link to={`/${about}`} className="noUnderline" onClick={() => this.toggleListLink()}>
+            <Div className="p-10px" transitionStyled={application.transitions.general} backgroundStyled={application.mode.primary} backgroundHoverStyled={application.theme.primaryQuarter}>
+              <i className="fal fa-users mr-5px"></i>
+              <span>
+                <FormattedMessage
+                  id="navigation.about"
+                  defaultMessage="Our Story"
+                />
+              </span>
+            </Div>
+          </Link>
+          <Link to={`/${contact}`} onClick={() => this.toggleListLink()}>
+            <Div className="p-10px" transitionStyled={application.transitions.general} backgroundStyled={application.mode.primary} backgroundHoverStyled={application.theme.primaryQuarter}>
+              <i className="fal fa-comments-alt mr-5px"></i>
+              <span>
+                <FormattedMessage
+                  id="navigation.contact"
+                  defaultMessage="Contact"
+                />
+              </span>
+            </Div>
+          </Link>
+          <Link to={`/${donate}`} onClick={() => this.toggleListLink()}>
+            <Div className="p-10px" transitionStyled={application.transitions.general} backgroundStyled={application.mode.primary} backgroundHoverStyled={application.theme.primaryQuarter}>
+              <i className="fal fa-heart mr-5px"></i>
+              <span>
+                <FormattedMessage
+                  id="navigation.donate"
+                  defaultMessage="Donate"
+                />
+              </span>
+            </Div>
+          </Link>
+
+          <Div className="h-0 m-pt25em0em overflow-hidden border-top-1" backgroundStyled={application.mode.primary}/>
+
+          <Button className="p-10px clickable" onClick={() => this.toggleSettings()} transitionStyled={application.transitions.general} backgroundStyled={application.mode.primary} backgroundHoverStyled={application.theme.primaryQuarter}>
+            <i className="fal fa-cog mr-5px"></i>
+            <span>
+              <FormattedMessage
+                id="navigation.settings"
+                defaultMessage="Settings"
+              />
+            </span>
+          </Button>
+        </Dropdown>
+      </Div>
     )
   }
 }

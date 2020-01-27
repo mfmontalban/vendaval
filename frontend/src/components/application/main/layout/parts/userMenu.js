@@ -18,6 +18,7 @@ class UserMenu extends Component {
     this.state = {
       outsideClicked: false,
       listOpen: false,
+      settingsMenu: false,
     }
   }
 
@@ -44,12 +45,19 @@ class UserMenu extends Component {
     }
   }
 
-  toggleList(){
-    if (this.state.outsideClicked === false) {
+  toggleList(check){
+    if ((this.state.outsideClicked === false) && (check === 'open')) {
       this.setState(prevState => ({
         listOpen: !prevState.listOpen,
         outsideClicked: true,
       }))
+    } else {
+        if (check === 'close') {
+          this.setState(prevState => ({
+            listOpen: !prevState.listOpen,
+            outsideClicked: false,
+          }))
+        }
     }
   }
 
@@ -66,7 +74,7 @@ class UserMenu extends Component {
   }
 
   render(){
-    const { listOpen } = this.state
+    const { listOpen, settingsMenu } = this.state
     const { admin, application } = this.props;
     const { language, settings } = this.props.application;
 
@@ -160,7 +168,7 @@ class UserMenu extends Component {
       if (admin.staff === null || '') {
         profileLink =
         <Link to={`/${profile}/${createProf}`} onClick={() => this.toggleListLink()} className={(admin.staff === "" ? "top-border-radius " :  "") + "text-right"}>
-          <Div className="p-10px text-right top-border-radius" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`}>
+          <Div className="p-10px text-right" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`}>
             <FormattedMessage
               id="navigation.profile"
               defaultMessage="Profile"
@@ -185,7 +193,7 @@ class UserMenu extends Component {
       if (admin.staff === null || '') {
         profileLink =
           <Link to={`/${community}/${admin.handle}`} onClick={() => this.toggleListLink()} className={(admin.staff === "" ? "top-border-radius " : "") + "text-right"}>
-            <Div className="p-10px text-right top-border-radius" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`}>          
+            <Div className="p-10px text-right" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`}>          
               <FormattedMessage
                 id="navigation.profile"
                 defaultMessage="Profile"
@@ -226,7 +234,7 @@ class UserMenu extends Component {
     const staffMenu = (
       <Div className="d-flex flex-direction-column" backgroundStyled={application.mode.primary} radiusStyled={application.settings.appRadius}>
         <Link to={`/${staff}/${dashboard}`} onClick={() => this.toggleListLink()}>
-          <Div className="p-10px text-right top-border-radius" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`}>        
+          <Div className="p-10px text-right" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`}>        
             <FormattedMessage
               id="navigation.staff"
               defaultMessage="Staff"
@@ -248,76 +256,85 @@ class UserMenu extends Component {
 
     const adminLinks = (
       <nav>
-        <Button onClick={() => this.toggleList()} className="userMenuContainer h-40px w-40px border-1 clickable" transitionStyled={`${settings.appTransition}`} backgroundStyled={`${application.transparent}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} paddingStyled={`${settings.appPadding2}`} radiusStyled={`${settings.appRadius}`}>
+        <Button onClick={() => this.toggleList('open')} className="h-40px w-40px border-1 clickable" transitionStyled={`${settings.appTransition}`} backgroundStyled={`${application.transparent}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} paddingStyled={`${settings.appPadding2}`} radiusStyled={`${settings.appRadius}`}>
           {avatarImage}
         </Button>
-        {listOpen && 
-          <Dropdown ref={this.setWrapperRef} className="z-1050 d-flex flex-direction-column text-right outer-shadow border-1" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${settings.appRadius}`}>
-            {admin.staff ? staffMenu : userMenu}
-            {profileLinks}
-            {securityLink}
-            <Div className="h-0 m-pt25em0em overflow-hidden border-top-1" colorStyled={`${application.theme.primary}`}/>
-            <Link
-              to={`/${login}`}
-              onClick={(e) => {this.onLogoutClick(e); this.toggleListLink()}}
-            >
-              <Div className="p-10px text-right clickable bottom-border-radius" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`}>  
-                <FormattedMessage
-                  id="navigation.logout"
-                  defaultMessage="Logout"
-                />
-                <i className="fal fa-sign-out-alt ml-5px"></i>
-              </Div>
-            </Link>
-          </Dropdown>
-        }
+
+        <Dropdown ref={this.setWrapperRef} className={(listOpen === true ? 'z-1500 visible userMenu' : 'z-neg1 invisible') + ' mr-neg25vw z-1005 top-0 right-0 w-25 min-w-150px max-w-300px h-100-menus position-absolute d-flex flex-direction-column outer-shadow-primary border-1 p-10px'} transitionStyled={settingsMenu === true ? `${application.transitions.appMenuIn}`: `${application.transitions.appMenuOut}`} backgroundStyled={application.mode.primary} colorStyled={`${application.theme.primary}`}>  
+          <Button onClick={() => this.toggleList('close')} className="userMenuButton h-40px w-40px border-1 clickable m-10px" transitionStyled={`${settings.appTransition}`} backgroundStyled={`${application.transparent}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} paddingStyled={`${settings.appPadding2}`} radiusStyled={`${settings.appRadius}`}>
+            {avatarImage}
+          </Button>
+          {admin.staff ? staffMenu : userMenu}
+          {profileLinks}
+          {securityLink}
+          <Div className="h-0 m-pt25em0em overflow-hidden border-top-1" colorStyled={`${application.theme.primary}`}/>
+          <Link
+            to={`/${login}`}
+            onClick={(e) => {this.onLogoutClick(e); this.toggleListLink()}}
+          >
+            <Div className="p-10px text-right clickable" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`}>  
+              <FormattedMessage
+                id="navigation.logout"
+                defaultMessage="Logout"
+              />
+              <i className="fal fa-sign-out-alt ml-5px"></i>
+            </Div>
+          </Link>
+        </Dropdown>
       </nav>
     );
     
 
     const guestLinks = (
-      <nav >
-        <Button onClick={() => this.toggleList()} className="userMenuContainer h-40px w-40px border-1 clickable" transitionStyled={`${settings.appTransition}`} backgroundStyled={`${application.transparent}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} paddingStyled={`${settings.appPadding}`} radiusStyled={`${settings.appRadius}`}>
+      <nav>
+        <Button onClick={() => this.toggleList('open')} className="h-40px w-40px border-1 clickable" transitionStyled={`${settings.appTransition}`} backgroundStyled={`${application.transparent}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} paddingStyled={`${settings.appPadding}`} radiusStyled={`${settings.appRadius}`}>
           <div>
             <i className="fas fa-user"></i>
           </div>
         </Button>
-        {listOpen && 
-          <Dropdown ref={this.setWrapperRef} className="z-1050 d-flex flex-direction-column text-right outer-shadow border-1" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${settings.appRadius}`}>
-            <Link to={`/${login}`} onClick={(e) => {this.toggleListLink()}}>
-              <Div className="p-10px top-border-radius text-right" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`}>
-                <FormattedMessage
-                  id="navigation.login"
-                  defaultMessage="Login"
-                />
-                <i className="fal fa-sign-in ml-5px"></i>
-              </Div>
-            </Link>
-            <Link to={`/${register}`} onClick={(e) => {this.toggleListLink()}}>
-              <Div className="p-10px text-right" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`}>
-                <FormattedMessage
-                  id="navigation.register"
-                  defaultMessage="register"
-                />
-                <i className="fal fa-user-plus ml-5px"></i>
-              </Div>
-            </Link>
-            <Link to={`/${forgot}`} onClick={(e) => {this.toggleListLink()}}>
-              <Div className="p-10px bottom-border-radius text-right" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`}>
-                <FormattedMessage
-                  id="navigation.forgot"
-                  defaultMessage="forgot"
-                />
-                <i className="fal fa-question-square ml-5px"></i>
-              </Div>
-            </Link>
-          </Dropdown>
-        }
+
+        <Dropdown ref={this.setWrapperRef} className={(listOpen === true ? 'z-1500 visible userMenu' : 'z-neg1 invisible') + ' mr-neg25vw z-1005 top-0 right-0 w-25 min-w-150px max-w-300px h-100-menus position-absolute d-flex flex-direction-column outer-shadow-primary border-1 p-10px'} transitionStyled={settingsMenu === true ? `${application.transitions.appMenuIn}`: `${application.transitions.appMenuOut}`} backgroundStyled={application.mode.primary} colorStyled={`${application.theme.primary}`}>
+          
+          <Button onClick={() => this.toggleList('close')} className="userMenuButton h-40px w-40px border-1 clickable p-10px m-10px" transitionStyled={`${settings.appTransition}`} backgroundStyled={`${application.transparent}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} paddingStyled={`${settings.appPadding}`} radiusStyled={`${settings.appRadius}`}>
+            <div>
+              <i className="fas fa-user"></i>
+            </div>
+          </Button>
+
+          <Link to={`/${login}`} onClick={(e) => {this.toggleListLink()}}>
+            <Div className="p-10px text-right" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`}>
+              <FormattedMessage
+                id="navigation.login"
+                defaultMessage="Login"
+              />
+              <i className="fal fa-sign-in ml-5px"></i>
+            </Div>
+          </Link>
+          <Link to={`/${register}`} onClick={(e) => {this.toggleListLink()}}>
+            <Div className="p-10px text-right" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`}>
+              <FormattedMessage
+                id="navigation.register"
+                defaultMessage="register"
+              />
+              <i className="fal fa-user-plus ml-5px"></i>
+            </Div>
+          </Link>
+          <Link to={`/${forgot}`} onClick={(e) => {this.toggleListLink()}}>
+            <Div className="p-10px text-right" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`}>
+              <FormattedMessage
+                id="navigation.forgot"
+                defaultMessage="forgot"
+              />
+              <i className="fal fa-question-square ml-5px"></i>
+            </Div>
+          </Link>
+        </Dropdown>
+
       </nav>
     );
 
     return(
-      <div className="position-absolute right-0 pr-10px d-flex flex-direction-column justify-content-right">
+      <div className="d-flex flex-direction-column justify-content-right">
         {admin.isAuthenticated ? adminLinks : guestLinks}
       </div>
     )

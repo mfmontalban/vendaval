@@ -148,7 +148,7 @@ class Contribution extends Component {
 
       if (viento.profile.avatarSm) {
         profilePicture =
-        <Div className="border-radius-circle" transitionStyled={application.transitions.general} backgroundStyled={application.theme.primaryQuarter} backgroundHoverStyled={application.theme.primary}>
+        <Div className="border-radius-circle h-60px w-60px" transitionStyled={application.transitions.general} backgroundStyled={application.theme.primaryQuarter} backgroundHoverStyled={application.theme.primary}>
           <img
             className="outer-shadow-double border-radius-circle h-50px w-50px object-fit-cover p-5px"
             src={`/api/users/files/${viento.profile.avatarSm}`}
@@ -327,11 +327,6 @@ class Contribution extends Component {
             
 
             <div className="d-flex flex-direction-column min-h-70px">
-              <div className="position-relative z-1000 d-flex justify-content-center">
-                <Div name="infoSection" onClick={this.handleScrollToElement} className="min-w-max-content text-center call-to-action d-flex justify-content-center align-items-center h-48px mt-neg170px border-bottom-0 border-radius-circle" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
-                  <i className='clickable p-10px fa-2x fas fa-arrow-alt-down'></i>
-                </Div>
-              </div>
               <Div className="d-flex position-relative z-1000 flex-direction-row align-items-center position-relative pl-10 h-50px pt-20px pb-20px mt-neg90px" backgroundStyled={application.mode.primaryHalf}>
                 <Link className="noUnderline" to={`/${community}/${viento.profile.handle}`}>
                   <Div colorStyled={application.mode.primary} className="d-flex align-items-center">
@@ -352,8 +347,8 @@ class Contribution extends Component {
                   {likesActivity}
                 </div>
                 <div className="min-w-max-content clickable">
-                  <Div className="p-5px noUnderline post-section-heading d-flex flex-direction-row align-items-center min-w-max-content" colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
-                    <i className="p-10px fa-2x fas fa-share-square"></i> 
+                <Div name="infoSection" className="ml-auto mr-auto max-w-min-content p-1px5px call-to-action landingMotto" onClick={this.handleScrollToElement} transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primaryHalf}`} colorHoverStyled={`${application.theme.primary}`}>
+                    <i className="ml-auto mr-auto fal fa-chevron-down fa-2x"></i>
                   </Div>
                 </div>
                 <div className="min-w-max-content clickable">

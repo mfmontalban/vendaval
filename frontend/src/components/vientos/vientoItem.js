@@ -163,7 +163,7 @@ class VientoItem extends Component {
               <div className="post-section-heading">
               
                 <Link className="noUnderline" to={`/${community}/${viento.profile.handle}`}>
-                  <Div className="noUnderline border-bottom-1" transitionStyled={`${settings.appTransition}`} colorStyled={`${application.theme.primary}`} borderBottomHoverStyled={`${application.theme.primary}`}>
+                  <Div className="noUnderline border-bottom-1 border-bottom-transparent" transitionStyled={`${settings.appTransition}`} colorStyled={`${application.theme.primary}`} borderBottomHoverStyled={`${application.theme.primary}`}>
                     {viento.user.name}
                   </Div>
                 </Link>

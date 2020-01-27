@@ -52,7 +52,7 @@ class Staff extends Component {
 
     if (admin.staff === "staff") {
       columnHeader = (
-        <div className="d-flex flex-direction-row text-center">
+        <Div className="d-flex flex-direction-row text-center outer-shadow-primary border-bottom-1" colorStyled={application.theme.primary}>
           <Div className="w-25 p-10px" backgroundStyled={application.theme.primaryQuarter}>
             <FormattedMessage
               id="staff.reviewer"
@@ -77,11 +77,11 @@ class Staff extends Component {
               defaultMessage="Title"
             />
           </Div>
-        </div>
+        </Div>
       );
     } else if ((admin.staff === "reviewer") || (admin.staff === "manager") || (admin.staff === "webmaster")) {
       columnHeader = (
-        <div className="d-flex flex-direction-row text-center">
+        <Div className="d-flex flex-direction-row text-center outer-shadow-primary border-bottom-1" colorStyled={application.theme.primary}>
           <Div className="w-25 p-10px" backgroundStyled={application.theme.primaryQuarter}>
             <FormattedMessage
               id="staff.reviewer"
@@ -106,7 +106,7 @@ class Staff extends Component {
               defaultMessage="Title"
             />
           </Div>
-        </div>
+        </Div>
       );
     }
 
@@ -176,7 +176,7 @@ class Staff extends Component {
     }
 
     return (
-      <Div className="scroll-container bottom-outer-shadow pt-70px ml-10px mr-10px scrollbar-width-none" heightStyled={`${application.settings.heightHero}`} backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
+      <Div className="scroll-container bottom-outer-shadow pt-70px ml-10px mr-10px scrollbar-width-none border-1 outer-shadow-primary" heightStyled={`${application.settings.heightHero}`} backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadius}`} colorStyled={`${application.theme.primary}`}>
         <div className="d-flex justify-content-center align-items-center">
           <FilterMenu />
           <H1 className="text-center p-5px" radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryThree} fontSizeStyled={application.text.heading}>
@@ -190,7 +190,7 @@ class Staff extends Component {
         {columnHeader}
         {loadingContent}
         {content}
-        <Div className="d-flex justify-content-center" backgroundStyled={application.theme.primaryQuarter}>
+        <Div className="d-flex justify-content-center border-top-1 outer-shadow-primary" colorStyled={application.theme.primary} backgroundStyled={application.theme.primaryQuarter}>
           <Link className="w-max-content noUnderline d-flex justify-content-center pb-21px" to="/staff/contribute">
             <Button
               className="w-100px p-10px mt-20px clickable"

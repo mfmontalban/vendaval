@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 import NavBackground from '../../common/styled/navbackground';
 import Nav from '../../common/styled/nav';
+import Div from '../../common/styled/div';
 import AppMenu from './appMenu';
 import Button from '../../common/styled/button';
 import UserMenu from './userMenu';
@@ -15,8 +16,7 @@ class UserNav extends Component {
   }
 
   render() {
-    const { application, header } = this.props;
-    const { settings } = this.props.application;
+    const { application } = this.props;
     const setLanguage = this.props.application.language;
 
     let winds;
@@ -28,17 +28,22 @@ class UserNav extends Component {
     }
 
     return (
-      <NavBackground className="z-1050 position-fixed d-flex justify-content-between pt-10px pl-10px pr-10px" navWidth={`${settings.widthUserNavBackground}`} navHeight={`${settings.heightUserNav2}`}  navBackground={header === 'transparent' ? `${application.transparent}`: `${application.mode.primaryBackground}`}>
-        <Nav className="z-1050 position-fixed d-flex justify-content-center p-10px top-outer-shadow" navWidth={`${settings.widthUserNav}`} navHeight={`${settings.heightUserNav}`}  navBackground={header === 'transparent' ? `${application.transparent}`: `${application.mode.primary}`} navRadius={`${settings.appRadiusTop}`}>
+      <Div className="z-1050 d-flex justify-content-center align-items-center outer-shadow-primary border-1" backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadius}`} paddingStyled={`${application.settings.appPadding}`} colorStyled={`${application.theme.primary}`}>
+        <div className="w-33 d-flex justify-content-start">
           <AppMenu overlayStatus={this.toggleOverlay} />
+        </div>
 
-          <Button className="h-40px w-52px border-1" transitionStyled={`${settings.appTransition}`} backgroundStyled={`${settings.themeTransparent}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} paddingStyled={`${settings.appPaddingHalf}`} radiusStyled={`${settings.appRadius}`}>
-            <Link className="btn btn-outline-info text-white rounded" to={`/${winds}`}><img alt="Vendaval favicon" className="vientos" src="/favicon.ico" /></Link>
+        <div className="w-33 d-flex justify-content-center">
+          <Button className="vIcon border-1" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.settings.themeTransparent}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} paddingStyled={`${application.settings.appPaddingHalf}`} radiusStyled={`${application.settings.appRadius}`}>
+            <Link className="rounded" to={`/${winds}`}><img alt="Vendaval favicon" className="h-100" src="/favicon.ico" /></Link>
           </Button>
+        </div>
 
+        <div className="w-33 d-flex justify-content-end">
           <UserMenu />
-        </Nav>
-      </NavBackground>
+        </div>
+
+      </Div>
     )
   }
 }

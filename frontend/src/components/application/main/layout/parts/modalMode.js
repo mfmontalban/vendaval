@@ -73,7 +73,7 @@ class ModalMode extends Component {
           />
         </div>
         {modePicker && 
-          <Dropdown ref={this.setWrapperRef} className="position-absolute right-0 mt-50px mr-25pc z-1005 d-flex flex-direction-column text-right outer-shadow" transitionStyled={`${application.transitions.general}`}  backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadius}`}>
+          <Dropdown ref={this.setWrapperRef} className="position-absolute right-0 mt-110px mr-20pc z-1005 d-flex flex-direction-column text-right outer-shadow-primary border-1" transitionStyled={`${application.transitions.general}`}  backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadius}`}>
             <Button onClick={(e) => {this.updateMode('240', '240', '240', 'Light'); this.toggleModePicker()}} className="p-10px top-border-radius text-right" transitionStyled={`${application.transitions.general}`}  backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`} type="button">
               <FormattedMessage
                 id="settings.Light"

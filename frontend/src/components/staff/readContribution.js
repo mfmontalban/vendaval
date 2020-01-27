@@ -59,11 +59,10 @@ class Contribution extends Component {
     if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
       this.setState({
         listOpen: false,
-      },() => {
-        this.setState({ 
-          outsideClicked: false 
-        })
       });
+      setTimeout(() => {
+        this.setState({ outsideClicked: false });
+      }, 250);
     }
   }
 
@@ -78,11 +77,20 @@ class Contribution extends Component {
   }
 
   toggleList = () => {
-    if (this.state.outsideClicked === false) {
+    if (this.state.outsideClicked == false) {
       this.setState(prevState => ({
         listOpen: !prevState.listOpen,
         outsideClicked: true,
       }))
+    } else {
+      if (this.state.listOpen == true ) {
+        this.setState({
+          listOpen: false,
+        });
+        setTimeout(() => {
+          this.setState({ outsideClicked: false });
+        }, 250);
+      }
     }
   }
 
@@ -149,7 +157,7 @@ class Contribution extends Component {
     } else {
       if (contribution.profile.avatarSm) {
         profilePicture =
-        <Div className="border-radius-circle" transitionStyled={application.transitions.general} backgroundStyled={application.theme.primaryQuarter} backgroundHoverStyled={application.theme.primary}>
+        <Div className="border-radius-circle h-60px w-60px" transitionStyled={application.transitions.general} backgroundStyled={application.theme.primaryQuarter} backgroundHoverStyled={application.theme.primary}>
           <img
             className="outer-shadow-double border-radius-circle h-50px w-50px object-fit-cover p-5px"
             src={`/api/users/files/${contribution.profile.avatarSm}`}
@@ -277,11 +285,29 @@ class Contribution extends Component {
                 <div className="w-30 d-flex justify-content-flex-end">
                   {editContent}
                   {listOpen &&
-                    <Dropdown ref={this.setWrapperRef} className="clickable position-absolute mt-45px mr-5px z-1005 d-flex flex-direction-column text-right outer-shadow" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
+                    <Dropdown ref={this.setWrapperRef} className="clickable position-absolute mt-45px mr-5px z-1005 d-flex flex-direction-column text-right outer-shadow-primary border-1" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
                       <Link className="noUnderline clickable" to={`/staff/contribution/edit/${contribution._id}`}>
                         <Div
                           type="button"
                           className="h-max-content p-10px clickable text-left top-border-radius"
+                          transitionStyled={application.transitions.general}
+                          backgroundStyled={application.mode.primary}
+                          backgroundHoverStyled={application.theme.primaryQuarter}
+                          colorStyled={application.theme.primary}
+                          colorHoverStyled={application.theme.primary}
+                          >
+                          <i class="fas fa-share-square mr-5px clickable"></i>
+                          <FormattedMessage
+                            id="staff.share"
+                            defaultMessage="Share"
+                          />
+                        </Div>
+                      </Link>
+                      <DropdownDivider colorStyled={application.theme.primary} />
+                      <Link className="noUnderline clickable" to={`/staff/contribution/edit/${contribution._id}`}>
+                        <Div
+                          type="button"
+                          className="h-max-content p-10px clickable text-left"
                           transitionStyled={application.transitions.general}
                           backgroundStyled={application.mode.primary}
                           backgroundHoverStyled={application.theme.primaryQuarter}
@@ -295,7 +321,6 @@ class Contribution extends Component {
                           />
                         </Div>
                       </Link>
-                      <DropdownDivider colorStyled={application.theme.primary} />
                       <Button
                         onClick={() => this.toggleDeleteModal()}
                         type="button"
@@ -328,11 +353,6 @@ class Contribution extends Component {
             
 
             <div className="d-flex flex-direction-column min-h-70px">
-              <div className="position-relative z-1000 d-flex justify-content-center">
-                <Div name="infoSection" onClick={this.handleScrollToElement} className="min-w-max-content text-center call-to-action d-flex justify-content-center align-items-center h-48px mt-neg170px border-bottom-0 border-radius-circle" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
-                  <i className='clickable p-10px fa-2x fas fa-arrow-alt-down'></i>
-                </Div>
-              </div>
               <Div className="d-flex position-relative z-1000 flex-direction-row align-items-center position-relative pl-10 h-50px pt-20px pb-20px mt-neg90px" backgroundStyled={application.mode.primaryHalf}>
                 <Link className="noUnderline" to={`/${community}/${contribution.profile.handle}`}>
                   <Div colorStyled={application.mode.primary} className="d-flex align-items-center">
@@ -353,8 +373,8 @@ class Contribution extends Component {
                   Draft
                 </div>
                 <div className="w-30 d-flex justify-content-center min-w-max-content clickable">
-                  <Div className="p-5px noUnderline post-section-heading d-flex flex-direction-row align-items-center min-w-max-content" colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
-                    <i className="p-10px fa-2x fas fa-share-square"></i> 
+                  <Div name="infoSection" className="ml-auto mr-auto max-w-min-content p-1px5px call-to-action landingMotto" onClick={this.handleScrollToElement} transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primaryHalf}`} colorHoverStyled={`${application.theme.primary}`}>
+                    <i className="ml-auto mr-auto fal fa-chevron-down fa-2x"></i>
                   </Div>
                 </div>
                 <div className="w-30 d-flex justify-content-center min-w-max-content clickable">
@@ -379,8 +399,8 @@ class Contribution extends Component {
       <Div className="scroll-container bottom-outer-shadow ml-10px mr-10px pt-70px scrollbar-width-none" heightStyled={`${application.settings.heightHero}`} backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
         <Div onClick={() => this.closeSettingsMenu()} className={(settingsMenu === true ? 'z-1250 visible' : 'z-neg1 invisible') + ' position-fixed h-100vh w-100vw bottom-0 left-0 overlay'} transitionStyled={settingsMenu === true ? `${application.transitions.settingsIn}`: `${application.transitions.settingsOut}`} />
 
-        <Div className={(settingsMenu === true ? 'z-1500 visible modal' : 'z-neg1 invisible') + ' position-fixed bottom-0'} transitionStyled={settingsMenu === true ? `${application.transitions.settingsIn}`: `${application.transitions.settingsOut}`} activeStyled={this.state.settingsMenu} heightStyled={`${application.settings.heightDeleteModal}`} widthStyled={`${application.settings.widthSettings}`} marginLeftStyled={`${application.settings.marginLeftSettings}`} marginRightStyled={`${application.settings.marginRightSettings}`} radiusStyled={`${application.settings.appRadius}`}>
-          <Div className="h-20 d-flex align-items-center top-border-radius" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.theme.primary}`} colorStyled={`${application.mode.primary}`} borderBottomStyled={`${application.mode.primary}`}>
+        <Div className={(settingsMenu === true ? 'z-1500 visible modal2' : 'z-neg1 invisible') + ' position-fixed bottom-0'} transitionStyled={settingsMenu === true ? `${application.transitions.settingsIn}`: `${application.transitions.settingsOut}`} activeStyled={this.state.settingsMenu} heightStyled={`${application.settings.heightDeleteModal}`} backgroundStyled={`${application.mode.primary}`} widthStyled={`${application.settings.widthSettings}`} marginLeftStyled={`${application.settings.marginLeftSettings}`} marginRightStyled={`${application.settings.marginRightSettings}`} radiusStyled={`${application.settings.appRadius}`}>
+          <Div className="h-20 d-flex align-items-center top-border-radius" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.theme.primaryThree}`} colorStyled={`${application.mode.primary}`} borderBottomStyled={`${application.mode.primary}`}>
             <div className="ml-10px text-x-large w-50 text-left">
               <FormattedMessage
                 id="modal.confirmTitle"
@@ -403,8 +423,8 @@ class Contribution extends Component {
             </Div>
           </Div>
 
-          <Div className="h-30 d-flex justify-content-center align-items-center bottom-border-radius" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.theme.primary}`} colorStyled={`${application.mode.primary}`} borderTopStyled={`${application.mode.primary}`}>
-            <Button onClick={() => {this.closeSettingsMenu(); this.onDeleteSubmitClick(contribution._id);}} className="h-40px p-10px mr-10px outer-shadow clickable text-bold text-large" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.mode.primaryHover}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
+          <Div className="h-30 d-flex justify-content-center align-items-center bottom-border-radius" transitionStyled={`${application.transitions.general}`}  backgroundStyled={`${application.theme.primaryThree}`} colorStyled={`${application.mode.primary}`} borderTopStyled={`${application.mode.primary}`}>
+            <Button onClick={() => {this.closeSettingsMenu(); this.onDeleteSubmitClick(contribution._id);}} className="h-40px p-10px mr-10px clickable text-bold text-large" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.mode.primaryHover}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
               <FormattedMessage
                 id="modal.delete"
                 defaultMessage="Delete"

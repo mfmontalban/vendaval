@@ -139,7 +139,7 @@ class ReviewerDropDown extends Component {
               colorHoverStyled={application.theme.primary}
               backgroundHoverStyled={`${application.theme.primaryQuarter}`} 
               onClick={(e) => {this.props.updateReviewer(contribution._id, {'reviewer': `${reviewer._id}`, 'staff': `${admin.staff}`}); this.toggleList();}} 
-              className="p-10px z-1005 position-relative w-100 max-w-125px text-overflow-ellipsis text-center top-border-radius" 
+              className="p-10px z-1005 position-relative w-100 max-w-175px text-overflow-ellipsis text-center top-border-radius" 
               type="button">
                 {reviewer.name}
             </Button>
@@ -154,7 +154,7 @@ class ReviewerDropDown extends Component {
               colorHoverStyled={application.theme.primary}
               backgroundHoverStyled={`${application.theme.primaryQuarter}`} 
               onClick={(e) => {this.props.updateReviewer(contribution._id, {'reviewer': `${reviewer._id}`, 'staff': `${admin.staff}`}); this.toggleList();}} 
-              className="p-10px z-1005 position-relative w-100 max-w-125px text-overflow-ellipsis text-center bottom-border-radius" 
+              className="p-10px z-1005 position-relative w-100 max-w-175px text-overflow-ellipsis text-center bottom-border-radius" 
               type="button">
                 {reviewer.name}
             </Button>
@@ -169,7 +169,7 @@ class ReviewerDropDown extends Component {
               colorHoverStyled={application.theme.primary}
               backgroundHoverStyled={`${application.theme.primaryQuarter}`} 
               onClick={(e) => {this.props.updateReviewer(contribution._id, {'reviewer': `${reviewer._id}`, 'staff': `${admin.staff}`}); this.toggleList();}} 
-              className="p-10px z-1005 position-relative w-100 max-w-125px text-overflow-ellipsis text-center" 
+              className="p-10px z-1005 position-relative w-100 max-w-175px text-overflow-ellipsis text-center" 
               type="button">
                 {reviewer.name}
             </Button>

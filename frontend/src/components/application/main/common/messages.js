@@ -85,7 +85,7 @@ export default {
 
         'settings.close': `Close`,
 
-        'modal.confirmTitle': `Confirm:`,
+        'modal.confirmTitle': `Confirm`,
         'modal.confirmMessage': `Are you sure you would like to delete this item?`,
         'modal.delete': `Delete`,
 
@@ -140,6 +140,7 @@ export default {
         
         
         'staff.view': `View`,
+        'staff.share': `Share`,
         'staff.edit': `Edit`,
         'staff.delete': `Delete`,
 
@@ -239,7 +240,7 @@ export default {
 
         'settings.close': `Cerra`,
 
-        'modal.confirmTitle': `Confirma:`,
+        'modal.confirmTitle': `Confirm:`,
         'modal.confirmMessage': `¿Estás seguro de que deseas eliminar este elemento?`,
         'modal.delete': `Eliminar`,
 
@@ -297,6 +298,7 @@ export default {
         'staff.new': `Nuevo`,
 
         'staff.view': `Ver`,
+        'staff.share': `Compartir`,
         'staff.edit': `Editar`,
         'staff.delete': `Borrar`,
 

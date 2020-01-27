@@ -1,0 +1,89 @@
+.vIcon {
+  height: 40px;
+  width: 40px;
+}
+
+.w-33 {
+  width: 33.3%;
+}
+
+.justify-content-start {
+  justify-content: start;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.justify-content-end {
+  justify-content: end;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.overflow-scroll {
+  overflow: scroll;
+}
+
+.h-hero-padded {
+  height: calc(100% - 20px);
+}
+
+.z-995 {
+  z-index: 995;
+}
+
+/*
+100vh - topMargin - header - headerBottomMargin - bottomMargin - containerBorder - mapBottomBorder
+*/
+.vientos {
+  height: calc((100vh - 92px - 2px - 1px) / 2);
+  width: 100%;
+}
+
+.border-bottom-1 {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+.border-bottom-transparent {
+  border-bottom-color: transparent;
+}
+
+.min-w-150px {
+  min-width: 150px;
+}
+
+.max-w-300px {
+  max-width: 300px;
+}
+
+.modal {
+  transform: translateY(-25vh);
+}
+
+.appMenu {
+  transform: translateX(25vw);
+}
+
+  .h-100-menus {
+    height: calc(100vh - 20px - 2px);
+  }
+  
+  .ml-neg25vw {
+    margin-left: -25vw;
+  }
+  
+  .mr-neg25vw {
+    margin-right: -25vw;
+  }
+
+.userMenu {
+  transform: translateX(-25vw);
+}
+
+  .userMenuButton {
+    margin-left: calc(100% - 50px);
+  }

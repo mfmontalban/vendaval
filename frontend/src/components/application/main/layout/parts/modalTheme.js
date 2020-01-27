@@ -73,7 +73,7 @@ class ModalTheme extends Component {
           />
         </div>
         {themePicker && 
-          <Dropdown ref={this.setWrapperRef} className="position-absolute right-0 mt-90px mr-25pc z-1005 d-flex flex-direction-column text-right outer-shadow" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadius}`}>
+          <Dropdown ref={this.setWrapperRef} className="position-absolute right-0 mt-185px mr-20pc z-1005 d-flex flex-direction-column text-right outer-shadow-primary border-1" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadius}`}>
             <Button onClick={(e) => {this.updateTheme('23', '162', '184', 'Aqua'); this.toggleThemePicker()}} className="p-10px top-border-radius text-right" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.Aqua}`} type="button">
               <FormattedMessage
                 id="settings.Aqua"
