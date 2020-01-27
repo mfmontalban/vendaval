@@ -65,23 +65,35 @@
 }
 
 .appMenu {
-  transform: translateX(25vw);
+  transform: translateX(45vw);
 }
+
+  .w-45 {
+    width: 45%;
+  }
 
   .h-100-menus {
     height: calc(100vh - 20px - 2px);
   }
-  
-  .ml-neg25vw {
-    margin-left: -25vw;
+
+  .w-100-searchContainer {
+    width: calc(100% - 50px);
   }
   
-  .mr-neg25vw {
-    margin-right: -25vw;
+  .w-100-search {
+    width: calc(100% - 10px);
+  }
+  
+  .ml-neg45vw {
+    margin-left: -45vw;
+  }
+  
+  .mr-neg45vw {
+    margin-right: -45vw;
   }
 
 .userMenu {
-  transform: translateX(-25vw);
+  transform: translateX(-45vw);
 }
 
   .userMenuButton {

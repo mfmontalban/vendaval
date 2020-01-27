@@ -8,6 +8,8 @@ import { FormattedMessage } from 'react-intl';
 import Div from '../../common/styled/div'
 import Button from '../../common/styled/button'
 import Dropdown from '../../common/styled/dropdownold'
+import SearchWinds from '../../../head/searchWinds'
+import UpdateLanguage from '../../../head/updateLanguage'
 
 class AppMenu extends Component {
   constructor(props){
@@ -100,11 +102,16 @@ class AppMenu extends Component {
           <i className="fas fa-bars"></i>
         </Button>
 
-        <Dropdown ref={this.setWrapperRef} className={(listOpen === true ? 'z-1500 visible appMenu' : 'z-neg1 invisible') + ' ml-neg25vw z-1005 top-0 left-0 w-25 min-w-150px max-w-300px h-100-menus position-absolute d-flex flex-direction-column outer-shadow-primary border-1 p-10px'} transitionStyled={settingsMenu === true ? `${application.transitions.appMenuIn}`: `${application.transitions.appMenuOut}`} backgroundStyled={application.mode.primary} colorStyled={`${application.theme.primary}`}>
+        <Dropdown ref={this.setWrapperRef} className={(listOpen === true ? 'z-1500 visible appMenu' : 'z-neg1 invisible') + ' ml-neg45vw z-1005 top-0 left-0 w-45 max-w-300px h-100-menus position-absolute d-flex flex-direction-column outer-shadow-primary border-1 p-10px'} transitionStyled={settingsMenu === true ? `${application.transitions.appMenuIn}`: `${application.transitions.appMenuOut}`} backgroundStyled={application.mode.primary} colorStyled={`${application.theme.primary}`}>
           
           <Button  onClick={() => this.toggleList('close')} className="h-40px w-40px border-1 clickable m-10px" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.settings.themeTransparent}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} paddingStyled={`${application.settings.appPadding}`} radiusStyled={`${application.settings.appRadius}`}>
             <i className="fas fa-bars"></i>
           </Button>
+
+          <Div className="z-1250 d-flex flex-direction-row justify-content-space-between">
+            <SearchWinds />
+            <UpdateLanguage />
+          </Div>
 
           <Link to={`/`} className="noUnderline" onClick={() => this.toggleListLink()}>
             <Div className="p-10px" transitionStyled={application.transitions.general} backgroundStyled={application.mode.primary} backgroundHoverStyled={application.theme.primaryQuarter}>

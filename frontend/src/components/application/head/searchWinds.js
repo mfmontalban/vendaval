@@ -112,18 +112,15 @@ class SearchWinds extends Component {
     }
 
     return(
-      <Div className="d-flex outer-shadow searchContainer" heightStyled={`${application.settings.heightUserNav}`} colorStyled={`${application.theme.primary}`} backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadius}`}>
-        <Button className="prepend border-0 h-100pc" transitionStyled={`${application.settings.appTransition}`} backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} paddingStyled={`${application.settings.appPadding}`}>
-          <i className="fal fa-search"></i>
-        </Button>
-        <div className="mt-5px searchBar">
+      <Div className="d-flex outer-shadow-primary border-1 mb-10px w-100-searchContainer" heightStyled={`${application.settings.heightUserNav}`} colorStyled={`${application.theme.primary}`} backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadius}`}>
+        <div className="w-100-search mt-5px ml-5px">
           <Input
             type="text"
             placeholder={searchArticles}
             aria-label="Search for articles"
             value={this.state.search}
             onChange={this.updateSearch}
-            className="p-5px border-0 inner-shadow h-20px"
+            className="p-5px border-0 inner-shadow h-20px w-100-search"
             backgroundStyled={`${application.theme.primaryQuarter}`}
             colorStyled={`${application.theme.primary}`}
             placeholderStyled={`${application.theme.primaryThree}`}
@@ -132,7 +129,7 @@ class SearchWinds extends Component {
         </div>
         {listOpen &&
           <Div ref={this.setWrapperRef} 
-            className="d-flex flex-direction-column position-absolute resultsContainer overflow-hidden border-1 outer-shadow-primary" 
+            className="d-flex flex-direction-column position-absolute mt-50px overflow-hidden border-1 outer-shadow-primary" 
             backgroundStyled={application.mode.primary}
             colorStyled={application.theme.primary}
             borderStyled={application.theme.primary}

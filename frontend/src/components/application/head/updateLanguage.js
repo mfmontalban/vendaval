@@ -71,7 +71,7 @@ class UpdateLanguage extends Component {
     const { application } = this.props;
     return(
       <div ref={this.setWrapperRef} className="d-flex flex-direction-column justify-content-right">
-      <Button onClick={() => this.toggleList()} className="text-right clickable outer-shadow white-space-nowrap p-11px5px" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadius}`}>
+      <Button onClick={() => this.toggleList()} className="text-right clickable outer-shadow-primary border-1 white-space-nowrap p-11px5px" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadius}`}>
           <span className="p-5px">{application.language}</span>
         </Button>
         {listOpen && 
