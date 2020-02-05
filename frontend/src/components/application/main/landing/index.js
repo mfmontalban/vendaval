@@ -156,7 +156,7 @@ class Landing extends Component {
             </div>
           </div>
 
-          <Div id="main-content" className="h-hero-padded p-10px" backgroundStyled={`${application.mode.primaryHover}`}>
+          <Div id="main-content" className="h-hero-padded p-10px overflow-scroll" backgroundStyled={`${application.mode.primaryHover}`}>
             <div className="about text-center">
               <h3>
                 <FormattedMessage
@@ -231,7 +231,7 @@ class Landing extends Component {
               </div>
             </div>
 
-            <div className="d-flex justify-content-center">
+            <div className="d-flex justify-content-center pb-20px">
               <Link to={`/${winds}`} className="noUnderline">
                 <Div className="p-10px text-bold text-center text-x-large" onClick={this.handleScrollToElement2} transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.theme.primary}`} backgroundHoverStyled={`${application.theme.primaryHover}`} colorStyled={`${application.mode.primary}`} colorHoverStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadius}`}>
                   <FormattedMessage
