@@ -29,7 +29,7 @@ class UserNav extends Component {
 
     return (
       <Div className="z-1050 d-flex justify-content-center align-items-center outer-shadow-primary border-1" backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadius}`} paddingStyled={`${application.settings.appPadding}`} colorStyled={`${application.theme.primary}`}>
-        <div className="w-33 d-flex justify-content-start">
+        <div className="w-33 d-flex justify-content-flex-start">
           <AppMenu overlayStatus={this.toggleOverlay} />
         </div>
 
@@ -39,7 +39,7 @@ class UserNav extends Component {
           </Button>
         </div>
 
-        <div className="w-33 d-flex justify-content-end">
+        <div className="w-33 d-flex justify-content-flex-end">
           <UserMenu />
         </div>
 

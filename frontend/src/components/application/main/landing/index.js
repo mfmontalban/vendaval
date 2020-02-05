@@ -93,7 +93,7 @@ class Landing extends Component {
 
     return (
         <div className="h-100">
-          <div className="h-100 d-flex flex-direction-column">
+          <div className="h-100 d-flex flex-direction-column overflow-hidden">
             <div className="h-90 d-flex flex-direction-column">
               
               <div className="h-10 w-100 d-flex">
