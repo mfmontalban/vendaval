@@ -92,6 +92,9 @@ const initialState = {
     ///100vh - topMargin - header - headerBorder - padding - contentBorder - bottomMargin - 1px
     contentHeight: `calc(${vh100}px - ${appPadding} - ${heightHeader2} - (${appBorder}*2) - ${appPadding} - (${appBorder}*2) - ${appPadding})`,
     
+    //100vh - topMargin - header - headerBottomMargin - bottomMargin - containerBorder - canvasBottomBorder - mapBottomBorder / 2
+    canvasHeight: `calc((${vh100}px - ${appPadding} - ${heightHeader2} - (${appBorder}*2) - ${appPadding} - (${appBorder}*2) - ${appBorder} - ${appPadding}) / 2)`,
+    
     widthUserNavBackground: `calc(100vw - (${appPadding}*2))`,
     widthUserNav: `calc(100vw - (${appPadding}*4))`,
     heightUserNav: `${heightUserNav}`,
@@ -145,7 +148,7 @@ const initialState = {
     vientoCoverTitle: `calc(${vh100}px - 73px - 75px - ${heightHeader} - ${appPadding} - 70px )`,
     vientoCoverBanner: `calc(${vh100}px - ${heightHeader} - ${appPadding} - 70px - 70px)`,
 
-    vientoCoverFooter: `calc(${vh100}px - 75vh - ${heightHeader} - ${appPadding} - 70px)`,
+  vientoCoverFooter: `calc(${vh100}px - 75vh - ${heightHeader} - ${appPadding} - 70px)`,
     
   },
   text: {

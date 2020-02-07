@@ -3,8 +3,10 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import mapboxgl from 'mapbox-gl'
 import { setVisibleVientos, setMapVientos } from '../../../../actions/vientosActions';
+import Div from '../common/styled/div';
 
 mapboxgl.accessToken = require('../../../../actions/utils/config').mapboxKey;
+
 
 class Mapbox extends Component {
   constructor(props){
@@ -526,9 +528,11 @@ class Mapbox extends Component {
 
   render() {
 
+    const { application } = this.props;
+
     return (
-      <div ref={el => this.mapContainer = el} onTouchEnd={this.visMoving} onMouseUp={this.visMoving} onWheel={this.visMoving} className="vientos top-border-radius position-relative z-995 border-bottom-1 outer-shadow-primary">
-      </div>
+      <Div ref={el => this.mapContainer = el} onTouchEnd={this.visMoving} onMouseUp={this.visMoving} onWheel={this.visMoving} className="w-100 top-border-radius position-relative z-995 border-bottom-1 outer-shadow-primary" heightStyled={application.settings.canvasHeight}>
+      </Div>
     );
   }
 }
