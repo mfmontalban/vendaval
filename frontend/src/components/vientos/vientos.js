@@ -137,7 +137,7 @@ class Vientos extends Component {
               
 
         content = (
-          <Div className="scroll-container scrollbar-width-none " backgroundStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`}>
+          <Div className="scroll-container scrollbar-width-none" heightStyled={`${application.settings.canvasHeight}`} backgroundStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`}>
             <div className="d-flex flex-wrap justify-content-center pt-10px pb-10px ml-auto mr-auto">
               {dashboardContent}
             </div>
@@ -146,7 +146,7 @@ class Vientos extends Component {
 
       } else {
         content = (
-          <Div className="d-flex flex-wrap scroll-container scrollbar-width-none " backgroundStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`}>
+          <Div className="d-flex flex-wrap scroll-container scrollbar-width-none" heightStyled={`${application.settings.canvasHeight}`} backgroundStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`}>
           </Div>
         );
       }
