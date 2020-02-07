@@ -38,10 +38,6 @@
 /*
 100vh - topMargin - header - headerBottomMargin - bottomMargin - containerBorder - mapBottomBorder
 */
-.vientos {
-  height: calc((100vh - 92px - 2px - 1px) / 2);
-  width: 100%;
-}
 
 .border-bottom-1 {
   border-bottom-width: 1px;
