@@ -258,10 +258,10 @@ class Contribution extends Component {
 
       vientoContent = (
         <div className="h-100">
-          <Div className="z-900 d-flex justify-content-center overflow-hidden" heightStyled={application.settings.vientoCoverBanner}>
+          <Div className="z-900 d-flex justify-content-center overflow-hidden min-h-100pc70px">
             <img className="filter-blur object-fit-cover" alt="banner" src={`/api/staff/files/${viento.bannerLg}`} />
           </Div>
-          <div className="h-100 position-relative d-flex flex-direction-column mt-neg100vh200px">
+          <div className="h-100 position-relative d-flex flex-direction-column mt-neg100vh165px">
             {/* div is to hide commented out code */}
             <div>
             {/* <div className="z-1000 d-flex position-relative overflow-visible flex-direction-column h-40px w-100">
@@ -357,9 +357,9 @@ class Contribution extends Component {
               </Div>
             </div>
           
-            <div id="content-anchor" style={style}>
+            <Div id="content-anchor" class="w-100" minHeightStyled={`${application.settings.contentHeight}`}>
               <Quill contributions={viento.content} />
-            </div>
+            </Div>
             <div id="comment-anchor" style={style}>
               <CommentFeed vientoId={viento._id} comments={viento.comments} />
               <CommentForm vientoId={viento._id} category={'public'} />
@@ -370,7 +370,7 @@ class Contribution extends Component {
     } 
 
     return (
-      <Div className="scroll-container bottom-outer-shadow scrollbar-width-none" heightStyled={`${application.settings.heightHero}`} backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
+      <Div className="h-100 bottom-outer-shadow scrollbar-width-none" backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
         {vientoContent}
       </Div>
     );
