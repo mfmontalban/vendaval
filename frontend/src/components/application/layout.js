@@ -28,6 +28,10 @@ class Layout extends Component {
     document.body.style.backgroundColor = `${this.props.application.mode.primaryBackground}`;
   }
   
+  componentWillUpdate() {
+    document.body.style.backgroundColor = `${this.props.application.mode.primaryBackground}`;
+  }
+  
   componentWillUnmount() {
     document.removeEventListener('mousedown', this.handleClickOutside);
     document.body.style.backgroundColor = `${this.props.application.mode.primaryBackground}`;
