@@ -659,6 +659,10 @@ textarea {
   margin-top: calc(-100vh + 165px);
 }
 
+.mt-neg100vhneg303px {
+  margin-top: calc(-100vh - 303px);
+}
+
 
 .mt-neg115px {
   margin-top: -115px;

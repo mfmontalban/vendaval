@@ -258,10 +258,10 @@ class Contribution extends Component {
 
       vientoContent = (
         <div className="h-100">
-          <Div className="z-900 d-flex justify-content-center overflow-hidden min-h-100pc70px">
+          <Div className="position-absolute w-100 z-900 d-flex justify-content-center overflow-hidden min-h-100pc70px">
             <img className="filter-blur object-fit-cover" alt="banner" src={`/api/staff/files/${viento.bannerLg}`} />
           </Div>
-          <div className="h-100 position-relative d-flex flex-direction-column mt-neg100vh165px">
+          <div className="h-100 position-relative d-flex flex-direction-column">
             {/* div is to hide commented out code */}
             <div>
             {/* <div className="z-1000 d-flex position-relative overflow-visible flex-direction-column h-40px w-100">
