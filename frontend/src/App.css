@@ -304,6 +304,10 @@ textarea {
   min-height: calc(100% - 70px);
 }
 
+.max-h-100pc70px {
+  max-height: calc(100% - 70px);
+}
+
 .min-h-70px {
   min-height:70px;
 }
