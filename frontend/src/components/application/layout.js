@@ -95,7 +95,7 @@ class Layout extends Component {
 
 				<UserNav setOverlay={this.toggleSettingsMenu} />
 
-				<Div className="position-relative overflow-scroll scrollbar-width-none outer-shadow-primary border-1" marginTopStyled={`${application.settings.appMargin}`} heightStyled={`${application.settings.contentHeight}`} backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
+				<Div className="z-1000 position-relative overflow-scroll scrollbar-width-none outer-shadow-primary border-1" marginTopStyled={`${application.settings.appMargin}`} heightStyled={`${application.settings.contentHeight}`} backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
           {this.props.children}
         </Div>
 			</Div>
