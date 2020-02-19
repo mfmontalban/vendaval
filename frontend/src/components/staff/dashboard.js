@@ -176,10 +176,10 @@ class Staff extends Component {
     }
 
     return (
-      <Div className="scroll-container bottom-outer-shadow pt-70px ml-10px mr-10px scrollbar-width-none border-1 outer-shadow-primary" heightStyled={`${application.settings.heightHero}`} backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadius}`} colorStyled={`${application.theme.primary}`}>
+      <Div className="h-100 overflow-scroll scrollbar-width-none" backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadius}`} colorStyled={`${application.theme.primary}`}>
         <div className="d-flex justify-content-center align-items-center">
           <FilterMenu />
-          <H1 className="text-center p-5px" radiusStyled={application.settings.appRadius} backgroundStyled={application.mode.primaryThree} fontSizeStyled={application.text.heading}>
+          <H1 className="text-center p-5px" radiusStyled={application.settings.appRadius} fontSizeStyled={application.text.heading}>
             <FormattedMessage
               id="staff.header"
               defaultMessage="Contributions"
@@ -191,7 +191,7 @@ class Staff extends Component {
         {loadingContent}
         {content}
         <Div className="d-flex justify-content-center border-top-1 outer-shadow-primary" colorStyled={application.theme.primary} backgroundStyled={application.theme.primaryQuarter}>
-          <Link className="w-max-content noUnderline d-flex justify-content-center pb-21px" to="/staff/contribute">
+          <Link className="w-max-content noUnderline d-flex justify-content-center pb-12px" to="/staff/contribute">
             <Button
               className="w-100px p-10px mt-20px clickable"
               transitionStyled={application.transitions.general}

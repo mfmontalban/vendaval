@@ -143,7 +143,7 @@ const initialState = {
     themeSecondaryText: 'rgba(223, 223, 223, 1)',
     themeSecondaryTextHalf: 'rgba(255, 255, 255, 1)',
 
-    dashboardContributions: `calc(${vh100}px - ${heightHeader} - ${appPadding} - 20px - 60px - 39px - 80px)`,
+    dashboardContributions: `calc(${vh100}px - ${appPadding} - ${heightHeader} - ${appPadding} - 2px - 10px - 2px - 90.3px - 39.7167px - 2px - 70.4333px)`,
 
     vientoCoverTitle: `calc(${vh100}px - 73px - 75px - ${heightHeader} - ${appPadding} - 70px )`,
     vientoCoverBanner: `calc(${vh100}px - ${heightHeader} - ${appPadding} - 70px - 70px)`,

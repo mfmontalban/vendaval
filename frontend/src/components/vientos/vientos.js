@@ -150,7 +150,7 @@ class Vientos extends Component {
           </Div>
         );
       }
-    }
+    } 
 
     const updatedAlert = (
       <div className="fixed-top alert-margin ml-5 mr-5 alert alert-info alert-dismissible fade show" role="alert">
