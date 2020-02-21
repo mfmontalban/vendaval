@@ -106,11 +106,11 @@ class Landing extends Component {
               </div>
 
               <div className="h-45 d-flex justify-content-space-around overflow-hidden">
-                <div className="h-80 d-flex justify-content-space-around">
-                  <div className="w-45 position-relative cloud">
+                <div className="h-80 w-100 d-flex justify-content-space-around">
+                  <div className="cloudSize position-relative cloud">
                     <SVG preserveAspectRatio="xMidYMin slice" viewBox="0 0 100 100" fillStyled={`${application.theme.primary}`}><Cloud /></SVG>
                   </div>
-                  <div className="w-45 position-relative cloud cloud-1 mt-25px">
+                  <div className="cloudSize position-relative cloud cloud-1 mt-25px">
                     <SVG preserveAspectRatio="xMidYMin slice" viewBox="0 0 100 100" fillStyled={`${application.theme.primary}`}><Cloud2 /></SVG>
                   </div>
                 </div>

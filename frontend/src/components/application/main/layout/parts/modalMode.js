@@ -67,14 +67,14 @@ class ModalMode extends Component {
             defaultMessage="Mode:"
           />
         </div>
-        <div className="min-w-50-app p-10px">
+        <div className="d-flex justify-content-center min-w-50-app p-10px">
           <div className="clickable" onClick={() => this.toggleModePicker()}>
             <FormattedMessage
               id={('settings.' + `${application.mode.name}`)}
             />
           </div>
           {modePicker && 
-            <Dropdown ref={this.setWrapperRef} className="position-absolute z-1005 d-flex flex-direction-column text-right outer-shadow-primary border-1" transitionStyled={`${application.transitions.general}`}  backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadius}`}>
+            <Dropdown ref={this.setWrapperRef} className="mt-25px position-absolute z-1005 d-flex flex-direction-column text-right outer-shadow-primary border-1" transitionStyled={`${application.transitions.general}`}  backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadius}`}>
               <Button onClick={(e) => {this.updateMode('240', '240', '240', 'Light'); this.toggleModePicker()}} className="p-10px top-border-radius text-right" transitionStyled={`${application.transitions.general}`}  backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`} type="button">
                 <FormattedMessage
                   id="settings.Light"
