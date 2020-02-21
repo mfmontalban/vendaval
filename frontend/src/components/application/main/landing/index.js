@@ -97,24 +97,27 @@ class Landing extends Component {
             <div className="h-90 d-flex flex-direction-column">
               
               <div className="h-10 w-100 d-flex">
-                <SVG preserveAspectRatio="xMidYMin slice" viewBox="0 0 100 100" fillStyled={`${application.theme.primaryHalf}`}><Sky /></SVG>
-                <SVG preserveAspectRatio="xMidYMin slice" viewBox="0 0 100 100" fillStyled={`${application.theme.primaryHalf}`}><Sky2 /></SVG>
+                <div className="w-50">
+                  <SVG preserveAspectRatio="xMidYMin slice" viewBox="0 0 100 100" fillStyled={`${application.theme.primaryHalf}`}><Sky /></SVG>
+                </div>
+                <div className="w-50">
+                  <SVG preserveAspectRatio="xMidYMin slice" viewBox="0 0 100 100" fillStyled={`${application.theme.primaryHalf}`}><Sky2 /></SVG>
+                </div>
               </div>
 
               <div className="h-45 d-flex justify-content-space-around overflow-hidden">
                 <div className="h-80 d-flex justify-content-space-around">
-                  <div className="w-25 position-relative cloud">
+                  <div className="w-45 position-relative cloud">
                     <SVG preserveAspectRatio="xMidYMin slice" viewBox="0 0 100 100" fillStyled={`${application.theme.primary}`}><Cloud /></SVG>
                   </div>
-                  <div className="w-25 position-relative cloud cloud-1 mt-25px">
+                  <div className="w-45 position-relative cloud cloud-1 mt-25px">
                     <SVG preserveAspectRatio="xMidYMin slice" viewBox="0 0 100 100" fillStyled={`${application.theme.primary}`}><Cloud2 /></SVG>
                   </div>
                 </div>
               </div>
 
               <div className="h-25 d-flex justify-content-space-around mt-neg100vh4">
-                <div className="w-50 min-w-500 position-relative d-flex justify-content-space-around kite">
-                  <SVG className="h-100 w-65 position-relative overflow-visible" preserveAspectRatio="xMidYMin slice" viewBox="0 0 100 100">
+                  <SVG className="h-100 kiteSize position-relative d-flex justify-content-space-around kite overflow-visible" preserveAspectRatio="xMidYMin slice" viewBox="0 0 100 100">
                     <defs>
                       <linearGradient id="linear1" x1="50%" y1="0%" x2="50%" y2="100%">
                         <stop offset="0%"   stopColor="rgba(255,0,255,1)"/>
@@ -133,7 +136,6 @@ class Landing extends Component {
                     <Vlogo3 className="max-h-100" fill="url(#linear3)" />
                     <Vlogo2 className="max-h-100" fill="url(#linear2)" />
                   </SVG>
-                </div>
               </div>
               <Div className="d-flex flex-direction-column justify-content-center text-center ml-auto mr-auto" colorStyled={`${application.theme.primary}`}>
                 <FormattedHTMLMessage
