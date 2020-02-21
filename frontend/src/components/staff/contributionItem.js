@@ -158,7 +158,7 @@ class ContributionItem extends Component {
     }
 
     return (
-        <Div className="d-flex flex-direction-row text-center text-center align-items-center" transitionStyled={application.transitions.general} backgroundHoverStyled={application.theme.primaryEighter}>
+        <Div className="d-flex flex-direction-row text-center align-items-center" transitionStyled={application.transitions.general} backgroundHoverStyled={application.theme.primaryEighter}>
           {contributionLine}
         </Div>
     );

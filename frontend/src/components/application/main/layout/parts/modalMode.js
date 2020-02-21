@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'; 
 
 import { updateMode } from '../../../../../actions/applicationActions';
 
@@ -60,34 +60,36 @@ class ModalMode extends Component {
     const { application } = this.props;
 
     return(
-      <Div className="d-flex justify-content-space-evenly align-items-center p-10px" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.transparent}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`}>
-        <div>
+      <Div className="d-flex flex-direction-row text-center align-items-center p-10px" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.transparent}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`}>
+        <div className="min-w-50-app p-10px">
           <FormattedMessage
             id="settings.mode"
             defaultMessage="Mode:"
           />
         </div>
-        <div className="clickable" onClick={() => this.toggleModePicker()}>
-          <FormattedMessage
-            id={('settings.' + `${application.mode.name}`)}
-          />
+        <div className="min-w-50-app p-10px">
+          <div className="clickable" onClick={() => this.toggleModePicker()}>
+            <FormattedMessage
+              id={('settings.' + `${application.mode.name}`)}
+            />
+          </div>
+          {modePicker && 
+            <Dropdown ref={this.setWrapperRef} className="position-absolute z-1005 d-flex flex-direction-column text-right outer-shadow-primary border-1" transitionStyled={`${application.transitions.general}`}  backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadius}`}>
+              <Button onClick={(e) => {this.updateMode('240', '240', '240', 'Light'); this.toggleModePicker()}} className="p-10px top-border-radius text-right" transitionStyled={`${application.transitions.general}`}  backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`} type="button">
+                <FormattedMessage
+                  id="settings.Light"
+                  defaultMessage="Light"
+                />
+              </Button>
+              <Button onClick={(e) => {this.updateMode('43', '43', '43', 'Dark'); this.toggleModePicker()}} className="p-10px bottom-border-radius text-right" transitionStyled={`${application.transitions.general}`}  backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`} type="button">
+                <FormattedMessage
+                  id="settings.Dark"
+                  defaultMessage="Dark"
+                />
+              </Button>
+            </Dropdown>
+          }
         </div>
-        {modePicker && 
-          <Dropdown ref={this.setWrapperRef} className="position-absolute right-0 mt-110px mr-20pc z-1005 d-flex flex-direction-column text-right outer-shadow-primary border-1" transitionStyled={`${application.transitions.general}`}  backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadius}`}>
-            <Button onClick={(e) => {this.updateMode('240', '240', '240', 'Light'); this.toggleModePicker()}} className="p-10px top-border-radius text-right" transitionStyled={`${application.transitions.general}`}  backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`} type="button">
-              <FormattedMessage
-                id="settings.Light"
-                defaultMessage="Light"
-              />
-            </Button>
-            <Button onClick={(e) => {this.updateMode('43', '43', '43', 'Dark'); this.toggleModePicker()}} className="p-10px bottom-border-radius text-right" transitionStyled={`${application.transitions.general}`}  backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`} type="button">
-              <FormattedMessage
-                id="settings.Dark"
-                defaultMessage="Dark"
-              />
-            </Button>
-          </Dropdown>
-        }
       </Div>
     )
   }

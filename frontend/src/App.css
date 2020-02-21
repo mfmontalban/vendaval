@@ -405,6 +405,11 @@ textarea {
   max-width:calc(25% - 20px);
 }
 
+.min-w-50-app {
+  min-width:calc(50% - 20px);
+  max-width:calc(50% - 20px);
+}
+
 .min-w-100 {
   min-width:100%;
 }
