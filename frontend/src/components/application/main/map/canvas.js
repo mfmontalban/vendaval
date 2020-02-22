@@ -60,45 +60,19 @@ class Mapbox extends Component {
       
       let x;
       let y;
+      let xyz;
       let vienti;
       let vienti2;
-
-      x = this.map.getCenter();
-      y = this.map.getZoom();
-
-      if (this.props.application.mode.name === 'Dark') {
-        this.setState({
-          style: 'mapbox://styles/mapbox/dark-v9'
-        })
-        
-        this.map = new mapboxgl.Map({
-          container: this.mapContainer,
-          style: 'mapbox://styles/mapbox/dark-v9',
-          center: [x['lng'], x['lat']],
-          zoom: y,
-          attributionControl: false
-        }).addControl(new mapboxgl.AttributionControl({
-        compact: true
-    }));
-      } else {
-        this.setState({
-          style: 'mapbox://styles/mapbox/streets-v9'
-        })
-        this.map = new mapboxgl.Map({
-          container: this.mapContainer,
-          style: 'mapbox://styles/mapbox/streets-v9',
-          center: [x['lng'], x['lat']],
-          zoom: y,
-          attributionControl: false
-        }).addControl(new mapboxgl.AttributionControl({
-        compact: true
-    }));
-      }
 
       vienti = [];
       x = this.map.getBounds().toArray();
       y = Object.values(filters);
 
+      let chile = this.mapContainer.children[1].childElementCount;
+
+      for ( xyz = 1; xyz < chile; xyz++) {
+        this.mapContainer.children[1].children[1].remove();
+      }
 
       vientos.map(viento => {
         if ((x[0][0] <= viento.lat) && (viento.lat <= x[1][0]) && (x[0][1] <= viento.lon) && (viento.lon <= x[1][1])) {
@@ -117,7 +91,7 @@ class Mapbox extends Component {
             let contentHTMLMatch = viento.title.toLowerCase().indexOf(y[1].toLowerCase()) !== -1;
             return contentHTMLMatch;
           } else if (y[0] == "Author") {
-            let contentHTMLMatch = viento.user.name.toLowerCase().includes(y[1]);
+            let contentHTMLMatch = viento.user.name.toLowerCase().indexOf(y[1].toLowerCase()) !== -1;
             return contentHTMLMatch;
           }
           else {
@@ -216,7 +190,7 @@ class Mapbox extends Component {
             let contentHTMLMatch = viento.title.toLowerCase().indexOf(y[1].toLowerCase()) !== -1;
             return contentHTMLMatch;
           } else if (y[0] == "Author") {
-            let contentHTMLMatch = viento.user.name.toLowerCase().includes(y[1]);
+            let contentHTMLMatch = viento.user.name.toLowerCase().indexOf(y[1].toLowerCase()) !== -1;
             return contentHTMLMatch;
           }
           else {
@@ -375,7 +349,7 @@ class Mapbox extends Component {
               let contentHTMLMatch = viento.title.toLowerCase().indexOf(y[1].toLowerCase()) !== -1;
               return contentHTMLMatch;
             } else if (y[0] == "Author") {
-              let contentHTMLMatch = viento.user.name.toLowerCase().includes(y[1]);
+              let contentHTMLMatch = viento.user.name.toLowerCase().indexOf(y[1].toLowerCase()) !== -1;
               return contentHTMLMatch;
             }
             else {
