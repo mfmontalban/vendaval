@@ -77,7 +77,7 @@ class WorldMenu extends Component {
           <i className="fas fa-globe-americas"></i>
         </Button>
         {listOpen && 
-          <Dropdown ref={this.setWrapperRef} className="ml-worldMenu m-10px position-absolute z-1005 d-flex flex-direction-row text-left outer-shadow-primary border-1" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
+          <Dropdown ref={this.setWrapperRef} className="ml-worldMenu m-10px position-absolute white-space-nowrap z-1005 d-flex flex-direction-row text-left outer-shadow-primary border-1" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
             <A className="p-10px" href="#Africa" onClick={(e) => this.flyTo(8.7832, 34.5085)} backgroundHoverStyled={application.theme.primaryQuarter}>Africa</A>
             <A className="p-10px" href="#Asia" onClick={(e) => this.flyTo(100.6197, 34.0479)} backgroundHoverStyled={application.theme.primaryQuarter}>Asia</A>
             <A className="p-10px" href="#Europe" onClick={(e) => this.flyTo(54.5260, 15.2551)} backgroundHoverStyled={application.theme.primaryQuarter}>Europe</A>
