@@ -158,8 +158,8 @@ class Landing extends Component {
             </div>
           </div>
 
-          <Div id="main-content" className="p-10px" backgroundStyled={`${application.mode.primaryHover}`}>
-            <div className="about text-center">
+          <Div id="main-content" className="h-100" backgroundStyled={`${application.mode.primaryHover}`}>
+            <div className="about text-center p-10px">
               <h3>
                 <FormattedMessage
                   id="landing.aboutMain"
@@ -243,7 +243,6 @@ class Landing extends Component {
                 </Div>
               </Link>
             </div>
-
           </Div>
         </div>
     );

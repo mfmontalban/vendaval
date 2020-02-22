@@ -21,30 +21,30 @@ import Director from './director';
   import './App2.css';
   import Landing from './components/application/main/landing/index';
 
-  import Register from './components/admin/register';
+  // import Register from './components/admin/register';
   import Login from './components/admin/login';
-  import Forgot from './components/admin/forgot';
+  // import Forgot from './components/admin/forgot';
 
-  import Verify from './components/admin/verify';
-  import Reset from './components/admin/reset';
-  import Update from './components/admin/update';
+  // import Verify from './components/admin/verify';
+  // import Reset from './components/admin/reset';
+  // import Update from './components/admin/update';
 
-  import Security from './components/admin/security';
+  // import Security from './components/admin/security';
 
   import Vientos from './components/vientos/vientos';
   import ViewViento from './components/vientos/viewViento';
 
-  import Dashboard from './components/staff/dashboard';
-  import CreateContribution from './components/staff/createContribution';
-  import ReadContribution from './components/staff/readContribution';
-  import EditContribution from './components/staff/editContribution';
+  // import Dashboard from './components/staff/dashboard';
+  // import CreateContribution from './components/staff/createContribution';
+  // import ReadContribution from './components/staff/readContribution';
+  // import EditContribution from './components/staff/editContribution';
 
-  import CreateProfile from './components/users/createProfile';
-  import ReadProfile from './components/users/readProfile';
-  import EditProfile from './components/users/editProfile';
+  // import CreateProfile from './components/users/createProfile';
+  // import ReadProfile from './components/users/readProfile';
+  // import EditProfile from './components/users/editProfile';
 
-  import ProfileAlerts from './components/users/profileAlerts';
-  import ProfileHistory from './components/users/profileHistory';
+  // import ProfileAlerts from './components/users/profileAlerts';
+  // import ProfileHistory from './components/users/profileHistory';
 
 addLocaleData(en); 
 addLocaleData(es);
@@ -99,13 +99,13 @@ class App extends Component {
 
 
 
-          <Director exact path="/register" level={'public'} component={Register} />
-          <Director exact path="/registrar" level={'public'} component={Register} />
+          {/* <Director exact path="/register" level={'public'} component={Register} />
+          <Director exact path="/registrar" level={'public'} component={Register} /> */}
 
           <Director exact path="/login" level={'public'} component={Login} />
           <Director exact path="/iniciar" level={'public'} component={Login} />
 
-          <Director exact path="/forgot" level={'public'} component={Forgot} />
+          {/* <Director exact path="/forgot" level={'public'} component={Forgot} />
           <Director exact path="/olvidó" level={'public'} component={Forgot} />
 
           <Director exact path="/verify/:key" level={'public'} component={Verify} />
@@ -120,7 +120,7 @@ class App extends Component {
 
 
           <Director exact path="/security" level={'user'} component={Security} />
-          <Director exact path="/seguridad" level={'user'} component={Security} />
+          <Director exact path="/seguridad" level={'user'} component={Security} /> */}
 
 
 
@@ -132,7 +132,7 @@ class App extends Component {
 
 
 
-          <Director exact path="/staff/dashboard" level={'staff'} component={Dashboard} />
+          {/* <Director exact path="/staff/dashboard" level={'staff'} component={Dashboard} />
           <Director exact path="/personal/tablero" level={'staff'} component={Dashboard} />
           
           <Director exact path="/staff/contribute" level={'staff'} component={CreateContribution} />
@@ -159,7 +159,7 @@ class App extends Component {
           <Director exact path="/perfil/alertas" level={'user'} component={ProfileAlerts} />
 
           <Director exact path="/profile/history" level={'user'} component={ProfileHistory} />
-          <Director exact path="/perfil/historia" level={'user'} component={ProfileHistory} />
+          <Director exact path="/perfil/historia" level={'user'} component={ProfileHistory} /> */}
 
         </Switch>
       </IntlProvider>
