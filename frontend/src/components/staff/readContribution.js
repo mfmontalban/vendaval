@@ -229,11 +229,11 @@ class Contribution extends Component {
       }
 
       contributionContent = (
-        <div className="h-100">
-          <Div className="z-900 d-flex justify-content-center overflow-hidden" heightStyled={application.settings.vientoCoverBanner}>
-            <img className="filter-blur object-fit-cover" alt="banner" src={`/api/staff/files/${contribution.bannerLg}`} />
+        <div className="h-100 position-relative z-1000">
+          <Div className="position-absolute w-100 z-900 d-flex justify-content-center min-h-100pc70px max-h-100pc70px">
+            <img className="filter-blur object-fit-cover overflow-hidden" alt="banner" src={`/api/staff/files/${contribution.bannerLg}`} />
           </Div>
-          <div className="h-100 position-relative d-flex flex-direction-column mt-neg100vh200px">
+          <div className="h-100 position-relative d-flex flex-direction-column">
             {/* div is to hide commented out code */}
             <div>
             {/* <div className="z-1000 d-flex position-relative overflow-visible flex-direction-column h-40px w-100">
@@ -282,7 +282,7 @@ class Contribution extends Component {
                 </div>
                 <div className="w-30 d-flex justify-content-center">
                 </div>
-                <div className="w-30 d-flex justify-content-flex-end">
+                <div className="w-30 d-flex position-relative justify-content-center min-w-max-content">
                   {editContent}
                   {listOpen &&
                     <Dropdown ref={this.setWrapperRef} className="clickable position-absolute mt-45px mr-5px z-1005 d-flex flex-direction-column text-right outer-shadow-primary border-1" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
@@ -369,23 +369,23 @@ class Contribution extends Component {
                 </div>
               </Div>
               <Div className="d-flex position-relative z-1000 justify-content-space-around position-relative flex-direction-row align-items-center mt-neg45px min-h-70px" heightStyled={application.settings.contributionCoverFooter}>
-                <div className="w-30 d-flex justify-content-center min-w-max-content clickable">
+                <div className="w-33 d-flex justify-content-center clickable">
                   Draft
                 </div>
-                <div className="w-30 d-flex justify-content-center min-w-max-content clickable">
+                <div className="w-33 d-flex justify-content-center clickable">
                   <Div name="infoSection" className="ml-auto mr-auto max-w-min-content p-1px5px call-to-action landingMotto" onClick={this.handleScrollToElement} transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primaryHalf}`} colorHoverStyled={`${application.theme.primary}`}>
                     <i className="ml-auto mr-auto fal fa-chevron-down fa-2x"></i>
                   </Div>
                 </div>
-                <div className="w-30 d-flex justify-content-center min-w-max-content clickable">
+                <div className="w-33 d-flex justify-content-center clickable">
                   {commentsActivity}
                 </div>
               </Div>
             </div>
           
-            <div id="content-anchor" style={style}>
+            <Div id="content-anchor" class="w-100" minHeightStyled={`${application.settings.contentHeight}`}>
               <Quill contributions={contribution.content} />
-            </div>
+            </Div>
             <div id="comment-anchor" style={style}>
               <CommentFeed vientoId={contribution._id} comments={contribution.comments} />
               <CommentForm vientoId={contribution._id} category={'public'} />
@@ -396,7 +396,7 @@ class Contribution extends Component {
     }
 
     return (
-      <Div className="scroll-container bottom-outer-shadow ml-10px mr-10px pt-70px scrollbar-width-none" heightStyled={`${application.settings.heightHero}`} backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
+      <Div className="h-100 bottom-outer-shadow scrollbar-width-none" backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
         <Div onClick={() => this.closeSettingsMenu()} className={(settingsMenu === true ? 'z-1250 visible' : 'z-neg1 invisible') + ' position-fixed h-100vh w-100vw bottom-0 left-0 overlay'} transitionStyled={settingsMenu === true ? `${application.transitions.settingsIn}`: `${application.transitions.settingsOut}`} />
 
         <Div className={(settingsMenu === true ? 'z-1500 visible modal2' : 'z-neg1 invisible') + ' position-fixed bottom-0'} transitionStyled={settingsMenu === true ? `${application.transitions.settingsIn}`: `${application.transitions.settingsOut}`} activeStyled={this.state.settingsMenu} heightStyled={`${application.settings.heightDeleteModal}`} backgroundStyled={`${application.mode.primary}`} widthStyled={`${application.settings.widthSettings}`} marginLeftStyled={`${application.settings.marginLeftSettings}`} marginRightStyled={`${application.settings.marginRightSettings}`} radiusStyled={`${application.settings.appRadius}`}>

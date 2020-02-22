@@ -347,7 +347,7 @@ class Contribution extends Component {
                   {likesActivity}
                 </div>
                 <div className="w-33 d-flex justify-content-center clickable">
-                <Div name="infoSection" className="ml-auto mr-auto max-w-min-content p-1px5px call-to-action landingMotto" onClick={this.handleScrollToElement} transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primaryHalf}`} colorHoverStyled={`${application.theme.primary}`}>
+                  <Div name="infoSection" className="ml-auto mr-auto max-w-min-content p-1px5px call-to-action landingMotto" onClick={this.handleScrollToElement} transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primaryHalf}`} colorHoverStyled={`${application.theme.primary}`}>
                     <i className="ml-auto mr-auto fal fa-chevron-down fa-2x"></i>
                   </Div>
                 </div>

@@ -40,7 +40,7 @@ class QuillEdit extends Component {
     const { application } = this.props;
 
     return (
-      <Div className="bottom-outer-shadow ml-10px mr-10px" backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
+      <Div className="bottom-outer-shadow m-10px" backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
         <ReactQuill
           ref={(el) => { this.reactQuillRef = el }}
           value={this.state.text}

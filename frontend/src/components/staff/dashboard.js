@@ -191,9 +191,9 @@ class Staff extends Component {
         {loadingContent}
         {content}
         <Div className="d-flex justify-content-center border-top-1 outer-shadow-primary" colorStyled={application.theme.primary} backgroundStyled={application.theme.primaryQuarter}>
-          <Link className="w-max-content noUnderline d-flex justify-content-center pb-12px" to="/staff/contribute">
+          <Link className="w-max-content noUnderline d-flex justify-content-center m-10px" to="/staff/contribute">
             <Button
-              className="w-100px p-10px mt-20px clickable"
+              className="w-100px p-10px clickable"
               transitionStyled={application.transitions.general}
               radiusStyled={application.settings.appRadius}
               backgroundStyled={application.theme.primaryHalf}

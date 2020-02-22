@@ -89,7 +89,7 @@ class FilterMenu extends Component {
                 <SearchCategory onFilterItems={this.setFilter} />
               </Div>
               <Div className="d-flex flex-direction-row pb-10px pl-10px bottom-border-radius text-right" backgroundStyled={application.mode.primary} colorStyled={application.theme.primary}>
-                <Input className="max-w-filterMenuInput border-1-left pl-10px pr-10px" type="text" name="filteringPhrase" value={this.state.filteringPhrase} onChange={this.onChange} backgroundStyled={application.mode.primary} colorStyled={application.theme.primary} radiusStyled={application.settings.appRadiusLeft} borderStyled={application.theme.primary}>
+                <Input className="max-w-filterMenuInput border-1-left pl-10px pr-10px m-0" type="text" name="filteringPhrase" value={this.state.filteringPhrase} onChange={this.onChange} backgroundStyled={application.mode.primary} colorStyled={application.theme.primary} radiusStyled={application.settings.appRadiusLeft} borderStyled={application.theme.primary}>
                 </Input>
                 <Button onClick={() => {this.toggleList(); this.filterItems()}} className="text-right border-1" transitionStyled={application.settings.appTransition} backgroundStyled={application.transparent} backgroundHoverStyled={application.theme.primary} colorStyled={application.theme.primary} colorHoverStyled={application.mode.primary} paddingStyled={application.settings.appPadding} radiusStyled={application.settings.appRadiusRight}>
                   <i className="fas fa-arrow-alt-right"></i>

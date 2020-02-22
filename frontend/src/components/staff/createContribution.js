@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom'; 
 
 import { addContribution } from '../../actions/staffActions';
 import Resizer from 'react-image-file-resizer';
@@ -165,7 +165,7 @@ class AddContribution extends Component {
     }
 
     return (
-      <Div className="scroll-container bottom-outer-shadow ml-10px mr-10px pt-70px" heightStyled={`${application.settings.heightHero}`} backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
+      <Div className="h-100 overflow-scroll scrollbar-width-none" backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
         <div className="max-w-1000px ml-auto mr-auto">
           <Link to={`/${staff}/${dashboard}`}>
             <LinkContainer className="mt-10px ml-10px p-10px w-40px" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primaryHalf}`} colorHoverStyled={`${application.theme.primary}`}>
@@ -178,7 +178,7 @@ class AddContribution extends Component {
               defaultMessage="Contribution"
             />
           </h1>
-          <form className="max-w-750px ml-auto mr-auto text-center" onSubmit={this.onSubmit}>
+          <form className="max-w-750px ml-auto mr-auto text-center mb-20px" onSubmit={this.onSubmit}>
 
             <TextFieldGroup
               placeholder={`${title}`}
