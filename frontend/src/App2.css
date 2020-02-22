@@ -115,11 +115,11 @@
   }
   
   .ml-neg45vw {
-    margin-left: -45vw;
+    margin-left: calc(-45vw - 10px);
   }
   
   .mr-neg45vw {
-    margin-right: -45vw;
+    margin-right: calc(-45vw - 10px);
   }
 
 .userMenu {

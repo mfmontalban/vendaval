@@ -260,7 +260,7 @@ class UserMenu extends Component {
           {avatarImage}
         </Button>
 
-        <Dropdown ref={this.setWrapperRef} className={(listOpen === true ? 'z-1500 visible userMenu' : 'z-neg1 invisible') + ' mr-neg45vw z-1005 top-0 right-0 w-45 min-w-150px max-w-300px h-100-menus position-absolute d-flex flex-direction-column outer-shadow-primary border-1 p-10px'} transitionStyled={settingsMenu === true ? `${application.transitions.appMenuIn}`: `${application.transitions.appMenuOut}`} backgroundStyled={application.mode.primary} colorStyled={`${application.theme.primary}`}>  
+        <Dropdown ref={this.setWrapperRef} className={(listOpen === true ? 'z-1500 visible userMenu' : 'z-neg1 invisible') + ' mr-neg45vw mt-neg10px z-1005 top-0 right-0 w-45 min-w-150px max-w-300px h-100-menus position-absolute d-flex flex-direction-column outer-shadow-primary border-1 p-10px'} transitionStyled={settingsMenu === true ? `${application.transitions.appMenuIn}`: `${application.transitions.appMenuOut}`} backgroundStyled={application.mode.primary} colorStyled={`${application.theme.primary}`}>  
           <Button onClick={() => this.toggleList('close')} className="userMenuButton h-40px w-40px border-1 clickable m-10px" transitionStyled={`${settings.appTransition}`} backgroundStyled={`${application.transparent}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} paddingStyled={`${settings.appPadding2}`} radiusStyled={`${settings.appRadius}`}>
             {avatarImage}
           </Button>

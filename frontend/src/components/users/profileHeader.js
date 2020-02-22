@@ -56,7 +56,7 @@ class ProfileHeader extends Component {
               <Div className="z-900 d-flex justify-content-center overflow-hidden p-10px">
                 {profilePicture}
               </Div>
-              <h1 className="display-6 text-center mt-10px mb-10px">{profile.user.name}</h1>
+              <h1 className="text-center mt-10px mb-0px">{profile.user.name}</h1>
               {isEmpty(profile.location) ? null : <p className="text-center m-0">{profile.location}</p>}
               <div className="d-flex flex-direction-row justify-content-center m-0">
                 {isEmpty(profile.website) ? null : (

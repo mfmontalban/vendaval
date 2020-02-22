@@ -158,7 +158,7 @@ class Landing extends Component {
             </div>
           </div>
 
-          <Div id="main-content" className="h-hero-padded p-10px overflow-scroll" backgroundStyled={`${application.mode.primaryHover}`}>
+          <Div id="main-content" className="p-10px" backgroundStyled={`${application.mode.primaryHover}`}>
             <div className="about text-center">
               <h3>
                 <FormattedMessage
