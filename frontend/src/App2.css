@@ -103,7 +103,7 @@
   }
 
   .h-100-menus {
-    height: calc(100vh - 20px - 2px);
+    height: calc(100vh - 20px - 2px - 1px);
   }
 
   .w-100-searchContainer {

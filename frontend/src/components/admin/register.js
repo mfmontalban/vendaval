@@ -10,7 +10,6 @@ import Div from '../application/main/common/styled/div';
 import H1 from '../application/main/common/styled/h1';
 import H2 from '../application/main/common/styled/h2';
 import Input from '../application/main/common/styled/input';
-import TextFieldGroup from '../application/main/common/textFieldGroup';
 
 
 class Register extends Component {
@@ -110,7 +109,7 @@ class Register extends Component {
     const { errors } = this.state;
 
     return (
-      <Div className="scroll-container bottom-outer-shadow ml-10px mr-10px pl-10px pr-10px pt-70px scrollbar-width-none" heightStyled={`${application.settings.heightHero}`} backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
+      <Div className="h-100 overflow-scroll scrollbar-width-none" backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
         <H1 className="text-center">
           <FormattedMessage
             id="register.Main"
@@ -192,7 +191,7 @@ class Register extends Component {
           <Input
             type="submit"
             value={`${placeSubmit}`}
-            className={`clickable mt-10px mb-20px`}
+            className={`clickable mt-10px mb-20px webkit-appearance-none outer-shadow-primary border-1`}
             transitionStyled={application.transitions.general}
             backgroundStyled={application.theme.primaryQuarter}
             backgroundHoverStyled={application.theme.primary}

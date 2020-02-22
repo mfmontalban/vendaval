@@ -22,6 +22,7 @@ class AddContribution extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isEnabled: false,
       type: '',
       topic: '',
       title: '',
@@ -98,11 +99,6 @@ class AddContribution extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    let data = new FormData();
-    data.append('file', this.state.banner);
-    data.append('file', this.state.bannerSm);
-    data.append('file', this.state.bannerLg);
-
     const contribData = {
       type: this.state.type,
       topic: this.state.topic,
@@ -113,7 +109,28 @@ class AddContribution extends Component {
       lon: this.state.lon,
     };
 
-    this.props.addContribution(contribData, this.props.history, data);
+    if(this.state.banner && !this.state.isEnabled) {
+      this.setState({
+        isEnabled: true
+      });
+      
+      let deleteOldBanner = [
+        this.props.staff.contribution.bannerOriginal,
+        this.props.staff.contribution.bannerSm,
+        this.props.staff.contribution.bannerLg,
+      ]
+  
+      this.props.deleteOldBanner(deleteOldBanner);
+
+      let data = new FormData();
+      data.append('file', this.state.banner);
+      data.append('file', this.state.bannerSm);
+      data.append('file', this.state.bannerLg);
+
+      this.props.addContribution(contribData, this.props.history, data);
+    } else {
+      this.props.addContribution(contribData, this.props.history);
+    }
   }
 
   render() {
@@ -134,6 +151,8 @@ class AddContribution extends Component {
       { label: 'Engineering', value: 'Engineering' },
       { label: 'Mathematics', value: 'Mathematics' },
     ];
+
+    const isEnabled = this.state.isEnabled;
 
     const { errors } = this.state;
     const { application } = this.props;
@@ -224,10 +243,18 @@ class AddContribution extends Component {
 
             <Quill storeQuillDelta={this.storeContent} />
 
-            <input
+            <Input
               type="submit"
               value={`${placeSubmit}`}
-              className="mt-10px"
+              disabled={isEnabled}
+              className={`clickable mt-10px mb-10px webkit-appearance-none`}
+              transitionStyled={application.transitions.general}
+              backgroundStyled={application.theme.primaryQuarter}
+              backgroundHoverStyled={application.theme.primary}
+              colorStyled={application.mode.primary}
+              fontSizeStyled={application.text.heading}
+              borderStyled={application.mode.primary}
+              radiusStyled={application.settings.appRadius}
             />
           </form>
         </div>

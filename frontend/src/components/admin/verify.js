@@ -6,6 +6,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { verifyApplicationAlertsRegistered, resendApplicationAlertsRegistered } from '../../actions/applicationActions';
 
 import TextFieldGroup from '../application/main/common/textFieldGroup';
+import Input from '../application/main/common/styled/input';
 
 class Confirm extends Component {
   constructor() {
@@ -43,7 +44,16 @@ class Confirm extends Component {
   render() {
 
     const { errors } = this.state;
+    const { application } = this.props;
     const { verify } = this.props.application;
+
+    let placeSubmit;
+
+    if (application.language === 'es') {
+      placeSubmit = 'Enviar'
+    } else {
+      placeSubmit = 'Submit'
+    }
 
     const success =
       <div>
@@ -59,7 +69,7 @@ class Confirm extends Component {
 
     const expired =
       <div>
-        <h1 className="display-4 text-center">Resend</h1>
+        <h1 className="text-center">Resend</h1>
         <p className="lead text-center">
           Sorry, but we couldn't find your validation token. Please enter your email below to resend your confirmation email.
         </p>
@@ -72,7 +82,18 @@ class Confirm extends Component {
             onChange={this.onChange}
             error={errors.email}
           />
-          <input value="Submit" type="submit" className="btn btn-info btn-block" />
+          <Input
+            type="submit"
+            value={`${placeSubmit}`}
+            className={`clickable mt-10px mb-20px webkit-appearance-none outer-shadow-primary border-1`}
+            transitionStyled={application.transitions.general}
+            backgroundStyled={application.theme.primaryQuarter}
+            backgroundHoverStyled={application.theme.primary}
+            colorStyled={application.mode.primary}
+            fontSizeStyled={application.text.heading}
+            borderStyled={application.mode.primary}
+            radiusStyled={application.settings.appRadius}
+          />
         </form>
         <Link to="/register" className="btn-block mt-5 text-center text-info">
           Or Sign Up

@@ -78,7 +78,7 @@ class SortMenu extends Component {
           <i className="fas fa-sort"></i>
         </Button>
         {listOpen && 
-          <Div className="position-absolute z-1005 d-flex flex-direction-column text-right outer-shadow outer-box-shadow-menu ml-neg107px" backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
+          <Div className="position-absolute z-1005 d-flex flex-direction-column text-right outer-shadow-primary border-1 ml-neg107px" backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
             <Button onClick={(e) => {this.props.setSortsAuthorUp(e); this.toggleList();}} className="p-10px top-border-radius text-right" backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`} type="Button">{authorUp}</Button>
             <Button onClick={(e) => {this.props.setSortsAuthorDown(e); this.toggleList();}} className="p-10px text-right" backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`} type="Button">{authorDown}</Button>
             <Button onClick={(e) => {this.props.setSortsTitleUp(e); this.toggleList();}} className="p-10px text-right" backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`} type="Button">{titleUp}</Button>

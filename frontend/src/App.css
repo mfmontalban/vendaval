@@ -160,6 +160,10 @@ textarea {
   white-space: nowrap;
 }
 
+.webkit-appearance-none {
+  -webkit-appearance: none;
+}
+
 .border-0 {
   border:0;
 }
@@ -934,6 +938,10 @@ textarea {
 
 .ml-neg175px {
   margin-left: -175px;
+}
+
+.ml-worldMenu {
+  margin-left: calc(-50vw + 25px);
 }
 
 .mt-neg25px {

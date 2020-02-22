@@ -107,7 +107,7 @@ class Vientos extends Component {
             let contentHTMLMatch = viento.title.toLowerCase().indexOf(y[1].toLowerCase()) !== -1;
             return contentHTMLMatch;
           } else if (y[0] == "Author") {
-            let contentHTMLMatch = viento.user.name.toLowerCase().includes(y[1]);
+            let contentHTMLMatch = viento.user.name.toLowerCase().indexOf(y[1].toLowerCase()) !== -1;
             return contentHTMLMatch;
           }
           else {

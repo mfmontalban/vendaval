@@ -73,7 +73,7 @@ class Forgot extends Component {
     }
 
     return (
-      <Div className="scroll-container bottom-outer-shadow ml-10px mr-10px pl-10px pr-10px pt-70px scrollbar-width-none" heightStyled={`${application.settings.heightHero}`} backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
+      <Div className="h-100 overflow-scroll scrollbar-width-none" backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
         <H1 className="text-center">
           <FormattedMessage
             id="forgot.Main"
@@ -106,7 +106,7 @@ class Forgot extends Component {
           <Input
             type="submit"
             value={`${placeSubmit}`}
-            className={`clickable mt-10px mb-20px`}
+            className={`clickable mt-10px mb-20px outer-shadow-primary border-1`}
             transitionStyled={application.transitions.general}
             backgroundStyled={application.theme.primaryQuarter}
             backgroundHoverStyled={application.theme.primary}

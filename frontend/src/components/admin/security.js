@@ -181,7 +181,7 @@ class Security extends Component {
           <Input
             type="submit"
             value={`${submitSecurityForm}`}
-            className={(isEnabled !== true ? `disabled` : `clickable`) + ` mt-10px mb-20px`}
+            className={(isEnabled !== true ? `disabled` : `clickable`) + ` mt-10px mb-20px webkit-appearance-none outer-shadow-primary border-1`}
             disabled={!isEnabled}
             transitionStyled={application.transitions.general}
             backgroundStyled={application.theme.primaryQuarter}

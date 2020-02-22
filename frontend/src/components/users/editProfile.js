@@ -454,7 +454,7 @@ class CreateProfile extends Component {
             <Input
               type="submit"
               value={`${submitProfile}`}
-              className="clickable mt-10px mb-20px"
+              className="clickable mt-10px mb-20px webkit-appearance-none"
               transitionStyled={application.transitions.general}
               backgroundStyled={application.theme.primaryThree}
               backgroundHoverStyled={application.theme.primary}

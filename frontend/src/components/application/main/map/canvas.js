@@ -256,6 +256,7 @@ class Mapbox extends Component {
       
       let x;
       let y;
+      let xyz;
       let vienti;
       let vienti2;
 
@@ -273,6 +274,12 @@ class Mapbox extends Component {
       }).addControl(new mapboxgl.AttributionControl({
         compact: true
     }));
+
+      let chile = this.mapContainer.children[1].childElementCount;
+
+      for ( xyz = 1; xyz < chile; xyz++) {
+        this.mapContainer.children[1].children[1].remove();
+      }
       
       vienti = [];
       x = this.map.getBounds().toArray();
@@ -297,7 +304,7 @@ class Mapbox extends Component {
             let contentHTMLMatch = viento.title.toLowerCase().indexOf(y[1].toLowerCase()) !== -1;
             return contentHTMLMatch;
           } else if (y[0] == "Author") {
-            let contentHTMLMatch = viento.user.name.toLowerCase().includes(y[1]);
+            let contentHTMLMatch = viento.user.name.toLowerCase().indexOf(y[1].toLowerCase()) !== -1;
             return contentHTMLMatch;
           }
           else {
@@ -402,24 +409,27 @@ class Mapbox extends Component {
 
     //Add onchange to reload map data
     if(this.props.application.filters!==prevProps.application.filters ) {
-      let vienti;
-      let x;
-      let y;
-      let xyz;
-
       const { vientos } = this.props.vientos;
       const { filters } = this.props.application;
       const { application } = this.props;
+      
+      let x;
+      let y;
+      let vienti;
+      let vienti2;
+      let xyz;
+      
+      vienti = [];
+      x = this.map.getBounds().toArray();
+      y = Object.values(filters);
 
       let chile = this.mapContainer.children[1].childElementCount;
 
       for ( xyz = 1; xyz < chile; xyz++) {
         this.mapContainer.children[1].children[1].remove();
       }
-      
-      vienti =[];
 
-      y = Object.values(filters);
+      vienti2 = [];
 
       vientos.filter(viento => {
         if (y !== "" || null) {
@@ -427,7 +437,7 @@ class Mapbox extends Component {
             let contentHTMLMatch = viento.title.toLowerCase().indexOf(y[1].toLowerCase()) !== -1;
             return contentHTMLMatch;
           } else if (y[0] == "Author") {
-            let contentHTMLMatch = viento.user.name.toLowerCase().includes(y[1]);
+            let contentHTMLMatch = viento.user.name.toLowerCase().indexOf(y[1].toLowerCase()) !== -1;
             return contentHTMLMatch;
           }
           else {
@@ -447,18 +457,15 @@ class Mapbox extends Component {
         .setLngLat([viento.lat, viento.lon])
         .setPopup(popup)
         .addTo(this.map);
-        
-
-        x = this.map.getBounds().toArray();
             
         if ((x[0][0] <= viento.lat) && (viento.lat <= x[1][0]) && (x[0][1] <= viento.lon) && (viento.lon <= x[1][1])) {
-          vienti.push(viento);
+          vienti2.push(viento);
         }
         
         return null;
         });
 
-        this.updateMapbox(vienti);
+        this.updateMapbox(vienti2);
 
     }
   }

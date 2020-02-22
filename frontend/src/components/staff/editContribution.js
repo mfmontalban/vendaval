@@ -14,8 +14,7 @@ import SelectListGroup from '../application/main/common/selectListGroup';
 import TextAreaFieldGroup from '../application/main/common/textAreaFieldGroup';
 import Quill from '../application/main/common/quillEdit';
 import Div from '../application/main/common/styled/div';
-import LinkContainer from '../application/main/common/styled/linkContainer';
-import BackArrow from '../application/main/common/backArrow'; 
+import Input from '../application/main/common/styled/input'; 
 import Button from '../application/main/common/styled/button';
 import Dropdown from '../application/main/common/styled/dropdown';
 import DropdownDivider from '../application/main/common/styled/dropdownDivider';
@@ -411,10 +410,18 @@ class Contribution extends Component {
 
             <Quill storeQuillDelta={this.storeContent} />
 
-            <input
+            <Input
               type="submit"
-              value={placeSubmit}
+              value={`${placeSubmit}`}
               disabled={isEnabled}
+              className={`clickable mt-10px mb-10px webkit-appearance-none outer-shadow-primary border-1`}
+              transitionStyled={application.transitions.general}
+              backgroundStyled={application.theme.primaryQuarter}
+              backgroundHoverStyled={application.theme.primary}
+              colorStyled={application.mode.primary}
+              fontSizeStyled={application.text.heading}
+              borderStyled={application.theme.primary}
+              radiusStyled={application.settings.appRadius}
             />
           </form>
           

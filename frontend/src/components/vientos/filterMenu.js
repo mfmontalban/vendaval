@@ -78,8 +78,8 @@ class FilterMenu extends Component {
           <i className="fas fa-filter"></i>
         </Button>
         {listOpen && 
-          <Dropdown className="position-absolute z-1005 d-flex flex-direction-column text-right outer-shadow">
-            <Dropdown className="outer-box-shadow-menu" radiusStyled={application.settings.appRadius} boxShadowColorStyled={application.theme.primaryQuarter}>
+          <Dropdown className="position-absolute z-1005 d-flex flex-direction-column text-right">
+            <Dropdown className="outer-shadow-primary border-1" radiusStyled={application.settings.appRadius} boxShadowColorStyled={application.theme.primaryQuarter}>
               <Div className="pt-10px pl-10px top-border-radius text-right" backgroundStyled={application.mode.primary} colorStyled={application.theme.primary}>
                 <SearchCategory onFilterItems={this.setFilter} />
               </Div>
