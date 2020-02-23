@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 
 import { sendApplicationAlertsRegistered } from '../../actions/applicationActions';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, FormattedHTMLMessage } from 'react-intl';
 
 import Div from '../application/main/common/styled/div';
 import H1 from '../application/main/common/styled/h1';
@@ -20,7 +20,14 @@ class Register extends Component {
       email: '',
       password: '',
       password2: '',
-      errors: {}
+      errors: {
+        data: {
+          name: '',
+          email: '',
+          password: '',
+          password2: '',
+        }
+      }
     };
   }
 
@@ -109,33 +116,40 @@ class Register extends Component {
     const { errors } = this.state;
 
     return (
-      <Div className="h-100 overflow-scroll scrollbar-width-none" backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
-        <H1 className="text-center">
+      <div>
+        <H1 
+          className="m-0 p-10px pt-20px text-center border-bottom-1 outer-shadow-primary font-weight-normal"
+          backgroundStyled={application.theme.primaryQuarter}
+          fontSizeStyled={application.text.heading}
+        >
           <FormattedMessage
             id="register.Main"
             defaultMessage="Sign Up"
           />
         </H1>
-        <H2 className="text-center">
+
+        <H2 
+          className="p-10px text-center font-weight-normal"
+          fontSizeStyled={application.text.description}
+        >
           <FormattedMessage
             id="register.Secondary"
             defaultMessage="Create your Vendaval account"
           />
         </H2>
-        <form className="max-w-750px w-80pc ml-auto mr-auto d-flex flex-direction-column text-center" noValidate onSubmit={this.onSubmit}>
 
+        <form className="form ml-auto mr-auto d-flex flex-direction-column text-center" noValidate onSubmit={this.onSubmit}>
           <Input
             type="name"
             name="name"
             placeholder={`${placeName}`}
             aria-label={`${placeNameLabel}`}
-            className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px mb-10px"
-            backgroundStyled={errors.name ? `${application.theme.primary}`: `${application.transparent}`}
-            colorStyled={errors.name ? `${application.mode.primary}`: `${application.theme.primary}`}
-            placeholderStyled={errors.name ? `${application.mode.primary}`: `${application.theme.primary}`}
+            className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px border-bottom-0"
+            backgroundStyled={errors.data.name ? `${application.theme.primary}`: `${application.transparent}`}
+            colorStyled={errors.data.name ? `${application.mode.primary}`: `${application.theme.primary}`}
+            placeholderStyled={errors.data.name ? `${application.mode.primary}`: `${application.theme.primary}`}
             fontSizeStyled={application.text.primary}
-            borderStyled={application.theme.primary}
-            radiusStyled={application.settings.appRadius}
+            radiusStyled={application.settings.appRadiusTop}
             value={this.state.name}
             onChange={this.onChange}
           />
@@ -145,13 +159,11 @@ class Register extends Component {
             name="email"
             placeholder={`${placeEmail}`}
             aria-label={`${placeEmailLabel}`}
-            className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px mb-10px"
-            backgroundStyled={errors.email ? `${application.theme.primary}`: `${application.transparent}`}
-            colorStyled={errors.email ? `${application.mode.primary}`: `${application.theme.primary}`}
-            placeholderStyled={errors.email ? `${application.mode.primary}`: `${application.theme.primary}`}
+            className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px border-bottom-0"
+            backgroundStyled={errors.data.email ? `${application.theme.primary}`: `${application.transparent}`}
+            colorStyled={errors.data.email ? `${application.mode.primary}`: `${application.theme.primary}`}
+            placeholderStyled={errors.data.email ? `${application.mode.primary}`: `${application.theme.primary}`}
             fontSizeStyled={application.text.primary}
-            borderStyled={application.theme.primary}
-            radiusStyled={application.settings.appRadius}
             value={this.state.email}
             onChange={this.onChange}
           />
@@ -161,13 +173,11 @@ class Register extends Component {
             name="password"
             placeholder={`${placePass}`}
             aria-label={`${placePassLabel}`}
-            className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px mb-10px"
-            backgroundStyled={errors.password ? `${application.theme.primary}`: `${application.transparent}`}
-            colorStyled={errors.password ? `${application.mode.primary}`: `${application.theme.primary}`}
-            placeholderStyled={errors.password ? `${application.mode.primary}`: `${application.theme.primary}`}
+            className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px border-bottom-0"
+            backgroundStyled={errors.data.password ? `${application.theme.primary}`: `${application.transparent}`}
+            colorStyled={errors.data.password ? `${application.mode.primary}`: `${application.theme.primary}`}
+            placeholderStyled={errors.data.password ? `${application.mode.primary}`: `${application.theme.primary}`}
             fontSizeStyled={application.text.primary}
-            borderStyled={application.theme.primary}
-            radiusStyled={application.settings.appRadius}
             value={this.state.password}
             onChange={this.onChange}
           />
@@ -178,12 +188,11 @@ class Register extends Component {
             placeholder={`${placePass2}`}
             aria-label={`${placePass2Label}`}
             className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px mb-10px"
-            backgroundStyled={errors.password2 ? `${application.theme.primary}`: `${application.transparent}`}
-            colorStyled={errors.password2 ? `${application.mode.primary}`: `${application.theme.primary}`}
-            placeholderStyled={errors.password2 ? `${application.mode.primary}`: `${application.theme.primary}`}
+            backgroundStyled={errors.data.password2 ? `${application.theme.primary}`: `${application.transparent}`}
+            colorStyled={errors.data.password2 ? `${application.mode.primary}`: `${application.theme.primary}`}
+            placeholderStyled={errors.data.password2 ? `${application.mode.primary}`: `${application.theme.primary}`}
             fontSizeStyled={application.text.primary}
-            borderStyled={application.theme.primary}
-            radiusStyled={application.settings.appRadius}
+            radiusStyled={application.settings.appRadiusBottom}
             value={this.state.password2}
             onChange={this.onChange}
           />
@@ -191,12 +200,12 @@ class Register extends Component {
           <Input
             type="submit"
             value={`${placeSubmit}`}
-            className={`clickable mt-10px mb-20px webkit-appearance-none outer-shadow-primary border-1`}
+            className={`clickable mt-10px p-5px mb-20px webkit-appearance-none outer-shadow-primary border-1`}
             transitionStyled={application.transitions.general}
             backgroundStyled={application.theme.primaryQuarter}
             backgroundHoverStyled={application.theme.primary}
             colorStyled={application.mode.primary}
-            fontSizeStyled={application.text.heading}
+            fontSizeStyled={application.text.important}
             borderStyled={application.mode.primary}
             radiusStyled={application.settings.appRadius}
           />
@@ -204,14 +213,19 @@ class Register extends Component {
 
         </form>
         <Link to="/verify/resend" className="d-flex justify-content-center noUnderline">
-          <Div className="w-max-content border-bottom-1" transitionStyled={application.transitions.general} colorStyled={application.theme.primary} borderBottomStyled={application.transparent} borderBottomHoverStyled={application.theme.primary}>
-            <FormattedMessage
+          <Div 
+            className="w-max-content border-bottom-1 m-20px text-center" 
+            transitionStyled={application.transitions.general} 
+            colorStyled={application.theme.primary} 
+            borderBottomStyled={application.transparent} 
+            borderBottomHoverStyled={application.theme.primary}>
+            <FormattedHTMLMessage
               id="register.forgotLink"
               defaultMessage="Didn't get your code? Follow this link to resend it"
             />
           </Div>
         </Link>
-      </Div>
+      </div>
     );
   }
 }

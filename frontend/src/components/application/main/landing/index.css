@@ -19,29 +19,48 @@
   100%  { transform: translate3d(0, 0px, 0); }
 }
 
-@media only screen and (max-width: 650px) {
+@media only screen and (min-width: 0px) and (max-width: 599px) {
+	.kiteSize {
+    min-width: 90%;
+    max-width: 90%;
+  }
+  
+  .cloudSize {
+    min-width: 50%;
+    max-width: 50%;
+  }
 
-  .cloud {
-    opacity: 0;
-    animation: clouds 15s linear infinite;
+  .ml-worldMenu {
+    font-size: .8em;
+    margin-left: calc(-326px/2 + 20px)
   }
 }
+@media only screen and (min-width: 600px) {
+	.kiteSize {
+    min-width: 70%;
+    max-width: 70%;
+  }
 
-@media only screen and (min-width: 651px) {
+  .cloudSize {
+    min-width: 40%;
+    max-width: 40%;
+  }
+}
+@media only screen and (min-width: 1032px) {
+	.kiteSize {
+    min-width: 60%;
+    max-width: 60%;
+  }
 
-  .cloud {
-    opacity: 0;
-    animation: clouds 15s linear infinite;
+  .cloudSize {
+    min-width: 35%;
+    max-width: 35%;
   }
 }
 
 .landing-holder {
   top: 105px;
   position: absolute;
-}
-
-.landingMotto {
-  text-shadow: 2px 2px 4px #000000;
 }
 
 .vh-100 {
@@ -91,6 +110,18 @@
   margin-left: 30vw;
 }
 
+.mt-neg100vh4 {
+  margin-top: calc(-100vh/4);
+}
+
+.mt-25px {
+  margin-top: 25px;
+}
+
+.p-1px5px {
+  padding: 1px 5px;
+}
+
 .call-to-action {
   animation: bounce 7s linear infinite;
   cursor:pointer;
@@ -110,6 +141,10 @@
 .feature {
  max-width: 200px; 
  min-width: 150px;
+}
+
+.pb-50px {
+  padding-bottom: 50px;
 }
 
 .footerLanding {

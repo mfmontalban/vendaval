@@ -83,7 +83,7 @@ class SearchWinds extends Component {
   
         searchResults = titles.map((title) => {
           return (
-            <Link to={`/vientos/${title._id}`} className="result noUnderline" key={title._id} >
+            <Link to={`/vientos/${title._id}`} className="noUnderline" key={title._id} >
               <Div className="p-5px" transitionStyled={application.transitions.general} backgroundHoverStyled={application.theme.primaryQuarter} colorStyled={application.theme.primary}>
                 {title.title}
               </Div>
@@ -120,7 +120,7 @@ class SearchWinds extends Component {
             aria-label="Search for articles"
             value={this.state.search}
             onChange={this.updateSearch}
-            className="p-5px border-0 inner-shadow h-20px w-100-search"
+            className="p-5px border-0 inner-shadow-primary h-20px w-100-search"
             backgroundStyled={`${application.theme.primaryQuarter}`}
             colorStyled={`${application.theme.primary}`}
             placeholderStyled={`${application.theme.primaryThree}`}

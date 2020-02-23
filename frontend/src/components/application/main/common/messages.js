@@ -126,7 +126,7 @@ export default {
         
         'register.Main': `Sign Up`,
         'register.Secondary': `Create your Vendaval account`,
-        'register.forgotLink': `Didn't get your code? Follow this link to resend it`,
+        'register.forgotLink': `Didn't get your code? <br /> Follow this link to resend it`,
 
         'staff.header': `Contributions`,
         'staff.reviewer': `Reviewer`,
@@ -284,7 +284,7 @@ export default {
 
         'register.Main': `Registrarse`,
         'register.Secondary': `Crea su cuente de Vendaval`,
-        'register.forgotLink': `No recibiste tu codigo? Siga este enlace para mandarlo de nuevo`,
+        'register.forgotLink': `No recibiste tu codigo? <br /> Siga este enlace para mandarlo de nuevo`,
 
         'staff.header': `Contribuciónes`,
         'staff.reviewer': `Crítico`,

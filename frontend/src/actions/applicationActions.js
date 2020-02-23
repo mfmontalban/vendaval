@@ -228,11 +228,11 @@ export const sendApplicationAlertsRegistered = (userData, history) => dispatch =
       }
       
     })
-    .catch(err =>{
+    .catch(err =>
       dispatch({
         type: READ_APPLICATION_ERRORS,
-        payload: err.response.data
-      })}
+        payload: err.response
+      })
     );
 };
 
@@ -266,9 +266,11 @@ axios
     });
     history.push('/login');
   })
-  .catch(err => {
-    console.log(err);
-    }
+  .catch(err => 
+    dispatch({
+      type: READ_APPLICATION_ERRORS,
+      payload: err.response
+    })
   );
 };
 
@@ -286,9 +288,11 @@ export const sendApplicationAlertsForgot = (userData, history) => dispatch => {
       });
       history.push('/login');
     })
-    .catch(err => {
-      console.log(err);
-      }
+    .catch(err => 
+      dispatch({
+        type: READ_APPLICATION_ERRORS,
+        payload: err.response
+      })
     );
 };
 
@@ -304,9 +308,11 @@ axios
     });
     history.push('/login');
   })
-  .catch(err => {
-    console.log(err);
-    }
+  .catch(err => 
+    dispatch({
+      type: READ_APPLICATION_ERRORS,
+      payload: err.response
+    })
   );
 };
 

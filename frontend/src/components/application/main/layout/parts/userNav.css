@@ -1,0 +1,72 @@
+/*
+General
+*/
+
+.menus {
+  margin-top:-10px;
+  height: calc(100vh - 20px - 2px - 1px);
+  width: 45%;
+  min-width: 150px;
+  max-width: 300px;
+}
+
+/*
+End General
+*/
+
+
+
+/*
+Menus
+*/
+
+.appMenu {
+  transform: translateX(45vw);
+}
+
+  .ml-neg45vw {
+    margin-left: calc(-45vw - 10px);
+  }
+
+  .w-100-searchContainer {
+    width: calc(100% - 50px);
+  }
+  
+  .w-100-search {
+    width: calc(100% - 10px);
+  }
+
+  .h-20px {
+    height: 20px;
+  }
+
+  .mt-50px {
+    margin-top: 50px;
+  }
+
+  .p-11px5px {
+    padding: 11px 5px;
+  }
+
+.userMenu {
+  transform: translateX(-45vw);
+}
+
+  .mr-neg45vw {
+    margin-right: calc(-45vw - 10px);
+  }
+
+  .userMenuButton {
+    margin-left: calc(100% - 50px) !important;
+  }
+
+  .w-25px {
+    width: 25px;
+  }
+  
+/*
+End Menus
+*/
+  
+
+

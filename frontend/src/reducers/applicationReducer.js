@@ -178,7 +178,7 @@ const initialState = {
     appMenuIn: 'transform 0.75s ease, opacity .75s ease',
     appMenuOut: 'transform 0.75s ease, opacity .75s ease, z-index .05s .75s ease',
   },
-  transparent: 'none',
+  transparent: 'transparent',
   titles: {},
   verify: {
     success: null,

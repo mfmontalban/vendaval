@@ -75,13 +75,13 @@ class ModalMode extends Component {
           </div>
           {modePicker && 
             <Dropdown ref={this.setWrapperRef} className="mt-25px position-absolute z-1005 d-flex flex-direction-column text-right outer-shadow-primary border-1" transitionStyled={`${application.transitions.general}`}  backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadius}`}>
-              <Button onClick={(e) => {this.updateMode('240', '240', '240', 'Light'); this.toggleModePicker()}} className="p-10px top-border-radius text-right" transitionStyled={`${application.transitions.general}`}  backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`} type="button">
+              <Button onClick={(e) => {this.updateMode('240', '240', '240', 'Light'); this.toggleModePicker()}} className="p-10px text-right" transitionStyled={`${application.transitions.general}`}  backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadiusTop}`} type="button">
                 <FormattedMessage
                   id="settings.Light"
                   defaultMessage="Light"
                 />
               </Button>
-              <Button onClick={(e) => {this.updateMode('43', '43', '43', 'Dark'); this.toggleModePicker()}} className="p-10px bottom-border-radius text-right" transitionStyled={`${application.transitions.general}`}  backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`} type="button">
+              <Button onClick={(e) => {this.updateMode('43', '43', '43', 'Dark'); this.toggleModePicker()}} className="p-10px text-right" transitionStyled={`${application.transitions.general}`}  backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadiusBottom}`} type="button">
                 <FormattedMessage
                   id="settings.Dark"
                   defaultMessage="Dark"

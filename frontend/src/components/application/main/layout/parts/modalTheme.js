@@ -75,7 +75,7 @@ class ModalTheme extends Component {
           </div>
           {themePicker && 
             <Dropdown ref={this.setWrapperRef} className="mt-25px position-absolute z-1005 d-flex flex-direction-column text-right outer-shadow-primary border-1" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadius}`}>
-              <Button onClick={(e) => {this.updateTheme('23', '162', '184', 'Aqua'); this.toggleThemePicker()}} className="p-10px top-border-radius text-right" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.Aqua}`} type="button">
+              <Button onClick={(e) => {this.updateTheme('23', '162', '184', 'Aqua'); this.toggleThemePicker()}} className="p-10px text-right" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.Aqua}`} radiusStyled={`${application.settings.appRadiusTop}`} type="button">
                 <FormattedMessage
                   id="settings.Aqua"
                   defaultMessage="Aqua"
@@ -93,7 +93,7 @@ class ModalTheme extends Component {
                   defaultMessage="Sun"
                 />
               </Button>
-              <Button onClick={(e) => {this.updateTheme('55', '184', '23', 'Earth'); this.toggleThemePicker()}} className="p-10px bottom-border-radius text-right" transitionStyled={`${application.transitions.general}`}  backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.Earth}`} type="button">
+              <Button onClick={(e) => {this.updateTheme('55', '184', '23', 'Earth'); this.toggleThemePicker()}} className="p-10px text-right" transitionStyled={`${application.transitions.general}`}  backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.Earth}`} radiusStyled={`${application.settings.appRadiusBottom}`} type="button">
                 <FormattedMessage
                   id="settings.Earth"
                   defaultMessage="Earth"

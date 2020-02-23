@@ -11,6 +11,7 @@ import { logoutAccount } from '../../../../../actions/adminActions';
 import Button from '../../common/styled/button'
 import Div from '../../common/styled/div'
 import Dropdown from '../../common/styled/dropdown'
+import Img from '../../common/styled/img'
 
 class UserMenu extends Component {
   constructor(props){
@@ -223,11 +224,11 @@ class UserMenu extends Component {
         </div>
     } else {
       avatarImage =
-        <img
-          className="object-fit-cover h-100 w-100 border-radius-8px"
+        <Img
+          className="object-fit-cover h-100 w-25px"
+          radiusStyled={application.settings.appRadius}
           src={`/api/users/files/${admin.avatarSm}`}
           alt="Account"
-          style={{ width: '25px' }}
         />
     }
 
@@ -242,7 +243,7 @@ class UserMenu extends Component {
             <i className="fal fa-tachometer-alt ml-5px"></i>
           </Div>
         </Link>
-        <Div className="h-0 m-pt25em0em overflow-hidden border-top-1" colorStyled={`${application.theme.primary}`}/>
+        <Div className="overflow-hidden border-top-1" colorStyled={`${application.theme.primary}`}/>
         {profileLink}
       </Div>
     )
@@ -250,24 +251,24 @@ class UserMenu extends Component {
     const userMenu = (
       <Div className="d-flex flex-direction-column" backgroundStyled={application.mode.primary} radiusStyled={application.settings.appRadius}>
         {profileLink}
-        <Div className="h-0 m-pt25em0em overflow-hidden border-top-1" colorStyled={`${application.theme.primary}`}/>
+        <Div className="overflow-hidden border-top-1" colorStyled={`${application.theme.primary}`}/>
       </Div>
     )
 
     const adminLinks = (
       <nav>
-        <Button onClick={() => this.toggleList('open')} className="h-40px w-40px border-1 clickable" transitionStyled={`${settings.appTransition}`} backgroundStyled={`${application.transparent}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} paddingStyled={`${settings.appPadding2}`} radiusStyled={`${settings.appRadius}`}>
+        <Button onClick={() => this.toggleList('open')} className="smBtn border-1 clickable" transitionStyled={`${settings.appTransition}`} backgroundStyled={`${application.transparent}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} paddingStyled={`${settings.appPadding2}`} radiusStyled={`${settings.appRadius}`}>
           {avatarImage}
         </Button>
 
-        <Dropdown ref={this.setWrapperRef} className={(listOpen === true ? 'z-1500 visible userMenu' : 'z-neg1 invisible') + ' mr-neg45vw mt-neg10px z-1005 top-0 right-0 w-45 min-w-150px max-w-300px h-100-menus position-absolute d-flex flex-direction-column outer-shadow-primary border-1 p-10px'} transitionStyled={settingsMenu === true ? `${application.transitions.appMenuIn}`: `${application.transitions.appMenuOut}`} backgroundStyled={application.mode.primary} colorStyled={`${application.theme.primary}`}>  
-          <Button onClick={() => this.toggleList('close')} className="userMenuButton h-40px w-40px border-1 clickable m-10px" transitionStyled={`${settings.appTransition}`} backgroundStyled={`${application.transparent}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} paddingStyled={`${settings.appPadding2}`} radiusStyled={`${settings.appRadius}`}>
+        <Dropdown ref={this.setWrapperRef} className={(listOpen === true ? 'z-1500 visible userMenu' : 'z-neg1 invisible') + ' menus mr-neg45vw z-1005 top-0 right-0 position-absolute d-flex flex-direction-column outer-shadow-primary border-1 p-10px'} transitionStyled={settingsMenu === true ? `${application.transitions.appMenuIn}`: `${application.transitions.appMenuOut}`} backgroundStyled={application.mode.primary} colorStyled={`${application.theme.primary}`}>  
+          <Button onClick={() => this.toggleList('close')} className="userMenuButton smBtn border-1 clickable m-10px" transitionStyled={`${settings.appTransition}`} backgroundStyled={`${application.transparent}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} paddingStyled={`${settings.appPadding2}`} radiusStyled={`${settings.appRadius}`}>
             {avatarImage}
           </Button>
           {admin.staff ? staffMenu : userMenu}
           {profileLinks}
           {securityLink}
-          <Div className="h-0 m-pt25em0em overflow-hidden border-top-1" colorStyled={`${application.theme.primary}`}/>
+          <Div className="overflow-hidden border-top-1" colorStyled={`${application.theme.primary}`}/>
           <Link
             to={`/${login}`}
             onClick={(e) => {this.onLogoutClick(e); this.toggleListLink()}}
@@ -287,15 +288,15 @@ class UserMenu extends Component {
 
     const guestLinks = (
       <nav>
-        <Button onClick={() => this.toggleList('open')} className="h-40px w-40px border-1 clickable" transitionStyled={`${settings.appTransition}`} backgroundStyled={`${application.transparent}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} paddingStyled={`${settings.appPadding}`} radiusStyled={`${settings.appRadius}`}>
+        <Button onClick={() => this.toggleList('open')} className="smBtn border-1 clickable" transitionStyled={`${settings.appTransition}`} backgroundStyled={`${application.transparent}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} paddingStyled={`${settings.appPadding}`} radiusStyled={`${settings.appRadius}`}>
           <div>
             <i className="fas fa-user"></i>
           </div>
         </Button>
 
-        <Dropdown ref={this.setWrapperRef} className={(listOpen === true ? 'z-1500 visible userMenu' : 'z-neg1 invisible') + ' mr-neg45vw z-1005 top-0 right-0 w-45 min-w-150px max-w-300px h-100-menus position-absolute d-flex flex-direction-column outer-shadow-primary border-1 p-10px'} transitionStyled={settingsMenu === true ? `${application.transitions.appMenuIn}`: `${application.transitions.appMenuOut}`} backgroundStyled={application.mode.primary} colorStyled={`${application.theme.primary}`}>
+        <Dropdown ref={this.setWrapperRef} className={(listOpen === true ? 'z-1500 visible userMenu' : 'z-neg1 invisible') + ' menus mr-neg45vw z-1005 top-0 right-0 position-absolute d-flex flex-direction-column outer-shadow-primary border-1 p-10px'} transitionStyled={settingsMenu === true ? `${application.transitions.appMenuIn}`: `${application.transitions.appMenuOut}`} backgroundStyled={application.mode.primary} colorStyled={`${application.theme.primary}`}>
           
-          <Button onClick={() => this.toggleList('close')} className="userMenuButton h-40px w-40px border-1 clickable p-10px m-10px" transitionStyled={`${settings.appTransition}`} backgroundStyled={`${application.transparent}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} paddingStyled={`${settings.appPadding}`} radiusStyled={`${settings.appRadius}`}>
+          <Button onClick={() => this.toggleList('close')} className="userMenuButton smBtn border-1 clickable p-10px m-10px" transitionStyled={`${settings.appTransition}`} backgroundStyled={`${application.transparent}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} paddingStyled={`${settings.appPadding}`} radiusStyled={`${settings.appRadius}`}>
             <div>
               <i className="fas fa-user"></i>
             </div>
@@ -334,7 +335,7 @@ class UserMenu extends Component {
     );
 
     return(
-      <div className="d-flex flex-direction-column justify-content-right">
+      <div className="d-flex flex-direction-column">
         {admin.isAuthenticated ? adminLinks : guestLinks}
       </div>
     )

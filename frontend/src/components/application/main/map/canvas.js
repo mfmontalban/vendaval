@@ -7,7 +7,6 @@ import Div from '../common/styled/div';
 
 mapboxgl.accessToken = require('../../../../actions/utils/config').mapboxKey;
 
-
 class Mapbox extends Component {
   constructor(props){
     super(props)

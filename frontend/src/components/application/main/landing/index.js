@@ -92,7 +92,7 @@ class Landing extends Component {
     }
 
     return (
-        <div className="h-100">
+        <div id="content" className="h-100">
           <div className="h-100 d-flex flex-direction-column overflow-hidden">
             <div className="h-90 d-flex flex-direction-column">
               
@@ -151,15 +151,15 @@ class Landing extends Component {
                   id="landing.heroAction"
                   defaultMessage="Explore"
                 />
-                <Div name="infoSection" className="ml-auto mr-auto max-w-min-content p-1px5px call-to-action landingMotto" onClick={this.handleScrollToElement} transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primaryHalf}`} colorHoverStyled={`${application.theme.primary}`}>
+                <Div name="infoSection" className="ml-auto mr-auto max-w-min-content p-1px5px call-to-action text-shadow-primary" onClick={this.handleScrollToElement} transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primaryHalf}`} colorHoverStyled={`${application.theme.primary}`}>
                   <i className="ml-auto mr-auto fal fa-chevron-down fa-2x"></i>
                 </Div>
               </div>
             </div>
           </div>
 
-          <Div id="main-content" className="h-100" backgroundStyled={`${application.mode.primaryHover}`}>
-            <div className="about text-center p-10px">
+          <Div id="main-content" className="min-h-100" backgroundStyled={`${application.mode.primaryHover}`}>
+            <div className="text-center p-10px">
               <h3>
                 <FormattedMessage
                   id="landing.aboutMain"
@@ -175,7 +175,7 @@ class Landing extends Component {
               </p>
             </div>
             
-            <div className="d-flex justify-content-space-around flex-wrap text-center mt-5 pb-50px">
+            <div className="d-flex justify-content-space-around flex-wrap text-center mt-5px pb-50px">
               <div className="feature p-10px">
                 <i className="icon fal fa-eye"></i>
                 <h4>

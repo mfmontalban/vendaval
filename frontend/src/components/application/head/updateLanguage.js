@@ -70,14 +70,14 @@ class UpdateLanguage extends Component {
     const { listOpen } = this.state
     const { application } = this.props;
     return(
-      <div ref={this.setWrapperRef} className="d-flex flex-direction-column justify-content-right">
-      <Button onClick={() => this.toggleList()} className="text-right clickable outer-shadow-primary border-1 white-space-nowrap p-11px5px" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadius}`}>
+      <div ref={this.setWrapperRef} className="d-flex flex-direction-column">
+        <Button onClick={() => this.toggleList()} className="text-right clickable outer-shadow-primary border-1 white-space-nowrap p-11px5px" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadius}`}>
           <span className="p-5px">{application.language}</span>
         </Button>
         {listOpen && 
-          <Dropdown className="mt-43px ml-neg40px position-absolute z-1005 d-flex flex-direction-column text-right outer-shadow-primary border-1" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} borderStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
-            <Button transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} onClick={(e) => {this.updateLanguage('es'); this.toggleList()}} className="p-10px top-border-radius text-right" type="button">Espanol</Button>
-            <Button transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} onClick={(e) => {this.updateLanguage('en'); this.toggleList()}} className="p-10px bottom-border-radius text-right" type="button">English</Button>
+          <Dropdown className="rightDropdown position-absolute z-1005 d-flex flex-direction-column text-right outer-shadow-primary border-1" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} borderStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
+            <Button transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} radiusStyled={`${application.settings.appRadiusTop}`} onClick={(e) => {this.updateLanguage('es'); this.toggleList()}} className="p-10px text-right" type="button">Espanol</Button>
+            <Button transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} radiusStyled={`${application.settings.appRadiusBottom}`} onClick={(e) => {this.updateLanguage('en'); this.toggleList()}} className="p-10px text-right" type="button">English</Button>
           </Dropdown>
         }
       </div>

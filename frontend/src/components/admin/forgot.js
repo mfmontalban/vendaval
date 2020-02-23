@@ -12,15 +12,16 @@ import H1 from '../application/main/common/styled/h1';
 import H2 from '../application/main/common/styled/h2';
 import Input from '../application/main/common/styled/input';
 
-import TextFieldGroup from '../application/main/common/textFieldGroup';
-
-
 class Forgot extends Component {
   constructor() {
     super();
     this.state = {
       email: '',
-      errors: {}
+      errors: {
+        data: {
+          email: ''
+        }
+      }
     };
   }
 
@@ -73,29 +74,38 @@ class Forgot extends Component {
     }
 
     return (
-      <Div className="h-100 overflow-scroll scrollbar-width-none" backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
-        <H1 className="text-center">
+      <div>
+        <H1 
+          className="m-0 p-10px pt-20px text-center border-bottom-1 outer-shadow-primary font-weight-normal"
+          backgroundStyled={application.theme.primaryQuarter}
+          fontSizeStyled={application.text.heading}
+        >
           <FormattedMessage
             id="forgot.Main"
             defaultMessage="Forgot"
           />
         </H1>
-        <H2 className="text-center">
+        
+        <H2 
+          className="p-10px text-center font-weight-normal"
+          fontSizeStyled={application.text.description}
+        >
           <FormattedMessage
             id="forgot.Secondary"
             defaultMessage="Enter your email below to reset your password"
           />
         </H2>
-        <form className="max-w-750px w-80pc ml-auto mr-auto d-flex flex-direction-column text-center" noValidate onSubmit={this.onSubmit}>
-        <Input
+
+        <form className="form ml-auto mr-auto d-flex flex-direction-column text-center" noValidate onSubmit={this.onSubmit}>
+          <Input
             type="email"
             name="email"
             placeholder={`${placeEmail}`}
             aria-label={`${placeEmailLabel}`}
             className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px mb-10px"
-            backgroundStyled={errors.email ? `${application.theme.primary}`: `${application.transparent}`}
-            colorStyled={errors.email ? `${application.mode.primary}`: `${application.theme.primary}`}
-            placeholderStyled={errors.email ? `${application.mode.primary}`: `${application.theme.primary}`}
+            backgroundStyled={errors.data.email ? `${application.theme.primary}`: `${application.transparent}`}
+            colorStyled={errors.data.email ? `${application.mode.primary}`: `${application.theme.primary}`}
+            placeholderStyled={errors.data.email ? `${application.mode.primary}`: `${application.theme.primary}`}
             fontSizeStyled={application.text.primary}
             borderStyled={application.theme.primary}
             radiusStyled={application.settings.appRadius}
@@ -106,17 +116,24 @@ class Forgot extends Component {
           <Input
             type="submit"
             value={`${placeSubmit}`}
-            className={`clickable mt-10px mb-20px outer-shadow-primary border-1`}
+            className={`clickable mt-10px p-5px mb-20px webkit-appearance-none outer-shadow-primary border-1`}
             transitionStyled={application.transitions.general}
             backgroundStyled={application.theme.primaryQuarter}
             backgroundHoverStyled={application.theme.primary}
             colorStyled={application.mode.primary}
-            fontSizeStyled={application.text.heading}
+            fontSizeStyled={application.text.important}
             borderStyled={application.mode.primary}
             radiusStyled={application.settings.appRadius}
           />
+          <div>
+            <ul>
+              {errors.data.email ? 
+                <li>{errors.data.email}</li> : ``
+              }
+            </ul>
+          </div>
         </form>
-      </Div>
+      </div>
     );
   }
 }

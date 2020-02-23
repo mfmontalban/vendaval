@@ -1,6 +1,6 @@
 import styled from 'styled-components'; 
 
-const Nav = styled.nav `
+const Img = styled.img `
     transition: ${props => props.transitionStyled};
     background: ${props => props.backgroundStyled};
     min-height: ${props => props.minHeightStyled};
@@ -23,11 +23,11 @@ const Nav = styled.nav `
     margin-right: ${props => props.marginRightStyled};
     margin-bottom: ${props => props.marginBottomStyled};
     :hover {
-        background: ${props => props.backgroundHoverStyled};
-        color: ${props => props.colorHoverStyled};
-        border-color: ${props => props.borderHoverStyled};
-        border-bottom-color: ${props => props.borderBottomHoverStyled};
+      background: ${props => props.backgroundHoverStyled};
+      color: ${props => props.colorHoverStyled};
+      border-color: ${props => props.borderHoverStyled};
+      border-bottom-color: ${props => props.borderBottomHoverStyled};
     }
 `
 
-export default Nav;
+export default Img;

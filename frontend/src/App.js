@@ -17,17 +17,16 @@ import es from 'react-intl/locale-data/es';
 
 import Director from './director';
 
-  import './App.css';
-  import './App2.css';
+  import './App3.css';
   import Landing from './components/application/main/landing/index';
 
-  // import Register from './components/admin/register';
+  import Register from './components/admin/register';
   import Login from './components/admin/login';
-  // import Forgot from './components/admin/forgot';
+  import Forgot from './components/admin/forgot';
 
-  // import Verify from './components/admin/verify';
-  // import Reset from './components/admin/reset';
-  // import Update from './components/admin/update';
+  import Verify from './components/admin/verify';
+  import Reset from './components/admin/reset';
+  import Update from './components/admin/update';
 
   // import Security from './components/admin/security';
 
@@ -99,13 +98,13 @@ class App extends Component {
 
 
 
-          {/* <Director exact path="/register" level={'public'} component={Register} />
-          <Director exact path="/registrar" level={'public'} component={Register} /> */}
+          <Director exact path="/register" level={'public'} component={Register} />
+          <Director exact path="/registrar" level={'public'} component={Register} />
 
           <Director exact path="/login" level={'public'} component={Login} />
           <Director exact path="/iniciar" level={'public'} component={Login} />
 
-          {/* <Director exact path="/forgot" level={'public'} component={Forgot} />
+          <Director exact path="/forgot" level={'public'} component={Forgot} />
           <Director exact path="/olvidó" level={'public'} component={Forgot} />
 
           <Director exact path="/verify/:key" level={'public'} component={Verify} />
@@ -119,7 +118,7 @@ class App extends Component {
 
 
 
-          <Director exact path="/security" level={'user'} component={Security} />
+          {/* <Director exact path="/security" level={'user'} component={Security} />
           <Director exact path="/seguridad" level={'user'} component={Security} /> */}
 
 

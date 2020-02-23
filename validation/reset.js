@@ -4,8 +4,8 @@ const isEmpty = require('./is-empty');
 module.exports = function validateResetInput(data) {
   let errors = {};
 
-  data.password = !isEmpty(data.password) ? data.password : '';
-  data.password2 = !isEmpty(data.password2) ? data.password2 : '';
+  data.password = !isEmpty(data.password) ? data.password : ``;
+  data.password2 = !isEmpty(data.password2) ? data.password2 : ``;
 
   if (Validator.isEmpty(data.password)) {
     errors.password = 'Password field is required';

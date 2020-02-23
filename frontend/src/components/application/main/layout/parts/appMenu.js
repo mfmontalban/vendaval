@@ -83,28 +83,24 @@ class AppMenu extends Component {
     let donate;
 
     if (application.language === 'es') {
-
       about = 'sobre'
       contact = 'contacta'
       donate = 'dona'
-
     } else {
-
       about = 'about'
       contact = 'contact'
       donate = 'donate'
-
     }
 
     return(
-      <Div className="d-flex flex-direction-column justify-content-right" transitionStyled={`${application.transitions.general}`}>
-        <Button  onClick={() => this.toggleList('open')} className="h-40px w-40px border-1 clickable" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.settings.themeTransparent}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} paddingStyled={`${application.settings.appPadding}`} radiusStyled={`${application.settings.appRadius}`}>
+      <Div className="d-flex flex-direction-column" transitionStyled={`${application.transitions.general}`}>
+        <Button  onClick={() => this.toggleList('open')} className="smBtn border-1 clickable" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.settings.themeTransparent}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} paddingStyled={`${application.settings.appPadding}`} radiusStyled={`${application.settings.appRadius}`}>
           <i className="fas fa-bars"></i>
         </Button>
 
-        <Dropdown ref={this.setWrapperRef} className={(listOpen === true ? 'z-1500 visible appMenu' : 'z-neg1 invisible') + ' ml-neg45vw mt-neg10px z-1005 top-0 left-0 w-45 max-w-300px h-100-menus position-absolute d-flex flex-direction-column outer-shadow-primary border-1 p-10px'} transitionStyled={settingsMenu === true ? `${application.transitions.appMenuIn}`: `${application.transitions.appMenuOut}`} backgroundStyled={application.mode.primary} colorStyled={`${application.theme.primary}`}>
+        <Dropdown ref={this.setWrapperRef} className={(listOpen === true ? 'z-1500 visible appMenu' : 'z-neg1 invisible') + ' menus ml-neg45vw z-1005 top-0 left-0 position-absolute d-flex flex-direction-column outer-shadow-primary border-1 p-10px'} transitionStyled={settingsMenu === true ? `${application.transitions.appMenuIn}`: `${application.transitions.appMenuOut}`} backgroundStyled={application.mode.primary} colorStyled={`${application.theme.primary}`}>
           
-          <Button  onClick={() => this.toggleList('close')} className="h-40px w-40px border-1 clickable m-10px" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.settings.themeTransparent}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} paddingStyled={`${application.settings.appPadding}`} radiusStyled={`${application.settings.appRadius}`}>
+          <Button  onClick={() => this.toggleList('close')} className="smBtn border-1 clickable m-10px" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.settings.themeTransparent}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} paddingStyled={`${application.settings.appPadding}`} radiusStyled={`${application.settings.appRadius}`}>
             <i className="fas fa-bars"></i>
           </Button>
 
@@ -116,7 +112,7 @@ class AppMenu extends Component {
           <Link to={`/`} className="noUnderline" onClick={() => this.toggleListLink()}>
             <Div className="p-10px" transitionStyled={application.transitions.general} backgroundStyled={application.mode.primary} backgroundHoverStyled={application.theme.primaryQuarter}>
               <i className="fal fa-home mr-5px"></i>
-              <span className="pr-2">
+              <span>
                 <FormattedMessage
                   id="navigation.home"
                   defaultMessage="Home"
@@ -125,7 +121,7 @@ class AppMenu extends Component {
             </Div>
           </Link>
 
-          <Div className="h-0 m-pt25em0em overflow-hidden border-top-1" backgroundStyled={application.mode.primary}/>
+          <Div className="overflow-hidden border-top-1" backgroundStyled={application.mode.primary}/>
 
           <Link to={`/${about}`} className="noUnderline" onClick={() => this.toggleListLink()}>
             <Div className="p-10px" transitionStyled={application.transitions.general} backgroundStyled={application.mode.primary} backgroundHoverStyled={application.theme.primaryQuarter}>
@@ -161,7 +157,7 @@ class AppMenu extends Component {
             </Div>
           </Link>
 
-          <Div className="h-0 m-pt25em0em overflow-hidden border-top-1" backgroundStyled={application.mode.primary}/>
+          <Div className="overflow-hidden border-top-1" backgroundStyled={application.mode.primary}/>
 
           <Button className="p-10px clickable" onClick={() => this.toggleSettings()} transitionStyled={application.transitions.general} backgroundStyled={application.mode.primary} backgroundHoverStyled={application.theme.primaryQuarter}>
             <i className="fal fa-cog mr-5px"></i>
