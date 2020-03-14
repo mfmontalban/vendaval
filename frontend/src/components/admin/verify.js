@@ -5,8 +5,8 @@ import { Link, withRouter } from 'react-router-dom';
 
 import { verifyApplicationAlertsRegistered, resendApplicationAlertsRegistered } from '../../actions/applicationActions';
 
-import TextFieldGroup from '../application/main/common/textFieldGroup';
-import Input from '../application/main/common/styled/input';
+import TextFieldGroup from '../application/common/textFieldGroup';
+import Input from '../application/common/styled/input';
 
 class Confirm extends Component {
   constructor() {

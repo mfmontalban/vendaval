@@ -6,15 +6,19 @@ import { Link } from 'react-router-dom';
 import { getContributions, getAllContributions, readStaffReviewers } from '../../actions/staffActions';
 import {FormattedMessage} from 'react-intl';
 
-import Spinner from '../application/main/common/spinner';
+import './staff.css';
+
+import Spinner from '../application/common/spinner';
 import ContributionItem from './contributionItem';
 
 import FilterMenu from './filterMenu';
+import Dropdown from '../application/common/dropdown';
 import SortMenu from './sortMenu';
 
-import Div from '../application/main/common/styled/div';
-import H1 from '../application/main/common/styled/h1';
-import Button from '../application/main/common/styled/button';
+import Div from '../application/common/styled/div';
+import H1 from '../application/common/styled/h1';
+import Input from '../application/common/styled/input';
+import Button from '../application/common/styled/button';
 
 class Staff extends Component {
 

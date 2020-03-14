@@ -9,16 +9,16 @@ import Resizer from 'react-image-file-resizer';
 
 import HistoryItem from './historyItem';
 
-import Spinner from '../application/main/common/spinner.js'
-import BackArrow from '../application/main/common/backArrow';
-import LinkContainer from '../application/main/common/styled/linkContainer';
-import InputGroup from '../application/main/common/inputGroup';
-import Div from '../application/main/common/styled/div';
-import H1 from '../application/main/common/styled/h1';
-import H2 from '../application/main/common/styled/h2';
-import Input from '../application/main/common/styled/input';
-import InputArea from '../application/main/common/styled/inputArea';
-import Button from '../application/main/common/styled/button';
+import Spinner from '../application/common/spinner.js'
+import BackArrow from '../application/common/backArrow';
+import LinkContainer from '../application/common/styled/linkContainer';
+import InputGroup from '../application/common/inputGroup';
+import Div from '../application/common/styled/div';
+import H1 from '../application/common/styled/h1';
+import H2 from '../application/common/styled/h2';
+import Input from '../application/common/styled/input';
+import InputArea from '../application/common/styled/inputArea';
+import Button from '../application/common/styled/button';
 
 class ProfileHistory extends Component {
   constructor(props) {

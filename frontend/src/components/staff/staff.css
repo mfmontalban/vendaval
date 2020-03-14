@@ -1,0 +1,16 @@
+.min-w-25-app {
+  min-width: calc(25% - 20px);
+  max-width: calc(25% - 20px);
+}
+
+.max-w-filterMenuInput {
+  max-width: calc(100% - 70px);
+}
+
+.min-w-200px {
+  min-width: 200px;
+}
+
+.w-100px {
+  width: 100px;
+}

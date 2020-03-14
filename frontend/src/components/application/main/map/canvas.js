@@ -3,7 +3,9 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import mapboxgl from 'mapbox-gl'
 import { setVisibleVientos, setMapVientos } from '../../../../actions/vientosActions';
-import Div from '../common/styled/div';
+import Div from '../../common/styled/div';
+
+import './mapbox.css'
 
 mapboxgl.accessToken = require('../../../../actions/utils/config').mapboxKey;
 

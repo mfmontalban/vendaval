@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 import isEmpty from '../../reducers/validation/is-empty';
 
-import Div from '../application/main/common/styled/div'
-import LinkContainer from '../application/main/common/styled/linkContainer';
+import Div from '../application/common/styled/div'
+import LinkContainer from '../application/common/styled/linkContainer';
 
 class ProfileHeader extends Component {
   render() {

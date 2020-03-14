@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 
 import { FormattedMessage, FormattedHTMLMessage } from 'react-intl';
 
-import Div from '../common/styled/div';
+import Div from '../../common/styled/div';
 
-import SVG from '../common/styled/svg';
+import SVG from '../../common/styled/svg';
 import Sky from './SVG/hero-sky1';
 import Sky2 from './SVG/hero-sky2';
 import Cloud from './SVG/hero-cloud1';

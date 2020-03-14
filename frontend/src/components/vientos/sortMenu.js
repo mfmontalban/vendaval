@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import { setSortsAuthorUp, setSortsAuthorDown, setSortsTitleUp, setSortsTitleDown, setSortsRecentNewest, setSortsRecentOldest } from '../../actions/applicationActions';
 
 
-import Button from '../application/main/common/styled/button'
-import Div from '../application/main/common/styled/div'
+import Button from '../application/common/styled/button'
+import Div from '../application/common/styled/div'
 
 class SortMenu extends Component {
   constructor(props){

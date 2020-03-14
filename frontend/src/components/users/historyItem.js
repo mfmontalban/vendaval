@@ -7,8 +7,8 @@ import { sendVoteUp, sendVoteDown } from '../../actions/vientosActions';
 
 import {FormattedMessage, FormattedDate, FormattedTime} from 'react-intl';
 
-import Div from '../application/main/common/styled/div';
-import Input from '../application/main/common/styled/input';
+import Div from '../application/common/styled/div';
+import Input from '../application/common/styled/input';
 
 class HistoryItem extends Component {
 

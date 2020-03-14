@@ -6,17 +6,17 @@ import { Link, withRouter } from 'react-router-dom';
 import { addContribution } from '../../actions/staffActions';
 import Resizer from 'react-image-file-resizer';
 
-import TextFieldGroup from '../application/main/common/textFieldGroup';
-import SelectListGroup from '../application/main/common/selectListGroup';
-import TextAreaFieldGroup from '../application/main/common/textAreaFieldGroup';
-import Quill from '../application/main/common/quillEdit';
+import TextFieldGroup from '../application/common/textFieldGroup';
+import SelectListGroup from '../application/common/selectListGroup';
+import TextAreaFieldGroup from '../application/common/textAreaFieldGroup';
+import Quill from '../application/common/quillEdit';
 import { FormattedMessage } from 'react-intl';
 
-import DraggableMarker from '../application/main/map/draggableMarker';
-import Div from '../application/main/common/styled/div';
-import Input from '../application/main/common/styled/input';
-import LinkContainer from '../application/main/common/styled/linkContainer';
-import BackArrow from '../application/main/common/backArrow'; 
+import DraggableMarker from '../application/map/draggableMarker';
+import Div from '../application/common/styled/div';
+import Input from '../application/common/styled/input';
+import LinkContainer from '../application/common/styled/linkContainer';
+import BackArrow from '../application/common/backArrow'; 
 
 class AddContribution extends Component {
   constructor(props) {

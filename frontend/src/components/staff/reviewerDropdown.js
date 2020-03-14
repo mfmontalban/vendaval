@@ -8,9 +8,9 @@ import {FormattedMessage} from 'react-intl';
 
 import { updateReviewer } from '../../actions/staffActions';
 
-import Div from '../application/main/common/styled/div'
-import Button from '../application/main/common/styled/button'
-import Dropdown from '../application/main/common/styled/dropdown'
+import Div from '../application/common/styled/div'
+import Button from '../application/common/styled/button'
+import Dropdown from '../application/common/styled/dropdown'
 
 class ReviewerDropDown extends Component {
   constructor(props){

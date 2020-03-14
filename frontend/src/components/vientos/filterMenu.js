@@ -6,10 +6,10 @@ import { setFiltersText } from '../../actions/applicationActions';
 
 import SearchCategory from "./searchCategory"
 
-import Div from '../application/main/common/styled/div'
-import Input from '../application/main/common/styled/input'
-import Button from '../application/main/common/styled/button'
-import Dropdown from '../application/main/common/styled/dropdownold'
+import Div from '../application/common/styled/div'
+import Input from '../application/common/styled/input'
+import Button from '../application/common/styled/button'
+import Dropdown from '../application/common/styled/dropdownold'
 
 
 class FilterMenu extends Component {

@@ -6,20 +6,15 @@ import { withRouter } from 'react-router-dom';
 
 import { getLiveVientoByID } from '../../actions/vientosActions';
 
-import {FormattedMessage, FormattedHTMLMessage, FormattedRelative} from 'react-intl';
+import { FormattedRelative } from 'react-intl';
 
-import Spinner from '../application/main/common/spinner.js';
-import Div from '../application/main/common/styled/div';
-import Quill from '../application/main/common/quillView';
-import BackArrow from '../application/main/common/backArrow';
-import DropdownDivider from '../application/main/common/styled/dropdownDivider';
-import H1 from '../application/main/common/styled/h1';
-import H2 from '../application/main/common/styled/h2';
-import SVG from '../application/main/common/styled/svg';
+import Spinner from '../application/common/spinner.js';
+import Div from '../application/common/styled/div';
+import Quill from '../application/common/quillView';
+import H1 from '../application/common/styled/h1';
+import H2 from '../application/common/styled/h2';
 import CommentForm from './CommentForm.js';
 import CommentFeed from './CommentFeed.js';
-
-import ProfileBorder from './ProfileBorder.js';
 
 class Contribution extends Component {
   componentDidMount() {
@@ -27,53 +22,6 @@ class Contribution extends Component {
       this.props.getLiveVientoByID(this.props.match.params.id);
     }
   }
-
-  // handleScrollToElement = (e) => {
-    
-  //   if (this.state.anchorTool == "mt-70px") {
-  //     this.setState({
-  //       anchorTool: ""
-  //     }, () => {
-  //       let element = document.getElementById("content-anchor");
-  //       element.scrollIntoView({behavior: "smooth", block: "nearest", inline: "nearest"});
-  //       if (window.innerWidth < 480) {
-  //         window.scrollBy(0, -20);
-  //         this.setState({
-  //           anchorTool: "mt-70px"
-  //         });
-  //       } else if (window.innerWidth < 700) {
-  //         window.scrollBy(0, -20);
-  //         this.setState({
-  //           anchorTool: "mt-70px"
-  //         });
-  //       } else if (window.innerWidth < 920) {
-  //         window.scrollBy(0, -20);
-  //         this.setState({
-  //           anchorTool: "mt-70px"
-  //         });
-  //       }
-  //     });
-  //   } else {
-  //     let element = document.getElementById("content-anchor");
-  //     element.scrollIntoView({behavior: "smooth", block: "nearest", inline: "nearest"});
-  //     if (window.innerWidth < 480) {
-  //       window.scrollBy(0, -20);
-  //       this.setState({
-  //         anchorTool: "mt-70px"
-  //       });
-  //     } else if (window.innerWidth < 700) {
-  //       window.scrollBy(0, -20);
-  //       this.setState({
-  //         anchorTool: "mt-70px"
-  //       });
-  //     } else if (window.innerWidth < 920) {
-  //       window.scrollBy(0, -20);
-  //       this.setState({
-  //         anchorTool: "mt-70px"
-  //       });
-  //     }
-  //   }
-  // }
 
   handleScrollToElement = (e) => {
     let element = document.getElementById("content-anchor");
@@ -268,7 +216,7 @@ class Contribution extends Component {
               <Div className="d-flex justify-content-space-between align-items-center p-20px" backgroundStyled={application.mode.primaryHalf}>
                 <div className="w-30 d-flex">
                   <Link className="w-40px ml-25" to={`/${winds}`}>
-                    <Div className="d-flex justify-content-center align-items-center h-40px w-40px min-w-max-content border-radius-circle" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
+                    <Div className="d-flex justify-content-center align-items-center smBtn min-w-max-content border-radius-circle" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
                       <i className='ml-neg3px clickable fa-2x fas fa-chevron-left'></i>
                     </Div>
                   </Link>
@@ -303,7 +251,7 @@ class Contribution extends Component {
               <Div className="d-flex position-relative z-1000 justify-content-space-between align-items-center p-20px" backgroundStyled={application.mode.primaryHalf}>
                 <div className="w-30 d-flex">
                   <Link className="w-40px ml-25" to={`/${winds}`}>
-                    <Div className="d-flex justify-content-center align-items-center h-40px w-40px min-w-max-content border-radius-circle" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
+                    <Div className="d-flex justify-content-center align-items-center smBtn min-w-max-content border-radius-circle" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
                       <i className='ml-neg3px clickable fa-2x fas fa-chevron-left'></i>
                     </Div>
                   </Link>
@@ -342,7 +290,7 @@ class Contribution extends Component {
                   </Link>
                 </div>
               </Div>
-              <Div className="d-flex position-relative z-1000 justify-content-space-around position-relative flex-direction-row align-items-center mt-neg45px min-h-70px" heightStyled={application.settings.vientoCoverFooter}>
+              <Div className="d-flex position-relative z-1000 justify-content-space-around position-relative flex-direction-row align-items-center mt-neg45px min-h-70px" heightStyled={application.settings.vientoCoverFooter} fontSizeStyled={application.text.info}>
                 <div className="w-33 d-flex justify-content-center clickable">
                   {likesActivity}
                 </div>

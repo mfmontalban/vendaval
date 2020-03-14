@@ -9,9 +9,9 @@ import {FormattedMessage, FormattedRelative} from 'react-intl';
 
 import ReplyForm from './ReplyForm';
 
-import Div from '../application/main/common/styled/div';
-import Dropdown from '../application/main/common/styled/dropdown';
-import Button from '../application/main/common/styled/button';
+import Div from '../application/common/styled/div';
+import Dropdown from '../application/common/styled/dropdown';
+import Button from '../application/common/styled/button';
 
 class ReplyButton extends Component {
   constructor(props){

@@ -7,10 +7,10 @@ import { deleteContribution } from '../../actions/staffActions';
 
 import {FormattedMessage, FormattedDate, FormattedTime} from 'react-intl';
 
-import Div from '../application/main/common/styled/div';
-import Button from '../application/main/common/styled/button';
-import Dropdown from '../application/main/common/styled/dropdown';
-import DropdownDivider from '../application/main/common/styled/dropdownDivider';
+import Div from '../application/common/styled/div';
+import Button from '../application/common/styled/button';
+import Dropdown from '../application/common/styled/dropdown';
+import DropdownDivider from '../application/common/styled/dropdownDivider';
 
 import ReviewerDropDown from './reviewerDropdown';
 import LiveDropDown from './liveDropdown';

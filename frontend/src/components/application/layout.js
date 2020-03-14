@@ -5,15 +5,16 @@ import { FormattedMessage } from 'react-intl';
 
 // import './fontawesome/css/all.css';
 import './layout.css';
+import './common/components.css';
 
-import Div from './main/common/styled/div';
-import H1 from './main/common/styled/h1';
+import Div from './common/styled/div';
+import H1 from './common/styled/h1';
 import UserNav from './main/layout/parts/userNav';
 
 
 import ModalMode from './main/layout/parts/modalMode';
 import ModalTheme from './main/layout/parts/modalTheme';
-import Button from './main/common/styled/button';
+import Button from './common/styled/button';
 
 class Layout extends Component {
 

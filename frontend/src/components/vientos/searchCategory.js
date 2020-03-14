@@ -5,8 +5,8 @@ import { withRouter } from 'react-router-dom';
 
 import {FormattedMessage} from 'react-intl';
 
-import Button from '../application/main/common/styled/button'
-import Dropdown from '../application/main/common/styled/dropdownold'
+import Button from '../application/common/styled/button'
+import Dropdown from '../application/common/styled/dropdownold'
 
 class SearchCategory extends Component {
   constructor(props){

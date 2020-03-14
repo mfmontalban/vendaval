@@ -85,6 +85,9 @@ export default {
 
         'settings.close': `Close`,
 
+        'modal.alertTitle': `Alert`,
+        'modal.alertForgot1': `Please reset password using the link sent to: `,
+        'modal.alertForgot2': ` before continuing.`,
         'modal.confirmTitle': `Confirm`,
         'modal.confirmMessage': `Are you sure you would like to delete this item?`,
         'modal.delete': `Delete`,
@@ -240,6 +243,9 @@ export default {
 
         'settings.close': `Cerra`,
 
+        'modal.alertTitle': `Alerta`,
+        'modal.alertForgot1': `Por favor restablezca su contraseña utilizando el enlance enviado a: `,
+        'modal.alertForgot2': ` antes de seguir.`,
         'modal.confirmTitle': `Confirm:`,
         'modal.confirmMessage': `¿Estás seguro de que deseas eliminar este elemento?`,
         'modal.delete': `Eliminar`,

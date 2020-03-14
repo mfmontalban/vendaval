@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 
 import { FormattedMessage } from 'react-intl';
 
-import Div from '../../common/styled/div'
-import Button from '../../common/styled/button'
-import Dropdown from '../../common/styled/dropdownold'
+import Div from '../../../common/styled/div'
+import Button from '../../../common/styled/button'
+import Dropdown from '../../../common/styled/dropdownold'
 import SearchWinds from '../../../head/searchWinds'
 import UpdateLanguage from '../../../head/updateLanguage'
 

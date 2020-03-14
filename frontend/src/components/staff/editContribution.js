@@ -7,17 +7,17 @@ import { deleteOldBanner, editContribution, getContributionByID, deleteContribut
 import Resizer from 'react-image-file-resizer';
 import { FormattedMessage } from 'react-intl';
 
-import Spinner from '../application/main/common/spinner.js'
+import Spinner from '../application/common/spinner.js'
 import isEmpty from '../../reducers/validation/is-empty';
-import TextFieldGroup from '../application/main/common/textFieldGroup';
-import SelectListGroup from '../application/main/common/selectListGroup';
-import TextAreaFieldGroup from '../application/main/common/textAreaFieldGroup';
-import Quill from '../application/main/common/quillEdit';
-import Div from '../application/main/common/styled/div';
-import Input from '../application/main/common/styled/input'; 
-import Button from '../application/main/common/styled/button';
-import Dropdown from '../application/main/common/styled/dropdown';
-import DropdownDivider from '../application/main/common/styled/dropdownDivider';
+import TextFieldGroup from '../application/common/textFieldGroup';
+import SelectListGroup from '../application/common/selectListGroup';
+import TextAreaFieldGroup from '../application/common/textAreaFieldGroup';
+import Quill from '../application/common/quillEdit';
+import Div from '../application/common/styled/div';
+import Input from '../application/common/styled/input'; 
+import Button from '../application/common/styled/button';
+import Dropdown from '../application/common/styled/dropdown';
+import DropdownDivider from '../application/common/styled/dropdownDivider';
 
 class Contribution extends Component {
   constructor(props) {

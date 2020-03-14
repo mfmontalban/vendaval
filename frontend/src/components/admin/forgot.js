@@ -7,10 +7,10 @@ import { sendApplicationAlertsForgot } from '../../actions/applicationActions';
 import { FormattedMessage } from 'react-intl';
 
 
-import Div from '../application/main/common/styled/div';
-import H1 from '../application/main/common/styled/h1';
-import H2 from '../application/main/common/styled/h2';
-import Input from '../application/main/common/styled/input';
+import Div from '../application/common/styled/div';
+import H1 from '../application/common/styled/h1';
+import H2 from '../application/common/styled/h2';
+import Input from '../application/common/styled/input';
 
 class Forgot extends Component {
   constructor() {

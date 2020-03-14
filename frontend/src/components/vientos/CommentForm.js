@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import TextAreaFieldGroup from '../application/main/common/textAreaFieldGroup.js';
+import TextAreaFieldGroup from '../application/common/textAreaFieldGroup.js';
 import { addComment } from '../../actions/vientosActions';
 
 import {FormattedMessage} from 'react-intl';
 
-import Div from '../application/main/common/styled/div';
-import InputArea from '../application/main/common/styled/inputArea';
-import Button from '../application/main/common/styled/button';
+import Div from '../application/common/styled/div';
+import InputArea from '../application/common/styled/inputArea';
+import Button from '../application/common/styled/button';
 
 class CommentForm extends Component {
   constructor(props) {

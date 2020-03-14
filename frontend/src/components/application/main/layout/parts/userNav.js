@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import Nav from '../../common/styled/nav';
-import Div from '../../common/styled/div';
+import Nav from '../../../common/styled/nav';
+import Div from '../../../common/styled/div';
 import AppMenu from './appMenu';
-import Button from '../../common/styled/button';
+import Button from '../../../common/styled/button';
 import UserMenu from './userMenu';
 
 import './userNav.css';

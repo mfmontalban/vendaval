@@ -7,13 +7,13 @@ import { readAccountInfo } from '../../actions/adminActions';
 import { sendApplicationAlertsUpdated } from '../../actions/applicationActions';
 import { FormattedMessage } from 'react-intl';
 
-import Spinner from '../application/main/common/spinner.js'
-import TextFieldGroup from '../application/main/common/textFieldGroup';
-import Div from '../application/main/common/styled/div';
-import H1 from '../application/main/common/styled/h1';
-import H2 from '../application/main/common/styled/h2';
-import Input from '../application/main/common/styled/input';
-import Button from '../application/main/common/styled/button';
+import Spinner from '../application/common/spinner.js'
+import TextFieldGroup from '../application/common/textFieldGroup';
+import Div from '../application/common/styled/div';
+import H1 from '../application/common/styled/h1';
+import H2 from '../application/common/styled/h2';
+import Input from '../application/common/styled/input';
+import Button from '../application/common/styled/button';
 
 class Security extends Component {
   constructor() {

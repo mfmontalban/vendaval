@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 
 import { FormattedMessage } from 'react-intl';
 
-import Div from '../common/styled/div';
+import Div from '../../common/styled/div';
 import ModalMode from './parts/modalMode';
 import ModalTheme from './parts/modalTheme';
 import UserNav from './parts/userNav';
-import Button from '../common/styled/button';
+import Button from '../../common/styled/button';
 
 class Main extends Component{
 	constructor(props){

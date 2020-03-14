@@ -6,9 +6,9 @@ import { updateMode } from '../../../../../actions/applicationActions';
 
 import { FormattedMessage } from 'react-intl';
 
-import Div from '../../common/styled/div'
-import Dropdown from '../../common/styled/dropdown'
-import Button from '../../common/styled/button'
+import Div from '../../../common/styled/div'
+import Dropdown from '../../../common/styled/dropdown'
+import Button from '../../../common/styled/button'
 
 class ModalMode extends Component {
   constructor(props){

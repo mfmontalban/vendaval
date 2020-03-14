@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 
 import { setCenteredMap } from '../../actions/applicationActions';
 
-import A from '../application/main/common/styled/a'
-import Button from '../application/main/common/styled/button'
-import Dropdown from '../application/main/common/styled/dropdownold'
+import A from '../application/common/styled/a'
+import Button from '../application/common/styled/button'
+import Dropdown from '../application/common/styled/dropdownold'
 
 class WorldMenu extends Component {
   constructor(props){

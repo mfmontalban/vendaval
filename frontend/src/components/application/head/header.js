@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import './header.css';
 
 
-import TopNav from '../main/common/styled/topnav'
-import NavContainer from '../main/common/styled/navcontainer'
+import TopNav from '../common/styled/topnav'
+import NavContainer from '../common/styled/navcontainer'
 
 import SearchWinds from './searchWinds'
 import UpdateLanguage from './updateLanguage'

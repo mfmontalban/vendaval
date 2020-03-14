@@ -9,8 +9,8 @@ import {FormattedRelative, intlShape, injectIntl} from 'react-intl';
 
 import ReplyOption from './ReplyOption';
 
-import Div from '../application/main/common/styled/div';
-import Button from '../application/main/common/styled/button';
+import Div from '../application/common/styled/div';
+import Button from '../application/common/styled/button';
 
 class CommentItem extends Component {
 

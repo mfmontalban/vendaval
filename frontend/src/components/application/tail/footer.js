@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 
 import { FormattedMessage } from 'react-intl';
 
-import Div from '../main/common/styled/div';
-import A from '../main/common/styled/a';
+import Div from '../common/styled/div';
+import A from '../common/styled/a';
 
 import './footer.css';
 

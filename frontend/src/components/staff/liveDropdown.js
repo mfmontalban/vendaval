@@ -7,8 +7,8 @@ import { updateStatus } from '../../actions/staffActions';
 
 import {FormattedMessage} from 'react-intl';
 
-import Button from '../application/main/common/styled/button'
-import Dropdown from '../application/main/common/styled/dropdown'
+import Button from '../application/common/styled/button'
+import Dropdown from '../application/common/styled/dropdown'
 
 class LiveDropDown extends Component {
   constructor(props){

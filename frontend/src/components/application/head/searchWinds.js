@@ -7,10 +7,8 @@ import { readApplicationTitles } from '../../../actions/applicationActions';
 
 import { FormattedMessage } from 'react-intl';
 
-import Div from '../main/common/styled/div'
-import Container from '../main/common/styled/container'
-import Button from '../main/common/styled/button'
-import Input from '../main/common/styled/input'
+import Div from '../common/styled/div'
+import Input from '../common/styled/input'
 
 class SearchWinds extends Component {
   constructor(props){

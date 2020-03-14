@@ -11,7 +11,7 @@ import { updateThemeLocalStorage, updateModeLocalStorage, updateLanguage } from 
 import store from './store';
 
 import { IntlProvider, addLocaleData } from 'react-intl';
-import messages from "./components/application/main/common/messages";
+import messages from "./components/application/common/messages";
 import en from 'react-intl/locale-data/en';
 import es from 'react-intl/locale-data/es';
 
@@ -33,9 +33,9 @@ import Director from './director';
   import Vientos from './components/vientos/vientos';
   import ViewViento from './components/vientos/viewViento';
 
-  // import Dashboard from './components/staff/dashboard';
+  import Dashboard from './components/staff/dashboard';
   // import CreateContribution from './components/staff/createContribution';
-  // import ReadContribution from './components/staff/readContribution';
+  import ReadContribution from './components/staff/readContribution';
   // import EditContribution from './components/staff/editContribution';
 
   // import CreateProfile from './components/users/createProfile';
@@ -131,21 +131,21 @@ class App extends Component {
 
 
 
-          {/* <Director exact path="/staff/dashboard" level={'staff'} component={Dashboard} />
+          <Director exact path="/staff/dashboard" level={'staff'} component={Dashboard} />
           <Director exact path="/personal/tablero" level={'staff'} component={Dashboard} />
           
-          <Director exact path="/staff/contribute" level={'staff'} component={CreateContribution} />
-          <Director exact path="/personal/contribuir" level={'staff'} component={CreateContribution} />
+          {/* <Director exact path="/staff/contribute" level={'staff'} component={CreateContribution} />
+          <Director exact path="/personal/contribuir" level={'staff'} component={CreateContribution} /> */}
 
           <Director exact path="/staff/contribution/view/:id" level={'staff'} component={ReadContribution} />
           <Director exact path="/personal/contribución/ver/:id" level={'staff'} component={ReadContribution} />
 
-          <Director exact path="/staff/contribution/edit/:id" level={'staff'} component={EditContribution} />
-          <Director exact path="/personal/contribución/editar/:id" level={'staff'} component={EditContribution} />
+          {/* <Director exact path="/staff/contribution/edit/:id" level={'staff'} component={EditContribution} />
+          <Director exact path="/personal/contribución/editar/:id" level={'staff'} component={EditContribution} /> */}
 
 
 
-          <Director exact path="/profile/create" level={'user'} component={CreateProfile} />
+          {/* <Director exact path="/profile/create" level={'user'} component={CreateProfile} />
           <Director exact path="/perfil/crear" level={'user'} component={CreateProfile} />
 
           <Director exact path="/community/:handle" level={'public'} component={ReadProfile} />

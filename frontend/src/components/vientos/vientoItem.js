@@ -7,8 +7,8 @@ import { sendVoteUp, sendVoteDown } from '../../actions/vientosActions';
 
 import {FormattedMessage, FormattedRelative} from 'react-intl';
 
-import Div from '../application/main/common/styled/div';
-import LinkContainer from '../application/main/common/styled/linkContainer';
+import Div from '../application/common/styled/div';
+import LinkContainer from '../application/common/styled/linkContainer';
 
 class VientoItem extends Component {
 
@@ -64,7 +64,7 @@ class VientoItem extends Component {
     if (viento.likesUp || viento.likesDown) {
       if (admin.handle) {
         likesActivity = (
-          <div className="post-time-heading d-flex p-5px">
+          <Div className="d-flex p-5px" fontSizeStyled={`${application.text.info}`}>
             <div onClick={(e) => this.voteUp('likesUp', viento._id, e)}>
               {positiveVote}
             </div>
@@ -74,11 +74,11 @@ class VientoItem extends Component {
             <div onClick={(e) => this.voteDown('likesDown', viento._id, e)}>
               {negativeVote}
             </div>
-          </div>
+          </Div>
         );
       } else {
         likesActivity = (
-          <div className="post-time-heading d-flex p-5px">
+          <Div className="d-flex p-5px" fontSizeStyled={`${application.text.info}`}>
             <div title="Please create an account to like a contribution">
               {positiveVote}
             </div>
@@ -88,13 +88,13 @@ class VientoItem extends Component {
             <div title="Please create an account to like a contribution">
               {negativeVote}
             </div>
-          </div>
+          </Div>
         );
       }
     } else {
       if (admin.handle) {
         likesActivity = (
-          <div className="post-time-heading d-flex p-5px">
+          <Div className="d-flex p-5px" fontSizeStyled={`${application.text.info}`}>
             <div onClick={(e) => this.voteUp('likesUp', viento._id, e)}>
               {positiveVote}
             </div>
@@ -104,11 +104,11 @@ class VientoItem extends Component {
             <div onClick={(e) => this.voteDown('likesDown', viento._id, e)}>
               {negativeVote}
             </div>
-          </div>
+          </Div>
         );
       } else {
         likesActivity = (
-          <div className="post-time-heading d-flex p-5px">
+          <Div className="d-flex p-5px" fontSizeStyled={`${application.text.info}`}>
             <div title="Please create an account to like a contribution">
               {positiveVote}
             </div>
@@ -118,7 +118,7 @@ class VientoItem extends Component {
             <div title="Please create an account to like a contribution">
               {negativeVote}
             </div>
-          </div>
+          </Div>
         );
       }
     }
@@ -139,7 +139,7 @@ class VientoItem extends Component {
 
       commentsActivity = (
         <Link className="noUnderline" to={`/vientos/${viento._id}`}>
-          <LinkContainer className="p-5px clickable post-time-heading noUnderline"  transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primaryHalf}`} colorHoverStyled={`${application.theme.primary}`}>
+          <LinkContainer className="p-5px clickable noUnderline" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primaryHalf}`} colorHoverStyled={`${application.theme.primary}`} fontSizeStyled={`${application.text.info}`} >
             {publicLength.length}
             <i className="ml-5px fal fa-comment-alt"></i>
           </LinkContainer>
@@ -148,7 +148,7 @@ class VientoItem extends Component {
     } else {
       commentsActivity = (
         <Link className="noUnderline" to={`/vientos/${viento._id}`}>
-          <LinkContainer className="p-5px clickable post-time-heading noUnderline" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primaryHalf}`} colorHoverStyled={`${application.theme.primary}`}>
+          <LinkContainer className="p-5px clickable noUnderline" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primaryHalf}`} colorHoverStyled={`${application.theme.primary}`} fontSizeStyled={`${application.text.info}`}>
             0 <i className="ml-5px fal fa-comment-alt"></i>
           </LinkContainer>
         </Link>
@@ -156,22 +156,22 @@ class VientoItem extends Component {
     }
 
     return (
-      <Div className="viento-container m-10px border-1 outer-shadow" backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} borderStyled={`${application.settings.appRadius}`} radiusStyled={`${application.settings.appRadius}`}>
-          <div className="w-100 d-flex flex-row justify-content-space-between align-items-end">
+      <Div className="viento-container m-10px border-1 outer-shadow-primary" backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} borderStyled={`${application.settings.appRadius}`} radiusStyled={`${application.settings.appRadius}`}>
+          <div className="w-100 d-flex flex-row border-bottom-1 justify-content-space-between align-items-end">
             <div className="p-5px text-left">
               {/* <div className="post-section-heading">{viento.type}: {viento.topic}</div> */}
-              <div className="post-section-heading">
+              <div>
               
                 <Link className="noUnderline" to={`/${community}/${viento.profile.handle}`}>
-                  <Div className="noUnderline border-bottom-1 border-bottom-transparent" transitionStyled={`${settings.appTransition}`} colorStyled={`${application.theme.primary}`} borderBottomHoverStyled={`${application.theme.primary}`}>
+                  <Div className="noUnderline border-bottom-1 border-bottom-transparent" transitionStyled={`${settings.appTransition}`} colorStyled={`${application.theme.primary}`} borderBottomHoverStyled={`${application.theme.primary}`} fontSizeStyled={`${application.text.info}`} >
                     {viento.user.name}
                   </Div>
                 </Link>
 
               </div>
             </div>
-            <div className="p-5px text-right">
-              <div className="post-time-heading">
+            <div className="d-flex p-5px text-right align-items-center">
+              <Div fontSizeStyled={`${application.text.info}`} >
                 <FormattedMessage
                     id="viento.time_since_created"
                     defaultMessage={`{formattedLastLoginTime}`}
@@ -181,7 +181,7 @@ class VientoItem extends Component {
                         ),
                     }}
                 />
-              </div>
+              </Div>
             </div>
           </div>
           <div className="w-100 d-flex flex-wrap justify-content-space-between z-99 position-relative">
@@ -189,16 +189,16 @@ class VientoItem extends Component {
               <img className="h-150px w-100 banner ml-auto mr-auto" alt="banner" src={`/api/staff/files/${viento.bannerSm}`} />
             </Link>
           </div>
-          <div className="w-100 d-flex flex-row justify-content-space-between align-items-end">
+          <div className="w-100 d-flex flex-row border-top-1 justify-content-space-between align-items-end">
             <div className="d-flex flex-wrap justify-content-space-between w-100">
               {likesActivity}
-              <div className="post-time-heading">
+              <Div fontSizeStyled={`${application.text.info}`}>
                 <Link className="noUnderline" to={`/vientos/${viento._id}`}>
                   <Div className="text-info noUnderline" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primaryHalf}`} colorHoverStyled={`${application.theme.primary}`}>
                     <i className="p-5px clickable fal fa-share-square"></i>
                   </Div>
                 </Link>
-              </div>
+              </Div>
               {commentsActivity}
             </div>
           </div>

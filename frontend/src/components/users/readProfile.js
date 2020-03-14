@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 
 import { getProfileByHandle } from '../../actions/usersActions';
 
-import Spinner from '../application/main/common/spinner.js'
-import Div from '../application/main/common/styled/div.js'
+import Spinner from '../application/common/spinner.js'
+import Div from '../application/common/styled/div.js'
 import ProfileHeader from './profileHeader';
 import ProfileAbout from './profileAbout';
 

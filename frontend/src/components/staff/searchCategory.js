@@ -5,8 +5,12 @@ import { withRouter } from 'react-router-dom';
 
 import {FormattedMessage} from 'react-intl';
 
-import Button from '../application/main/common/styled/button'
-import Dropdown from '../application/main/common/styled/dropdownold'
+import Button from '../application/common/styled/button'
+import Dropdown from '../application/common/dropdown'
+
+// React.createContext accepts a defaultValue as the first param
+const MyContext = React.createContext(); 
+
 
 class SearchCategory extends Component {
   constructor(props){
@@ -17,6 +21,8 @@ class SearchCategory extends Component {
       filteringFor: ""
     }
   }
+  
+  static contextType = MyContext;
   
   setWrapperRef = (node) => {
     this.wrapperRef = node;
@@ -193,19 +199,16 @@ class SearchCategory extends Component {
     }
 
     return(
-      <div className="min-w-200px d-flex justify-content-start">
-        <Button onClick={() => this.toggleList()} className="max-w-content mb-5px p-10px border-1" transitionStyled={application.transitions.general} backgroundStyled={application.transparent} backgroundHoverStyled={application.theme.primary} colorStyled={application.theme.primary} colorHoverStyled={application.mode.primary} radiusStyled={`${application.settings.appRadius}`}>
-          {filteringFor}
-        </Button>
-        {listOpen && 
-          <Dropdown ref={this.setWrapperRef} className="mt-40px position-absolute z-1005 d-flex flex-direction-column text-left outer-shadow-primary border-1" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={application.theme.primaryQuarter} colorStyled={`${application.theme.primary}`} borderStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
-            <Button transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} onClick={(e) => {this.toggleUpdateFilter('Reviewer'); this.toggleList();}} className="p-10px top-border-radius text-left" type="button">{reviewer}</Button>
-            <Button transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} onClick={(e) => {this.toggleUpdateFilter('Author'); this.toggleList();}} className="p-10px text-left" type="button">{author}</Button>
-            <Button transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} onClick={(e) => {this.toggleUpdateFilter('Status'); this.toggleList();}} className="p-10px text-left" type="button">{status}</Button>
-            <Button transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} onClick={(e) => {this.toggleUpdateFilter('Title'); this.toggleList();}} className="p-10px bottom-border-radius text-left" type="button">{title}</Button>
-          </Dropdown>
-        }
-      </div>
+      <Dropdown
+        alignEdge="left"
+        phrase={this.props.filterState}
+        
+      >
+        <Button transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} colorStyled={application.theme.primary} radiusStyled={`${application.settings.appRadiusTop}`} onClick={(e) => {this.toggleUpdateFilter('Reviewer'); this.context.toggleList();}} className="p-10px text-left" type="button">{reviewer}</Button>
+        <Button transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} colorStyled={application.theme.primary} onClick={(e) => {this.toggleUpdateFilter('Author'); this.context.toggleList();}} className="p-10px text-left" type="button">{author}</Button>
+        <Button transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} colorStyled={application.theme.primary} onClick={(e) => {this.toggleUpdateFilter('Status'); this.context.toggleList();}} className="p-10px text-left" type="button">{status}</Button>
+        <Button transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} colorStyled={application.theme.primary} radiusStyled={`${application.settings.appRadiusBottom}`} onClick={(e) => {this.toggleUpdateFilter('Title'); this.context.toggleList();}} className="p-10px bottom-border-radius text-left" type="button">{title}</Button>
+      </Dropdown>
     )
   }
 }

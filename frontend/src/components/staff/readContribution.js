@@ -7,15 +7,15 @@ import { getContributionByID, deleteContribution } from '../../actions/staffActi
 
 import {FormattedMessage, FormattedDate, FormattedTime, FormattedRelative} from 'react-intl';
 
-import Spinner from '../application/main/common/spinner.js'
-import Quill from '../application/main/common/quillView';
+import Spinner from '../application/common/spinner.js'
+import Quill from '../application/common/quillView';
 
-import Div from '../application/main/common/styled/div';
-import H1 from '../application/main/common/styled/h1';
-import H2 from '../application/main/common/styled/h2';
-import Dropdown from '../application/main/common/styled/dropdown';
-import DropdownDivider from '../application/main/common/styled/dropdownDivider';
-import Button from '../application/main/common/styled/button';
+import Div from '../application/common/styled/div';
+import H1 from '../application/common/styled/h1';
+import H2 from '../application/common/styled/h2';
+import Dropdown from '../application/common/styled/dropdown';
+import DropdownDivider from '../application/common/styled/dropdownDivider';
+import Button from '../application/common/styled/button';
 import CommentForm from '../vientos/CommentForm.js';
 import CommentFeed from './CommentFeed.js';
 
@@ -436,7 +436,7 @@ class Contribution extends Component {
       </Div>
     );
   }
-}
+} 
 
 Contribution.propTypes = {
   getContributionByID: PropTypes.func.isRequired,

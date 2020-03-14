@@ -6,10 +6,10 @@ import { Link, withRouter } from 'react-router-dom';
 import { sendApplicationAlertsRegistered } from '../../actions/applicationActions';
 import { FormattedMessage, FormattedHTMLMessage } from 'react-intl';
 
-import Div from '../application/main/common/styled/div';
-import H1 from '../application/main/common/styled/h1';
-import H2 from '../application/main/common/styled/h2';
-import Input from '../application/main/common/styled/input';
+import Div from '../application/common/styled/div';
+import H1 from '../application/common/styled/h1';
+import H2 from '../application/common/styled/h2';
+import Input from '../application/common/styled/input';
 
 
 class Register extends Component {
@@ -210,6 +210,22 @@ class Register extends Component {
             radiusStyled={application.settings.appRadius}
           />
 
+          <div>
+            <ul>
+              {errors.data.name ? 
+                <li>{errors.data.name}</li> : ``
+              }
+              {errors.data.email ? 
+                <li>{errors.data.email}</li> : ``
+              }
+              {errors.data.password ? 
+                <li>{errors.data.password}</li> : ``
+              }
+              {errors.data.password2 ? 
+                <li>{errors.data.password2}</li> : ``
+              }
+            </ul>
+          </div>
 
         </form>
         <Link to="/verify/resend" className="d-flex justify-content-center noUnderline">

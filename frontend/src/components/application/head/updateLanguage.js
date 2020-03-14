@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 
 import { updateLanguage } from '../../../actions/applicationActions';
 
-import Button from '../main/common/styled/button'
-import Dropdown from '../main/common/styled/dropdown'
+import Button from '../common/styled/button'
+import Dropdown from '../common/styled/dropdown'
 
 class UpdateLanguage extends Component {
   constructor(props){

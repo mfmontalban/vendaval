@@ -6,14 +6,16 @@ import { FormattedMessage } from 'react-intl';
 import { closeApplicationAlertsUpdated, setSortsRecentOldest, setSortsRecentNewest, setFiltersText, setCenteredMap } from '../../actions/applicationActions';
 import { getLiveVientos } from '../../actions/vientosActions';
 
-import Spinner from '../application/main/common/spinner';
+import Spinner from '../application/common/spinner';
 import Map from '../application/main/map/canvas';
 import VientoItem from './vientoItem';
 import FilterMenu from './filterMenu';
 import SortMenu from './sortMenu';
 import WorldMenu from './worldMenu';
 
-import Div from '../application/main/common/styled/div';
+import './vientos.css'
+
+import Div from '../application/common/styled/div';
 
 
 class Vientos extends Component {
@@ -137,7 +139,7 @@ class Vientos extends Component {
               
 
         content = (
-          <Div className="scroll-container scrollbar-width-none" heightStyled={`${application.settings.canvasHeight}`} backgroundStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`}>
+          <Div className="overflow-scroll scrollbar-width-none" heightStyled={`${application.settings.canvasHeight}`} backgroundStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`}>
             <div className="d-flex flex-wrap justify-content-center pt-10px pb-10px ml-auto mr-auto">
               {dashboardContent}
             </div>
@@ -146,7 +148,7 @@ class Vientos extends Component {
 
       } else {
         content = (
-          <Div className="d-flex flex-wrap scroll-container scrollbar-width-none" heightStyled={`${application.settings.canvasHeight}`} backgroundStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`}>
+          <Div className="d-flex flex-wrap overflow-scroll scrollbar-width-none" heightStyled={`${application.settings.canvasHeight}`} backgroundStyled={`${application.theme.primaryQuarter}`} colorStyled={`${application.theme.primary}`}>
           </Div>
         );
       }

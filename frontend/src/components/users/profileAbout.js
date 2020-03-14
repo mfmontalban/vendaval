@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import isEmpty from '../../reducers/validation/is-empty';
 import { FormattedMessage } from 'react-intl';
 
-import Div from '../application/main/common/styled/div'
+import Div from '../application/common/styled/div'
 
 class ProfileAbout extends Component {
   render() {
