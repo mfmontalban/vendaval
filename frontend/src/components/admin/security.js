@@ -8,12 +8,10 @@ import { sendApplicationAlertsUpdated } from '../../actions/applicationActions';
 import { FormattedMessage } from 'react-intl';
 
 import Spinner from '../application/common/spinner.js'
-import TextFieldGroup from '../application/common/textFieldGroup';
 import Div from '../application/common/styled/div';
 import H1 from '../application/common/styled/h1';
 import H2 from '../application/common/styled/h2';
 import Input from '../application/common/styled/input';
-import Button from '../application/common/styled/button';
 
 class Security extends Component {
   constructor() {
@@ -57,7 +55,7 @@ class Security extends Component {
     const x = this.state.password2===this.state.password;
     const y = this.state.password2.length > 2;
     const z = x && y;
-    return this.state.name!==this.props.admin.name || this.state.email!==this.props.admin.email || z===true;
+    return ( (this.state.name!==this.props.admin.name && this.state.name != '') || (this.state.email!==this.props.admin.email && this.state.email.length>0) || z===true );
   }
 
   onSubmit = (e) => {
@@ -117,7 +115,7 @@ class Security extends Component {
       );
     } else {
       content = (
-        <form className="w-80pc ml-auto mr-auto d-flex flex-direction-column text-center" noValidate onSubmit={this.onSubmit}>
+        <form className="form ml-auto mr-auto d-flex flex-direction-column text-center" noValidate onSubmit={this.onSubmit}>
           <Input
             type="text"
             name="name"
@@ -197,13 +195,20 @@ class Security extends Component {
 
     return (
       <Div className="h-100 overflow-scroll scrollbar-width-none" backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
-        <H1 className="text-center">
+        <H1 
+          className="m-0 p-10px pt-20px text-center border-bottom-1 outer-shadow-primary font-weight-normal"
+          backgroundStyled={application.theme.primaryQuarter}
+          fontSizeStyled={application.text.heading}
+        >
           <FormattedMessage
             id="security.title"
             defaultMessage="Account"
           />
         </H1>
-        <H2 className="text-center">
+        <H2 
+          className="p-10px text-center font-weight-normal"
+          fontSizeStyled={application.text.description}
+        >
           <FormattedMessage
             id="security.description"
             defaultMessage="Update your information"

@@ -192,13 +192,13 @@ class VientoItem extends Component {
           <div className="w-100 d-flex flex-row border-top-1 justify-content-space-between align-items-end">
             <div className="d-flex flex-wrap justify-content-space-between w-100">
               {likesActivity}
-              <Div fontSizeStyled={`${application.text.info}`}>
+              {/* <Div fontSizeStyled={`${application.text.info}`}>
                 <Link className="noUnderline" to={`/vientos/${viento._id}`}>
                   <Div className="text-info noUnderline" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primaryHalf}`} colorHoverStyled={`${application.theme.primary}`}>
                     <i className="p-5px clickable fal fa-share-square"></i>
                   </Div>
                 </Link>
-              </Div>
+              </Div> */}
               {commentsActivity}
             </div>
           </div>

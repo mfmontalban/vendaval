@@ -10,6 +10,7 @@ import Div from '../application/common/styled/div'
 import Input from '../application/common/styled/input'
 import Button from '../application/common/styled/button'
 import Dropdown from '../application/common/dropdown'
+import Item from './item'
 
 
 class FilterMenu extends Component {
@@ -17,7 +18,7 @@ class FilterMenu extends Component {
     super(props)
     this.state = {
       listOpen: false,
-      filteringFor: "Reviewer",
+      filteringFor: "reviewer",
       filteringPhrase: ""
     }
   }
@@ -32,42 +33,17 @@ class FilterMenu extends Component {
     }))
   }
 
-  filterItems = () => {
-    let topic;
-    let phrase;
-
-    if (this.state.filteringFor.length < 1) {
-      topic = "Reviewer";
-    } else {
-      topic = this.state.filteringFor;
-    }
-
-    phrase = this.state.filteringPhrase;
-
-    this.props.setFiltersText({"topic": topic, "phrase": phrase});
-    this.setState({filteringFor: topic});
+  filterItems = (filterObject) => {
+    this.props.setFiltersText({"topic": filterObject.topic, "phrase": filterObject.phrase});
   }
 
   render(){
-    const { application } = this.props;
     return(
         <Dropdown
           alignEdge="left"
           icon="filter"
         >
-          <Div className="w-max-content pt-10px pl-10px" backgroundStyled={application.mode.primary} colorStyled={application.theme.primary} radiusStyled={application.settings.appRadiusTop}>
-            <SearchCategory 
-              filterState={this.state.filteringFor}
-              onFilterItems={this.setFilter}
-            />
-          </Div>
-          <Div className="d-flex flex-direction-row pb-10px pl-10px bottom-border-radius text-right" backgroundStyled={application.mode.primary} colorStyled={application.theme.primary} radiusStyled={application.settings.appRadiusBottom}>
-            <Input className="max-w-filterMenuInput border-0-right pl-10px pr-10px m-0" type="text" name="filteringPhrase" value={this.state.filteringPhrase} onChange={this.onChange} backgroundStyled={application.mode.primary} colorStyled={application.theme.primary} radiusStyled={application.settings.appRadiusLeft} borderStyled={application.theme.primary}>
-            </Input>
-            <Button onClick={() => {this.filterItems()}} className="text-right border-1" transitionStyled={application.settings.appTransition} backgroundStyled={application.transparent} backgroundHoverStyled={application.theme.primary} colorStyled={application.theme.primary} colorHoverStyled={application.mode.primary} paddingStyled={application.settings.appPadding} radiusStyled={application.settings.appRadiusRight}>
-              <i className="fas fa-arrow-alt-right"></i>
-            </Button>
-          </Div>
+          <Item application={this.props.application} onFilterItems={this.filterItems} onSetFilter={this.setFilter} filteringFor={this.state.filteringFor} />
         </Dropdown>
     )
   }

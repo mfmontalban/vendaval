@@ -7,12 +7,11 @@ import { addContribution } from '../../actions/staffActions';
 import Resizer from 'react-image-file-resizer';
 
 import TextFieldGroup from '../application/common/textFieldGroup';
-import SelectListGroup from '../application/common/selectListGroup';
 import TextAreaFieldGroup from '../application/common/textAreaFieldGroup';
 import Quill from '../application/common/quillEdit';
 import { FormattedMessage } from 'react-intl';
 
-import DraggableMarker from '../application/map/draggableMarker';
+// import DraggableMarker from '../application/map/draggableMarker';
 import Div from '../application/common/styled/div';
 import Input from '../application/common/styled/input';
 import LinkContainer from '../application/common/styled/linkContainer';

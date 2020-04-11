@@ -10,7 +10,7 @@ import { FormattedMessage } from 'react-intl';
 import Spinner from '../application/common/spinner.js'
 import isEmpty from '../../reducers/validation/is-empty';
 import TextFieldGroup from '../application/common/textFieldGroup';
-import SelectListGroup from '../application/common/selectListGroup';
+// import SelectListGroup from '../application/common/selectListGroup';
 import TextAreaFieldGroup from '../application/common/textAreaFieldGroup';
 import Quill from '../application/common/quillEdit';
 import Div from '../application/common/styled/div';
@@ -287,10 +287,10 @@ class Contribution extends Component {
     } else {
       contributionContent =
         <div className="max-w-1000px ml-auto mr-auto">
-          <Div className="d-flex justify-content-space-between align-items-center p-20px">
+          <Div className="d-flex justify-content-space-between align-items-center p-20px" backgroundStyled={application.mode.primaryHalf}>
             <div className="w-30 d-flex">
               <Link className="w-40px ml-25" to={`/${staff}/${dashboard}`}>
-                <Div className="d-flex justify-content-center align-items-center h-40px w-40px min-w-max-content border-radius-circle" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
+                <Div className="d-flex justify-content-center align-items-center smBtn min-w-max-content border-radius-circle" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
                   <i className='ml-neg3px clickable fa-2x fas fa-chevron-left'></i>
                 </Div>
               </Link>
@@ -302,7 +302,7 @@ class Contribution extends Component {
               </Div> */}
             </div>
             <div className="w-30 d-flex justify-content-flex-end">
-              <Button onClick={() => this.toggleList()} className="d-flex justify-content-center align-items-center h-40px w-40px min-w-max-content mr-25px border-radius-circle clickable" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
+              <Button onClick={() => this.toggleList()} className="d-flex justify-content-center align-items-center smBtn min-w-max-content mr-25px border-radius-circle clickable" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
                 <i className="fa-2x fal fa-ellipsis-v"></i>
               </Button>
               {listOpen &&

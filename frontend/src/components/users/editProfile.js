@@ -216,8 +216,8 @@ class CreateProfile extends Component {
       placeWebsiteLabel = 'Campo para el sitio personal';
       placeLocation = 'Ciudad, Estado';
       placeLocationLabel = 'Campo para Ciudad, Estado';
-      placeTalents = '* Talentos';
-      placeTalentsLabel = 'Campo requerido para los talentos';
+      placeTalents = '* Intereses';
+      placeTalentsLabel = 'Campo requerido para los intereses';
       placeBio = 'De usted';
       placeBioLabel = 'Campo para describirte';
       socialMessage = 'Redes sociales';
@@ -230,8 +230,8 @@ class CreateProfile extends Component {
       placeWebsiteLabel = 'Field for website';
       placeLocation = 'City, State';
       placeLocationLabel = 'Field for City, State';
-      placeTalents = '* Talents';
-      placeTalentsLabel = 'Required field for talents';
+      placeTalents = '* Interests';
+      placeTalentsLabel = 'Required field for interests';
       placeBio = 'About you';
       placeBioLabel = 'Field for your public bio';
       socialMessage = 'Social media';
@@ -250,13 +250,13 @@ class CreateProfile extends Component {
     if (admin.avatarLg === null || '') {
       avatarImage =
         <div>
-          <i className="fas fa-users fa-5x h-25vh ml-auto mr-auto" />
+          <i className="fas fa-users fa-5x h-200px w-200px ml-auto mr-auto" />
         </div>
     } else {
       avatarImage =
         <img
-          className="h-25vh ml-auto mr-auto pt-10px pb-10px"
-          src={`http://localhost:5000/api/users/files/${admin.avatarLg}`}
+          className="outer-shadow-double border-radius-circle h-200px w-200px object-fit-cover ml-auto mr-auto"
+          src={`/api/users/files/${admin.avatarLg}`}
           alt="Account"
         />
     }
@@ -264,6 +264,16 @@ class CreateProfile extends Component {
     if (displaySocialInputs) {
       socialInputs = (
         <div>
+          <InputGroup
+            placeholder={`${placeWebsite}`}
+            name="website"
+            icon="fas fa-globe"
+            aria-label={`${placeWebsiteLabel}`}
+            value={this.state.website}
+            onChange={this.onChange}
+            error={errors.website}
+          />
+          
           <InputGroup
             placeholder="Twitter URL"
             name="twitter"
@@ -316,23 +326,10 @@ class CreateProfile extends Component {
       <Div className="h-100 overflow-scroll scrollbar-width-none" heightStyled={`${application.settings.heightHero}`} backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadiusBottom}`} colorStyled={`${application.theme.primary}`}>
         <div className="max-w-1000px ml-auto mr-auto">
           {backLink}
-          <H1 className="text-center" fontSizeStyled={application.text.heading}>
-            <FormattedMessage
-              id="profile.editProfileTitle"
-              defaultMessage="Edit Profile"
-            />
-          </H1>
-          <H2 className="text-center mb-10px" fontSizeStyled={application.text.description}>
-            <FormattedMessage
-              id="profile.editProfileDescription"
-              defaultMessage="Update your account information"
-            />
-          </H2>
-          <form className="d-flex flex-direction-column text-center max-w-750px ml-auto mr-auto" onSubmit={this.onSubmit}>
-            <Div className="d-flex flex-direction-column border-1 mb-10px" 
+          <form className="form ml-auto mr-auto d-flex flex-direction-column text-center max-w-750px ml-auto mr-auto pb-20px p-10px" onSubmit={this.onSubmit}>
+            <Div className="d-flex flex-direction-column" 
               backgroundStyled={errors.picture ? `${application.theme.primary}`: `${application.transparent}`}
               colorStyled={errors.picture ? `${application.mode.primary}`: `${application.theme.primary}`}
-              borderStyled={application.theme.primary}
               radiusStyled={application.settings.appRadius}
             >
               {avatarImage}
@@ -352,7 +349,7 @@ class CreateProfile extends Component {
               name="handle"
               placeholder={`${placeHandle}`}
               aria-label={`${placeHandleLabel}`}
-              className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px mb-10px"
+              className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px mb-10px text-center"
               backgroundStyled={errors.handle ? `${application.theme.primary}`: `${application.transparent}`}
               colorStyled={errors.handle ? `${application.mode.primary}`: `${application.theme.primary}`}
               placeholderStyled={errors.handle ? `${application.mode.primary}`: `${application.theme.primary}`}
@@ -365,25 +362,10 @@ class CreateProfile extends Component {
               {errorHandle}
             <Input
               type="text"
-              name="website"
-              placeholder={`${placeWebsite}`}
-              aria-label={`${placeWebsiteLabel}`}
-              className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px mb-10px"
-              backgroundStyled={errors.website ? `${application.theme.primary}`: `${application.transparent}`}
-              colorStyled={errors.website ? `${application.mode.primary}`: `${application.theme.primary}`}
-              placeholderStyled={errors.website ? `${application.mode.primary}`: `${application.theme.primary}`}
-              fontSizeStyled={application.text.primary}
-              borderStyled={application.theme.primary}
-              radiusStyled={application.settings.appRadius}
-              value={this.state.website}
-              onChange={this.onChange}
-            />
-            <Input
-              type="text"
               name="location"
               placeholder={`${placeLocation}`}
               aria-label={`${placeLocationLabel}`}
-              className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px mb-10px"
+              className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px mb-10px text-center"
               backgroundStyled={errors.location ? `${application.theme.primary}`: `${application.transparent}`}
               colorStyled={errors.location ? `${application.mode.primary}`: `${application.theme.primary}`}
               placeholderStyled={errors.location ? `${application.mode.primary}`: `${application.theme.primary}`}
@@ -393,43 +375,6 @@ class CreateProfile extends Component {
               value={this.state.location}
               onChange={this.onChange}
             />
-            <Input
-              type="text"
-              name="skills"
-              placeholder={`${placeTalents}`}
-              aria-label={`${placeTalentsLabel}`}
-              className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px"
-              backgroundStyled={errors.skills ? `${application.theme.primary}`: `${application.transparent}`}
-              colorStyled={errors.skills ? `${application.mode.primary}`: `${application.theme.primary}`}
-              placeholderStyled={errors.skills ? `${application.mode.primary}`: `${application.theme.primary}`}
-              fontSizeStyled={application.text.primary}
-              borderStyled={application.theme.primary}
-              radiusStyled={application.settings.appRadius}
-              value={this.state.skills}
-              onChange={this.onChange}
-            />
-            <Div className="mb-10px" colorStyled={application.theme.primary} fontSizeStyled={application.text.info}>
-              <FormattedMessage
-                id="profile.editProfileTalentsNotice"
-                defaultMessage="Separate individual skills with a comma"
-              />
-            </Div>
-            <InputArea
-              type="text"
-              name="bio"
-              placeholder={`${placeBio}`}
-              aria-label={`${placeBioLabel}`}
-              className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px mb-10px"
-              backgroundStyled={errors.bio ? `${application.theme.primary}`: `${application.transparent}`}
-              colorStyled={errors.bio ? `${application.mode.primary}`: `${application.theme.primary}`}
-              placeholderStyled={errors.bio ? `${application.mode.primary}`: `${application.theme.primary}`}
-              fontSizeStyled={application.text.primary}
-              borderStyled={application.theme.primary}
-              radiusStyled={application.settings.appRadius}
-              value={this.state.bio}
-              onChange={this.onChange}
-            />
-
             <div className="mb-10px">
               <Button
                 type="button"
@@ -451,10 +396,46 @@ class CreateProfile extends Component {
               </Button>
             </div>
             {socialInputs}
+            <InputArea
+              type="text"
+              name="bio"
+              placeholder={`${placeBio}`}
+              aria-label={`${placeBioLabel}`}
+              className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px mb-10px"
+              backgroundStyled={errors.bio ? `${application.theme.primary}`: `${application.transparent}`}
+              colorStyled={errors.bio ? `${application.mode.primary}`: `${application.theme.primary}`}
+              placeholderStyled={errors.bio ? `${application.mode.primary}`: `${application.theme.primary}`}
+              fontSizeStyled={application.text.primary}
+              borderStyled={application.theme.primary}
+              radiusStyled={application.settings.appRadius}
+              value={this.state.bio}
+              onChange={this.onChange}
+            />
+            <Input
+              type="text"
+              name="skills"
+              placeholder={`${placeTalents}`}
+              aria-label={`${placeTalentsLabel}`}
+              className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px"
+              backgroundStyled={errors.skills ? `${application.theme.primary}`: `${application.transparent}`}
+              colorStyled={errors.skills ? `${application.mode.primary}`: `${application.theme.primary}`}
+              placeholderStyled={errors.skills ? `${application.mode.primary}`: `${application.theme.primary}`}
+              fontSizeStyled={application.text.primary}
+              borderStyled={application.theme.primary}
+              radiusStyled={application.settings.appRadius}
+              value={this.state.skills}
+              onChange={this.onChange}
+            />
+            <Div className="mb-10px" colorStyled={application.theme.primary} fontSizeStyled={application.text.info}>
+              <FormattedMessage
+                id="profile.editProfileTalentsNotice"
+                defaultMessage="Separate individual interests with a comma"
+              />
+            </Div>
             <Input
               type="submit"
               value={`${submitProfile}`}
-              className="clickable mt-10px mb-20px webkit-appearance-none"
+              className="clickable mt-10px webkit-appearance-none"
               transitionStyled={application.transitions.general}
               backgroundStyled={application.theme.primaryThree}
               backgroundHoverStyled={application.theme.primary}

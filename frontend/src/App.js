@@ -28,19 +28,19 @@ import Director from './director';
   import Reset from './components/admin/reset';
   import Update from './components/admin/update';
 
-  // import Security from './components/admin/security';
+  import Security from './components/admin/security';
 
   import Vientos from './components/vientos/vientos';
   import ViewViento from './components/vientos/viewViento';
 
   import Dashboard from './components/staff/dashboard';
-  // import CreateContribution from './components/staff/createContribution';
+  import CreateContribution from './components/staff/createContribution';
   import ReadContribution from './components/staff/readContribution';
-  // import EditContribution from './components/staff/editContribution';
+  import EditContribution from './components/staff/editContribution';
 
-  // import CreateProfile from './components/users/createProfile';
-  // import ReadProfile from './components/users/readProfile';
-  // import EditProfile from './components/users/editProfile';
+  import CreateProfile from './components/users/createProfile';
+  import ReadProfile from './components/users/readProfile';
+  import EditProfile from './components/users/editProfile';
 
   // import ProfileAlerts from './components/users/profileAlerts';
   // import ProfileHistory from './components/users/profileHistory';
@@ -118,8 +118,8 @@ class App extends Component {
 
 
 
-          {/* <Director exact path="/security" level={'user'} component={Security} />
-          <Director exact path="/seguridad" level={'user'} component={Security} /> */}
+          <Director exact path="/security" level={'user'} component={Security} />
+          <Director exact path="/seguridad" level={'user'} component={Security} />
 
 
 
@@ -134,18 +134,18 @@ class App extends Component {
           <Director exact path="/staff/dashboard" level={'staff'} component={Dashboard} />
           <Director exact path="/personal/tablero" level={'staff'} component={Dashboard} />
           
-          {/* <Director exact path="/staff/contribute" level={'staff'} component={CreateContribution} />
-          <Director exact path="/personal/contribuir" level={'staff'} component={CreateContribution} /> */}
+          <Director exact path="/staff/contribute" level={'staff'} component={CreateContribution} />
+          <Director exact path="/personal/contribuir" level={'staff'} component={CreateContribution} />
 
           <Director exact path="/staff/contribution/view/:id" level={'staff'} component={ReadContribution} />
           <Director exact path="/personal/contribución/ver/:id" level={'staff'} component={ReadContribution} />
 
-          {/* <Director exact path="/staff/contribution/edit/:id" level={'staff'} component={EditContribution} />
-          <Director exact path="/personal/contribución/editar/:id" level={'staff'} component={EditContribution} /> */}
+          <Director exact path="/staff/contribution/edit/:id" level={'staff'} component={EditContribution} />
+          <Director exact path="/personal/contribución/editar/:id" level={'staff'} component={EditContribution} />
 
 
 
-          {/* <Director exact path="/profile/create" level={'user'} component={CreateProfile} />
+          <Director exact path="/profile/create" level={'user'} component={CreateProfile} />
           <Director exact path="/perfil/crear" level={'user'} component={CreateProfile} />
 
           <Director exact path="/community/:handle" level={'public'} component={ReadProfile} />
@@ -154,7 +154,7 @@ class App extends Component {
           <Director exact path="/profile/edit" level={'user'} component={EditProfile} />
           <Director exact path="/perfil/editar" level={'user'} component={EditProfile} />
 
-          <Director exact path="/profile/alerts" level={'user'} component={ProfileAlerts} />
+          {/* <Director exact path="/profile/alerts" level={'user'} component={ProfileAlerts} />
           <Director exact path="/perfil/alertas" level={'user'} component={ProfileAlerts} />
 
           <Director exact path="/profile/history" level={'user'} component={ProfileHistory} />

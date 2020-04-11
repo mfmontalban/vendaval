@@ -20,7 +20,31 @@ class UserMenu extends Component {
       outsideClicked: false,
       listOpen: false,
       settingsMenu: false,
+      width: 0
     }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.width != prevState.width) {
+      if (this.state.width > 1032) {
+        this.setState({
+          listOpen: true
+        })
+      }
+    }
+  }
+
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+  
+  updateWindowDimensions = () => {
+    this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
 
   setWrapperRef = (node) => {
@@ -75,7 +99,7 @@ class UserMenu extends Component {
   }
 
   render(){
-    const { listOpen, settingsMenu } = this.state
+    const { listOpen, settingsMenu, width } = this.state
     const { admin, application } = this.props;
     const { language, settings } = this.props.application;
 
@@ -129,6 +153,8 @@ class UserMenu extends Component {
     let profileLinks;
     let securityLink;
     let avatarImage;
+    let adminLinks;
+    let guestLinks;
 
     profileLinks = (
       <div>
@@ -255,84 +281,155 @@ class UserMenu extends Component {
       </Div>
     )
 
-    const adminLinks = (
-      <nav>
-        <Button onClick={() => this.toggleList('open')} className="smBtn border-1 clickable" transitionStyled={`${settings.appTransition}`} backgroundStyled={`${application.transparent}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} paddingStyled={`${settings.appPadding2}`} radiusStyled={`${settings.appRadius}`}>
-          {avatarImage}
-        </Button>
-
-        <Dropdown ref={this.setWrapperRef} className={(listOpen === true ? 'z-1500 visible userMenu' : 'z-neg1 invisible') + ' menus mr-neg45vw z-1005 top-0 right-0 position-absolute d-flex flex-direction-column outer-shadow-primary border-1 p-10px'} transitionStyled={settingsMenu === true ? `${application.transitions.appMenuIn}`: `${application.transitions.appMenuOut}`} backgroundStyled={application.mode.primary} colorStyled={`${application.theme.primary}`}>  
-          <Button onClick={() => this.toggleList('close')} className="userMenuButton smBtn border-1 clickable m-10px" transitionStyled={`${settings.appTransition}`} backgroundStyled={`${application.transparent}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} paddingStyled={`${settings.appPadding2}`} radiusStyled={`${settings.appRadius}`}>
+    if (width > 1150) {
+      adminLinks = (
+        <nav>
+          <Button className="smBtn border-1" transitionStyled={`${settings.appTransition}`} backgroundStyled={`${application.transparent}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} paddingStyled={`${settings.appPadding2}`} radiusStyled={`${settings.appRadius}`}>
             {avatarImage}
           </Button>
-          {admin.staff ? staffMenu : userMenu}
-          {profileLinks}
-          {securityLink}
-          <Div className="overflow-hidden border-top-1" colorStyled={`${application.theme.primary}`}/>
-          <Link
-            to={`/${login}`}
-            onClick={(e) => {this.onLogoutClick(e); this.toggleListLink()}}
-          >
-            <Div className="p-10px text-right clickable" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`}>  
-              <FormattedMessage
-                id="navigation.logout"
-                defaultMessage="Logout"
-              />
-              <i className="fal fa-sign-out-alt ml-5px"></i>
-            </Div>
-          </Link>
-        </Dropdown>
-      </nav>
-    );
-    
-
-    const guestLinks = (
-      <nav>
-        <Button onClick={() => this.toggleList('open')} className="smBtn border-1 clickable" transitionStyled={`${settings.appTransition}`} backgroundStyled={`${application.transparent}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} paddingStyled={`${settings.appPadding}`} radiusStyled={`${settings.appRadius}`}>
-          <div>
-            <i className="fas fa-user"></i>
-          </div>
-        </Button>
-
-        <Dropdown ref={this.setWrapperRef} className={(listOpen === true ? 'z-1500 visible userMenu' : 'z-neg1 invisible') + ' menus mr-neg45vw z-1005 top-0 right-0 position-absolute d-flex flex-direction-column outer-shadow-primary border-1 p-10px'} transitionStyled={settingsMenu === true ? `${application.transitions.appMenuIn}`: `${application.transitions.appMenuOut}`} backgroundStyled={application.mode.primary} colorStyled={`${application.theme.primary}`}>
-          
-          <Button onClick={() => this.toggleList('close')} className="userMenuButton smBtn border-1 clickable p-10px m-10px" transitionStyled={`${settings.appTransition}`} backgroundStyled={`${application.transparent}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} paddingStyled={`${settings.appPadding}`} radiusStyled={`${settings.appRadius}`}>
+  
+          <Dropdown className={' z-1500 visible min-w-20-sidebars h-100-sidebars top-0 right-0 position-absolute d-flex flex-direction-column outer-shadow-primary border-1 p-10px mt-70px'} transitionStyled={application.transitions.general} backgroundStyled={application.mode.primary} colorStyled={`${application.theme.primary}`} radiusStyled={application.settings.appRadius}>
+            {admin.staff ? staffMenu : userMenu}
+            {profileLinks}
+            {securityLink}
+            <Div className="overflow-hidden border-top-1" colorStyled={`${application.theme.primary}`}/>
+            <Link
+              to={`/${login}`}
+              onClick={(e) => {this.onLogoutClick(e); this.toggleListLink()}}
+            >
+              <Div className="p-10px text-right clickable" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`}>  
+                <FormattedMessage
+                  id="navigation.logout"
+                  defaultMessage="Logout"
+                />
+                <i className="fal fa-sign-out-alt ml-5px"></i>
+              </Div>
+            </Link>
+          </Dropdown>
+        </nav>
+      );
+      
+  
+      guestLinks = (
+        <nav>
+          <Button className="smBtn border-1" transitionStyled={`${settings.appTransition}`} backgroundStyled={`${application.transparent}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} paddingStyled={`${settings.appPadding}`} radiusStyled={`${settings.appRadius}`}>
             <div>
               <i className="fas fa-user"></i>
             </div>
           </Button>
-
-          <Link to={`/${login}`} onClick={(e) => {this.toggleListLink()}}>
-            <Div className="p-10px text-right" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`}>
-              <FormattedMessage
-                id="navigation.login"
-                defaultMessage="Login"
-              />
-              <i className="fal fa-sign-in ml-5px"></i>
-            </Div>
-          </Link>
-          <Link to={`/${register}`} onClick={(e) => {this.toggleListLink()}}>
-            <Div className="p-10px text-right" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`}>
-              <FormattedMessage
-                id="navigation.register"
-                defaultMessage="register"
-              />
-              <i className="fal fa-user-plus ml-5px"></i>
-            </Div>
-          </Link>
-          <Link to={`/${forgot}`} onClick={(e) => {this.toggleListLink()}}>
-            <Div className="p-10px text-right" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`}>
-              <FormattedMessage
-                id="navigation.forgot"
-                defaultMessage="forgot"
-              />
-              <i className="fal fa-question-square ml-5px"></i>
-            </Div>
-          </Link>
-        </Dropdown>
-
-      </nav>
-    );
+  
+          <Dropdown className={' z-1500 visible min-w-20-sidebars h-100-sidebars top-0 right-0 position-absolute d-flex flex-direction-column outer-shadow-primary border-1 p-10px mt-70px'} transitionStyled={application.transitions.general} backgroundStyled={application.mode.primary} colorStyled={`${application.theme.primary}`} radiusStyled={application.settings.appRadius}>
+            <Link to={`/${login}`} onClick={(e) => {this.toggleListLink()}}>
+              <Div className="p-10px text-right" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`}>
+                <FormattedMessage
+                  id="navigation.login"
+                  defaultMessage="Login"
+                />
+                <i className="fal fa-sign-in ml-5px"></i>
+              </Div>
+            </Link>
+            <Link to={`/${register}`} onClick={(e) => {this.toggleListLink()}}>
+              <Div className="p-10px text-right" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`}>
+                <FormattedMessage
+                  id="navigation.register"
+                  defaultMessage="register"
+                />
+                <i className="fal fa-user-plus ml-5px"></i>
+              </Div>
+            </Link>
+            <Link to={`/${forgot}`} onClick={(e) => {this.toggleListLink()}}>
+              <Div className="p-10px text-right" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`}>
+                <FormattedMessage
+                  id="navigation.forgot"
+                  defaultMessage="forgot"
+                />
+                <i className="fal fa-question-square ml-5px"></i>
+              </Div>
+            </Link>
+          </Dropdown>
+  
+        </nav>
+      );
+    } else {
+      adminLinks = (
+        <nav>
+          <Button onClick={() => this.toggleList('open')} className="smBtn border-1 clickable" transitionStyled={`${settings.appTransition}`} backgroundStyled={`${application.transparent}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} paddingStyled={`${settings.appPadding2}`} radiusStyled={`${settings.appRadius}`}>
+            {avatarImage}
+          </Button>
+  
+          <Dropdown className={(listOpen === true ? 'z-1500 visible userMenu' : 'z-neg1 invisible') + ' menus mr-neg45vw z-1005 top-0 right-0 position-absolute d-flex flex-direction-column outer-shadow-primary border-1 p-10px'} transitionStyled={settingsMenu === true ? `${application.transitions.appMenuIn}`: `${application.transitions.appMenuOut}`} backgroundStyled={application.mode.primary} colorStyled={`${application.theme.primary}`}>  
+            <Button onClick={() => this.toggleList('close')} className="userMenuButton smBtn border-1 clickable m-10px" transitionStyled={`${settings.appTransition}`} backgroundStyled={`${application.transparent}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} paddingStyled={`${settings.appPadding2}`} radiusStyled={`${settings.appRadius}`}>
+              {avatarImage}
+            </Button>
+            {admin.staff ? staffMenu : userMenu}
+            {profileLinks}
+            {securityLink}
+            <Div className="overflow-hidden border-top-1" colorStyled={`${application.theme.primary}`}/>
+            <Link
+              to={`/${login}`}
+              onClick={(e) => {this.onLogoutClick(e); this.toggleListLink()}}
+            >
+              <Div className="p-10px text-right clickable" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`}>  
+                <FormattedMessage
+                  id="navigation.logout"
+                  defaultMessage="Logout"
+                />
+                <i className="fal fa-sign-out-alt ml-5px"></i>
+              </Div>
+            </Link>
+          </Dropdown>
+        </nav>
+      );
+      
+  
+      guestLinks = (
+        <nav>
+          <Button onClick={() => this.toggleList('open')} className="smBtn border-1 clickable" transitionStyled={`${settings.appTransition}`} backgroundStyled={`${application.transparent}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} paddingStyled={`${settings.appPadding}`} radiusStyled={`${settings.appRadius}`}>
+            <div>
+              <i className="fas fa-user"></i>
+            </div>
+          </Button>
+  
+          <Dropdown className={(listOpen === true ? 'z-1500 visible userMenu' : 'z-neg1 invisible') + ' menus mr-neg45vw z-1005 top-0 right-0 position-absolute d-flex flex-direction-column outer-shadow-primary border-1 p-10px'} transitionStyled={settingsMenu === true ? `${application.transitions.appMenuIn}`: `${application.transitions.appMenuOut}`} backgroundStyled={application.mode.primary} colorStyled={`${application.theme.primary}`}>
+            
+            <Button onClick={() => this.toggleList('close')} className="userMenuButton smBtn border-1 clickable p-10px m-10px" transitionStyled={`${settings.appTransition}`} backgroundStyled={`${application.transparent}`} backgroundHoverStyled={`${application.theme.primary}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} paddingStyled={`${settings.appPadding}`} radiusStyled={`${settings.appRadius}`}>
+              <div>
+                <i className="fas fa-user"></i>
+              </div>
+            </Button>
+  
+            <Link to={`/${login}`} onClick={(e) => {this.toggleListLink()}}>
+              <Div className="p-10px text-right" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`}>
+                <FormattedMessage
+                  id="navigation.login"
+                  defaultMessage="Login"
+                />
+                <i className="fal fa-sign-in ml-5px"></i>
+              </Div>
+            </Link>
+            <Link to={`/${register}`} onClick={(e) => {this.toggleListLink()}}>
+              <Div className="p-10px text-right" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`}>
+                <FormattedMessage
+                  id="navigation.register"
+                  defaultMessage="register"
+                />
+                <i className="fal fa-user-plus ml-5px"></i>
+              </Div>
+            </Link>
+            <Link to={`/${forgot}`} onClick={(e) => {this.toggleListLink()}}>
+              <Div className="p-10px text-right" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`}>
+                <FormattedMessage
+                  id="navigation.forgot"
+                  defaultMessage="forgot"
+                />
+                <i className="fal fa-question-square ml-5px"></i>
+              </Div>
+            </Link>
+          </Dropdown>
+  
+        </nav>
+      );
+    }
 
     return(
       <div className="d-flex flex-direction-column">

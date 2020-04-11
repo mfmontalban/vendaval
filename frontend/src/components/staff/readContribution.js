@@ -221,7 +221,7 @@ class Contribution extends Component {
 
       if (contribution.user._id === admin.id) {
         editContent = 
-          <Button onClick={() => this.toggleList()} className="d-flex justify-content-center align-items-center h-40px w-40px min-w-max-content mr-25px border-radius-circle clickable" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
+          <Button onClick={() => this.toggleList()} className="d-flex justify-content-center align-items-center smBtn min-w-max-content mr-25px border-radius-circle clickable" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
             <i className="fa-2x fal fa-ellipsis-v"></i>
           </Button>
       } else {
@@ -240,7 +240,7 @@ class Contribution extends Component {
               <Div className="d-flex justify-content-space-between align-items-center p-20px" backgroundStyled={application.mode.primaryHalf}>
                 <div className="w-30 d-flex">
                   <Link className="w-40px ml-25" to={`/${winds}`}>
-                    <Div className="d-flex justify-content-center align-items-center h-40px w-40px min-w-max-content border-radius-circle" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
+                    <Div className="d-flex justify-content-center align-items-center smBtn min-w-max-content border-radius-circle" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
                       <i className='ml-neg3px clickable fa-2x fas fa-chevron-left'></i>
                     </Div>
                   </Link>
@@ -275,7 +275,7 @@ class Contribution extends Component {
               <Div className="d-flex position-relative z-1005 justify-content-space-between align-items-center p-20px" backgroundStyled={application.mode.primaryHalf}>
                 <div className="w-30 d-flex">
                   <Link className="w-40px ml-25" to={`/${staff}/${dashboard}`}>
-                    <Div className="d-flex justify-content-center align-items-center h-40px w-40px min-w-max-content border-radius-circle" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
+                    <Div className="d-flex justify-content-center align-items-center smBtn min-w-max-content border-radius-circle" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
                       <i className='ml-neg3px clickable fa-2x fas fa-chevron-left'></i>
                     </Div>
                   </Link>
@@ -286,10 +286,10 @@ class Contribution extends Component {
                   {editContent}
                   {listOpen &&
                     <Dropdown ref={this.setWrapperRef} className="clickable position-absolute mt-45px mr-5px z-1005 d-flex flex-direction-column text-right outer-shadow-primary border-1" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
-                      <Link className="noUnderline clickable" to={`/staff/contribution/edit/${contribution._id}`}>
+                      {/* <Link className="noUnderline clickable" to={`/staff/contribution/edit/${contribution._id}`}>
                         <Div
                           type="button"
-                          className="h-max-content p-10px clickable text-left top-border-radius"
+                          className="h-max-content p-10px clickable text-left "
                           transitionStyled={application.transitions.general}
                           backgroundStyled={application.mode.primary}
                           backgroundHoverStyled={application.theme.primaryQuarter}
@@ -303,7 +303,7 @@ class Contribution extends Component {
                           />
                         </Div>
                       </Link>
-                      <DropdownDivider colorStyled={application.theme.primary} />
+                      <DropdownDivider colorStyled={application.theme.primary} /> */}
                       <Link className="noUnderline clickable" to={`/staff/contribution/edit/${contribution._id}`}>
                         <Div
                           type="button"
@@ -313,6 +313,7 @@ class Contribution extends Component {
                           backgroundHoverStyled={application.theme.primaryQuarter}
                           colorStyled={application.theme.primary}
                           colorHoverStyled={application.theme.primary}
+                          radiusStyled={application.settings.appRadiusTop}
                           >
                           <i className="fas fa-pencil mr-5px clickable" />
                           <FormattedMessage

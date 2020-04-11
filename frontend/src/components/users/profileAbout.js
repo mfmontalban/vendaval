@@ -21,7 +21,7 @@ class ProfileAbout extends Component {
     ));
 
     return (
-      <div className="row max-w-750px ml-auto mr-auto">
+      <div className="form row max-w-750px ml-auto mr-auto">
         <Div className="m-10px p-10px" backgroundStyled={application.theme.primaryQuarter} radiusStyled={application.settings.appRadius}>
           <h3 className="text-center text-info mt-10px mb-10px">
             <FormattedMessage
@@ -45,8 +45,8 @@ class ProfileAbout extends Component {
           <Div className="h-0 m-pt25em0em overflow-hidden border-top-1" colorStyled={`${application.theme.primary}`}/>
           <h3 className="text-center text-info mt-10px mb-10px">
             <FormattedMessage
-              id="profile.talentsTitle"
-              defaultMessage="Talents"
+              id="profile.interestsTitle"
+              defaultMessage="Interests"
             />
           </h3>
           <div className="row">

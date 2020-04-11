@@ -8,65 +8,12 @@ import { deleteContribution } from '../../actions/staffActions';
 import {FormattedMessage, FormattedDate, FormattedTime} from 'react-intl';
 
 import Div from '../application/common/styled/div';
-import Button from '../application/common/styled/button';
-import Dropdown from '../application/common/styled/dropdown';
-import DropdownDivider from '../application/common/styled/dropdownDivider';
 
 import ReviewerDropDown from './reviewerDropdown';
 import LiveDropDown from './liveDropdown';
 
 class ContributionItem extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      listOpen: false,
-      listOpen2: false,
-      outsideClicked: false,
-    }
-  }
-
-  setWrapperRef = (node) => {
-    this.wrapperRef = node;
-  }
-
-  componentWillMount() {
-    document.addEventListener('mousedown', this.handleClickOutside);
-  }
-  
-  componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClickOutside);
-  }
-
-  handleClickOutside = (event) => {
-    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-      this.setState({
-        listOpen: false,
-      })
-      setTimeout(() => {
-        this.setState({ outsideClicked: false });
-      }, 250);
-    }
-  }
-
-  toggleList(){
-    if (this.state.outsideClicked === false) {
-      this.setState(prevState => ({
-        listOpen: !prevState.listOpen,
-        outsideClicked: true,
-      }))
-    }
-  }
-
-  onDeleteClick(id) {
-    // this.props.deleteContribution(id);
-  }
-
-  onDeleteSubmitClick(id) {
-    this.props.deleteContribution(id);
-  }
-
   render() {
-    const { listOpen } = this.state;
     const { application, contribution, admin } = this.props;
 
     let community;
@@ -87,20 +34,6 @@ class ContributionItem extends Component {
       view = 'View';
       edit = 'Edit';
       deleteLink = 'Delete';
-    }
-
-    if (contribution.reviewer !== undefined || "" || null) {
-      reviewer = (
-        <Div className="p-5px ml-auto mr-auto" transitionStyled={application.transitions.general} colorStyled={application.theme.primary}>
-          {contribution.reviewer}
-        </Div>
-      )
-    } else {
-      reviewer = (
-        <Div className="p-5px ml-auto mr-auto" transitionStyled={application.transitions.general} colorStyled={application.theme.primary}>
-          Unassigned
-        </Div>
-      )
     }
 
     if (admin.staff === "staff") {

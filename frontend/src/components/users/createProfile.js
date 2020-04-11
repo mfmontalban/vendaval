@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 
 import { addTempPhoto, createProfile } from '../../actions/usersActions';
 import Resizer from 'react-image-file-resizer';
+import { FormattedMessage } from 'react-intl';
 
 import BackArrow from '../application/common/backArrow';
 import InputGroup from '../application/common/inputGroup';
@@ -173,173 +174,230 @@ class CreateProfile extends Component {
     if (displayCreateProfile) {
       createForm = (
         <div>
-          <Div 
-          onClick={() => {
-            this.setState(prevState => ({
-              displayCreateProfile: !prevState.displayCreateProfile
-            }));
-          }}
-          className="m-10px w-40px" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primaryHalf}`} colorHoverStyled={`${application.theme.primary}`}>
-            <BackArrow />
-          </Div>
-          <div className="w-80pc ml-auto mr-auto">
-            <H1 className="text-center" fontSizeStyled={application.text.heading}>Crea tu Cuenta</H1>
-            <H2 className="text-center mb-10px" fontSizeStyled={application.text.description}>
-              Anida informacion a tu cuenta publica
-            </H2>
-            <form className="d-flex flex-direction-column text-center" onSubmit={this.onSubmit}>
-              <Div className="d-flex flex-direction-column border-1 mb-10px" 
-                backgroundStyled={errors.picture ? `${application.theme.primary}`: `${application.transparent}`}
-                colorStyled={errors.picture ? `${application.mode.primary}`: `${application.theme.primary}`}
-                borderStyled={application.theme.primary}
-                radiusStyled={application.settings.appRadius}
+            <Div 
+              className="d-flex flex-direction-row m-0 p-10px pt-20px text-center border-bottom-1 outer-shadow-primary font-weight-normal"
+              backgroundStyled={application.theme.primaryQuarter}
+            >
+              <Div 
+              onClick={() => {
+                this.setState(prevState => ({
+                  displayCreateProfile: !prevState.displayCreateProfile
+                }));
+              }}
+              className="m-10px w-40px" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primaryHalf}`} colorHoverStyled={`${application.theme.primary}`}>
+                <BackArrow />
+              </Div>
+              <H1
+                className="w-80 ml-auto mr-auto"
+                fontSizeStyled={application.text.heading}
               >
-                {avatarImage}
-                <div className="d-flex justify-content-center">
-                  <Input
-                    type="file"
-                    name="picture"
-                    aria-label="Field for Profile Picture"
-                    className="text-center box-shadow-none w-80px pl-10px pr-10px pt-5px pb-5px mb-10px"
-                    fontSizeStyled={application.text.primary}
-                    onChange={this.fileSelected}
-                  />
-                </div>
-              </Div>
-              <Input
-                type="text"
-                name="handle"
-                placeholder="* Profile Handle"
-                aria-label="Required Field for Profile Handle"
-                className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px mb-10px"
-                backgroundStyled={errors.handle ? `${application.theme.primary}`: `${application.transparent}`}
-                colorStyled={errors.handle ? `${application.mode.primary}`: `${application.theme.primary}`}
-                placeholderStyled={errors.handle ? `${application.mode.primary}`: `${application.theme.primary}`}
-                fontSizeStyled={application.text.primary}
-                borderStyled={application.theme.primary}
-                radiusStyled={application.settings.appRadius}
-                value={this.state.handle}
-                onChange={this.onChange}
-              />
-              <Input
-                type="text"
-                name="website"
-                placeholder="Website"
-                aria-label="Field for Website"
-                className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px mb-10px"
-                backgroundStyled={errors.website ? `${application.theme.primary}`: `${application.transparent}`}
-                colorStyled={errors.website ? `${application.mode.primary}`: `${application.theme.primary}`}
-                placeholderStyled={errors.website ? `${application.mode.primary}`: `${application.theme.primary}`}
-                fontSizeStyled={application.text.primary}
-                borderStyled={application.theme.primary}
-                radiusStyled={application.settings.appRadius}
-                value={this.state.website}
-                onChange={this.onChange}
-              />
-              <Input
-                type="text"
-                name="location"
-                placeholder="City, State"
-                aria-label="Field for City, State"
-                className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px mb-10px"
-                backgroundStyled={errors.location ? `${application.theme.primary}`: `${application.transparent}`}
-                colorStyled={errors.location ? `${application.mode.primary}`: `${application.theme.primary}`}
-                placeholderStyled={errors.location ? `${application.mode.primary}`: `${application.theme.primary}`}
-                fontSizeStyled={application.text.primary}
-                borderStyled={application.theme.primary}
-                radiusStyled={application.settings.appRadius}
-                value={this.state.location}
-                onChange={this.onChange}
-              />
-              <Input
-                type="text"
-                name="skills"
-                placeholder="* Skills"
-                aria-label="Required Field for Skills"
-                className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px"
-                backgroundStyled={errors.skills ? `${application.theme.primary}`: `${application.transparent}`}
-                colorStyled={errors.skills ? `${application.mode.primary}`: `${application.theme.primary}`}
-                placeholderStyled={errors.skills ? `${application.mode.primary}`: `${application.theme.primary}`}
-                fontSizeStyled={application.text.primary}
-                borderStyled={application.theme.primary}
-                radiusStyled={application.settings.appRadius}
-                value={this.state.skills}
-                onChange={this.onChange}
-              />
-              <Div className="mb-10px" colorStyled={application.theme.primary} fontSizeStyled={application.text.info}>
-                Separate individual skills with a comma
-              </Div>
-              <InputArea
-                type="text"
-                name="bio"
-                placeholder="About you"
-                aria-label="Field for your public bio"
-                className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px mb-10px"
-                backgroundStyled={errors.bio ? `${application.theme.primary}`: `${application.transparent}`}
-                colorStyled={errors.bio ? `${application.mode.primary}`: `${application.theme.primary}`}
-                placeholderStyled={errors.bio ? `${application.mode.primary}`: `${application.theme.primary}`}
-                fontSizeStyled={application.text.primary}
-                borderStyled={application.theme.primary}
-                radiusStyled={application.settings.appRadius}
-                value={this.state.bio}
-                onChange={this.onChange}
-              />
-
-              <div className="mb-10px">
-                <Button
-                  type="button"
-                  onClick={() => {
-                    this.setState(prevState => ({
-                      displaySocialInputs: !prevState.displaySocialInputs
-                    }));
-                  }}
-                  className="clickable p-10px border-1"
-                  transitionStyled={application.transitions.general}
-                  backgroundStyled={application.mode.primary}
-                  backgroundHoverStyled={application.theme.primary}
-                  colorStyled={application.theme.primary}
-                  colorHoverStyled={application.mode.primary}
+                <FormattedMessage
+                  id="profile.createHeader"
+                  defaultMessage="Create your Profile"
+                />
+              </H1>
+            </Div>
+            <div className="w-80 ml-auto mr-auto">
+              <H2 
+                className="p-10px text-center font-weight-normal"
+                fontSizeStyled={application.text.description}
+              >
+                <FormattedMessage
+                  id="profile.createDescription"
+                  defaultMessage="Add information to your public profile"
+                />
+              </H2>
+              
+              <form className="d-flex flex-direction-column text-center" onSubmit={this.onSubmit}>
+                <Div className="d-flex flex-direction-column border-1 mb-10px" 
+                  backgroundStyled={errors.picture ? `${application.theme.primary}`: `${application.transparent}`}
+                  colorStyled={errors.picture ? `${application.mode.primary}`: `${application.theme.primary}`}
                   borderStyled={application.theme.primary}
                   radiusStyled={application.settings.appRadius}
                 >
-                  Add Social Network Links
-                </Button>
-              </div>
-              {socialInputs}
-              <Input
-                type="submit"
-                value="Submit"
-                className="clickable mt-10px mb-20px webkit-appearance-none"
-                transitionStyled={application.transitions.general}
-                backgroundStyled={application.theme.primaryThree}
-                backgroundHoverStyled={application.theme.primary}
-                colorStyled={application.mode.primary}
-                fontSizeStyled={application.text.heading}
-                borderStyled={application.mode.primary}
-                radiusStyled={application.settings.appRadius}
-              />
-            </form>
+                  {avatarImage}
+                  <div className="d-flex justify-content-center">
+                    <Input
+                      type="file"
+                      name="picture"
+                      aria-label="Field for Profile Picture"
+                      className="text-center box-shadow-none w-80px pl-10px pr-10px pt-5px pb-5px mb-10px"
+                      fontSizeStyled={application.text.primary}
+                      onChange={this.fileSelected}
+                    />
+                  </div>
+                </Div>
+                <Input
+                  type="text"
+                  name="handle"
+                  placeholder="* Profile Handle"
+                  aria-label="Required Field for Profile Handle"
+                  className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px mb-10px"
+                  backgroundStyled={errors.handle ? `${application.theme.primary}`: `${application.transparent}`}
+                  colorStyled={errors.handle ? `${application.mode.primary}`: `${application.theme.primary}`}
+                  placeholderStyled={errors.handle ? `${application.mode.primary}`: `${application.theme.primary}`}
+                  fontSizeStyled={application.text.primary}
+                  borderStyled={application.theme.primary}
+                  radiusStyled={application.settings.appRadius}
+                  value={this.state.handle}
+                  onChange={this.onChange}
+                />
+                <Input
+                  type="text"
+                  name="website"
+                  placeholder="Website"
+                  aria-label="Field for Website"
+                  className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px mb-10px"
+                  backgroundStyled={errors.website ? `${application.theme.primary}`: `${application.transparent}`}
+                  colorStyled={errors.website ? `${application.mode.primary}`: `${application.theme.primary}`}
+                  placeholderStyled={errors.website ? `${application.mode.primary}`: `${application.theme.primary}`}
+                  fontSizeStyled={application.text.primary}
+                  borderStyled={application.theme.primary}
+                  radiusStyled={application.settings.appRadius}
+                  value={this.state.website}
+                  onChange={this.onChange}
+                />
+                <Input
+                  type="text"
+                  name="location"
+                  placeholder="City, State"
+                  aria-label="Field for City, State"
+                  className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px mb-10px"
+                  backgroundStyled={errors.location ? `${application.theme.primary}`: `${application.transparent}`}
+                  colorStyled={errors.location ? `${application.mode.primary}`: `${application.theme.primary}`}
+                  placeholderStyled={errors.location ? `${application.mode.primary}`: `${application.theme.primary}`}
+                  fontSizeStyled={application.text.primary}
+                  borderStyled={application.theme.primary}
+                  radiusStyled={application.settings.appRadius}
+                  value={this.state.location}
+                  onChange={this.onChange}
+                />
+                <Input
+                  type="text"
+                  name="skills"
+                  placeholder="* Skills"
+                  aria-label="Required Field for Skills"
+                  className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px"
+                  backgroundStyled={errors.skills ? `${application.theme.primary}`: `${application.transparent}`}
+                  colorStyled={errors.skills ? `${application.mode.primary}`: `${application.theme.primary}`}
+                  placeholderStyled={errors.skills ? `${application.mode.primary}`: `${application.theme.primary}`}
+                  fontSizeStyled={application.text.primary}
+                  borderStyled={application.theme.primary}
+                  radiusStyled={application.settings.appRadius}
+                  value={this.state.skills}
+                  onChange={this.onChange}
+                />
+                <Div className="mb-10px" colorStyled={application.theme.primary} fontSizeStyled={application.text.info}>
+                  Separate individual skills with a comma
+                </Div>
+                <InputArea
+                  type="text"
+                  name="bio"
+                  placeholder="About you"
+                  aria-label="Field for your public bio"
+                  className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px mb-10px"
+                  backgroundStyled={errors.bio ? `${application.theme.primary}`: `${application.transparent}`}
+                  colorStyled={errors.bio ? `${application.mode.primary}`: `${application.theme.primary}`}
+                  placeholderStyled={errors.bio ? `${application.mode.primary}`: `${application.theme.primary}`}
+                  fontSizeStyled={application.text.primary}
+                  borderStyled={application.theme.primary}
+                  radiusStyled={application.settings.appRadius}
+                  value={this.state.bio}
+                  onChange={this.onChange}
+                />
+
+                <div className="mb-10px">
+                  <Button
+                    type="button"
+                    onClick={() => {
+                      this.setState(prevState => ({
+                        displaySocialInputs: !prevState.displaySocialInputs
+                      }));
+                    }}
+                    className="clickable p-10px border-1"
+                    transitionStyled={application.transitions.general}
+                    backgroundStyled={application.mode.primary}
+                    backgroundHoverStyled={application.theme.primary}
+                    colorStyled={application.theme.primary}
+                    colorHoverStyled={application.mode.primary}
+                    borderStyled={application.theme.primary}
+                    radiusStyled={application.settings.appRadius}
+                  >
+                    Add Social Network Links
+                  </Button>
+                </div>
+                {socialInputs}
+                <Input
+                  type="submit"
+                  value="Submit"
+                  className="clickable mt-10px mb-20px webkit-appearance-none"
+                  transitionStyled={application.transitions.general}
+                  backgroundStyled={application.theme.primaryThree}
+                  backgroundHoverStyled={application.theme.primary}
+                  colorStyled={application.mode.primary}
+                  fontSizeStyled={application.text.heading}
+                  borderStyled={application.mode.primary}
+                  radiusStyled={application.settings.appRadius}
+                />
+              </form>
           </div>
         </div>
       );
     } else {
       createWelcome = (
-        <div>
-          <p className="lead text-muted">Welcome { admin.name }</p>
-          <p>Please click the link below to create your profile.</p>
-          <Div
-          onClick={() => {
-            this.setState(prevState => ({
-              displayCreateProfile: !prevState.displayCreateProfile
-            }));
-          }}
-          transitionStyled={`${application.transitions.general}`}
-          backgroundStyled={`${application.theme.primaryThree}`}
-          backgroundHoverStyled={`${application.theme.primary}`}
-          colorStyled={`${application.mode.primary}`}
-          radiusStyled={`${application.settings.appRadius}`}
-          paddingStyled={`${application.settings.appPadding}`}
-          className="w-60px text-center clickable">Create</Div>
+        <div className="d-flex flex-direction-column justify-content-center">
+          <H1 
+            className="m-0 p-10px pt-20px text-center border-bottom-1 outer-shadow-primary font-weight-normal"
+            backgroundStyled={application.theme.primaryQuarter}
+            fontSizeStyled={application.text.heading}
+          >
+            <FormattedMessage
+              id="navigation.profile"
+              defaultMessage="Profile"
+            />
+          </H1>
+          <H2 
+            className="p-10px text-center font-weight-normal"
+            fontSizeStyled={application.text.description}
+          >
+            <FormattedMessage
+              id="profile.Secondary"
+              defaultMessage="Connect with Vendaval"
+            />
+          </H2>
+          <div className="w-max-content ml-auto mr-auto">
+            <div className="d-flex flex-direction-row align-items-center">
+              <p className="">
+                <FormattedMessage
+                  id="profile.Description1"
+                  defaultMessage="Welcome"
+                />
+              </p>
+              <p className="ml-5px">{admin.name}</p>
+              
+              <div>
+                ,
+              </div>
+
+            </div>
+            <FormattedMessage
+              id="profile.Description2"
+              defaultMessage="Please complete the form to create your profile"
+            />
+            <Div
+            onClick={() => {
+              this.setState(prevState => ({
+                displayCreateProfile: !prevState.displayCreateProfile
+              }));
+            }}
+            transitionStyled={`${application.transitions.general}`}
+            backgroundStyled={`${application.theme.primaryThree}`}
+            backgroundHoverStyled={`${application.theme.primary}`}
+            colorStyled={`${application.mode.primary}`}
+            radiusStyled={`${application.settings.appRadius}`}
+            paddingStyled={`${application.settings.appPadding}`}
+            className="w-60px text-center clickable mt-10px">Create</Div>
+          </div>
         </div>
       ); 
     }

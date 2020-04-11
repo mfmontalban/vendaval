@@ -38,7 +38,7 @@ class ProfileHeader extends Component {
     if (profile.avatar) {
       profilePicture =
       <img
-        className="outer-shadow-double border-radius-circle h-200px w-200px object-fit-cover"
+        className="outer-shadow-primary border-radius-circle h-200px w-200px object-fit-cover"
         src={`/api/users/files/${profile.avatarLg}`}
         alt="Profile Picture"
       />
@@ -52,11 +52,12 @@ class ProfileHeader extends Component {
         <Div className="ml-10px mr-10px">
           <div className="card card-body bg-info text-white mb-3">
             {editContent}
-            <div className="d-flex flex-direction-column justify-content-center ml-auto mr-auto">
+            <div className="form d-flex flex-direction-column justify-content-center ml-auto mr-auto">
               <Div className="z-900 d-flex justify-content-center overflow-hidden p-10px">
                 {profilePicture}
               </Div>
               <h1 className="text-center mt-10px mb-0px">{profile.user.name}</h1>
+              {isEmpty(profile.handle) ? null : <Div className="text-center  m-0" fontSizeStyled={application.text.description}>{profile.handle}</Div>}
               {isEmpty(profile.location) ? null : <p className="text-center m-0">{profile.location}</p>}
               <div className="d-flex flex-direction-row justify-content-center m-0">
                 {isEmpty(profile.website) ? null : (

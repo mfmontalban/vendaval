@@ -8,7 +8,7 @@ import { updateStatus } from '../../actions/staffActions';
 import {FormattedMessage} from 'react-intl';
 
 import Button from '../application/common/styled/button'
-import Dropdown from '../application/common/styled/dropdown'
+import Dropdown from '../application/common/dropdown'
 
 class LiveDropDown extends Component {
   constructor(props){
@@ -17,10 +17,6 @@ class LiveDropDown extends Component {
       outsideClicked: false,
       listOpen: false,
     }
-  }
-  
-  setWrapperRef = (node) => {
-    this.wrapperRef = node;
   }
 
   componentDidMount = () => {
@@ -143,7 +139,7 @@ class LiveDropDown extends Component {
 
     if (admin.staff == "reviewer" || admin.staff == "manager" || admin.staff == "webmaster") {
       statusSection = (
-        <Button onClick={() => this.toggleList()} className="max-w-content p-10px border-1" transitionStyled={application.transitions.general} backgroundStyled={application.transparent} colorStyled={application.theme.primary} backgroundHoverStyled={application.theme.primary} colorHoverStyled={application.mode.primary} radiusStyled={`${application.settings.appRadius}`}>
+        <Button onClick={() => this.toggleList()} className="max-w-content" transitionStyled={application.transitions.general} backgroundStyled={application.transparent} colorStyled={application.theme.primary} colorHoverStyled={application.mode.primary}>
           {currentState}
         </Button>
         )
@@ -155,16 +151,16 @@ class LiveDropDown extends Component {
 
 
     return(
-      <div className="min-w-25-app d-flex position-relative p-10px justify-content-center">
-        {statusSection}
-        {listOpen && 
-          <Dropdown ref={this.setWrapperRef} className="mt-40px position-absolute z-1005 d-flex flex-direction-column text-left outer-shadow-primary border-1" transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} borderStyled={`${application.theme.primary}`} radiusStyled={`${application.settings.appRadius}`}>
-            <Button transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} onClick={(e) => {this.props.updateStatus(contribution._id, {'status': 'Draft', 'staff': admin.staff}); this.toggleList();}} className="p-10px top-border-radius text-left" type="button">{draft}</Button>
-            <Button transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} onClick={(e) => {this.props.updateStatus(contribution._id, {'status': 'Live', 'staff': admin.staff}); this.toggleList();}} className="p-10px bottom-border-radius text-left" type="button">{live}</Button>
-          </Dropdown>
-        }
+      <div className="min-w-25-app d-flex position-relative justify-content-center align-items-center p-10px">
+        <Dropdown
+          alignEdge="right"
+          phrase={currentState}
+        >
+          <Button transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} radiusStyled={application.settings.appRadiusTop} onClick={(e) => {this.props.updateStatus(contribution._id, {'status': 'Draft', 'staff': admin.staff}); this.toggleList();}} className="p-10px text-left" type="button">{draft}</Button>
+          <Button transitionStyled={`${application.transitions.general}`} backgroundStyled={`${application.mode.primary}`} colorStyled={`${application.theme.primary}`} backgroundHoverStyled={`${application.theme.primaryQuarter}`} radiusStyled={application.settings.appRadiusBottom} onClick={(e) => {this.props.updateStatus(contribution._id, {'status': 'Live', 'staff': admin.staff}); this.toggleList();}} className="p-10px text-left" type="button">{live}</Button>
+        </Dropdown>
       </div>
-    )
+    ) 
   }
 }
 

@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 import Div from './styled/div'
 import Button from './styled/button'
 
-const MyContext = React.createContext(); 
-
 class Dropdown extends Component {
   constructor(props){
     super(props)
@@ -35,7 +33,7 @@ class Dropdown extends Component {
     }
   }
 
-  toggleList(){
+  toggleList = () => {
     this.setState(prevState => ({
       listOpen: !prevState.listOpen
     }))
@@ -56,6 +54,10 @@ class Dropdown extends Component {
     } else {
       fontIcon = ''
     }
+
+    const children = React.Children.map(this.props.children, child =>
+      React.cloneElement(child, { toggleList: this.toggleList })
+    );
 
     return(
       <div ref={this.setWrapperRef}
@@ -81,9 +83,7 @@ class Dropdown extends Component {
             radiusStyled={application.settings.appRadius}
             borderStyled={`${application.theme.primary}`}
           >
-            <MyContext.Provider value={{ toggleList: this.toggleList() }}>
-              {this.props.children}
-            </MyContext.Provider>
+            {children}
           </Div>
         }
       </div>

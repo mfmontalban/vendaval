@@ -118,19 +118,26 @@ export default {
         'forgot.Main': `Forgot`,
         'forgot.Secondary': `Enter your email below to reset your password`,
 
+        'profile.Secondary': `Connect with Vendaval`,
+        'profile.Description1': `Welcome`,
+        'profile.Description2': `Please complete the form to create your profile.`,
+        
+        'profile.createHeader': `Create your Profile`,
+        'profile.createDescription': `Add information to your public profile`,
+
         'profile.aboutTitle' : `About`,
         'profile.editProfileTitle' : `Edit Profile`,
         'profile.editProfileDescription' : `Update your account information`,
-        'profile.editProfileTalentsNotice' : `Separate individual skills with a comma`,
+        'profile.editProfileTalentsNotice' : `Separate individual interests with a comma`,
         'profile.editProfileOpenSocialMedia' : `Add social network links`,
         'profile.editProfileCloseSocialMedia': `Close social network links`,
-        'profile.talentsTitle' : `Talents`,
+        'profile.interestsTitle' : `Interests`,
         'profile.emptyBio' : ` does not have a bio`,
         
         'register.Main': `Sign Up`,
         'register.Secondary': `Create your Vendaval account`,
         'register.forgotLink': `Didn't get your code? <br /> Follow this link to resend it`,
-
+        
         'staff.header': `Contributions`,
         'staff.reviewer': `Reviewer`,
         'staff.author': `Author`,
@@ -278,14 +285,21 @@ export default {
 
         'forgot.Main': `Olvidio`,
         'forgot.Secondary': `Entra su email abajo para restablecer su contraseña`,
+        
+        'profile.Secondary': `Connecta con Vendaval`,
+        'profile.Description1': `Bienvenido`,
+        'profile.Description2': `Por favor complete el formulario para crear un perfil.`,
+        
+        'profile.createHeader': `Crea su perfil`,
+        'profile.createDescription': `Anida información a su perfil publico`,
 
         'profile.aboutTitle' : `Desde`,
         'profile.editProfileTitle' : `Editar Perfil`,
         'profile.editProfileDescription' : `Actualiza la informacion en tu cuenta publica`,
-        'profile.editProfileTalentsNotice' : `Separa talentos individuales con una coma`,
+        'profile.editProfileTalentsNotice' : `Separa intereses individuales con una coma`,
         'profile.editProfileOpenSocialMedia' : `Agregar redes sociales`,
         'profile.editProfileCloseSocialMedia': `Cerra redes sociales`,
-        'profile.talentsTitle' : `Talentos`,
+        'profile.interestsTitle' : `Intereses`,
         'profile.emptyBio' : ` no tiene un bio`,
 
         'register.Main': `Registrarse`,

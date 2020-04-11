@@ -110,7 +110,7 @@ class SearchWinds extends Component {
     }
 
     return(
-      <Div className="d-flex outer-shadow-primary border-1 mb-10px w-100-searchContainer" heightStyled={`${application.settings.heightUserNav}`} colorStyled={`${application.theme.primary}`} backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadius}`}>
+      <Div className="d-flex border-1 mb-10px w-100-searchContainer" heightStyled={`${application.settings.heightUserNav}`} colorStyled={`${application.theme.primary}`} backgroundStyled={`${application.mode.primary}`} radiusStyled={`${application.settings.appRadius}`}>
         <div className="w-100-search mt-5px ml-5px">
           <Input
             type="text"

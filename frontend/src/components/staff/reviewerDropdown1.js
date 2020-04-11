@@ -10,14 +10,19 @@ import { updateReviewer } from '../../actions/staffActions';
 
 import Div from '../application/common/styled/div'
 import Button from '../application/common/styled/button'
-import Dropdown from '../application/common/dropdown'
+import Dropdown from '../application/common/styled/dropdown'
 
 class ReviewerDropDown extends Component {
   constructor(props){
     super(props)
     this.state = {
-      currentState: '',
+      outsideClicked: false,
+      listOpen: false,
     }
+  }
+  
+  setWrapperRef = (node) => {
+    this.wrapperRef = node;
   }
 
   componentDidMount = () => {
@@ -108,6 +113,18 @@ class ReviewerDropDown extends Component {
     let reviewersList;
     let reviewerContainer;
 
+    if (admin.staff == "manager" || admin.staff == "webmaster") {
+      statusSection = (
+        <Button onClick={() => this.toggleList()} className="max-w-content p-10px d-flex justify-content-center overflow-hidden border-1" transitionStyled={application.transitions.general} backgroundStyled={application.transparent} colorStyled={application.theme.primary} backgroundHoverStyled={application.theme.primary} colorHoverStyled={application.mode.primary} radiusStyled={`${application.settings.appRadius}`}>
+          {currentState}
+        </Button>
+        )
+    } else {
+      statusSection = (
+        `${currentState}`
+      )
+    }
+
     if (allReviewers.length > 0) {
       reviewersList = allReviewers.sort((viento1, viento2) => {
         return viento1.name.toLowerCase() > viento2.name.toLowerCase() ? 1 : 0;
@@ -121,7 +138,6 @@ class ReviewerDropDown extends Component {
               colorStyled={application.theme.primary}
               colorHoverStyled={application.theme.primary}
               backgroundHoverStyled={`${application.theme.primaryQuarter}`} 
-              radiusStyled={application.settings.appRadiusTop}
               onClick={(e) => {this.props.updateReviewer(contribution._id, {'reviewer': `${reviewer._id}`, 'staff': `${admin.staff}`}); this.toggleList();}} 
               className="p-10px z-1005 position-relative w-100 max-w-175px text-overflow-ellipsis text-center top-border-radius" 
               type="button">
@@ -137,7 +153,6 @@ class ReviewerDropDown extends Component {
               colorStyled={application.theme.primary}
               colorHoverStyled={application.theme.primary}
               backgroundHoverStyled={`${application.theme.primaryQuarter}`} 
-              radiusStyled={application.settings.appRadiusBottom}
               onClick={(e) => {this.props.updateReviewer(contribution._id, {'reviewer': `${reviewer._id}`, 'staff': `${admin.staff}`}); this.toggleList();}} 
               className="p-10px z-1005 position-relative w-100 max-w-175px text-overflow-ellipsis text-center bottom-border-radius" 
               type="button">
@@ -176,24 +191,24 @@ class ReviewerDropDown extends Component {
       )
     }
 
-    if (admin.staff == "manager" || admin.staff == "webmaster") {
-      statusSection = (
-        <Dropdown
-          alignEdge="left"
-          phrase={currentState}
-        >
-          {reviewersList}          
-        </Dropdown>
-        )
-    } else {
-      statusSection = (
-        `${currentState}`
-      )
-    }
-
     return(
       <div className="min-w-25-app d-flex position-relative justify-content-center align-items-center p-10px">
         {statusSection}
+        {listOpen &&
+          <Dropdown
+            ref={this.setWrapperRef}
+            className="Clickable position-absolute max-h-100 mt-100px z-1005 d-flex flex-direction-column text-left"
+            >
+              <Div
+                className="border-1 outer-shadow-primary"
+                backgroundStyled={`${application.mode.primary}`}
+                borderStyled={`${application.theme.primary}`}
+                radiusStyled={`${application.settings.appRadius}`}
+                >
+                {reviewersList}
+              </Div>
+          </Dropdown>
+        }
       </div>
     )
   }
