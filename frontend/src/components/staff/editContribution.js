@@ -10,7 +10,7 @@ import { FormattedMessage } from 'react-intl';
 import Spinner from '../application/common/spinner.js'
 import isEmpty from '../../reducers/validation/is-empty';
 import TextFieldGroup from '../application/common/textFieldGroup';
-// import SelectListGroup from '../application/common/selectListGroup';
+import SelectListGroup from '../application/common/selectListGroup';
 import TextAreaFieldGroup from '../application/common/textAreaFieldGroup';
 import Quill from '../application/common/quillEdit';
 import Div from '../application/common/styled/div';
@@ -41,36 +41,10 @@ class Contribution extends Component {
     };
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if(this.props.application.alerts.errors!==prevProps.application.alerts.errors){
+  componentWillUpdate(prevProps, prevState) {
+    if(this.props.application.alerts.errors!=prevProps.application.alerts.errors){
       //Perform some operation here
       this.setState({errors: this.props.application.alerts.errors});
-    }
-
-    if (this.props.staff.contribution!==prevProps.staff.contribution) {
-      const contribution = this.props.staff.contribution;
-
-      console.log(contribution);
-
-      // If profile field doesnt exist, make empty string
-      contribution.type = !isEmpty(contribution.type) ? contribution.type : '';
-      contribution.topic = !isEmpty(contribution.topic) ? contribution.topic : '';
-      contribution.title = !isEmpty(contribution.title) ? contribution.title : '';
-      contribution.description = !isEmpty(contribution.description) ? contribution.description : '';
-      contribution.content = !isEmpty(contribution.content) ? contribution.content : '';
-      contribution.lat = !isEmpty(contribution.lat) ? contribution.lat : '';
-      contribution.lon = !isEmpty(contribution.lon) ? contribution.lon : '';
-
-      // Set component fields state
-      this.setState({
-        type: contribution.type,
-        topic: contribution.topic,
-        title: contribution.title,
-        description: contribution.description,
-        content: contribution.content,
-        lat: contribution.lat,
-        lon: contribution.lon,
-      });
     }
   }
 
@@ -83,6 +57,31 @@ class Contribution extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (this.props.admin.id != prevProps.admin.id) {
       this.props.getContributionByID(this.props.match.params.id, this.props.admin.id);
+    }
+    if (this.props.staff.contribution!=prevProps.staff.contribution) {
+      let { contribution } = this.props.staff;
+      
+      if (contribution != null) {
+        // If profile field doesnt exist, make empty string
+        contribution.type = !isEmpty(contribution.type) ? contribution.type : '';
+        contribution.topic = !isEmpty(contribution.topic) ? contribution.topic : '';
+        contribution.title = !isEmpty(contribution.title) ? contribution.title : '';
+        contribution.description = !isEmpty(contribution.description) ? contribution.description : '';
+        contribution.content = !isEmpty(contribution.content) ? contribution.content : '';
+        contribution.lat = !isEmpty(contribution.lat) ? contribution.lat : '';
+        contribution.lon = !isEmpty(contribution.lon) ? contribution.lon : '';
+  
+        // Set component fields state
+        this.setState({
+          type: contribution.type,
+          topic: contribution.topic,
+          title: contribution.title,
+          description: contribution.description,
+          content: contribution.content,
+          lat: contribution.lat,
+          lon: contribution.lon,
+        });
+      }
     }
   }
 
@@ -236,28 +235,28 @@ class Contribution extends Component {
 
     let staff;
     let dashboard;
-    let title;
-    let shortDescription;
-    let placeSubmit
-    let lat;
-    let lon;
+    let titlePlace;
+    let shortDescriptionPlace;
+    let placeSubmitPlace;
+    let latPlace;
+    let lonPlace;
 
     if (application.language === 'es') {
       staff = "personal";
       dashboard = "tablero";
-      title = "Titulo";
-      shortDescription = "Corto descripción"
-      placeSubmit = "Enviar"
-      lat = "Latitud"
-      lon = "Longitud"
+      titlePlace = "Titulo";
+      shortDescriptionPlace = "Corto descripción"
+      placeSubmitPlace = "Enviar"
+      latPlace = "Latitud"
+      lonPlace = "Longitud"
     } else {
       staff = "staff";
       dashboard = "dashboard";
-      title = "Title";
-      shortDescription = "Short description";
-      placeSubmit = "Submit"
-      lat = "Latitude"
-      lon = "Longitude"
+      titlePlace = "Title";
+      shortDescriptionPlace = "Short description";
+      placeSubmitPlace = "Submit"
+      latPlace = "Latitude"
+      lonPlace = "Longitude"
     }
 
     // Select options for status
@@ -282,12 +281,12 @@ class Contribution extends Component {
 
     let contributionContent;
 
-    if (contribution === null || loading) {
+    if (contribution == null || loading) {
       contributionContent = <Spinner />;
     } else {
       contributionContent =
         <div className="max-w-1000px ml-auto mr-auto">
-          <Div className="d-flex justify-content-space-between align-items-center p-20px" backgroundStyled={application.mode.primaryHalf}>
+          <Div className="d-flex justify-content-space-between align-items-center p-20px" backgroundStyled={application.theme.primaryQuarter}>
             <div className="w-30 d-flex">
               <Link className="w-40px ml-25" to={`/${staff}/${dashboard}`}>
                 <Div className="d-flex justify-content-center align-items-center smBtn min-w-max-content border-radius-circle" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
@@ -302,7 +301,7 @@ class Contribution extends Component {
               </Div> */}
             </div>
             <div className="w-30 d-flex justify-content-flex-end">
-              <Button onClick={() => this.toggleList()} className="d-flex justify-content-center align-items-center smBtn min-w-max-content mr-25px border-radius-circle clickable" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
+              <Button onClick={() => this.toggleList()} className="d-flex 1-500 justify-content-center align-items-center smBtn min-w-max-content mr-25px border-radius-circle clickable" transitionStyled={`${application.transitions.general}`} colorStyled={`${application.theme.primary}`} colorHoverStyled={`${application.mode.primary}`} backgroundStyled={`${application.mode.primaryThree}`} backgroundHoverStyled={`${application.theme.primary}`}>
                 <i className="fa-2x fal fa-ellipsis-v"></i>
               </Button>
               {listOpen &&
@@ -346,23 +345,9 @@ class Contribution extends Component {
               }
             </div>
           </Div>
-          
-          <h1 className="display-6 text-center mt-3">
-            <FormattedMessage
-              id="staff.contributionTitle"
-              defaultMessage="Contribution"
-            />
-          </h1>
+        
           <form className="max-w-750px ml-auto mr-auto text-center pb-20px" onSubmit={this.onSubmit}>
             {/* <SelectListGroup
-              placeholder="Type"
-              name="type"
-              value={this.state.type}
-              onChange={this.onChange}
-              options={type}
-              error={errors.type}
-            />
-            <SelectListGroup
               placeholder="Topic"
               name="topic"
               value={this.state.topic}
@@ -370,15 +355,23 @@ class Contribution extends Component {
               options={topic}
               error={errors.topic}
             /> */}
+            <SelectListGroup
+              placeholder="Type"
+              name="type"
+              value={this.state.type}
+              onChange={this.onChange}
+              options={type}
+              error={errors.type}
+            />
             <TextFieldGroup
-              placeholder={title}
+              placeholder={titlePlace}
               name="title"
               value={this.state.title}
               onChange={this.onChange}
               error={errors.title}
             />
             <TextAreaFieldGroup
-              placeholder={shortDescription}
+              placeholder={shortDescriptionPlace}
               name="description"
               value={this.state.description}
               onChange={this.onChange}
@@ -387,32 +380,24 @@ class Contribution extends Component {
 
             <div className="input-group mb-3">
               <div className="custom-file clickable">
-                <input type="file" name="file" onChange={this.bannerAdded} className="custom-file-input clickable" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" />
-                <label className="custom-file-label clickable" htmlFor="inputGroupFile01">Choose Image</label>
+                <div className="d-flex justify-content-center">
+                  <img
+                    className="h-25vh ml-auto mr-auto pt-10px pb-10px"
+                    src={`http://localhost:5000/api/users/files/${contribution.bannerLg}`}
+                    alt="Account"
+                  />
+                </div>
+                <label type="file" name="file" onChange={this.bannerAdded} className="custom-file-label clickable" htmlFor="inputGroupFile01">
+                  
+                </label>
               </div>
             </div>
-
-            <TextFieldGroup
-              placeholder={`${lat}`}
-              name="lat"
-              value={this.state.lat}
-              onChange={this.onChange}
-              error={errors.lat}
-            />
-
-            <TextFieldGroup
-              placeholder={`${lon}`}
-              name="lon"
-              value={this.state.lon}
-              onChange={this.onChange}
-              error={errors.lon}
-            />
 
             <Quill storeQuillDelta={this.storeContent} />
 
             <Input
               type="submit"
-              value={`${placeSubmit}`}
+              value={`${placeSubmitPlace}`}
               disabled={isEnabled}
               className={`clickable mt-10px mb-10px webkit-appearance-none outer-shadow-primary border-1`}
               transitionStyled={application.transitions.general}

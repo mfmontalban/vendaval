@@ -159,8 +159,8 @@ class Landing extends Component {
           </div>
 
           <Div id="main-content" className="min-h-100" backgroundStyled={`${application.mode.primaryHover}`}>
-            <div className="text-center p-10px">
-              <h3>
+            <div className="text-center pl-10px pr-10px">
+              <h3 className="m-0 pt-20px">
                 <FormattedMessage
                   id="landing.aboutMain"
                   defaultMessage="An international collective driving change around the World."
@@ -175,7 +175,7 @@ class Landing extends Component {
               </p>
             </div>
             
-            <div className="d-flex justify-content-space-around flex-wrap text-center mt-5px pb-50px">
+            <div className="d-flex justify-content-space-around flex-wrap text-center mt-5px pb-40px">
               <div className="feature p-10px">
                 <i className="icon fal fa-eye"></i>
                 <h4>

@@ -449,6 +449,10 @@ Positioning
   .pb-20px {
     padding-bottom: 20px;
   }
+  
+  .pb-40px {
+    padding-bottom: 40px;
+  }
 
   .ml-auto {
     margin-left: auto;
