@@ -75,15 +75,15 @@ class Layout extends Component {
     const { settingsMenu } = this.state;
 
 		return (
-			<div className="layout">
+			<div className="h-100 layout">
         <Div 
           onClick={() => this.closeSettingsMenu()} 
           className={(settingsMenu === true ? 'z-1250 visible' : 'z-neg1 invisible') + ' position-fixed h-100vh w-100vw bottom-0 left-0 overlay'} 
           transitionStyled={settingsMenu === true ? `${application.transitions.settingsIn}`: `${application.transitions.settingsOut}`}
         />
-          <div className="d-flex justify-content-center">
+          <div className="d-flex">
             <Div 
-              className={(settingsMenu === true ? 'z-1500 visible modal' : 'z-neg1 invisible') + ' max-w-400px position-fixed bottom-0 outer-shadow-primary border-1'} 
+              className={(settingsMenu === true ? 'z-1500 visible modal' : 'z-neg1 invisible') + ' max-w-400px position-fixed bottom-0 outer-shadow-primary border-1 ml-auto mr-auto'} 
               transitionStyled={settingsMenu === true ? `${application.transitions.settingsIn}`: `${application.transitions.settingsOut}`} 
               activeStyled={this.state.settingsMenu} 
               heightStyled={`${application.settings.heightSettings}`} 
