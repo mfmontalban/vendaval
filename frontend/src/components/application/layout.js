@@ -81,7 +81,7 @@ class Layout extends Component {
           className={(settingsMenu === true ? 'z-1250 visible' : 'z-neg1 invisible') + ' position-fixed h-100vh w-100vw bottom-0 left-0 overlay'} 
           transitionStyled={settingsMenu === true ? `${application.transitions.settingsIn}`: `${application.transitions.settingsOut}`}
         />
-          <div className="d-flex">
+          <div className="d-flex justify-content-center">
             <Div 
               className={(settingsMenu === true ? 'z-1500 visible modal' : 'z-neg1 invisible') + ' max-w-400px position-fixed bottom-0 outer-shadow-primary border-1 ml-auto mr-auto'} 
               transitionStyled={settingsMenu === true ? `${application.transitions.settingsIn}`: `${application.transitions.settingsOut}`} 
