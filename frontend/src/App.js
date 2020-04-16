@@ -17,7 +17,7 @@ import es from 'react-intl/locale-data/es';
 
 import Director from './director';
 
-  import './App3.css';
+  import './App.css';
   import Landing from './components/application/main/landing/index';
 
   import Register from './components/admin/register';
