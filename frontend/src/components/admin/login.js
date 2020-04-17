@@ -159,7 +159,7 @@ class Login extends Component {
             name="email"
             placeholder={`${placeEmail}`}
             aria-label={`${placeEmailLabel}`}
-            className="border-1 pl-10px pr-10px pt-5px pb-5px border-bottom-0"
+            className="border-1 pl-10px pr-10px pt-5px pb-5px border-bottom-0 mb-0px"
             backgroundStyled={errors.data.email ? `${application.theme.primary}`: `${application.transparent}`}
             colorStyled={errors.data.email ? `${application.mode.primary}`: `${application.theme.primary}`}
             placeholderStyled={errors.data.email ? `${application.mode.primary}`: `${application.theme.primary}`}
@@ -175,7 +175,7 @@ class Login extends Component {
             name="password"
             placeholder={`${placePass}`}
             aria-label={`${placePassLabel}`}
-            className="border-1 pl-10px pr-10px pt-5px pb-5px mb-10px"
+            className="border-1 pl-10px pr-10px pt-5px pb-5px mt-0px mb-10px"
             backgroundStyled={errors.data.password ? `${application.theme.primary}`: `${application.transparent}`}
             colorStyled={errors.data.password ? `${application.mode.primary}`: `${application.theme.primary}`}
             placeholderStyled={errors.data.password ? `${application.mode.primary}`: `${application.theme.primary}`}
