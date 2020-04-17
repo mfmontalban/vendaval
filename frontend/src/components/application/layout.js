@@ -89,9 +89,7 @@ class Layout extends Component {
               heightStyled={`${application.settings.heightSettings}`} 
               backgroundStyled={`${application.mode.primary}`} 
               colorStyled={`${application.theme.primary}`} 
-              widthStyled={`${application.settings.widthSettings}`} 
-              marginLeftStyled={`${application.settings.marginLeftSettings}`} 
-              marginRightStyled={`${application.settings.marginRightSettings}`} 
+              widthStyled={`${application.settings.widthSettings}`}
               radiusStyled={`${application.settings.appRadius}`}
             >
               <H1
