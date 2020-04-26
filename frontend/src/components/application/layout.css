@@ -48,6 +48,10 @@
   transform: translateY(-50vh);
 }
 
+.modal3 {
+  transform: translateY(10vh);
+}
+
 .overlay {
   background:rgba(0,0,0,.5);
 }

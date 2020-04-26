@@ -34,7 +34,7 @@ router.post('/sendApplicationAlertsRegistered', (req, res) => {
         return res.status(400).json(errors);
       } else {
         errors.email = `Can't find User`;
-        return res.status(400).json(errors);
+        return res.status(400).json(errors);  
       }
     } else {
       const hash = random.generate();
@@ -174,7 +174,12 @@ router.post('/sendApplicationAlertsRegistered', (req, res) => {
 // @access  Public
 router.post('/resendApplicationAlertsRegistered', (req, res) => {
 
-  let errors = {};
+  const { errors, isValid } = validateForgotInput(req.body);
+
+  // Check Validation
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
 
   User.findOne({ email: req.body.email }).then(user => {
     if (!user) {

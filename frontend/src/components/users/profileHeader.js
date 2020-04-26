@@ -57,7 +57,6 @@ class ProfileHeader extends Component {
                 {profilePicture}
               </Div>
               <h1 className="text-center mt-10px mb-0px">{profile.user.name}</h1>
-              {isEmpty(profile.handle) ? null : <Div className="text-center  m-0" fontSizeStyled={application.text.description}>{profile.handle}</Div>}
               {isEmpty(profile.location) ? null : <p className="text-center m-0">{profile.location}</p>}
               <div className="d-flex flex-direction-row justify-content-center m-0">
                 {isEmpty(profile.website) ? null : (

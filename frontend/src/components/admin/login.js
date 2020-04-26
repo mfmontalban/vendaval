@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 import { loginAccount } from '../../actions/adminActions';
 import { FormattedMessage } from 'react-intl';
 
+import PromptBanner from '../application/common/promptBanner';
 import PromptMessage from '../application/common/promptMessage';
 
 import Div from '../application/common/styled/div';
@@ -88,46 +89,29 @@ class Login extends Component {
     }
 
     const registeredAlert = (
-      <Div 
-        className="position-absolute fixed-top m-10px p-10px outer-shadow-primary border-1" 
-        role="alert"
-        backgroundStyled={application.theme.primary}
-        colorStyled={application.mode.primary}
-        radiusStyled={application.settings.appRadius}
-        fontSizeStyled={application.text.primary}
-      >
-        Please confirm the email sent to: {application.alerts.registered} before continuing
-        <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </Div>
+      <PromptBanner
+        application={application}
+        alertTitle="alertTitle"
+        alertDefaultTitle="Alert"
+        alertMessage1="alertRegister1"
+        alertDefaultMessage1="Please confirm the email sent to: "
+        alertContent={application.alerts.registered}
+        alertMessage2="alertRegister2"
+        alertDefaultMessage2=" before continuing"
+      />
     );
 
     const forgotAlert = (
-
-      <PromptMessage
+      <PromptBanner
         application={application}
         alertTitle="alertTitle"
         alertDefaultTitle="Alert"
         alertMessage1="alertForgot1"
         alertDefaultMessage1="Please reset password using the link sent to: "
+        alertContent={application.alerts.forgot}
         alertMessage2="alertForgot2"
         alertDefaultMessage2=" before continuing"
       />
-
-      // <Div 
-      //   className="position-absolute fixed-top m-10px p-10px outer-shadow-primary border-1"
-      //   role="alert"
-      //   backgroundStyled={application.theme.primary}
-      //   colorStyled={application.mode.primary}
-      //   radiusStyled={application.settings.appRadius}
-      //   fontSizeStyled={application.text.primary}
-      // >
-      //   Please reset password using the link sent to: {application.alerts.forgot} before continuing
-      //   <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-      //     <span aria-hidden="true">&times;</span>
-      //   </button>
-      // </Div>
     );
 
     return (

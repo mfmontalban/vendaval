@@ -86,8 +86,10 @@ export default {
         'settings.close': `Close`,
 
         'modal.alertTitle': `Alert`,
-        'modal.alertForgot1': `Please reset password using the link sent to: `,
+        'modal.alertForgot1': `Please reset your password using the link sent to: `,
         'modal.alertForgot2': ` before continuing.`,
+        'modal.alertRegister1': `Please confirm your email using the registration link sent to: `,
+        'modal.alertRegister2': ` before continuing.`,
         'modal.confirmTitle': `Confirm`,
         'modal.confirmMessage': `Are you sure you would like to delete this item?`,
         'modal.delete': `Delete`,
@@ -117,6 +119,11 @@ export default {
         
         'forgot.Main': `Forgot`,
         'forgot.Secondary': `Enter your email below to reset your password`,
+        
+        'verify.Main': `Verify`,
+        'verify.SecondarySuccess': `Thanks for signing up!`,
+        'verify.SecondaryFail': `Resend your confirmation email`,
+        'verify.signUp': `Or, sign up`,
 
         'profile.Secondary': `Connect with Vendaval`,
         'profile.Description1': `Welcome`,
@@ -253,6 +260,8 @@ export default {
         'modal.alertTitle': `Alerta`,
         'modal.alertForgot1': `Por favor restablezca su contraseña utilizando el enlance enviado a: `,
         'modal.alertForgot2': ` antes de seguir.`,
+        'modal.alertRegister1': `Por favor confirma su correo electrónico utilizando el enlance enviado a: `,
+        'modal.alertRegister2': ` antes de seguir.`,
         'modal.confirmTitle': `Confirm:`,
         'modal.confirmMessage': `¿Estás seguro de que deseas eliminar este elemento?`,
         'modal.delete': `Eliminar`,
@@ -285,6 +294,11 @@ export default {
 
         'forgot.Main': `Olvidio`,
         'forgot.Secondary': `Entra su email abajo para restablecer su contraseña`,
+
+        'verify.Main': `Verificar`,
+        'verify.SecondarySuccess': `Gracias por registrarte`,
+        'verify.SecondaryFail': `Reenviar su correo electrónico de confirmación`,
+        'verify.signUp': `O, regístrate`,
         
         'profile.Secondary': `Connecta con Vendaval`,
         'profile.Description1': `Bienvenido`,

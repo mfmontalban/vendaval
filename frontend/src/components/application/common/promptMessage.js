@@ -60,7 +60,7 @@ class PromptMessage extends React.Component {
                 id={`modal.${this.props.alertMessage1}`}
                 defaultMessage={this.props.alertDefaultMessage1}
               />
-              {this.props.application.alerts.forgot}
+              {this.props.alertContent}
               <FormattedMessage
                 id={`modal.${this.props.alertMessage2}`}
                 defaultMessage={this.props.alertDefaultMessage2}

@@ -65,7 +65,7 @@ class Dropdown extends Component {
       >
         <Button 
           onClick={() => this.toggleList()} 
-          className="border-1 text-center" 
+          className="w-min-content border-1 text-center" 
           transitionStyled={application.settings.appTransition} 
           backgroundStyled={application.transparent} 
           backgroundHoverStyled={application.theme.primary} 

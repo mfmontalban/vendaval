@@ -5,7 +5,12 @@ import { Link, withRouter } from 'react-router-dom';
 
 import { verifyApplicationAlertsRegistered, resendApplicationAlertsRegistered } from '../../actions/applicationActions';
 
+import { FormattedMessage } from 'react-intl';
+
 import TextFieldGroup from '../application/common/textFieldGroup';
+import Div from '../application/common/styled/div';
+import H1 from '../application/common/styled/h1';
+import H2 from '../application/common/styled/h2';
 import Input from '../application/common/styled/input';
 
 class Confirm extends Component {
@@ -13,7 +18,11 @@ class Confirm extends Component {
     super();
     this.state = {
       email: '',
-      errors: {}
+      errors: {
+        data: {
+          email: ''
+        }
+      }
     };
   }
 
@@ -27,6 +36,13 @@ class Confirm extends Component {
     }
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if(this.props.application.errors!==prevProps.application.errors){
+      //Perform some operation here
+      this.setState({errors: this.props.application.errors});
+    }
+  }
+
   onChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -35,6 +51,7 @@ class Confirm extends Component {
     e.preventDefault();
 
     const userData = {
+      language: this.props.application.language,
       email: this.state.email
     };
 
@@ -47,69 +64,143 @@ class Confirm extends Component {
     const { application } = this.props;
     const { verify } = this.props.application;
 
+    let placeEmail;
+    let placeEmailLabel;
     let placeSubmit;
+    let register;
+    let login;
 
     if (application.language === 'es') {
+      placeEmail = 'E-correo personal'
+      placeEmailLabel = 'Campo para e-correo personal'
       placeSubmit = 'Enviar'
+      register = 'registrar'
+      login = 'iniciar'
+
     } else {
+      placeEmail = 'Email'
+      placeEmailLabel = 'Field for email'
       placeSubmit = 'Submit'
+      register = 'register'
+      login = 'login'
     }
 
     const success =
       <div>
-        <h1 className="display-4 text-center">Verified</h1>
-        <p className="lead text-center">
-          Thank you for signing up!
-        </p>
-        <Link to="/login" className="btn btn-block btn-info">
-          Sign In
+       <H1 
+          className="m-0 p-10px pt-20px text-center border-bottom-1 outer-shadow-primary font-weight-normal"
+          backgroundStyled={application.theme.primaryQuarter}
+          fontSizeStyled={application.text.heading}
+        >
+          <FormattedMessage
+            id="verify.Main"
+            defaultMessage="Verify"
+          />
+        </H1>
+        <H2 
+          className="p-10px text-center font-weight-normal"
+          fontSizeStyled={application.text.description}
+        >
+          <FormattedMessage
+            id="verify.SecondarySuccess"
+            defaultMessage="Thanks for signing up!"
+          />
+        </H2>
+
+        <Link to={`/${login}`} className="d-flex justify-content-center noUnderline">
+          <Div 
+            className="w-max-content border-bottom-1 m-20px text-center" 
+            transitionStyled={application.transitions.general} 
+            colorStyled={application.theme.primary} 
+            borderBottomStyled={application.transparent} 
+            borderBottomHoverStyled={application.theme.primary}>
+            <FormattedMessage
+              id="navigation.login"
+              defaultMessage="Login"
+            />
+          </Div>
         </Link>
       </div>
     ;
 
     const expired =
       <div>
-        <h1 className="text-center">Resend</h1>
-        <p className="lead text-center">
-          Sorry, but we couldn't find your validation token. Please enter your email below to resend your confirmation email.
-        </p>
-        <form noValidate onSubmit={this.onSubmit}>
-          <TextFieldGroup
-            placeholder="Email Address"
-            name="email"
+        <H1 
+          className="m-0 p-10px pt-20px text-center border-bottom-1 outer-shadow-primary font-weight-normal"
+          backgroundStyled={application.theme.primaryQuarter}
+          fontSizeStyled={application.text.heading}
+        >
+          <FormattedMessage
+            id="verify.Main"
+            defaultMessage="Verify"
+          />
+        </H1>
+        <H2 
+          className="p-10px text-center font-weight-normal"
+          fontSizeStyled={application.text.description}
+        >
+          <FormattedMessage
+            id="verify.SecondaryFail"
+            defaultMessage="Welcome Back!"
+          />
+        </H2>
+        <form className="form ml-auto mr-auto d-flex flex-direction-column text-center" noValidate onSubmit={this.onSubmit}>
+        <Input
             type="email"
+            name="email"
+            placeholder={`${placeEmail}`}
+            aria-label={`${placeEmailLabel}`}
+            className="box-shadow-none border-1 pl-10px pr-10px pt-5px pb-5px mb-10px"
+            backgroundStyled={errors.data.email ? `${application.theme.primary}`: `${application.transparent}`}
+            colorStyled={errors.data.email ? `${application.mode.primary}`: `${application.theme.primary}`}
+            placeholderStyled={errors.data.email ? `${application.mode.primary}`: `${application.theme.primary}`}
+            fontSizeStyled={application.text.primary}
+            borderStyled={application.theme.primary}
+            radiusStyled={application.settings.appRadius}
             value={this.state.email}
             onChange={this.onChange}
-            error={errors.email}
           />
           <Input
             type="submit"
             value={`${placeSubmit}`}
-            className={`clickable mt-10px mb-20px webkit-appearance-none outer-shadow-primary border-1`}
+            className={`clickable mt-10px p-5px mb-20px webkit-appearance-none outer-shadow-primary border-1`}
             transitionStyled={application.transitions.general}
             backgroundStyled={application.theme.primaryQuarter}
             backgroundHoverStyled={application.theme.primary}
             colorStyled={application.mode.primary}
-            fontSizeStyled={application.text.heading}
+            fontSizeStyled={application.text.important}
             borderStyled={application.mode.primary}
             radiusStyled={application.settings.appRadius}
           />
         </form>
-        <Link to="/register" className="btn-block mt-5 text-center text-info">
-          Or Sign Up
+        <Link to={`/${register}`} className="d-flex justify-content-center noUnderline">
+          <Div 
+            className="w-max-content border-bottom-1 m-20px text-center" 
+            transitionStyled={application.transitions.general} 
+            colorStyled={application.theme.primary} 
+            borderBottomStyled={application.transparent} 
+            borderBottomHoverStyled={application.theme.primary}>
+            <FormattedMessage
+              id="verify.signUp"
+              defaultMessage="Or, Sign Up"
+            />
+          </Div>
         </Link>
       </div>
     ;
 
     return (
-      <div className="body scroll-container pt-3 pb-3">
-        <div className="container pt-4">
-          <div className="row">
-            <div className="col-md-8 m-auto">
-            {verify.success ? success : null}
-            {verify.expired ? expired : null}
-            </div>
-          </div>
+      <div>
+        <div>
+          {verify.success ? success : null}
+          {verify.expired ? expired : null}
+        </div>
+        <div className="d-flex justify-content-center">
+          <ul>
+            {errors.data.email ? 
+              <li>{errors.data.email}</li> : ``
+            }
+          </ul>
         </div>
       </div>
     );

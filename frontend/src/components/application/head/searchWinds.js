@@ -91,17 +91,29 @@ class SearchWinds extends Component {
 
         if (searchResults.length > 0) {
           searchContainer = 
-            <div>
+            <Div
+              className="border-1 outer-shadow-primary" 
+              backgroundStyled={application.mode.primary}
+              colorStyled={application.theme.primary}
+              borderStyled={application.theme.primary}
+              radiusStyled={`${application.settings.appRadius}`}
+            >
               {searchResults}
-            </div>
+            </Div>
         } else {
           searchContainer =
-            <div className="p-5px">
+            <Div
+              className="border-1 outer-shadow-primary" 
+              backgroundStyled={application.mode.primary}
+              colorStyled={application.theme.primary}
+              borderStyled={application.theme.primary}
+              radiusStyled={`${application.settings.appRadius}`}
+            >
               <FormattedMessage
                 id="navigation.searchResults"
                 defaultMessage="No search results"
               />
-            </div>
+            </Div>
         }
       } else {
         searchContainer = ''
@@ -126,15 +138,12 @@ class SearchWinds extends Component {
           />
         </div>
         {listOpen &&
-          <Div ref={this.setWrapperRef} 
-            className="d-flex flex-direction-column position-absolute mt-50px overflow-hidden border-1 outer-shadow-primary" 
-            backgroundStyled={application.mode.primary}
-            colorStyled={application.theme.primary}
-            borderStyled={application.theme.primary}
-            radiusStyled={`${application.settings.appRadius}`}
-            >
+          <div 
+            ref={this.setWrapperRef}
+            className="d-flex flex-direction-column position-absolute mt-50px overflow-hidden"
+          >
             {searchContainer}
-          </Div>
+          </div>
         }
       </Div>
     )

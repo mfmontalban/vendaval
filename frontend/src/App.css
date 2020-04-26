@@ -360,6 +360,10 @@ Positioning
     width: 50%;
   }
   
+  .w-75 {
+    width: 75%;
+  }
+  
   .w-80 {
     width: 80%;
   }
@@ -376,6 +380,10 @@ Positioning
     width: 200px;
   }
 
+  .w-min-content {
+    width: min-content;
+  }
+  
   .w-max-content {
     width: max-content;
   }

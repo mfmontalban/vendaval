@@ -46,6 +46,7 @@ class Forgot extends Component {
     e.preventDefault();
 
     const user = {
+      language: this.props.application.language,
       email: this.state.email,
     };
 
